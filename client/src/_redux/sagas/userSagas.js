@@ -22,7 +22,7 @@ export function* workerLoginRequestedSaga(action) {
         message.error("Username or password incorrect!")
         yield put(loginFailed(error));
     }
-}
+};
 
 
 export function* watchRegisterRequestedSaga() {
