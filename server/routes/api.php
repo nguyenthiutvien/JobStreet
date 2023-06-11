@@ -35,3 +35,5 @@ Route::get("/company/{email}/edit",[CompanyController::class,"edit"]);
 Route::put("/company/{email}/confirm-email",[CompanyController::class,"confirmEmail"]);
 Route::put("/company/{email}/change-pass",[CompanyController::class,"update"]);
 Route::post("/company/login",[CompanyController::class,"EmployeeLogin"]);
+
+
