@@ -12,19 +12,18 @@
     text-align: center;
     justify-content: center;
     align-items: center;
-    color: #FFFFFF;
+    color: #0ac9f4;
 }
 
-.register--button {
-    button {
-        margin-left: 270px;
-        width: 400px;
-        background: #FFB347;
-        height: 50px;
-        border-radius: 50px;
+.text--area{
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    margin-left: 50px;
+    .form--area{
+        width: 840px;
     }
 }
-
 .or--option {
     margin-top: 20px;
     text-align: center;
@@ -34,6 +33,7 @@
 }
 
 .form--register {
+    margin-top: 30px;
     margin-left: 50px;
     display: grid;
     grid-template-columns: 50% 50%;
@@ -44,7 +44,6 @@
         border-radius: 8px;
         outline: none;
         padding-left: 10px;
-        // border: none;
         &::placeholder{
             font-size:14px;
             padding-left: 10px;

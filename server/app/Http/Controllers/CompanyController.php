@@ -52,21 +52,31 @@ class CompanyController extends Controller
         $request->validate([
             'company_name'=>"required|string",
             'logo'=>"nullable|string",
+            "scale"=>"required|string",
+            "description"=>"required|string",
+            "website"=>"required|string",
             'email'=>"required|string",
             'password'=>"required|string",
             'address'=>"required|string",
             'number_phone'=>"required|numeric"
         ]);
-
         $company=Company::create([
             'company_name'=>$request->company_name,
             'logo'=>"company.png",
+            'scale'=>$request->scale,
+            'description'=>$request->description,
+            'website'=>$request->website,
             'email'=>$request->email,
             'password'=>$request->password,
             'address'=>$request->address,
             'number_phone'=>$request->number_phone
         ]);
-
+        if(!$company){
+            return response()->json(
+                    "Không thể chèn"
+            );
+        }
+      
         Mail::to($request->email)->send(new RegisterEmail($request->company_name));
         return response()->json(
             $company

@@ -67,6 +67,7 @@ export const LoginUser = () => {
                             validator:acountUnAlready
                         }
                         ]}
+                        hasFeedback
                     >
                         <Input name="email" className='login--email' placeholder="Nhập Email để đăng nhâp" onChange={handelInput} />
                     </Form.Item>
@@ -83,6 +84,7 @@ export const LoginUser = () => {
                             validator: acountAlreadyEmail
                         }
                         ]}
+                        hasFeedback
                     >
                         <Input.Password name="password" className='login--password' placeholder="Nhâp mật khẩu" onChange={handelInput} />
                     </Form.Item>
@@ -171,6 +173,7 @@ export const LoginEmployee = () => {
                             validator:acountUnAlready
                         }
                         ]}
+                        hasFeedback
                     >
                         <Input name="email" className='login--email' placeholder="Nhập Email để đăng nhâp" onChange={handelInput} />
                     </Form.Item>
@@ -187,6 +190,7 @@ export const LoginEmployee = () => {
                             validator: acountAlreadyEmail
                         }
                         ]}
+                        hasFeedback
                     >
                         <Input.Password name="password" className='login--password' placeholder="Nhâp mật khẩu" onChange={handelInput} />
                     </Form.Item>

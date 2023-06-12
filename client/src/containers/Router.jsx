@@ -11,9 +11,11 @@ import { UserChangePassword } from "./ChangePassword";
 import { UserEnterCode } from "./EnterCodeConfirm";
 import { EmployeeEnterCode } from "./EnterCodeConfirm";
 import { EmployeeChangePassword } from "./ChangePassword";
+import { EmployeePayment } from "./Authennitication";
 export const Router = () => {
     return (
         <Routes>
+            <Route path="/employeePayment" element={<EmployeePayment/>}></Route>
             <Route path="/entercodeEmployee" element={<EmployeeEnterCode/>}></Route>
             <Route path="/entercodeUser" element={<UserEnterCode/>}></Route>
             <Route path="/newpasswordUser" element={<UserChangePassword/>}></Route>

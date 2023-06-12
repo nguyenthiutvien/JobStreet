@@ -44,9 +44,9 @@ export const employeeLogin=async(e)=>{
     axios.post("http://127.0.0.1:8000/api/company/login",e)
   )
 }
-export const postCompany=async (company)=>{
+export const postCompany=async (employee)=>{
   return (
-    await axios.post("http://127.0.0.1:8000/api/company",company)
+    await axios.post("http://127.0.0.1:8000/api/company",employee)
   )
 }
 
