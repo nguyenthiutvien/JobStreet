@@ -12,9 +12,11 @@ import { UserEnterCode } from "./EnterCodeConfirm";
 import { EmployeeEnterCode } from "./EnterCodeConfirm";
 import { EmployeeChangePassword } from "./ChangePassword";
 import { EmployeePayment } from "./Authennitication";
+import { Application } from "./Application";
 export const Router = () => {
     return (
         <Routes>
+            <Route path="/a" element={<Application/>}></Route>
             <Route path="/employeePayment" element={<EmployeePayment/>}></Route>
             <Route path="/entercodeEmployee" element={<EmployeeEnterCode/>}></Route>
             <Route path="/entercodeUser" element={<UserEnterCode/>}></Route>
