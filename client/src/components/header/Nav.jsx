@@ -31,7 +31,7 @@ const Nav = ({ cmp }) => {
         
         <Link
           className={`${
-            cmp === "jobs" ? "home-header-container-nav-right--active-menu" : ""
+            cmp === "company" ? "home-header-container-nav-right--active-menu" : ""
           }`}
           to="/jobs"
         >
@@ -45,6 +45,7 @@ const Nav = ({ cmp }) => {
           }`}
           to="/blogs"
         >
+          
           Bài đăng
         </Link>
         <Link
@@ -59,18 +60,27 @@ const Nav = ({ cmp }) => {
         </Link>
         <Link
           className={`${
-            cmp === "auth" ? "home-header-container-nav-right--active-menu" : ""
+            cmp === "login"
+              ? "home-header-container-nav-right--active-menu"
+              : ""
           }`}
-          to={`${
-            (location.pathname === "/sign-up" && "/sign-up") ||
-            (location.pathname === "/forgot-password" && "/forgot-password") ||
-            "/"
-          }`}
+          to="/loginUser"
         >
-          {(location.pathname === "/sign-up" && "Sign Up") ||
-            (location.pathname === "/forgot-password" && "Reset Password") ||
-            ""}
+          Đăng nhập
         </Link>
+
+        <Link
+          className={`${
+            cmp === "login"
+              ? "home-header-container-nav-right--active-menu"
+              : ""
+          }`}
+          to="/loginEmployee"
+        >
+          Dành cho nhà tuyển dụng
+        </Link>
+
+       
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchApiData } from "./api/api";
+import { fetchApiData } from "./api/Api";
 import Loader from "../src/components/services/Loader";
 import Category from "./components/categories/Category";
 import Header from "./components/header/Header";

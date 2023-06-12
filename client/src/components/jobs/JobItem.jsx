@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt, faBuilding,faDollarSign,faClock } from "@fortawesome/free-solid-svg-icons";
 import "../../_style/components/JobCard.scss";
 
-const JobItem = ({ position, type, company, address, logo,salary,id,time_close }) => {
+const JobItem = ({ position, type, company, address, logo,salary,id, time_close }) => {
   return (
     <div className="job__wrapper__card">
       <div className="job__wrapper__card--left">

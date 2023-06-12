@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchApiData } from "../../api/api";
+import { fetchApiData } from "../../api/Api";
 import Loader from "../../components/services/Loader";
 import Footer from "../footer/Footer";
 import NavBar from "../pages/navigation/NavBar";
