@@ -1,10 +1,10 @@
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import { NotFoundPage } from "./NotFoundPage";
 import { HomePage } from "./HomePage";
-import { ROUTE } from "../constants/common";
+
 import { AboutPage } from "./AboutPage";
 import { LoginPage } from "./LoginPage";
-import { useSelector } from "react-redux";
+
 
 export const Router = () => {
     return (

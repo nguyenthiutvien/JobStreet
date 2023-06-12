@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CompanyController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,4 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+Route::get('/companies/selectdata', [CompanyController::class, 'selectdata']);
+
+Route::get('/companies/selectdata/{id}', function (Request $request, $id) {
+    $controller = new CompanyController(); 
+    return $controller->getCompany($request, $id);
 });

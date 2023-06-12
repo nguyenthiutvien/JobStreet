@@ -1,6 +1,4 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux"
-import { getPostsRequested } from "../_redux/actions/postActions";
 
 export const HomePage = () => {
     const dispatch = useDispatch();

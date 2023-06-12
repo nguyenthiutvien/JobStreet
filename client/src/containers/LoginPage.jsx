@@ -1,8 +1,6 @@
-import { ROUTE } from "../constants/common";
+
 import { Form, Input, Button } from "antd";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { loginRequested } from "../_redux/actions/userActions";
+
 
 export const LoginPage = () => {
     const dispatch = useDispatch();
@@ -12,6 +10,7 @@ export const LoginPage = () => {
         console.log("values", values);
         dispatch(
             loginRequested({
+                
                 username: values.username,
                 password: values.password,
             })
