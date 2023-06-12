@@ -1,0 +1,79 @@
+.hero_section {
+    .hero-data {
+      display: flex;
+      align-items: center;
+  
+      .left {
+        display: flex;
+        align-items: center;
+  
+        .icon {
+          margin-right: 10px;
+          margin-left: 20px;
+  
+          img {
+            width: 40px; /* Kích thước logo lớn */
+          }
+        }
+  
+        .details {
+          h1 {
+            font-size: 28px; /* Kích thước của tên vị trí công việc */
+            margin-bottom: 5px;
+
+          }
+  
+          .company {
+            span {
+              font-size: 18px; /* Kích thước tên công ty */
+              color: #00aaff; /* Màu xanh cho tên công ty */
+              margin-bottom: 10px;
+             
+            }
+
+          }
+  
+          .posted {
+          
+            align-items: center;
+            font-size: 15px;
+            color: #302f2f; /* Màu chữ cho địa chỉ và ngày đóng đơn */
+            margin-top: 5px;
+  
+            .country {
+              display: flex;
+              align-items: center;
+              margin-right: 10px;
+  
+              svg {
+                margin-right: 5px; /* Khoảng cách giữa icon và địa chỉ */
+              }
+            }
+  
+            .date {
+                
+              display: flex;
+              align-items: center;
+              margin-right: 10px;
+  
+              svg {
+                margin-right: 5px; /* Khoảng cách giữa icon và ngày đóng đơn */
+              }
+            }
+          }
+        }
+      }
+  
+      .right {
+        margin-right: 290px;
+     
+        .amount {
+           
+          h2 {
+            font-size: 18px; /* Kích thước lương hàng tháng */
+          }
+        }
+      }
+    }
+  }
+  
