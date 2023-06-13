@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NotificationToCandidate;
+use App\Mail\NotificationToEmployee;
 use App\Models\Application;
+use App\Models\Job;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+
 class ApplicationController extends Controller
 {
     /**
@@ -31,31 +36,51 @@ class ApplicationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "name" =>"required|string",
-            "email" =>"required|string",
-            "file_cv"=>"required|string",
-            "cover_letter"=>"required|string",
-            "job_id"=>"required"
+            "email" => "required|string",
+            "job_id" => "required|numeric",
+            "cv" => "nullable",
+            "name" => "required",
+            "cover_letter" =>"nullable",
+            "position" => "required",
+            "status" => "required",
         ]);
-        $email=$request->email;
-        $filev_cv=$request->filev_cv;
+
+        $email = $request->email;
+        $job_id = $request->job_id;
         $name=$request->name;
-        $id_job=$request->id_job;
-        $user=User::where("email",$email)->first();
+        $cover_letter=$request->cover_letter;
+        $position=$request->position;
+        $status="Đã nhận";
+        
+        $user = User::where("email", $email)->first();
         $application=new Application();
-        $fileName=Str::random(15).".".$request->filev_cv->getClientOriginalExtension();
-        $application->user_id=$user->id;
-        $application->job_id=$id_job;
-        if($request->hasFile("filev_cv")){
-            $cv=$request->file("filev_cv");
-            $cvName=$cv->getClientOriginalName();
-            Storage::disk("public")->put($fileName,file_get_contents($request->file_cv));
-            $application->cv=$fileName;
+        $application->user_id = $user->id;
+        $application->job_id = $job_id;
+        $fileName=Str::random(20).".".$request->cv->getClientOriginalExtension();
+        if ($request->hasFile("cv")) {
+            Storage::disk("public")->put($fileName,file_get_contents($request->cv));
+            $application->cv = $fileName;
         }
-        $application->status="Đang tiếp nhận";
+        $application->status = $status;
         $application->save();
+
+        $job=Job::join("companies","jobs.company_id","=","companies.id")
+                ->select("companies.*")
+                -> where("jobs.id",$job_id)->first();
+        if ($application) {
+            Mail::to($job->email)->send(new NotificationToEmployee($name,$cover_letter,$fileName,$job->company_name));
+            Mail::to($request->email)->send(new NotificationToCandidate($name,$job->company_name));
+            return response()->json([
+                "Thành công"=> $application,
+                  "name"=>$name,
+                  "cover_letter"=>$cover_letter,
+                  "position"=>$position,
+              ]);
+        }
+       return response()->json("Thất bại");
     }
- 
+
+
     /**
      * Display the specified resource.
      */

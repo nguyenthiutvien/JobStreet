@@ -43,7 +43,8 @@ export const LoginUser = () => {
     const handelSubmit = async (e) => {
           const status= await userLogin(e)
           if (status.data==200) {
-            navigate("/homePage")
+            localStorage.setItem("login",JSON.stringify(e))
+            navigate("/")
           }
         
     }
@@ -147,7 +148,7 @@ export const LoginEmployee = () => {
     const handelSubmit = async (e) => {
         const status= await employeeLogin(e)
         if (status.data==200) {
-            navigate("/homePage")
+            navigate("/")
         }
         
     }

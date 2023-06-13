@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\JobApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,3 +39,17 @@ Route::put("/company/{email}/change-pass",[CompanyController::class,"update"]);
 Route::post("/company/login",[CompanyController::class,"EmployeeLogin"]);
 
 
+Route::group(['middleware' => 'api'], function ($router) {
+    Route::resource('/categories', CategoryController::class);
+    Route::resource('/applications', ApplicationController::class);
+});
+
+//job
+Route::get('/home',[JobApiController::class,'index']);
+Route::get('/home/browse',[JobApiController::class,'getALlJobs']);
+
+Route::get('/home/{id}',[JobApiController::class,'getJobDetails']);
+
+
+// Application
+Route::post('/applications',[ApplicationController::class,"store"]);
