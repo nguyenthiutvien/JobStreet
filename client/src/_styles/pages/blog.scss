@@ -1,0 +1,71 @@
+.blog {
+    // styles for the main container
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.blog-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+
+
+.blog-post-container {
+    // styles for each individual blog post container
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.comment-section {
+    // styles for the comment section
+    margin-top: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+
+}
+
+.comment-form {
+    // styles for the comment form
+}
+
+.comment-form textarea {
+    // styles for the comment textarea
+    width: 50%;
+    height: 100px;
+    padding: 5px;
+}
+
+.comment-form input {
+    // styles for the comment form inputs
+    width: 50%;
+    height: 30px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.comment-form button {
+    // styles for the submit button
+    background-color:green($color: #000000);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.comment-form button:hover {
+    background-color: #555;
+}
+.submit{
+    padding: auto;
+}

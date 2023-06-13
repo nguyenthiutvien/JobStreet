@@ -1,11 +1,16 @@
-import { useState } from 'react'
-import { Router } from './containers/Router'
-function App() {
-  const [count, setCount] = useState(0)
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Blog from './components/Blog/Blog';
+// Import các thành phần khác trong App
 
+const App = () => {
   return (
-      <Router />
-  )
-}
+    <Router>
+      <Routes>
+        <Route path="/" element={<Blog />} />
+      </Routes>
+    </Router>
+  );
+};
 
-export default App
+export default App;
