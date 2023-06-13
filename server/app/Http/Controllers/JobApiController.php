@@ -31,7 +31,7 @@ class JobApiController extends Controller
     public function getJobDetails($id)
 {
     $data['job'] = Job::where('id', $id)->with('categories:id')->with('company:id,company_name,address,logo')->first();
-    $data['similar'] = Job::where([['status','active'],['cat_id',$data['job']->cat_id]])->get()->random(2);
+    $data['similar'] = Job::where([['status','active'],['cat_id',$data['job']->cat_id]])->get();
     return $this->apiResponse('success', $data, Response::HTTP_OK, true);
 }
 
