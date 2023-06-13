@@ -4,7 +4,7 @@ export const postUser =async (e) => {
   return (
       await axios.post("http://127.0.0.1:8000/api/users",e)
   )
-}
+} 
 export const getUser = async ()=>{
   return (
     await axios.get("http://127.0.0.1:8000/api/users")
@@ -31,9 +31,6 @@ export const userLogin=async(e)=>{
   )
 }
  
-
-
-
 
 
 
