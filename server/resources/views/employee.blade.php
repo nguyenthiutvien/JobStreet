@@ -9,7 +9,7 @@
 <body>
     <b>Kính thưa: {{ $company }}</b>
     <p>Bạn nhận được đơn ứng tuyển của ứng viên: {{ $name }}</p>
-    <b>Nguyên vọng: {{ $cover_letter}}</b>
-    <a href={{"http://127.0.0.1:8000/storage".$cv }} download>Tải xuống</a>
+    <b>Nguyên vọng:</b><p> {{ $cover_letter}}</p> <br>
+    <a href={{"http://127.0.0.1:8000/storage/".$cv }} download>Tải xuống</a>
 </body>
 </html>
