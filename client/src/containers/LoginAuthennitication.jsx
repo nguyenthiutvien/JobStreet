@@ -43,6 +43,7 @@ export const LoginUser = () => {
     const handelSubmit = async (e) => {
           const status= await userLogin(e)
           if (status.data==200) {
+            localStorage.setItem("login",JSON.stringify(e))
             navigate("/")
           }
         

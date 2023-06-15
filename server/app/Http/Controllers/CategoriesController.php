@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use ApiResponseWithHttpSTatus;
+use App\Models\Categories;
+use Illuminate\Http\Response;
 
 class CategoriesController extends Controller
 {
 
-    use ApiResponseWithHttpSTatus;
+    
     public function __construct() {
         $this->middleware('auth:api', ['except' => ['index']]);
     }

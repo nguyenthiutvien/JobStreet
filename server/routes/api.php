@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JobApiController;
@@ -48,3 +49,7 @@ Route::get('/home',[JobApiController::class,'index']);
 Route::get('/home/browse',[JobApiController::class,'getALlJobs']);
 
 Route::get('/home/{id}',[JobApiController::class,'getJobDetails']);
+
+
+// Application
+Route::post('/applications',[ApplicationController::class,"store"]);

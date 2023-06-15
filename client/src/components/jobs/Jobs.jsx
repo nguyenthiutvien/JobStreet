@@ -9,7 +9,6 @@ const Jobs = ({ latest }) => {
       <div className="container">
         <div className="job-info">
           <h1>Latest Jobs</h1>
-          
         </div>
         <div className="job__wrapper">
           {latest &&
@@ -17,11 +16,7 @@ const Jobs = ({ latest }) => {
               <JobItem
                  key={i}
                 id={job.id}
-                type={job.type}
-
-              
-            
-               
+                type={job.type}   
               />
             ))}
         </div>
