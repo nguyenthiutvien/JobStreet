@@ -1,0 +1,33 @@
+.container--modal{
+    position: relative;
+    padding-top: 50px;
+    width: 500px;
+    height: 550px;
+    margin: auto;
+    box-shadow: 1px 2px 2px 1px rgb(66, 63, 63);
+}
+.modal--title{
+    height: 60px;
+    margin-left: 20px;
+}
+.modal--form{
+    width: 450px;
+    margin-left: 20px;
+}
+.form--values{
+    height: 50px;
+}
+.form--value--email{
+    height: 50px;
+}
+.form--button--application{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .modal--submit{
+        height: 50px;
+    }
+    .modal--cancel{
+        height: 50px;
+    }
+}

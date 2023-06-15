@@ -1,0 +1,129 @@
+.container--payment--body{
+    margin-left: 50px;
+    margin-top: 150px;
+    margin-right: 50px;
+}
+.conatiner--payment{
+    display: grid;
+    grid-template-columns: 60% 40%;
+}
+.payment--information{
+    width: 800px;
+    height: 400px;
+    border-radius: 8px;
+    background: #f5eaea;
+    box-shadow: 1px 2px 2px 1px #333232;
+
+    .infor--title{
+        height: 60px;
+        text-align: center;
+    }
+}
+.infor--company{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    .company--left{
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        
+        div{
+            padding-top: 20px;
+            input{
+                margin-top: 10px;
+                width: 350px;
+                height: 40px;
+                outline: none;
+                border-radius: 20px;
+                padding-left: 10px;
+                &:hover{
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+    .company--right{
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        div{
+            padding-top: 20px;
+            input{
+                margin-top: 10px;
+                width: 350px;
+                height: 40px;
+                outline: none;
+                border-radius: 20px;
+                padding-left: 10px;
+                &:hover{
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+    
+}
+.payment--confirm{
+    border-radius: 8px;
+    background: #f5eaea;
+    box-shadow: 1px 2px 2px 1px #333232;
+    .payment--title{
+        text-align: center;
+    }
+}
+.payment--price{
+    margin-left: 150px;
+    color: rgb(247, 57, 57);
+}
+.payment--number--cart{
+    margin-top: -30px;
+    label{
+        margin-left: 30px;
+    }
+    input{
+        width: 350px;
+        height: 40px;
+        border-radius: 5px;
+        margin-left: 30px;
+        outline: none;
+        padding-left: 10px;
+    }
+}
+.payment--select--bank{
+    label{
+        margin-left: 30px;
+    }
+    select{
+        margin-left: 30px;
+        width: 250px;
+        height: 40px;
+        font-size: 16px;
+        option{
+            font-size: 16px;
+        }
+    }
+}
+.payment--button{
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    button{
+        margin-left: 10px;
+        width: 100px;
+        height: 40px;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 16px;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+    .success{
+        background: rgb(74, 240, 74);
+    }
+    .cancel{
+        background: rgb(206, 86, 7);
+    }
+}

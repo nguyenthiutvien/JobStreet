@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import BlogPost from './Blogpost';
-import '../../_styles/pages/blog.scss';
+import BlogForm from './BlogForm';
+import '../../_style/components/Blog/blog.scss';
 
 const Blog = () => {
     const [blogPostsData, setBlogPostsData] = useState([]);
@@ -9,6 +10,7 @@ const Blog = () => {
     const [email, setEmail] = useState('');
     const [comment, setComment] = useState('');
     const [submittedComments, setSubmittedComments] = useState([]);
+    const [show, setShow] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -60,31 +62,42 @@ const Blog = () => {
         }
     };
 
+    const handleShow = () => {
+        setShow(!show)
+    }
+
     return (
-        <div className="blog">
-            <h1 className="blog-title">Blog tìm việc làm</h1>
-            <div className="blog-posts">
-                {blogPostsData.map((post, index) => (
-                    <div key={index} className="blog-post-container">
-                        <BlogPost post={post} />
+        <>
+            {show && <BlogForm handleShow={handleShow}/>}
+            <div className="blog">
+                <h1 className="blog-title">Blog tìm việc làm</h1>
+                <div class="header_post">
+                    <button class="button_post" onClick={handleShow}>Đăng bài</button>
+                </div>
+                
+                <div className="blog-posts">
+                    {blogPostsData.map((post, index) => (
+                        <div key={index} className="blog-post-container">
+                            <BlogPost post={post} />
+                        </div>
+                    ))}
+                    <div className="comment-section">
+                        <h3>Comments</h3>
+                        <form className="comment-form" onSubmit={(e) => handleSubmitComment(e)}>
+                            <textarea placeholder="Your Comment" value={comment} onChange={handleCommentChange} required
+                            ></textarea>
+                            <input
+                                type="text" placeholder="Your Name" value={name} onChange={handleNameChange} required
+                            />
+                            <input
+                                type="email" placeholder="Your Email" value={email} onChange={handleEmailChange} required
+                            /><br/>
+                            <button className="blog_submit" type="submit">Submit</button>
+                        </form>
                     </div>
-                ))}
-                <div className="comment-section">
-                    <h3>Comments</h3>
-                    <form className="comment-form" onSubmit={(e) => handleSubmitComment(e)}>
-                        <textarea  placeholder="Your Comment"  value={comment}  onChange={handleCommentChange}  required
-                        ></textarea>
-                        <input
-                            type="text" placeholder="Your Name"  value={name}  onChange={handleNameChange} required
-                        />
-                        <input
-                            type="email" placeholder="Your Email"  value={email} onChange={handleEmailChange}required
-                        />
-                        <button className="blog_submit" type="submit">Submit</button>
-                    </form>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

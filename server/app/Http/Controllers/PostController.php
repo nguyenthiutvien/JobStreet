@@ -22,10 +22,7 @@ class PostController extends Controller
 */
     public function store(Request $request)
     {
-        $post = new Post();
-        $post->title = $request->input('title');
-        $post->content = $request->input('content');
-        $post->save();
+        Post::create($request->all());
 
     return response()->json(['message' => 'Post created successfully']);
     }
@@ -41,6 +38,7 @@ class PostController extends Controller
         }
         return response()->json($post);
     }
+
 
     public function update(Request $request, string $id)
     {
@@ -71,4 +69,5 @@ class PostController extends Controller
         return response()->json(['message' => 'Post deleted successfully']);
         }
     }
+    
 
