@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../../public/assets/images/logo.png";
-
+import { confirmEmail } from "../../api/Api";
 const Nav = ({ cmp }) => {
   const location = useLocation();
+  const userLogin = JSON.parse(localStorage.getItem("login"));
+  const [image, setImage] = useState([])
+  useEffect(() => {
+    userAlready()
+  }, [])
+  const userAlready = async () => {
+    const values = await confirmEmail(userLogin.email);
+    setImage(values.data.avatar)
+  }
   return (
     <div className="home-header-container-nav">
       <div className="home-header-container-nav-left">
@@ -13,74 +22,74 @@ const Nav = ({ cmp }) => {
       </div>
       <div className="home-header-container-nav-right">
         <Link
-          className={`${
-            cmp === "home" ? "home-header-container-nav-right--active-menu" : ""
-          }`}
+          className={`${cmp === "home" ? "home-header-container-nav-right--active-menu" : ""
+            }`}
           to="/"
         >
           Trang chủ
         </Link>
         <Link
-          className={`${
-            cmp === "jobs" ? "home-header-container-nav-right--active-menu" : ""
-          }`}
+          className={`${cmp === "jobs" ? "home-header-container-nav-right--active-menu" : ""
+            }`}
           to="/jobs"
         >
           Tìm việc làm
         </Link>
-        
+
         <Link
-          className={`${
-            cmp === "company" ? "home-header-container-nav-right--active-menu" : ""
-          }`}
+          className={`${cmp === "company" ? "home-header-container-nav-right--active-menu" : ""
+            }`}
           to="/jobs"
         >
           Danh sách công ty
         </Link>
         <Link
-          className={`${
-            cmp === "blogs"
+          className={`${cmp === "blogs"
               ? "home-header-container-nav-right--active-menu"
               : ""
-          }`}
+            }`}
           to="/blogs"
         >
-          
+
           Bài đăng
         </Link>
         <Link
-          className={`${
-            cmp === "contact"
+          className={`${cmp === "contact"
               ? "home-header-container-nav-right--active-menu"
               : ""
-          }`}
+            }`}
           to="/contact"
         >
           Liên hệ
         </Link>
-        <Link
-          className={`${
-            cmp === "login"
-              ? "home-header-container-nav-right--active-menu"
-              : ""
-          }`}
-          to="/loginUser"
-        >
-          Đăng nhập
-        </Link>
-
-        <Link
-          className={`${
-            cmp === "login"
-              ? "home-header-container-nav-right--active-menu"
-              : ""
-          }`}
-          to="/loginEmployee"
-        >
-          Dành cho nhà tuyển dụng
-        </Link>
-
-       
+        {userLogin === null ?
+          (
+            <>
+              <Link
+                className={`${cmp === "login"
+                    ? "home-header-container-nav-right--active-menu"
+                    : ""
+                  }`}
+                to="/login"
+              >
+                Đăng nhập
+              </Link>
+              <Link
+                className={`${cmp === "login"
+                    ? "home-header-container-nav-right--active-menu"
+                    : ""
+                  }`}
+                to="/loginEmployee"
+              >
+                Dành cho nhà tuyển dụng
+              </Link>
+            </>
+          ) : (
+            <Link to={"userProfile"}>
+            <img width={50} height={50} style={{ borderRadius: "50px" }} src={`http://127.0.0.1:8000/storage/${image}`} alt="" />
+            </Link>
+          )
+        }
       </div>
     </div>
   );

@@ -28,8 +28,8 @@ Route::get("/users/{email}/edit",[UserController::class,"edit"]);
 Route::post("/users/login",[UserController::class,"userLogin"]);
 Route::put("/users/{email}/confirm-email",[UserController::class,"confirmEmail"]);
 Route::put("/users/{email}/change-pass",[UserController::class,"recoverPass"]);
-
-
+Route::post("/user/update/{id}",[UserController::class,"update"]);
+Route::put("/user/change-password/{id}",[UserController::class,"userChangePassword"]);
 // Company
 Route::get("/company",[CompanyController::class,"index"]);
 Route::post("/company",[CompanyController::class,"store"]);
@@ -53,3 +53,4 @@ Route::get('/home/{id}',[JobApiController::class,'getJobDetails']);
 
 // Application
 Route::post('/applications',[ApplicationController::class,"store"]);
+Route::get("user/{email}/apply",[ApplicationController::class,"show"]);

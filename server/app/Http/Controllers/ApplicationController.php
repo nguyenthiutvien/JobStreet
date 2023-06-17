@@ -84,11 +84,16 @@ class ApplicationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($email)
     {
-        //
+        $apply=Job::join("companies","jobs.company_id","=","companies.id")
+        ->join("applications","jobs.id","=","applications.job_id")
+        ->join("users","applications.user_id","=","users.id")
+        ->select("companies.company_name","jobs.position","applications.status","applications.created_at")
+        ->where("users.email",$email)
+        ->get();
+        return response()->json($apply);
     }
-
     /**
      * Show the form for editing the specified resource.
      */

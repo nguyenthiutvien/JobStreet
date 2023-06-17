@@ -56,7 +56,16 @@ export const userLogin=async(e)=>{
     await axios.post("http://127.0.0.1:8000/api/users/login",e)
   )
 }
- 
+export const updateUser=async (id,formData)=>{
+  return (
+    await axios.post(`http://127.0.0.1:8000/api/user/update/${id}`,formData)
+  )
+}
+export const UserChangePassword=async(id,password)=>{
+  return (
+    await axios.put(`http://127.0.0.1:8000/api/user/change-password/${id}`,password)
+  )
+}
 
 
 
@@ -106,4 +115,10 @@ export const postApplication=async (formData)=>{
   return (
     await axios.post("http://127.0.0.1:8000/api/applications",formData)
   )
+}
+
+export const getApplications=async (email)=>{
+  return (
+      await axios.get(`http://127.0.0.1:8000/api/user/${email}/apply`)
+    )
 }
