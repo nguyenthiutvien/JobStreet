@@ -26,11 +26,13 @@ export const deleteApiData = async (url) => {
     .then((response) => response.data)
     .catch((response) => response.response.data);
 };
+
 export const getUser = async ()=>{
   return (
     await axios.get("http://127.0.0.1:8000/api/users")
   )
 }
+
 export const confirmEmail = async (email)=>{
   return (
     await axios.get(`http://127.0.0.1:8000/api/users/${email}/edit`)
