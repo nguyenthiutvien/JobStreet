@@ -25,6 +25,7 @@ function Detail() {
 
   return (
     <div className="container_detail">
+      <div className="company_detail">
       {detail.slice(0, 1).map((detail) => (
         <div className="row">
           <div className="col-md-3">
@@ -46,6 +47,7 @@ function Detail() {
           </div>
         </div>
       ))}
+      </div>
       <br /><br /><br /><br /><br />
   
       <h3>Thông tin công ty</h3> <br />
