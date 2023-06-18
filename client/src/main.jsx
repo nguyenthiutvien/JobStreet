@@ -2,11 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 import 'antd/dist/reset.css';
 import "./_styles/index.scss";
 import '../src/_styles/pages/company.scss'
 import '../src/_styles/pages/Detail.scss'
-import 'bootstrap/dist/css/bootstrap.min.css'
+
 import { BrowserRouter } from "react-router-dom";
 
 

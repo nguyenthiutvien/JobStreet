@@ -63,7 +63,6 @@ div.card{
    }
    .content:hover{
     box-shadow: 2px 1px 2px 1px;
-    border-color: rgb(4, 71, 135);
    }
    .content:hover a{
     color: rgb(5, 79, 149);
@@ -76,8 +75,29 @@ div.card{
       color: black;
    }
    a:hover {
-    text-decoration: underline;
+    text-decoration: none;
   }
  
   
   
+.linka:hover .item .inform,.time {
+  text-decoration:none;
+  color:black;
+}
+
+.company_name:hover {
+  text-decoration: underline;
+}
+
+.job:hover {
+  text-decoration: underline;
+}
+
+// .item .job{
+//   text-decoration:underline;
+//   color:red;
+// }
+.linka:hover .item .company_name {
+  text-decoration:underline;
+  color:rgb(26, 26, 216);
+}

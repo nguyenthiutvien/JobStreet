@@ -50,6 +50,9 @@ class JobStreetSeeder extends Seeder
             $company = Company::create([
                 "company_name" => $fake->name,
                 "logo" => $fake->image,
+                "scale" => rand(20,60),
+                "description" => $fake->paragraph,
+                "website" => $fake->url,
                 "email" => $fake->email,
                 "password" => $fake->password,
                 "number_phone" => $fake->phoneNumber,

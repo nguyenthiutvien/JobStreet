@@ -5,7 +5,7 @@ import {Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 function Company(){
     const [show,setshow]=useState([]);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     useEffect(()=>{
         data();
     },[]);
@@ -33,10 +33,10 @@ function Company(){
 
             <div className="card">
             {show && show.map((item)=>(
-                <div key={item.id}>
+                <Link to={`/detail/${item.id}`} className="linka" key={item.id}>
                 <div className="content">
                     <div className="item" >
-                    <img src={item.logo} />
+                    <img src={`http://127.0.0.1:8000/storage/${item.logo}`} />
                     < div className="company_name"><Link  to={`/detail/${item.id}`}>{item.company_name}
                     </Link></div>
                    
@@ -69,7 +69,7 @@ function Company(){
                           C6.46855469,95.6511719 4.36777344,94.7775391 2.62070312,93.0302734 C0.95267223,91.3626154 0.0811918905,89.373383 0.0054127499,87.0624064 L0,86.7300781 L0,59.9636719 L37.4726562,59.9636719 Z M57.1019531,59.9636719 L57.1019531,67.1013672 L42.8253906,67.1013672 L42.8253906,59.9636719 
                           L57.1019531,59.9636719 Z M66.0236328,5 C67.5101562,5 68.7748047,5.52070312 69.8148437,6.56113281 C70.8560547,7.60214844 71.3761719,8.86582031 71.3761719,10.3529297 L71.3761719,10.3529297 L71.3761719,21.2753906 L91.0052734,21.2753906 C93.4583984,21.2753906 95.5591797,22.1486328 97.30625,23.8960938 C99.0542969,25.6433594 99.9269531,27.7429688 99.9269531,30.1966797 L99.9269531,30.1966797 L99.9269531,51.6099609 L0,51.6099609 L0,30.1966797 C0,27.7429688 0.873242188,25.6433594 2.62070313,23.8960938 C4.36796875,22.1486328 6.46875,21.2753906 8.92226563,21.2753906 L8.92226563,21.2753906 L28.5509766,21.2753906 L28.5509766,10.3529297 C28.5509766,8.865625 29.0710938,7.6015625 30.1123047,6.56113281 C31.1535156,5.52070312 32.4173828,5 33.9041016,5 L33.9041016,5 Z M64.2390625,12.1373047 L35.6884766,12.1373047 L35.6884766,21.2753906 L64.2390625,21.2753906 L64.2390625,12.1373047 Z"></path></svg>
                         </div>
-                        <div className="job">  <Link activeclassName="active" to={'/timvieclam'}>{item.count > 0 ? item.count : ''} {item.positions}</Link></div>
+                        <div className="job">  <Link activeclassName="active" to={`/timvieclam/${item.id}`}>{item.count > 0 ? item.count : ''} {'vị trí đang tuyển'}</Link></div>
                        
                         <div></div>
                     </div>
@@ -83,7 +83,7 @@ function Company(){
                         <div></div>
                     </div>
                 </div>
-                </div>
+                </Link>
             ))}
             </div>
         </div>

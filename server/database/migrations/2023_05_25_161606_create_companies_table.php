@@ -15,6 +15,9 @@ return new class extends Migration
             $table->integer("id")->autoIncrement();
             $table->string("company_name",150)->unique();
             $table->string("logo");
+            $table->string("scale",20);
+            $table->string("description");
+            $table->string("website");
             $table->string("email")->unique();
             $table->string("password",20);
             $table->string("address",250);
@@ -22,6 +25,7 @@ return new class extends Migration
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

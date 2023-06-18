@@ -29,6 +29,7 @@ class CompanyController extends Controller
             'companies.number_phone',
             DB::raw('GROUP_CONCAT(CASE WHEN jobs.status = "open" THEN jobs.position ELSE "Không có vị trí nào đang tuyển" END) AS positions')
         )
+        ->where('jobs.status', 'open')
         ->groupBy('companies.id', 'companies.company_name', 'companies.logo', 'companies.address', 'companies.number_phone','companies.id')
         ->get();
 
@@ -40,16 +41,21 @@ public function getCompany(Request $request, $companyId)
     $results = Company::leftJoin('jobs', 'companies.id', '=', 'jobs.company_id')
         ->select(
             DB::raw('SUM(CASE WHEN jobs.status = "open" THEN 1 ELSE 0 END) AS count'),
+            
             'companies.id',
             'companies.company_name',
             'companies.logo',
             'companies.address',
             'companies.number_phone',
             'companies.email',
+            'companies.scale',
+            'companies.website',
+            'jobs.salary',
+            'jobs.description',
             DB::raw('GROUP_CONCAT(CASE WHEN jobs.status = "open" THEN jobs.position ELSE "Không có vị trí nào đang tuyển" END) AS positions')
         )
         ->where('companies.id', '=', $companyId)
-        ->groupBy('companies.id', 'companies.company_name', 'companies.logo', 'companies.address', 'companies.number_phone', 'companies.email','companies.id')
+        ->groupBy('companies.id', 'companies.company_name', 'companies.logo', 'companies.address', 'companies.number_phone', 'companies.email','companies.id','jobs.salary', 'jobs.description','companies.scale','companies.website',)
         ->get();
 
     return response()->json($results);
