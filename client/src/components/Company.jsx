@@ -3,6 +3,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import {Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+
+import Loader from "../components/services/Loader";
+
+
+import NavBar from "./pages/navigation/NavBar";
+import Footer from "../components/footer/Footer";
+
 function Company(){
     const [show,setshow]=useState([]);
     // const navigate = useNavigate();
@@ -21,7 +28,11 @@ function Company(){
 
     };
     return(
+        <div>
+        <NavBar/>
+     
         <div className="container">
+        
             <h1>Danh sách công ty</h1>
             <div className="row  d-flex justify-content-center">
                 <div className="col-sm-6">
@@ -86,6 +97,8 @@ function Company(){
                 </Link>
             ))}
             </div>
+        </div>
+        <Footer/>
         </div>
         
     )

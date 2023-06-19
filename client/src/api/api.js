@@ -1,5 +1,29 @@
 import React from 'react'
 import axios from 'axios'
+import "../config"
+
+// //  FETCH API JOB 
+export const fetchApiData = async (url) => {
+  return await axios
+    .get(url)
+    .then((response) => response.data)
+    .catch((response) => response.data);
+};
+
+export const storeApiData = async (url, data) => {
+  return await axios
+    .post(url, data)
+    .then((response) => response.data)
+    .catch((response) => response.response.data);
+};
+
+export const deleteApiData = async (url) => {
+  return await axios
+    .delete(url)
+    .then((response) => response.data)
+    .catch((response) => response.response.data);
+};
+
 export const postUser =async (e) => {
   return (
       await axios.post("http://127.0.0.1:8000/api/users",e)
@@ -66,5 +90,10 @@ export const recoverPasswordEmployee=async (email)=>{
 export const resetPasswordEmployee=async(email,password)=>{
   return(
     await axios.put(`http://127.0.0.1:8000/api/company/${email}/change-pass`,password)
+  )
+}
+export const postApplication=async (formData)=>{
+  return (
+    await axios.post("http://127.0.0.1:8000/api/applications",formData)
   )
 }

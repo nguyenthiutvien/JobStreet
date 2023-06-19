@@ -17,8 +17,10 @@ import AllJobs from "../components/pages/AllJobs";
 import JobDetails from "../components/jobs/JobDetails";
 import Home from "../Home";
 
-import { AboutPage } from "./AboutPage";
-import { LoginPage } from "./LoginPage";
+import Company from '../components/Company'
+import Detail from '../components/Detail'
+import Timvieclam from '../components/Timvieclam';
+
 
 
 export const Router = () => {
@@ -40,6 +42,13 @@ export const Router = () => {
             <Route path="" element={<Home />} />
           <Route path="/jobs" element={<AllJobs />} />
           <Route path="/job-details/:id" element={<JobDetails />} />
+
+        
+
+          <Route exact path="/company"  element={<Company/>} />
+          <Route path="/detail/:id" element={<Detail></Detail>} />
+          <Route path="/timvieclam/:id" element={<Timvieclam></Timvieclam>} />
+      
 
 
 

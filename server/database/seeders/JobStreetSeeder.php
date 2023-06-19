@@ -73,7 +73,7 @@ class JobStreetSeeder extends Seeder
                 "close_day" => $close_day,
             ]);
 
-            // Tạo dữ liệu face với Application
+            // Tạo dữ liệu face với App~lication
             $application = Application::create([
                 "user_id" => $user->id,
                 "job_id" => $job->id,
