@@ -7,8 +7,11 @@ use App\Mail\ForgotPassword;
 use App\Mail\RegisterEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Tymon\JWTAuth\Contracts\Providers\JWT;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {
@@ -28,22 +31,34 @@ class UserController extends Controller
      */
     public function userLogin(Request $request)
     {
-        $request->validate([
-            "email" => "required",
-            "password" => "required"
-        ]);
-        $user = User::where('email', $request->email)->first();
-
-        if ($user && $user->password === $request->password) {
-            return response()->json(
-                [
-                    "200"
+        if(empty($request->email)){
+            return response()->json([
+                "status" => "empty_email",
+                'message' => 'Vui lòng nhâp email của bạn'
+            ]);
+        }elseif(empty($request->password)){
+            return response()->json([
+            "status" => "empty_password",
+              'message' => 'Vui lòng nhâp mật khẩu của bạn'
+            ]);
+        }else{
+            $user=$request->only("email","password");
+            if(Auth::attempt($user)){
+                $user=Auth::user();
+                $token=JWTAuth::fromUser($user);
+            }else{
+                return response()->json([
+                    "status"=>404,
+                    "message"=>"Tài khoản hoặc mật khẩu sai"
+                ]);
+            }
+            return response()->json([
+                "status"=>200,
+                'token' => $token,
+                "email" => $request->email
                 ]
             );
         }
-        return response()->json([
-            "400"
-        ]);
     }
 
     /**
@@ -64,7 +79,7 @@ class UserController extends Controller
                 'username' => $request->username,
                 "avatar" => "user.png",
                 'email' => $request->email,
-                'password' => $request->password,
+                'password' =>bcrypt($request->password),
                 "number_phone" => $request->number_phone,
                 "address" => $request->address
             ]
@@ -86,10 +101,20 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit($email)
-    {
+    {   
         $user = User::where("email", $email)->first();
+        if(!$user){
+            return response()->json([
+                "status"=>400,
+                "message" => "Tài khoản không tồn tại"
+            ]);
+        }
         return response()->json(
+            [ 
+            "status"=>200,
             $user
+            ]
+           
         );
     }
 
@@ -144,7 +169,7 @@ class UserController extends Controller
                 "Tài khoản không tồn tại"
             );
         }
-        $user->password = $request->password;
+        $user->password =bcrypt($request->password);
         $user->save();
         return response()->json(
             "Thành công"
@@ -156,7 +181,7 @@ class UserController extends Controller
         $confirmemail = $request->email;
         $user = User::where("email", $confirmemail)->first();
         if ($user) {
-            $verificationCode =  Str::random(6);
+            $verificationCode =strval(rand(100000, 999999));
             Mail::to($confirmemail)->send(new ForgotPassword($verificationCode));
         }
         return response()->json(
@@ -165,12 +190,17 @@ class UserController extends Controller
     }
 
     public function userChangePassword(Request $request){
-            $id=$request->id;
-            $user=User::where("id",$id)->first();
+            $user=Auth::user();
+
+            // $id=$request->id;
+            $user=User::where("id",$user->id)->first();
             $user->password = $request->passwor;
             $user->save();
             if($user){
                 return response()->json("Thành công");
             }
     }
+
 }
+
+

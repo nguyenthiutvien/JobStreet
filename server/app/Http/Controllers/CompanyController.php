@@ -6,7 +6,9 @@ use App\Mail\ForgotPassword;
 use App\Mail\RegisterEmail;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class CompanyController extends Controller
 {
@@ -26,21 +28,32 @@ class CompanyController extends Controller
      */
     public function EmployeeLogin(Request $request)
     {
-        $request->validate([
-            "email"=>"required",
-            "password"=>"required"
-        ]);
-        $company=Company::where('email',$request->email)->first();
-        if($company && $company->password === $request->password){
-                return response()->json(
-                    [
-                       "200"
-                    ]
-                );
+        if(empty($request->email)){
+            return response()->json([
+                "status" => "empty_email",
+                'message' => 'Vui lòng nhâp email của bạn'
+            ]);
+        }elseif(empty($request->password)){
+            return response()->json([
+            "status" => "empty_password",
+              'message' => 'Vui lòng nhâp mật khẩu của bạn'
+            ]);
+        }else{
+            $companies=$request->only("email","password");
+            if(Auth::guard('companies')->attempt($companies)){
+                $company = Auth::guard('companies')->user();
+                $token=JWTAuth::fromUser($company);
+            }else{
+                return response()->json([
+                    "status"=>404,
+                    "message"=>"Tài khoản hoặc mật khẩu sai"
+                ]);
+            }
+            return response()->json([
+                "status"=>200,
+                'token' => $token]
+            );
         }
-        return response()->json([
-            "400"
-        ]);
     }
 
 
@@ -67,7 +80,7 @@ class CompanyController extends Controller
             'description'=>$request->description,
             'website'=>$request->website,
             'email'=>$request->email,
-            'password'=>$request->password,
+            'password'=>bcrypt($request->password),
             'address'=>$request->address,
             'number_phone'=>$request->number_phone
         ]);

@@ -8,6 +8,7 @@ export const UserEnterCode = () => {
     const [code,setCode]=useState({
         code:""
     })
+    const [error,setError]=useState({})
     const [time,setTime]=useState(60)
     const localCode=JSON.parse(localStorage.getItem("code")) 
     useEffect(()=>{
@@ -20,47 +21,43 @@ export const UserEnterCode = () => {
             localStorage.removeItem("code")
         }
     },[time])
-    const compareCode=()=>{
-        if(localCode===code.code){
-            return Promise.resolve(true)
-        }else{
-            return Promise.reject("Mã xác thực sai")
-        }
-    }
+
    const resentEmail=(e)=>{
     e.preventDefault()
     ResentCodeUser()
     setTime(60)
    }
-    const handelSubmit=()=>{
-        navigate("/newpasswordUser")
+    const handelSubmit=(e)=>{
+        e.preventDefault()
+        console.log(code)
+        let error={}
+        if(code.code==""){
+            error.code="Vui lòng nhập mã xác thực"
+        }else if(code.code!=localCode){
+            error.code="Mã xác thực không đúng"
+        }else{
+            navigate("/newpasswordUser")
+        }
+        setError(error)
     }
     return (
         <div className="container--form">
        
-            <Form onFinish={handelSubmit}  action="" method="post">
+            <form onSubmit={handelSubmit}  action="" method="post">
                 <div className="title--form">
                     <h3>Nhập mã xác thực</h3>
                 </div>
                 <div className="value--button">
-                    <Form.Item
-                        name="password"
-                        rules={[{
-                            required: true,
-                            message: "Vui lòng nhập mã code"
-                        },{
-                            validator:compareCode
-                        }]}
-                        hasFeedback
-                    >
-                    <Input.Password name='password' className='data--button' placeholder='Nhập mã code' onChange={(e)=>setCode({code:e.target.value})}/>
-                    </Form.Item> 
+                    
+                    <input name='password' className='data--button' placeholder='Nhập mã code' onChange={(e)=>setCode({code:e.target.value})}/> 
+                        <p>{error && error.code}</p>
                         <p>Mã xác nhận sẽ hết hạn trong {time} s</p>
-                    <Form.Item>
-                    <Button className='data--button confirm' htmlType="submit">Xác thực</Button>
-                    </Form.Item>
+                   
                 </div>
-            </Form>
+               
+                    <button className='data--button confirm' htmlType="submit">Xác thực</button>
+                  
+            </form>
             <div className="link--back">
                 <h3>Tôi muốn<Link onClick={resentEmail} className="color" to={"#"}>gửi lại</Link></h3>
             </div> 
@@ -107,29 +104,20 @@ export const EmployeeEnterCode = () => {
     return (
         <div className="container--form">
        
-            <Form onFinish={handelSubmit}  action="" method="post">
+            <form onSubmit={handelSubmit}  action="" method="post">
                 <div className="title--form">
                     <h3>Nhập mã xác thực</h3>
                 </div>
                 <div className="value--button">
-                    <Form.Item
-                        name="password"
-                        rules={[{
-                            required: true,
-                            message: "Vui lòng nhập mã code"
-                        },{
-                            validator:compareCode
-                        }]}
-                        hasFeedback
-                    >
-                    <Input.Password name='password' className='data--button' placeholder='Nhập mã code' onChange={(e)=>setCode({code:e.target.value})}/>
-                    </Form.Item> 
+                    <input name='password' className='data--button' placeholder='Nhập mã code' onChange={(e)=>setCode({code:e.target.value})}/>
+                   
                         <p>Mã xác nhận sẽ hết hạn trong {time} s</p>
-                    <Form.Item>
-                    <Button className='data--button confirm' htmlType="submit">Xác thực</Button>
-                    </Form.Item>
+                   
                 </div>
-            </Form>
+               
+                    <button className='data--button confirm' htmlType="submit">Xác thực</button>
+                   
+            </form>
             <div className="link--back">
                 <h3>Tôi muốn <Link onClick={resentCode} className="color" to={"#"}>gửi lại</Link></h3>
             </div> 

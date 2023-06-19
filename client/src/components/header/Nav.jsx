@@ -70,7 +70,7 @@ const Nav = ({ cmp }) => {
                     ? "home-header-container-nav-right--active-menu"
                     : ""
                   }`}
-                to="/login"
+                to="/loginUser"
               >
                 Đăng nhập
               </Link>

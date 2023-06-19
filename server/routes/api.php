@@ -54,3 +54,6 @@ Route::get('/home/{id}',[JobApiController::class,'getJobDetails']);
 // Application
 Route::post('/applications',[ApplicationController::class,"store"]);
 Route::get("user/{email}/apply",[ApplicationController::class,"show"]);
+
+
+Route::get("/user",[UserController::class,"test"]);

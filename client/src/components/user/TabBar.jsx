@@ -13,6 +13,9 @@ export const UserProfile = () => {
     const changePassword = () => {
         setContent(<ChangePassword></ChangePassword>)
     }
+    const handelApply = () => {
+        setContent(<Apply></Apply>)
+    }
     const handelLogout = () => {
         Swal.fire({
             title:"Đăng xuất",
@@ -36,7 +39,7 @@ export const UserProfile = () => {
         <>
             <div className="container--user--profile">
                 <div className="user--profile--left">
-                    <TabBar handelInfor={handelInfor} changePassword={changePassword} handelLogout={handelLogout}></TabBar>
+                    <TabBar handelInfor={handelInfor} handelApply={handelApply} changePassword={changePassword} handelLogout={handelLogout}></TabBar>
                 </div>
                 <div className="user--profile--content">
                     {content}
@@ -45,7 +48,7 @@ export const UserProfile = () => {
         </>
     )
 }
-export const TabBar = ({ handelInfor, changePassword ,handelLogout}) => {
+export const TabBar = ({ handelInfor, changePassword ,handelLogout,handelApply}) => {
     const [user, setUser] = useState([]);
     const email = JSON.parse(localStorage.getItem("login"));
     useEffect(() => {
@@ -68,7 +71,7 @@ export const TabBar = ({ handelInfor, changePassword ,handelLogout}) => {
                 </div>
                 <div className="tabbar--drop--down">
                     <ul>
-                        <li><Link className='color'>Nộp đơn</Link></li>
+                        <li><Link className='color' onClick={handelApply} >Nộp đơn</Link></li>
                         <li><Link className='color' onClick={handelInfor}>Thông tin</Link></li>
                         <li><Link className='color' onClick={changePassword}>Đổi mật khẩu</Link></li>
                         <li><Link className='color' onClick={handelLogout}>Đăng xuất</Link></li>
@@ -78,7 +81,6 @@ export const TabBar = ({ handelInfor, changePassword ,handelLogout}) => {
         </div>
     )
 }
-
 export const Apply = () => {
     const email = JSON.parse(localStorage.getItem("login"));
     const [apply, setAppy] = useState([])
@@ -164,8 +166,10 @@ export const MyInformation = () => {
                 "Content-Type": "multipart/form-data"
             }
         })
-        console.log(update.data)
-        console.log(upUser)
+        if(update){
+            setUpdate(false)
+        }
+
     }
     return (
         <>
@@ -206,7 +210,7 @@ export const MyInformation = () => {
                         <Form.Item>
                             <label>Ảnh đại diện</label> <br />
                             {update === false ?
-                                (<img src={`http://127.0.0.1:8000/storage/${upUser.avatar}`} alt="" />)
+                                (<img className='image--profile--user' src={`http://127.0.0.1:8000/storage/${upUser.avatar}`} alt="" />)
                                 : (<Input className='form--input' name='avatar' type='file' onChange={handelAvatar}></Input>)}
                         </Form.Item>
                         <Form.Item>
@@ -225,110 +229,73 @@ export const MyInformation = () => {
         </>
     )
 }
-
 export const ChangePassword = () => {
     const navigate=useNavigate()
-    const [user, setUser] = useState([]);
+    // const [user, setUser] = useState([]);
     const email = JSON.parse(localStorage.getItem("login"));
     const [pass, setPass] = useState(false);
-    useEffect(() => {
-        const getInfor = async () => {
-            const userValue = await confirmEmail(email.email)
-            setUser(userValue.data)
-        }
-        getInfor()
-    }, [])
 
-    const comparePass = (rule, value) => {
-        if (user.password === value) {
-            return Promise.resolve();
-        }
-        return Promise.reject('Mật khẩu không đúng');
-    }
+    // useEffect(() => {
+    //     const getInfor = async () => {
+    //         const userValue = await confirmEmail(email.email)
+    //         setUser(userValue.data)
+    //     }
+    //     getInfor()
+    // }, [])
+
+    // console.log(email.email)
+    // const comparePass = (rule, value) => {
+    //     if (user.password === value) {
+    //         return Promise.resolve();
+    //     }
+    //     return Promise.reject('Mật khẩu không đúng');
+    // }
 
     const handelSubmit = (e) => {
         setPass(true)
     }
 
-    const handelConfirm=async(e)=>{
-        const id=user.id
-        const status=await UserChangePassword(id,e)
-        Swal.fire({
-            title:"Tuyệt vời",
-            text:"Đổi mật khẩu thành công",
-            icon:"success"
-        }).then(()=>{
-            navigate("/userProfile")
-        })
+    // const handelConfirm=async(e)=>{
+    //     const id=user.id
+    //     const status=await UserChangePassword(id,e)
+    //     Swal.fire({
+    //         title:"Tuyệt vời",
+    //         text:"Đổi mật khẩu thành công",
+    //         icon:"success"
+    //     }).then(()=>{
+    //         setPass(false)
+    //     })
         
-    }
+    // }
     return (
         <>
             {pass == false ?
-                (<Form onFinish={handelSubmit} className='container--form--pass'>
-                    <label htmlFor="">Nhập mật khẩu</label>
-                    <Form.Item
-                        name={"password"}
-                        rules={[{
-                            required: true,
-                            message: 'Vui lòng nhập mật khẩu'
-                        },
-                        {
-                            validator: comparePass
-                        }]}
-                        hasFeedback
-                    >
-                        <Input.Password className='form--input' placeholder='Nhập mật khẩu' />
-                    </Form.Item>
-                    <Form.Item>
-                        <Button htmlType='submit'>OK</Button>
-                    </Form.Item>
-                </Form>) :
+                (<form onSubmit={handelSubmit} className='container--form--pass'>
+                    <label htmlFor="">Nhập mật khẩu</label> <br />
+                        <input type='password' className='form--input' placeholder='Nhập mật khẩu' /> <br />
+                        <p></p>
+                        <button type='submit'>OK</button>
+                    
+                </form>) :
                 (
-                    <Form onFinish={handelConfirm} className='container--form--pass'>
+                    <form onSubmit={handelConfirm} className='container--form--pass'>
                     <label htmlFor="">Mật khẩu mới</label> <br />
-                    <Form.Item
-                        name={"passwor"}
-                        rules={[{
-                            required: true,
-                            message: 'Vui lòng nhập mật khẩu'
-                        },{
-                            min:8,
-                            message:"Mật khẩu phải trên 8 ký tự"
-                        }]}
-                        hasFeedback
-                    >
+    
                        
-                        <Input.Password className='form--input' />
-                    </Form.Item>
-
+                        <input className='form--input' />
+                  
                     <div>
                     <label htmlFor="">Xác thực mật khẩu</label><br />
-                    <Form.Item
-                        name={"confirm_pass"}
-                        dependencies={["passwor"]}
-                        rules={[{
-                            required:true,
-                            message:"Xác thực không được bỏ rỗng"
-                        },({getFieldValue})=>({
-                            validator(_,value){
-                                if(!value || getFieldValue("passwor")===value){
-                                    return Promise.resolve();
-                                }
-                                return Promise.reject("Xác thực không đúng")
-                            }
-                        })]}
-                        hasFeedback
-                    >
+                   
                   
-                        <Input.Password className='form--input' />
-                    </Form.Item>
+                        <input className='form--input' />
+                    
                     </div>
                     
-                    <Form.Item>
-                        <Button htmlType='submit'>Cập nhật</Button>
-                    </Form.Item>
-                </Form>)}
+                    
+                        <button type='submit'>Cập nhật</button>
+                   
+                </form>)}
 
 
 

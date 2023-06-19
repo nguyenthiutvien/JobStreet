@@ -56,8 +56,8 @@ export const Register = () => {
                                     message: 'Vui lòng nhập tên'
                                 },
                                 {
-                                    min: 8,
-                                    message: 'Tên phải trên 8 ký tự'
+                                    min: 4,
+                                    message: 'Tên phải trên 4 ký tự'
                                 }]}
                                 hasFeedback
                             >
