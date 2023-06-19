@@ -59,3 +59,6 @@ Route::get('/companies/selectdata/{id}', function (Request $request, $id) {
     $controller = new CompanyController(); 
     return $controller->getCompany($request, $id);
 });
+
+// jobs id
+Route::get('jobs/{id}', [CompanyController::class, 'getPositionById']);

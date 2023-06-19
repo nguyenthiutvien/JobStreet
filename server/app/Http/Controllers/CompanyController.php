@@ -5,6 +5,7 @@ use Illuminate\Support\Str;
 use App\Mail\ForgotPassword;
 use App\Mail\RegisterEmail;
 use App\Models\Company;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -53,6 +54,7 @@ public function getCompany(Request $request, $companyId)
             DB::raw('SUM(CASE WHEN jobs.status = "open" THEN 1 ELSE 0 END) AS count'),
             
             'companies.id',
+            'jobs.id as job_id',
             'companies.company_name',
             'companies.logo',
             'companies.address',
@@ -65,15 +67,27 @@ public function getCompany(Request $request, $companyId)
             DB::raw('GROUP_CONCAT(CASE WHEN jobs.status = "open" THEN jobs.position ELSE "Không có vị trí nào đang tuyển" END) AS positions')
         )
         ->where('companies.id', '=', $companyId)
-        ->groupBy('companies.id', 'companies.company_name', 'companies.logo', 'companies.address', 'companies.number_phone', 'companies.email','companies.id','jobs.salary', 'jobs.description','companies.scale','companies.website',)
+        ->groupBy('companies.id', 'companies.company_name', 'companies.logo', 'companies.address', 'companies.number_phone', 'companies.email','companies.id','jobs.salary', 'jobs.description','companies.scale','companies.website','jobs.id')
         ->get();
 
     return response()->json($results);
 }
 
 
+
+// public function getPositionById($id)
+// {
+//     $job = Job::find($id);
+
+//     if ($job) {
+//         return response()->json(['position' => $job->position]);
+//     } else {
+//         return response()->json(['error' => 'Job not found'], 404);
+//     }
+// }
+
     // ---------------------------------------------------------------
-    public function getdetail()
+    public function getJobs()
     {
 
     }

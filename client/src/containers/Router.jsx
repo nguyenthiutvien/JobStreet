@@ -20,6 +20,7 @@ import Home from "../Home";
 import Company from '../components/Company'
 import Detail from '../components/Detail'
 import Timvieclam from '../components/Timvieclam';
+import JobItem from "../components/jobs/JobItem";
 
 
 

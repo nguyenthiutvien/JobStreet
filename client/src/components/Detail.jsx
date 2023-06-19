@@ -77,16 +77,16 @@ function Detail() {
         <h5>Việc làm</h5>
         <div className="row_gioithieu">
           {detail.map((detail) => (
-            <div className="card-text">
-              <p className="card-text">{detail.positions}</p>
+            <div className="row-vieclam">
+              <div className="job_position">  <Link activeclassName="active" to={`/job-details/${detail.job_id}`}>{detail.positions} </Link></div>
               <p className="card-text">{detail.address}</p>
               
               <hr />
             </div>
           ))}
         </div>
-      </div>
-      <div className="btn btn-primary" >  <Link activeclassName="active" to={`/`}>Xem tất cả việc làm</Link></div>
+      </div><br></br>
+      <div className="btn btn-primary" >  <Link activeclassName="active" to={`/jobs`}>Xem tất cả việc làm</Link></div>
     </div>
   );
   
