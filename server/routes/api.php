@@ -53,3 +53,9 @@ Route::get('/home/{id}',[JobApiController::class,'getJobDetails']);
 
 // Application
 Route::post('/applications',[ApplicationController::class,"store"]);
+Route::get('/companies/selectdata', [CompanyController::class, 'selectdata']);
+
+Route::get('/companies/selectdata/{id}', function (Request $request, $id) {
+    $controller = new CompanyController(); 
+    return $controller->getCompany($request, $id);
+});

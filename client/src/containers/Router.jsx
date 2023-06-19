@@ -16,6 +16,11 @@ import { Application } from "./Application";
 import AllJobs from "../components/pages/AllJobs";
 import JobDetails from "../components/jobs/JobDetails";
 import Home from "../Home";
+
+import { AboutPage } from "./AboutPage";
+import { LoginPage } from "./LoginPage";
+
+
 export const Router = () => {
     return (
         <Routes>
