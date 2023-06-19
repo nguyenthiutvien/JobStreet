@@ -24,8 +24,7 @@ const BlogPost = ({ post }) => {
             <div className="comment-section">
                 <h3>Comment:</h3>
                 <textarea className='comment' type="text" placeholder="Your Comment" ></textarea>
-                <input className='text' type="text" placeholder="Your Name" />
-                <input className='text' type="email" placeholder="Your Email" />
+                
                 <button className="submit" type="submit">Submit</button>
             </div>
         </div>

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
-
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -22,7 +23,23 @@ class PostController extends Controller
 */
     public function store(Request $request)
     {
-        Post::create($request->all());
+        $request->validate([
+            'user_id'=>'required',
+            'title' => 'required',
+            'body' => 'required',
+            'image'=>'nullable'
+        ]);
+        $post=new Post();
+        $post-> user_id =$request-> user_id ;
+        $post-> body=$request-> body;
+        $post-> title =$request->  title ;
+        if ($request->hasFile("image")) {
+            $image = $request->file("image");
+            $imageName =Str::random(16) . "." . $image->getClientOriginalExtension();
+            Storage::disk("public")->put($imageName, file_get_contents($image));
+            $post->image = $imageName;
+        }
+        $post-> save();
 
     return response()->json(['message' => 'Post created successfully']);
     }

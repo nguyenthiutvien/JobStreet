@@ -1,8 +1,7 @@
-
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../_style/components/Blog/blogform.scss';
+
 const BlogForm = ({ handleShow }) => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
@@ -23,48 +22,47 @@ const BlogForm = ({ handleShow }) => {
         fetchUserAvatar();
     }, []);
 
-    const handleTitleChange = (e) => {
-        console.log('t',e.target.value);
+    const handleTitleChange = e => {
         setTitle(e.target.value);
     };
 
-    const handleBodyChange = (e) => {
-        console.log('b',e.target.value);
-
+    const handleBodyChange = e => {
         setBody(e.target.value);
     };
 
-    const handleImageChange = (e) => {
-        console.log('i', e.target.value);
-
-        setImage(e.target.value);
+    const handleImageChange = e => {
+        const file = e.target.files[0];
+        setImage(file);
     };
 
-
-    const handleSubmit = async (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
 
         try {
+            // Create a new FormData object
+            const formData = new FormData();
+            formData.append('user_id', 2);
+            formData.append('title', title);
+            formData.append('body', body);
+            formData.append('image', image);
+
             // Send a POST request to the backend endpoint
-            await axios.post('http://127.0.0.1:8000/api/add_posts', {
-                user_id: 2,
-                title: title,
-                body: body,
-                image: image
-            },
-                {
+          const status=  await axios.post('http://127.0.0.1:8000/api/add_posts', formData, {
                 headers: {
-                    Accept: 'application/json'
-                }
-            });
+                    'Content-Type': 'multipart/form-data',
+                    Accept: 'application/json',
+                },
+          });
+            
+            console.log(status.data)
 
             // Reset the form fields
             setTitle('');
             setBody('');
             setImage('');
-            handleShow();
 
-            // Optionally, show a success message or perform other actions
+            // Call handleShow to close the form and trigger a refresh of the blog posts
+            handleShow();
         } catch (error) {
             console.error('Error adding blog post:', error);
             // Handle error, show an error message, etc.
@@ -73,13 +71,13 @@ const BlogForm = ({ handleShow }) => {
 
     return (
         <>
-            <div className='wraper' ></div>
-            <form className='blog_form' onSubmit={handleSubmit}>
+            <div className="wraper" onClick={handleShow}></div>
+            <form className="blog_form" onSubmit={handleSubmit}>
                 <input type="text" placeholder="Chủ đề" value={title} onChange={handleTitleChange} required />
                 <textarea placeholder="Nội dung" value={body} onChange={handleBodyChange} required></textarea>
-                <input className='blog-post-image' type="text" placeholder="Ảnh" value={image} onChange={handleImageChange} />
-               
-                <button type="submit" onClick={handleSubmit} >Thêm bài đăng</button>
+                <input className="blog-post-image" type="file" onChange={handleImageChange} />
+
+                <button className='sub' type="submit">Thêm bài đăng</button>
             </form>
         </>
     );

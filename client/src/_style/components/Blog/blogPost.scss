@@ -97,8 +97,23 @@
   justify-content: flex-end;
 }
 
+/* Trong tệp blogPost.scss */
+.blog-post-header {
+    position: relative;
+}
 
-
+.delete-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 5px;
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
 // .blog-post-header {
 //     /* Căn chỉnh tiêu đề và avatar */
 //     display: flex;
