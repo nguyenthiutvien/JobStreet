@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import "../src/_style/main.scss";
 import 'antd/dist/reset.css';
-import "./_styles/index.scss";
+
 import '../src/_styles/pages/company.scss'
 import '../src/_styles/pages/Detail.scss'
 

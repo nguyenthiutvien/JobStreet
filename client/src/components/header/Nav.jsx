@@ -33,7 +33,7 @@ const Nav = ({ cmp }) => {
           className={`${
             cmp === "company" ? "home-header-container-nav-right--active-menu" : ""
           }`}
-          to="/jobs"
+          to="/company"
         >
           Danh sách công ty
         </Link>
