@@ -19,7 +19,8 @@ class Company extends Authenticatable implements JWTSubject
         "email",
         "password",
         "address",
-        "number_phone"
+        "number_phone",
+        "token"
     ];
 
     protected $hidden = [

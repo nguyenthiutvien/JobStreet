@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string("description");
             $table->string("website");
             $table->string("email")->unique();
-            $table->string("password",20);
+            $table->string("password");
+            $table->string("token");
             $table->string("address",250);
             $table->string("number_phone",20);
             $table->timestamps();

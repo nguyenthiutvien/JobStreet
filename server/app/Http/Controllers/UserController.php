@@ -8,6 +8,7 @@ use App\Mail\RegisterEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Tymon\JWTAuth\Contracts\Providers\JWT;
@@ -31,6 +32,7 @@ class UserController extends Controller
      */
     public function userLogin(Request $request)
     {
+        
         if(empty($request->email)){
             return response()->json([
                 "status" => "empty_email",
@@ -44,8 +46,11 @@ class UserController extends Controller
         }else{
             $user=$request->only("email","password");
             if(Auth::attempt($user)){
+                // $user=new User();
                 $user=Auth::user();
-                $token=JWTAuth::fromUser($user);
+                // $token=JWTAuth::fromUser($user);
+                $token=$user->token;
+                // $user->save();
             }else{
                 return response()->json([
                     "status"=>404,
@@ -54,8 +59,7 @@ class UserController extends Controller
             }
             return response()->json([
                 "status"=>200,
-                'token' => $token,
-                "email" => $request->email
+                'token' =>$token
                 ]
             );
         }
@@ -74,16 +78,21 @@ class UserController extends Controller
             "number_phone" => "required|string",
             "address" => "required|string"
         ]);
-        $user = User::create(
-            [
-                'username' => $request->username,
-                "avatar" => "user.png",
-                'email' => $request->email,
-                'password' =>bcrypt($request->password),
-                "number_phone" => $request->number_phone,
-                "address" => $request->address
-            ]
-        );
+        $user =new  User();
+        $user->username = $request->username;
+        $user->avatar = "user.png";
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->number_phone = $request->number_phone;
+        $user->address = $request->address;
+        $user->save();
+        if(Auth::attempt(["email"=>$request->email, "password"=>$request->password])){
+            $user=Auth::user();
+            $token=JWTAuth::fromUser($user);
+            $user->token=$token;
+            $user->save();
+        }
+        
         Mail::to($request->email)->send(new RegisterEmail($request->username));
         return response()->json(
             $user
@@ -112,7 +121,7 @@ class UserController extends Controller
         return response()->json(
             [ 
             "status"=>200,
-            $user
+            "user" => $user
             ]
            
         );
@@ -190,15 +199,61 @@ class UserController extends Controller
     }
 
     public function userChangePassword(Request $request){
-            $user=Auth::user();
-
-            // $id=$request->id;
-            $user=User::where("id",$user->id)->first();
-            $user->password = $request->passwor;
-            $user->save();
-            if($user){
-                return response()->json("Thành công");
+            $id=$request->id;
+            $password=$request->password;
+            $user=User::where("id",$id)->first();
+            if(!$user){
+                return response()->json(
+                    [
+                        "status"=>400,
+                        "message" => "Không thể đổi mật khẩu"
+                    ]
+                 
+                );
             }
+            $user->password =Hash::make($password);
+            $user->save();
+            return response()->json(
+                [
+                    "status"=>200,
+                    "user"=>$password
+                ]
+            );
+            
+    }
+
+    public function comparePassword(Request $request){
+        $id=$request->id;
+        $password=$request->password;
+        $user=User::where("id",$id)->first();
+        if(!Hash::check($password,$user->password) ){
+            return response()->json(
+                [ "status"=>400,
+                    "message"=>"Mật khẩu sai"]
+            );
+        }
+        return response()->json(
+            [ 
+            "status"=>200,
+            ]
+            );
+    }
+
+    public function getUserToken($token){
+        $user = User::where("token", $token)->first();
+        if(!$user){
+            return response()->json([
+                "status"=>400,
+                "message" => "Tài khoản không tồn tại"
+            ]);
+        }
+        return response()->json(
+            [ 
+            "status"=>200,
+            "user" => $user
+            ]
+           
+        );
     }
 
 }

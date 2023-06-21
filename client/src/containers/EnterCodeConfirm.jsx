@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import "../_styles/forgotpassword.scss"
+import "../_styles/confirmcode.scss"
 import { Link, useNavigate } from 'react-router-dom'
 import {Button,Input,Form} from "antd"
 import { recoverPassword,recoverPasswordEmployee } from '../api/Api'
@@ -29,7 +29,6 @@ export const UserEnterCode = () => {
    }
     const handelSubmit=(e)=>{
         e.preventDefault()
-        console.log(code)
         let error={}
         if(code.code==""){
             error.code="Vui lòng nhập mã xác thực"
@@ -48,18 +47,14 @@ export const UserEnterCode = () => {
                     <h3>Nhập mã xác thực</h3>
                 </div>
                 <div className="value--button">
-                    
                     <input name='password' className='data--button' placeholder='Nhập mã code' onChange={(e)=>setCode({code:e.target.value})}/> 
-                        <p>{error && error.code}</p>
+                        <p className='confirm--error'>{error && error.code}</p>
                         <p>Mã xác nhận sẽ hết hạn trong {time} s</p>
-                   
                 </div>
-               
-                    <button className='data--button confirm' htmlType="submit">Xác thực</button>
-                  
+                <button className='data--button confirm' htmlType="submit">Xác thực</button>
             </form>
             <div className="link--back">
-                <h3>Tôi muốn<Link onClick={resentEmail} className="color" to={"#"}>gửi lại</Link></h3>
+                <p>Tôi muốn<Link onClick={resentEmail} className="color" to={"#"}> gửi lại</Link></p>
             </div> 
 
         </div>
@@ -71,6 +66,7 @@ export const EmployeeEnterCode = () => {
     const [code,setCode]=useState({
         code:""
     })
+    const [error,setError]=useState({})
     const [time,setTime]=useState(60)
     const localCode=JSON.parse(localStorage.getItem("code")) 
     useEffect(()=>{
@@ -83,43 +79,38 @@ export const EmployeeEnterCode = () => {
             localStorage.removeItem("code")
         }
     },[time])
-
-
-    const compareCode=()=>{
-        if(localCode===code.code){
-            return Promise.resolve(true)
-        }else{
-            return Promise.reject("Mã xác thực sai")
-        }
-    }
-
     const resentCode=(e)=>{
         e.preventDefault()
         ResentCodeEmployee()
         setTime(60)
     }
-    const handelSubmit=()=>{
-        navigate("/newpasswordEmployee")
+    const handelSubmit=(e)=>{
+        e.preventDefault()
+        let error={}
+        if(code.code==""){
+            error.code="Vui lòng nhập mã xác thực"
+        }else if(code.code!=localCode){
+            error.code="Mã xác thực không đúng"
+        }else{
+            navigate("/newpasswordEmployee")
+        }
+        setError(error)
     }
     return (
         <div className="container--form">
-       
             <form onSubmit={handelSubmit}  action="" method="post">
                 <div className="title--form">
                     <h3>Nhập mã xác thực</h3>
                 </div>
                 <div className="value--button">
                     <input name='password' className='data--button' placeholder='Nhập mã code' onChange={(e)=>setCode({code:e.target.value})}/>
-                   
+                    <p className='confirm--error'>{error && error.code}</p>
                         <p>Mã xác nhận sẽ hết hạn trong {time} s</p>
-                   
                 </div>
-               
-                    <button className='data--button confirm' htmlType="submit">Xác thực</button>
-                   
+                    <button className='data--button confirm' type="submit">Xác thực</button>
             </form>
             <div className="link--back">
-                <h3>Tôi muốn <Link onClick={resentCode} className="color" to={"#"}>gửi lại</Link></h3>
+                <p>Tôi muốn <Link onClick={resentCode} className="color" to={"#"}>gửi lại</Link></p>
             </div> 
 
         </div>

@@ -1,10 +1,17 @@
 .container--tabbar{
     width: 250px;
     height: 789px;
-    background: palevioletred;
+    background: #26AE61;
 }
 .tabbar--image{
     padding-top: 50px;
+    .user--name{
+        p{
+            padding-top: 10px;
+            color: #FFFFFF;
+            text-transform: uppercase;
+        }
+    }
 }
 .image--profile{
     display: flex;
@@ -22,6 +29,7 @@
 }
 .tabbar--drop--down{
     margin-left: 20px;
+    
     ul{
         line-height: 50px;
         li{
@@ -33,7 +41,15 @@
         }
     }
 }
-
+.list--cv{
+    margin-left: 60px;
+    label{
+        font-size: 22px;
+    }
+    .form--input{
+        font-size: 18px;
+    }
+}
 .container--user--profile{
     display: grid;
     grid-template-columns: 30% 70%;
@@ -42,24 +58,73 @@
     padding-top: 60px;
     margin-left: -170px;
     .cv--title{
+        
         p{
             text-transform: uppercase;
         }
     }
 }
 .container--table-inform{
+    margin-top: 30px;
+    box-shadow: 1px 1px 1px 1px #9b9e9d;
+    width: 500px;
+    height: 620px;
     padding-top: 60px;
-    margin-left: -170px;
+    // margin-left: -170px;
+    .cv--title{
+        margin-left: 60px;
+        p{
+            font-size: 25px;
+            text-transform: uppercase;
+        }
+    }
 }
 .form--input{
     width: 350px;
     height: 50px;
+    outline: none;
+    border-radius: 8px;
+    padding-left: 10px;
 }
-.container--form--pass{
+.container--form--password{
     padding-top: 150px;
+
+    label{
+        font-size: 25px;
+    }
+    .form--input{
+        font-size: 18px;
+    }
+    .button--form{
+        width: 100px;
+        height: 50px;
+        border-radius: 8px;
+        font-size: 18px;
+        background:#26AE61;
+        color: #FFFFFF;
+    }
 }
 .image--profile--user{
     width: 50px;
     height: 50px;
     border-radius: 50px;
+}
+.edit--button{
+    width: 100px;
+    height: 50px;
+    border-radius: 8px;
+    font-size: 18px;
+    background:#26AE61;
+    color: #FFFFFF;
+}
+.update--button{
+    width: 150px;
+    height: 50px;
+    border-radius: 8px;
+    font-size: 18px;
+    background:#26AE61;
+    color: #FFFFFF;
+}
+.password--error{
+    color: red;
 }

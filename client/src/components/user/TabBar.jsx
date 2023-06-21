@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import "../../_style/user/tabbar.scss";
 import { Link, useNavigate } from "react-router-dom"
 import { Table, Form, Input, Button } from "antd"
-import { getApplications, confirmEmail, updateUser,UserChangePassword } from '../../api/Api';
+import { getApplications, getTokenUser, updateUser,UserChangePassword } from '../../api/Api';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 export const UserProfile = () => {
     const navigate=useNavigate()
     const [content, setContent] = useState(<Apply></Apply>)
@@ -50,11 +51,11 @@ export const UserProfile = () => {
 }
 export const TabBar = ({ handelInfor, changePassword ,handelLogout,handelApply}) => {
     const [user, setUser] = useState([]);
-    const email = JSON.parse(localStorage.getItem("login"));
+    const token = JSON.parse(localStorage.getItem("login"));
     useEffect(() => {
         const getInfor = async () => {
-            const userValue = await confirmEmail(email.email)
-            setUser(userValue.data)
+            const userValue = await getTokenUser(token.token)
+            setUser(userValue.data.user)
         }
         getInfor()
     }, [])
@@ -71,6 +72,7 @@ export const TabBar = ({ handelInfor, changePassword ,handelLogout,handelApply})
                 </div>
                 <div className="tabbar--drop--down">
                     <ul>
+                        <li><Link className='color' to={"/"}>Trang chủ</Link></li>
                         <li><Link className='color' onClick={handelApply} >Nộp đơn</Link></li>
                         <li><Link className='color' onClick={handelInfor}>Thông tin</Link></li>
                         <li><Link className='color' onClick={changePassword}>Đổi mật khẩu</Link></li>
@@ -134,11 +136,11 @@ export const MyInformation = () => {
         number_phone: "",
         avatar: ""
     })
-    const email = JSON.parse(localStorage.getItem("login"));
+    const token = JSON.parse(localStorage.getItem("login"));
     useEffect(() => {
         const getInfor = async () => {
-            const userValue = await confirmEmail(email.email)
-            setUpUser(userValue.data)
+            const userValue = await getTokenUser(token.token)
+            setUpUser(userValue.data.user)
         }
         getInfor()
     }, [])
@@ -215,10 +217,10 @@ export const MyInformation = () => {
                         </Form.Item>
                         <Form.Item>
                             {update === false ?
-                                (<button type="primary" onClick={handelUpdate} htmlType="button">
+                                (<button type="primary" className='edit--button' onClick={handelUpdate} htmlType="button">
                                     Sửa
                                 </button>) :
-                                (<Button type="primary" htmlType="submit">
+                                (<Button  className="update--button" htmlType="submit">
                                     Cập nhật
                                 </Button>)}
 
@@ -231,74 +233,96 @@ export const MyInformation = () => {
 }
 export const ChangePassword = () => {
     const navigate=useNavigate()
-    // const [user, setUser] = useState([]);
-    const email = JSON.parse(localStorage.getItem("login"));
+    const token = JSON.parse(localStorage.getItem("login"));
     const [pass, setPass] = useState(false);
-
-    // useEffect(() => {
-    //     const getInfor = async () => {
-    //         const userValue = await confirmEmail(email.email)
-    //         setUser(userValue.data)
-    //     }
-    //     getInfor()
-    // }, [])
-
-    // console.log(email.email)
-    // const comparePass = (rule, value) => {
-    //     if (user.password === value) {
-    //         return Promise.resolve();
-    //     }
-    //     return Promise.reject('Mật khẩu không đúng');
-    // }
-
-    const handelSubmit = (e) => {
-        setPass(true)
+    const [error,setErorr]=useState({})
+    const [id,setId]=useState({
+        id:""
+    });
+    useEffect(() => {
+        const getInfor = async () => {
+            const userValue = await getTokenUser(token.token)
+            setId(userValue.data.user.id)
+        }
+        getInfor()
+    }, [])
+    const [pass1,setPassword]=useState({
+        password:""
+    })
+    const handelSubmit = async(e) => {
+        e.preventDefault();
+        let error={}
+        if(pass1.password==""){
+            error.password="Vui lòng nhập mật khẩu"
+        }else{
+            const status= await axios.post(`http://127.0.0.1:8000/api/user/compare-password/${id}`,pass1) 
+            if(status.data.status==400){
+                error.password=status.data.message
+            }else if(status.data.status==200){
+                setPass(true)
+            }
+        }
+       setErorr(error)
     }
-
-    // const handelConfirm=async(e)=>{
-    //     const id=user.id
-    //     const status=await UserChangePassword(id,e)
-    //     Swal.fire({
-    //         title:"Tuyệt vời",
-    //         text:"Đổi mật khẩu thành công",
-    //         icon:"success"
-    //     }).then(()=>{
-    //         setPass(false)
-    //     })
-        
-    // }
+    const [password,setNewPass]=useState({
+        password:""
+    })
+    const [confirm_password,setCon_Pass]=useState({
+        password:""
+    })
+    const handelConfirm=async(e)=>{
+        e.preventDefault();
+        let error={}
+        if(password.password==""){
+            error.passwor="Vui lòng nhập mật khẩu"
+        }else if(password.password.length<8){
+            error.passwor="Mật khẩu phải có ít nhất 8 ký tự"
+        }
+        if(confirm_password.password!=password.password){
+            error.passwo="Mật khẩu không khớp"
+        }else if(confirm_password.password.length<8){
+            error.passwo="Vui lòng xác nhập mật khẩu"
+        }
+        else{
+            const status=await UserChangePassword(id,password)
+            if(status.data.status==400){
+                error.passwo='Không thể đổi mật khẩu'
+            }else if(status.data.status==200){
+               Swal.fire({
+                title:"Tuyệt vời",
+                text:"Đổi mật khẩu thành công",
+                icon:"success"
+            })
+            .then(()=>{
+                setPass(false)
+            })
+        }
+            
+            
+        }
+        setErorr(error)
+    }
     return (
         <>
             {pass == false ?
-                (<form onSubmit={handelSubmit} className='container--form--pass'>
+                (<form onSubmit={handelSubmit} className='container--form--password'>
                     <label htmlFor="">Nhập mật khẩu</label> <br />
-                        <input type='password' className='form--input' placeholder='Nhập mật khẩu' /> <br />
-                        <p></p>
-                        <button type='submit'>OK</button>
+                        <input type='password' name='password' className='form--input' placeholder='Nhập mật khẩu' onChange={(e)=>setPassword({password:e.target.value})}/> <br />
+                        <p className='password--error'>{error && error.password}</p>
+                        <button type='submit' className='button--form'>OK</button>
                     
                 </form>) :
                 (
-                    <form onSubmit={handelConfirm} className='container--form--pass'>
+                    <form onSubmit={handelConfirm} className='container--form--password'>
                     <label htmlFor="">Mật khẩu mới</label> <br />
-    
-                       
-                        <input className='form--input' />
-                  
-                    <div>
+                    <input className='form--input' name='new_password' type='password' onChange={(e)=>setNewPass({password:e.target.value})}/>
+                    <p className='password--error'>{error && error.passwor}</p>
                     <label htmlFor="">Xác thực mật khẩu</label><br />
-                   
-                  
-                        <input className='form--input' />
-                    
-                    </div>
-                    
-                    
-                        <button type='submit'>Cập nhật</button>
+                    <input className='form--input' name='confirm_password' type='password' onChange={(e)=>setCon_Pass({password:e.target.value})}/>
+                    <p className='password--error'>{error && error.passwo}</p>
+                        <button type='submit' className='button--form'>Cập nhật</button>
                    
                 </form>)}
-
-
-
         </>
     )
 }

@@ -1,0 +1,57 @@
+.container--form{
+    margin-left: 600px;
+    width: 500px;
+    height: 300px;
+    background:#E0ECDE;
+    border-radius: 8px;
+    margin-top: 250px;
+    box-shadow: 2px 1px 1px rgb(32, 32, 32);
+}
+.confirm--error{
+    color: red;
+}
+.title--form{
+    padding-top: 20px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.value--button{
+    margin-top: 30px;
+    margin-left: 70px;
+    height: 100px;
+    .data--button{
+        width: 350px;
+        height: 50px;
+        outline: none;
+        border-radius: 8px;
+        // border: none;
+        &::placeholder{
+            font-size: 16px;
+            padding-left: 10px;
+        }
+    }
+    
+}
+.confirm{
+    margin-top: 10px;
+    background: #26AE61;
+    &:hover{
+        cursor: pointer;
+    }
+}
+.link--back{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+    .color{
+        color:#3e5cd3;
+    }
+    &:hover .color{
+        cursor: pointer;
+        color: #26AE61;
+        border-bottom: 1px solid;
+    }
+    
+}

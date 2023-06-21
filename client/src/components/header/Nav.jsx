@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../../public/assets/images/logo.png";
-import { confirmEmail } from "../../api/Api";
+import { getTokenUser } from "../../api/Api";
 const Nav = ({ cmp }) => {
   const location = useLocation();
-  const userLogin = JSON.parse(localStorage.getItem("login"));
+  const token = JSON.parse(localStorage.getItem("login"));
   const [image, setImage] = useState([])
   useEffect(() => {
     userAlready()
   }, [])
   const userAlready = async () => {
-    const values = await confirmEmail(userLogin.email);
-    setImage(values.data.avatar)
+    const values = await getTokenUser(token.token);
+    if(values.data.status==200){
+      setImage(values.data.user.avatar)
+    }
+    // console.log(values.data.user.avatar)
   }
   return (
     <div className="home-header-container-nav">
@@ -62,7 +65,7 @@ const Nav = ({ cmp }) => {
         >
           Liên hệ
         </Link>
-        {userLogin === null ?
+        {token === null ?
           (
             <>
               <Link
