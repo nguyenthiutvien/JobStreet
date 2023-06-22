@@ -12,9 +12,14 @@ import { UserEnterCode } from "./EnterCodeConfirm";
 import { EmployeeEnterCode } from "./EnterCodeConfirm";
 import { EmployeeChangePassword } from "./ChangePassword";
 import { EmployeePayment } from "./Authennitication";
+import { UserProfile } from "../components/user/TabBar";
+import AllJobs from "../components/pages/AllJobs";
+import JobDetails from "../components/jobs/JobDetails";
+import Home from "../Home";
 export const Router = () => {
     return (
         <Routes>
+            <Route path="/userProfile" element={<UserProfile/>}></Route>
             <Route path="/employeePayment" element={<EmployeePayment/>}></Route>
             <Route path="/entercodeEmployee" element={<EmployeeEnterCode/>}></Route>
             <Route path="/entercodeUser" element={<UserEnterCode/>}></Route>
@@ -23,10 +28,16 @@ export const Router = () => {
             <Route path="/employeeForgot" element={<EmployeeFogotPassword/>}></Route>
             <Route path="/userForgot" element={<UserFogotPassword/>}></Route>
             <Route path="/loginEmployee" element={<LoginEmployee/>}></Route>
-            <Route path="/" element={<LoginUser/>}></Route>
+            <Route path="/loginUser" element={<LoginUser/>}></Route>
             <Route path="/registerEmployee" element={<RegisterEmployee/>}></Route>
             <Route path="/registerUser" element={<Register/>}></Route>
             <Route path="/homePage" element={<HomePage/>}></Route>
+            <Route path="" element={<Home />} />
+          <Route path="/jobs" element={<AllJobs />} />
+          <Route path="/job-details/:id" element={<JobDetails />} />
+
+
+
         </Routes>
     );
 };

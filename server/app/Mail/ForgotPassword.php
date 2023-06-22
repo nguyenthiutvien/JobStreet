@@ -28,7 +28,7 @@ class ForgotPassword extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'This is your code',
+            subject: 'Mã xác thực của bạn',
         );
     }
 

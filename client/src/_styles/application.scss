@@ -1,0 +1,49 @@
+.container--modal{
+    position: fixed;
+    padding-top: 50px;
+    width: 500px;
+    height: 570px;
+    margin: auto;
+    box-shadow: 1px 2px 1px rgb(66, 63, 63);
+    left: 35%;
+    top: 10%;
+    background:#E0ECDE;
+    border-radius: 8px;
+}
+.modal--title{
+    height: 60px;
+    margin-left: 20px;
+    font-size: 17px;
+}
+.modal--form{
+    width: 450px;
+    margin-left: 20px;
+}
+.form--values{
+    height: 50px;
+}
+.form--value--email{
+    height: 50px;
+}
+.form--button--application{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    .btn--group{
+        display: flex;
+        gap: 20px;
+        .modal--submit{
+            height: 50px;
+            width: 120px;
+            background: #26AE61;
+            font-size: 18px;
+        }
+        .modal--cancel{
+            height: 50px;
+            width: 120px;
+            font-size: 18px;
+        }
+    }
+    
+}

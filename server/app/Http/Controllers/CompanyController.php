@@ -6,7 +6,9 @@ use App\Mail\ForgotPassword;
 use App\Mail\RegisterEmail;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class CompanyController extends Controller
 {
@@ -26,21 +28,32 @@ class CompanyController extends Controller
      */
     public function EmployeeLogin(Request $request)
     {
-        $request->validate([
-            "email"=>"required",
-            "password"=>"required"
-        ]);
-        $company=Company::where('email',$request->email)->first();
-        if($company && $company->password === $request->password){
-                return response()->json(
-                    [
-                       "200"
-                    ]
-                );
+        if(empty($request->email)){
+            return response()->json([
+                "status" => "empty_email",
+                'message' => 'Vui lòng nhâp email của bạn'
+            ]);
+        }elseif(empty($request->password)){
+            return response()->json([
+            "status" => "empty_password",
+              'message' => 'Vui lòng nhâp mật khẩu của bạn'
+            ]);
+        }else{
+            $companies=$request->only("email","password");
+            if(Auth::guard('companies')->attempt($companies)){
+                $company = Auth::guard('companies')->user();
+                $token=$company->token;
+            }else{
+                return response()->json([
+                    "status"=>404,
+                    "message"=>"Tài khoản hoặc mật khẩu sai"
+                ]);
+            }
+            return response()->json([
+                "status"=>200,
+                'token' => $token]
+            );
         }
-        return response()->json([
-            "400"
-        ]);
     }
 
 
@@ -60,21 +73,23 @@ class CompanyController extends Controller
             'address'=>"required|string",
             'number_phone'=>"required|numeric"
         ]);
-        $company=Company::create([
-            'company_name'=>$request->company_name,
-            'logo'=>"company.png",
-            'scale'=>$request->scale,
-            'description'=>$request->description,
-            'website'=>$request->website,
-            'email'=>$request->email,
-            'password'=>$request->password,
-            'address'=>$request->address,
-            'number_phone'=>$request->number_phone
-        ]);
-        if(!$company){
-            return response()->json(
-                    "Không thể chèn"
-            );
+        $company=new Company();
+        $company->company_name=$request->company_name;
+        $company->logo="company.png";
+        $company->scale=$request->scale;
+        $company->description=$request->description;
+        $company->website=$request->website;
+        $company->email=$request->email;
+        $company->password=bcrypt($request->password);
+        $company->address=$request->address;
+        $company->number_phone=$request->number_phone;
+        $company->save();
+        
+        if(Auth::guard('companies')->attempt(["email"=>$request->email, "password"=>$request->password])){
+            $company=Auth::guard('companies')->user();
+            $token=JWTAuth::fromUser($company);
+            $company->token=$token;
+            $company->save();
         }
       
         Mail::to($request->email)->send(new RegisterEmail($request->company_name));
@@ -97,8 +112,19 @@ class CompanyController extends Controller
     public function edit($email)
     {
         $company= Company::where("email",$email)->first();
+        if(!$company){
+            return response()->json([
+                "status"=>400,
+                "message" => "Tài khoản không tồn tại"
+            ]);
+        }
         return response()->json(
-            $company
+            [ 
+            "status"=>200,
+            "user" => $company
+         
+            ]
+           
         );
     }
 
@@ -118,13 +144,12 @@ class CompanyController extends Controller
                 "Công ty không tồn tại"
             );
         }
-        $company->password=$request->password;
+        $company->password=bcrypt($request->password);
         $company->save();
         return response()->json(
             "Thành công"
         );
     }
-
     /**
      * Remove the specified resource from storage.
      */
@@ -135,16 +160,30 @@ class CompanyController extends Controller
 
     public function confirmEmail(Request $request){
         $companyEmail=$request->email;
-
         $company=Company::where("email",$companyEmail)->first();
-
         if ($company) {
-          $verificationCode=Str::random(6);
+            $verificationCode =strval(rand(100000, 999999));
           Mail::to($companyEmail)->send(new ForgotPassword($verificationCode));
         }
-
         return response()->json(
             $verificationCode
+        );
+    }
+
+    public function getCompanyToken($token){
+        $company = Company::where("token", $token)->first();
+        if(!$company){
+            return response()->json([
+                "status"=>400,
+                "message" => "Tài khoản không tồn tại"
+            ]);
+        }
+        return response()->json(
+            [ 
+            "status"=>200,
+            "company" => $company
+            ]
+           
         );
     }
 }
