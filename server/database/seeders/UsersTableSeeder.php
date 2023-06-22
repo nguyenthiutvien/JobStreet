@@ -25,6 +25,8 @@ class UsersTableSeeder extends Seeder
             'email' => $faker -> unique()-> email,
             'password' =>bcrypt($faker-> password ), 
             'number_phone' => $faker-> phoneNumber,
+                
+
         ]);
     }
 }

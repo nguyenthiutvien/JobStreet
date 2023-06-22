@@ -43,8 +43,11 @@ class JobStreetSeeder extends Seeder
                 "avatar" => $fake->image,
                 "email" => $fake->email,
                 "password" => $fake->password,
+                "token" =>$fake->lexify('??????'),
                 "number_phone" => $fake->phoneNumber,
                 "address" => $fake->address,
+             
+              
             ]);
             // Tạo dữ liệu face với Company
             $company = Company::create([
@@ -55,8 +58,11 @@ class JobStreetSeeder extends Seeder
                 "website" => $fake->url,
                 "email" => $fake->email,
                 "password" => $fake->password,
+                "token" =>$fake->lexify('??????'),
                 "number_phone" => $fake->phoneNumber,
                 "address" => $fake->address,
+               
+                
             ]);
            // Tạo dữ liệu face với Job
             $salary = $fake->randomFloat(2, 1000, 5000);
