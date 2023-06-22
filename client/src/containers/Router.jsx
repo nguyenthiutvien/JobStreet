@@ -16,7 +16,7 @@ import { UserProfile } from "../components/user/TabBar";
 import AllJobs from "../components/pages/AllJobs";
 import JobDetails from "../components/jobs/JobDetails";
 import Home from "../Home";
-
+import Blog from "../components/Blog/Blog";
 import Company from '../components/Company'
 import Detail from '../components/Detail'
 import Timvieclam from '../components/Timvieclam';
@@ -41,9 +41,8 @@ export const Router = () => {
             <Route path="/homePage" element={<HomePage/>}></Route>
             <Route path="" element={<Home />} />
             
-          <Route path="/jobs" element={<AllJobs />} />
-          <Route path="/job-details/:id" element={<JobDetails />} />
-
+            <Route path="/jobs" element={<AllJobs />} />
+            <Route path="/job-details/:id" element={<JobDetails />} />
         
 
           <Route exact path="/company"  element={<Company/>} />
