@@ -6,6 +6,7 @@ import Footer from "../footer/Footer";
 import NavBar from "../pages/navigation/NavBar";
 import JobDetailsItem from "./JobDetailsItem";
 import "../../_style/pages/navHero.scss";
+import { Modal } from "../../containers/Application";
 const JobDetails = () => {
   const { id } = useParams();
   const [loader, setloader] = useState(true);
@@ -34,6 +35,7 @@ const JobDetails = () => {
         <>
           <NavBar job={job} cmp="jobs" />
           <JobDetailsItem job={job} />
+          {/* <Modal job={job}/> */}
           <Footer />
         </>
       )}

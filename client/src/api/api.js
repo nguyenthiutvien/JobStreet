@@ -1,10 +1,31 @@
 import React from 'react'
 import axios from 'axios'
+import '../config'
 export const postUser =async (e) => {
   return (
       await axios.post("http://127.0.0.1:8000/api/users",e)
   )
-}
+} 
+export const fetchApiData = async (url) => {
+  return await axios
+    .get(url)
+    .then((response) => response.data)
+    .catch((response) => response.data);
+};
+
+export const storeApiData = async (url, data) => {
+  return await axios
+    .post(url, data)
+    .then((response) => response.data)
+    .catch((response) => response.response.data);
+};
+
+export const deleteApiData = async (url) => {
+  return await axios
+    .delete(url)
+    .then((response) => response.data)
+    .catch((response) => response.response.data);
+};
 export const getUser = async ()=>{
   return (
     await axios.get("http://127.0.0.1:8000/api/users")
@@ -13,6 +34,11 @@ export const getUser = async ()=>{
 export const confirmEmail = async (email)=>{
   return (
     await axios.get(`http://127.0.0.1:8000/api/users/${email}/edit`)
+  )
+}
+export const getTokenUser = async (token)=>{
+  return (
+    await axios.post(`http://127.0.0.1:8000/api/user/get-token/${token}`)
   )
 }
 export const recoverPassword=async (email)=>{
@@ -30,10 +56,16 @@ export const userLogin=async(e)=>{
     await axios.post("http://127.0.0.1:8000/api/users/login",e)
   )
 }
- 
-
-
-
+export const updateUser=async (id,formData)=>{
+  return (
+    await axios.post(`http://127.0.0.1:8000/api/user/update/${id}`,formData)
+  )
+}
+export const UserChangePassword=async(id,password)=>{
+  return (
+    await axios.put(`http://127.0.0.1:8000/api/user/change-password/${id}`,password)
+  )
+}
 
 
 
@@ -66,10 +98,25 @@ export const recoverPasswordEmployee=async (email)=>{
     await axios.put(`http://127.0.0.1:8000/api/company/${email}/confirm-email`)
   )
 }
-
+export const getTokenEmployee = async (token)=>{
+  return (
+    await axios.post(`http://127.0.0.1:8000/api/company/get-token/${token}`)
+  )
+}
 
 export const resetPasswordEmployee=async(email,password)=>{
   return(
     await axios.put(`http://127.0.0.1:8000/api/company/${email}/change-pass`,password)
   )
+}
+export const postApplication=async (formData)=>{
+  return (
+    await axios.post("http://127.0.0.1:8000/api/applications",formData)
+  )
+}
+
+export const getApplications=async (email)=>{
+  return (
+      await axios.get(`http://127.0.0.1:8000/api/user/${email}/apply`)
+    )
 }

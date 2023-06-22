@@ -1,0 +1,103 @@
+div.card{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 50px;
+    padding: 30px;
+    border: none;
+   
+    
+   }
+   .content img{
+     width: 50px;
+     height: 50px;
+     margin-left: 3px;
+   }
+   .content{
+     border: 1px solid black;
+     border-radius: 5px;
+     height: 220px;
+     width: 100%;
+    
+   }
+   
+   .item{
+     display: grid;
+     grid-template-columns: 12% 75% 13%;
+   }
+   img.icon{
+     width: 100%;
+     height: 70%;
+     margin-top: 10px;
+   }
+  
+   .content{
+     padding-top: 5px;
+   }
+   .adress{
+    padding-left: -40px;
+    display: flex;
+   
+   }
+   .inform{
+    padding-left: -40px;
+    display: flex;
+   }
+   .job{
+    padding-left: -40px;
+    display: flex;
+   }
+   .time{
+    padding-left: -40px;
+    display: flex;
+   }
+   div.company_name{
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 10px;
+    
+   }
+   .item{
+    margin-top: 10px;
+    margin-left: 10px;
+   }
+   .content:hover{
+    box-shadow: 2px 1px 2px 1px;
+   }
+   .content:hover a{
+    color: rgb(5, 79, 149);
+   }
+   a.div.job{
+    color:  rgb(5, 79, 149);
+   }
+    a{
+      text-decoration: none;
+      color: black;
+   }
+   a:hover {
+    text-decoration: none;
+  }
+ 
+  
+  
+.linka:hover .item .inform,.time {
+  text-decoration:none;
+  color:black;
+}
+
+.company_name:hover {
+  text-decoration: underline;
+}
+
+.job:hover {
+  text-decoration: underline;
+}
+
+// .item .job{
+//   text-decoration:underline;
+//   color:red;
+// }
+.linka:hover .item .company_name {
+  text-decoration:underline;
+  color:rgb(26, 26, 216);
+}

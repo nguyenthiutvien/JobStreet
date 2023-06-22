@@ -5,12 +5,14 @@ import Blog from './components/Blog/Blog';
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Blog />} />
-      </Routes>
-    </Router>
-  );
-};
+    
+      <>
+      <Router />
+      <Route path="/" element={<Blog />} />
+      </>
+      
+     
+  )
+}
 
-export default App;
+export default App

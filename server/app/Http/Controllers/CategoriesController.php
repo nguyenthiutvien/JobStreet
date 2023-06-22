@@ -3,16 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use ApiResponseWithHttpSTatus;
+use App\Models\Categories;
+use Illuminate\Http\Response;
 
 class CategoriesController extends Controller
 {
+
+    
+    public function __construct() {
+        $this->middleware('auth:api', ['except' => ['index']]);
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $data['categories'] = Categories::all();
+        return $this->apiResponse('success',$data,Response::HTTP_OK,true);
     }
+
 
     /**
      * Show the form for creating a new resource.
