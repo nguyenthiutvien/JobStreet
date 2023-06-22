@@ -19,9 +19,9 @@ class ApplicationController extends Controller
      */
     public function index()
     {
-        //
+        $applications = Application::all();
+        return response()->json($applications);
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -112,4 +112,44 @@ class ApplicationController extends Controller
     {
         //
     }
+
+    public function getApplication($user_id, $job_id)
+    {
+        // Xử lý logic để lấy application dựa trên cả user_id và job_id
+        $application = Application::where('user_id', $user_id)
+                                  ->where('job_id', $job_id)
+                                  ->first();
+
+        if ($application) {
+            // Đã tìm thấy application, xử lý theo yêu cầu của bạn
+            return response()->json($application);
+        } else {
+            // Không tìm thấy application
+            return response()->json('Application not found', 404);
+        }
+    }
+    public function getCV($user_id, $job_id)
+    {
+        $application = Application::where('user_id', $user_id)
+                                  ->where('job_id', $job_id)
+                                  ->first();
+        
+        if ($application && $application->cv) {
+            $path = storage_path('app/public/' . $application->cv);
+            return response()->file($path);
+        } else {
+            return response()->json('CV not found', 404);
+        }
+    }
+
+    public function getApplicationsByJob($job_id)
+    {
+        // Xử lý logic để lấy danh sách applications dựa trên job_id
+        $applications = Application::where('job_id', $job_id)->get();
+
+        return response()->json($applications);
+    }
+    
+    
+
 }

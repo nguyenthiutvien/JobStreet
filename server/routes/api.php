@@ -59,3 +59,9 @@ Route::get('/companies/selectdata/{id}', function (Request $request, $id) {
     $controller = new CompanyController(); 
     return $controller->getCompany($request, $id);
 });
+Route::get('/get-applications',[ApplicationController::class,"index"]);
+
+Route::get('/get-applications/{user_id}/{job_id}', [ApplicationController::class, 'getApplication']);
+Route::get('/applications/{user_id}/{job_id}/cv', [ApplicationController::class, 'getCV']);
+
+Route::get('/applications/job/{job_id}', [ApplicationController::class, 'getApplicationsByJob']);
