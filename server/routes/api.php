@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\UserController;
@@ -53,6 +53,8 @@ Route::get('/home/{id}',[JobApiController::class,'getJobDetails']);
 
 // Application
 Route::post('/applications',[ApplicationController::class,"store"]);
+
+// 
 Route::get('/companies/selectdata', [CompanyController::class, 'selectdata']);
 
 Route::get('/companies/selectdata/{id}', function (Request $request, $id) {
@@ -62,3 +64,8 @@ Route::get('/companies/selectdata/{id}', function (Request $request, $id) {
 
 // jobs id
 Route::get('jobs/{id}', [CompanyController::class, 'getPositionById']);
+
+Route::get('/getuser', [CompanyController::class, 'getUser']);
+
+
+Route::get('/getcompanies', [CompanyController::class, 'getCompanyname']);
