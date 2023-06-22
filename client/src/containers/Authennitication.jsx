@@ -6,6 +6,8 @@ import { postUser, getUser, getCompany, postCompany } from "../api/Api"
 import { useEffect } from "react"
 import { Link } from "react-router-dom"
 import { Form, Input, Button, Select } from "antd"
+import Swal from "sweetalert2"
+import { icon } from "@fortawesome/fontawesome-svg-core"
 
 export const Register = () => {
     const navigate = useNavigate()
@@ -39,13 +41,6 @@ export const Register = () => {
                 <div className="register--title">
                     <h3>Tạo tài khoản của bạn</h3>
                 </div>
-                <div className="register--button">
-                    <button type="submit">ĐĂNG KÝ BẰNG FACEBOOK</button> <br /><br />
-                    <button type="submit">ĐĂNG KÝ BẰNG LINKEDIN</button>
-                </div>
-                <div className="or--option">
-                    --- Hoặc ---
-                </div>
                 <Form onFinish={handelSubmit} action="" method="post">
                     <div className="form--register">
                         <div className="left--for">
@@ -56,8 +51,8 @@ export const Register = () => {
                                     message: 'Vui lòng nhập tên'
                                 },
                                 {
-                                    min: 8,
-                                    message: 'Tên phải trên 8 ký tự'
+                                    min: 4,
+                                    message: 'Tên phải trên 4 ký tự'
                                 }]}
                                 hasFeedback
                             >
@@ -172,7 +167,7 @@ export const Register = () => {
                     </Form.Item>
                 </Form>
                 <div className="login">
-                    <h4>Bạn đã có tài khoản <Link className="link--to" to={"/"}>Đăng nhập</Link></h4>
+                    <p>Bạn đã có tài khoản <Link className="link--to" to={"/loginUser"}>Đăng nhập</Link></p>
                 </div>
             </div>
         </div>
@@ -226,7 +221,7 @@ export const RegisterEmployee = () => {
         <div className="container--body">
             <div className='container--register'>
                 <div className="register--title">
-                    <h3>Tạo tài khoản của bạn</h3>
+                    <h3>Tạo tài khoản cho nhà tuyển dụng</h3>
                 </div>
                 <Form onFinish={handelSubmit} action="" method="post">
                     <div className="form--register">
@@ -323,7 +318,7 @@ export const RegisterEmployee = () => {
                                 name="scale"
                                 rules={[{
                                     required: true,
-                                    message: "Số lượn nhân viên công ty"
+                                    message: "Số lượng nhân viên công ty"
                                 }]}
                                 hasFeedback
                             >
@@ -407,7 +402,7 @@ export const RegisterEmployee = () => {
                     </Form.Item>
                 </Form>
                 <div className="login">
-                    <h4>Bạn đã có tài khoản <Link className="link--to" to={"/"}>Đăng nhập</Link></h4>
+                    <p>Bạn đã có tài khoản <Link className="link--to" to={"/loginEmployee"}>Đăng nhập</Link></p>
                 </div>
             </div>
         </div>
@@ -416,7 +411,7 @@ export const RegisterEmployee = () => {
 
 
 export const EmployeePayment = () => {
-    const naviage=useNavigate()
+    const naviage = useNavigate()
     const employees = JSON.parse(localStorage.getItem("company"))
     const [numberCart, setNumberCart] = useState({
         number: ""
@@ -444,8 +439,27 @@ export const EmployeePayment = () => {
         if (numberCart.number.length > 13 || numberCart.number.length < 13) {
             error.number = "Số tài khoản không chính xác"
         } else {
-            addNewCompany()
-           naviage("/loginEmployee")
+            Swal.fire(
+                {
+                    title: "Xác nhân thanh toán",
+                    text: "Bạn có muốn thanh toán không",
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Đồng ý",
+                    cancelButtonText: "Hủy"
+                }
+            ).then((result) => {
+                if (result.isConfirmed) {
+                    addNewCompany()
+                    localStorage.removeItem("company")
+                    naviage("/loginEmployee")
+                }else{
+                    naviage("/registerEmployee")
+                }
+            })
+           
         }
         setError(error)
 
@@ -498,7 +512,6 @@ export const EmployeePayment = () => {
                     <div className="payment--select--bank">
                         <label htmlFor="">Chọn ngân hàng</label> <br />
                         <select name="" id="">
-                            <option value="1">Chọn ngân hàng</option>
                             <option value="1">Vietcombank</option>
                             <option value="2">Agribank</option>
                             <option value="3">Techcombank</option>

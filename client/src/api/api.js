@@ -36,6 +36,11 @@ export const confirmEmail = async (email)=>{
     await axios.get(`http://127.0.0.1:8000/api/users/${email}/edit`)
   )
 }
+export const getTokenUser = async (token)=>{
+  return (
+    await axios.post(`http://127.0.0.1:8000/api/user/get-token/${token}`)
+  )
+}
 export const recoverPassword=async (email)=>{
   return(
     await axios.put(`http://127.0.0.1:8000/api/users/${email}/confirm-email`)
@@ -51,7 +56,18 @@ export const userLogin=async(e)=>{
     await axios.post("http://127.0.0.1:8000/api/users/login",e)
   )
 }
- 
+export const updateUser=async (id,formData)=>{
+  return (
+    await axios.post(`http://127.0.0.1:8000/api/user/update/${id}`,formData)
+  )
+}
+export const UserChangePassword=async(id,password)=>{
+  return (
+    await axios.put(`http://127.0.0.1:8000/api/user/change-password/${id}`,password)
+  )
+}
+
+
 
 
 
@@ -84,7 +100,11 @@ export const recoverPasswordEmployee=async (email)=>{
     await axios.put(`http://127.0.0.1:8000/api/company/${email}/confirm-email`)
   )
 }
-
+export const getTokenEmployee = async (token)=>{
+  return (
+    await axios.post(`http://127.0.0.1:8000/api/company/get-token/${token}`)
+  )
+}
 
 export const resetPasswordEmployee=async(email,password)=>{
   return(
@@ -95,4 +115,10 @@ export const postApplication=async (formData)=>{
   return (
     await axios.post("http://127.0.0.1:8000/api/applications",formData)
   )
+}
+
+export const getApplications=async (email)=>{
+  return (
+      await axios.get(`http://127.0.0.1:8000/api/user/${email}/apply`)
+    )
 }
