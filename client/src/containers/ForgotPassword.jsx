@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-// import "../_styles/forgotpassword.scss"
+import "../_styles/forgotpassword.scss"
 import { Link, useNavigate } from "react-router-dom"
-import { recoverPassword, confirmEmail, confirmEmailEmployee, recoverPasswordEmployee } from "../api/Api"
+import { recoverPassword, confirmEmail,confirmEmailEmployee,recoverPasswordEmployee } from "../api/Api"
 import { Form, Input, Button } from "antd"
 
 export const UserFogotPassword = () => {
