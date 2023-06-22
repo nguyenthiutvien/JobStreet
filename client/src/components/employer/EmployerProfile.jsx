@@ -5,11 +5,11 @@ import { Table, Form, Input, Button } from "antd"
 import { getApplications, getTokenUser, updateUser,UserChangePassword } from '../../api/Api';
 import Swal from 'sweetalert2';
 import axios from 'axios';
-export const UserProfile = () => {
+export const EmployerProfile = () => {
     const navigate=useNavigate()
     const [content, setContent] = useState(<Apply></Apply>)
     const handelInfor = () => {
-        setContent(<MyInformation></MyInformation>)
+        setContent(<CompanyInformation></CompanyInformation>)
     }
     const changePassword = () => {
         setContent(<ChangePassword></ChangePassword>)
@@ -32,7 +32,7 @@ export const UserProfile = () => {
                 localStorage.removeItem("login")
                 navigate("/")
             }else{
-                navigate("/userProfile")
+                navigate("/EmployerProfile")
             }
         })
     }
@@ -54,8 +54,8 @@ export const TabBar = ({ handelInfor, changePassword ,handelLogout,handelApply})
     const token = JSON.parse(localStorage.getItem("login"));
     useEffect(() => {
         const getInfor = async () => {
-            const userValue = await getTokenUser(token.token)
-            setUser(userValue.data.user)
+            const companyValue = await getTokenUser(token.token)
+            setUser(companyValue.data.user)
         }
         getInfor()
     }, [])
@@ -65,16 +65,16 @@ export const TabBar = ({ handelInfor, changePassword ,handelLogout,handelApply})
                 <div className="tabbar--image">
                     <div className="image--profile">
                         
-                        <img src={`http://127.0.0.1:8000/storage/${user.avatar}`} alt="" />
+                        <img src={`http://127.0.0.1:8000/storage/${company.logo}`} alt="" />
                     </div>
                     <div className="user--name">
-                        <p>{user.username}</p>
+                        <p>{company.compnay_name}</p>
                     </div>
                 </div>
                 <div className="tabbar--drop--down">
                     <ul>
                         <li><Link className='color' to={"/"}>Trang chủ</Link></li>
-                        <li><Link className='color' onClick={handelApply} >Nộp đơn</Link></li>
+                        <li><Link className='color' onClick={handelApply} >Ứng tuyển viên</Link></li>
                         <li><Link className='color' onClick={handelInfor}>Thông tin</Link></li>
                         <li><Link className='color' onClick={changePassword}>Đổi mật khẩu</Link></li>
                         <li><Link className='color' onClick={handelLogout}>Đăng xuất</Link></li>
@@ -96,7 +96,7 @@ export const Apply = () => {
     }, [])
     const columns = [
         {
-            title: "Tên công ty",
+            title: "Tên ứng cử viên",
             dataIndex: "company_name",
             key: "name"
         }, {
@@ -114,12 +114,17 @@ export const Apply = () => {
             dataIndex: "status",
             key: "status"
         }
+        {
+            title: "Hồ sơ",
+            dataIndex:"cv",
+            key:"cv"
+        }
     ]
     return (
         <>
             <div className="container--table--cv">
                 <div className="cv--title">
-                    <p>Danh sách công ty ứng tuyển</p>
+                    <p>Danh ứng cử viên</p>
                 </div>
                 <div className="list--cv">
                     <Table dataSource={apply} columns={columns}>
@@ -129,26 +134,31 @@ export const Apply = () => {
         </>
     )
 }
-export const MyInformation = () => {
+export const CompanyInformation = () => {
     const [update, setUpdate] = useState(false)
     const [upUser, setUpUser] = useState({
-        username: "",
+        company_name: "",
+        logo:"",
+        scale:0,
+        description:"",
+        website: "",
         address: "",
         number_phone: "",
-        avatar: ""
+     
+        
     })
     const token = JSON.parse(localStorage.getItem("login"));
     useEffect(() => {
         const getInfor = async () => {
-            const userValue = await getTokenUser(token.token)
-            setUpUser(userValue.data.user)
+            const companyValue = await getTokenUser(token.token)
+            setUpUser(companyValue.data.user)
         }
         getInfor()
     }, [])
 
     const handelIpnut = (e) => {
-        const userValue = { ...upUser, [e.target.name]: e.target.value }
-        setUpUser(userValue)
+        const companyValue = { ...upUser, [e.target.name]: e.target.value }
+        setUpUser(companyValue)
     }
     const handelAvatar = (e) => {
         const userImg = e.target.files[0]
@@ -160,8 +170,10 @@ export const MyInformation = () => {
     const handelSubmit = async () => {
         const id = upUser.id;
         const formData = new FormData()
-        formData.append("username", upUser.username)
-        formData.append("avatar", upUser.avatar)
+        formData.append("company_name", upUser.company_name)
+        formData.append("logo", upUser.logo)
+        formData.append("scale", upUser.scale)
+        formData.append("website", upUser.website)
         formData.append("number_phone", upUser.number_phone)
         formData.append("address", upUser.address)
         const update = await updateUser(id, formData, {
@@ -178,20 +190,44 @@ export const MyInformation = () => {
         <>
             <div className="container--table-inform">
                 <div className="cv--title">
-                    <p>Thông tin cá nhân</p>
+                    <p>Thông tin công ty</p>
                 </div>
                 <div className="list--cv">
                     <Form onFinish={handelSubmit}>
                         <Form.Item
                             name="name"
                         >
-                            <label>Tên của bạn</label> <br />
+                            <label>Tên công ty</label> <br />
                             {update === false ?
-                                (<Input className='form--input' value={upUser.username} placeholder='Tên của bạn' disabled />) :
-                                (<input className='form--input' type='text' name='username' value={upUser.username} placeholder='Tên của bạn' onChange={handelIpnut} />)}
+                                (<Input className='form--input' value={upUser.company_name} placeholder='Tên của bạn' disabled />) :
+                                (<input className='form--input' type='text' name='company_name' value={upUser.company_name} placeholder='Tên của bạn' onChange={handelIpnut} />)}
 
                         </Form.Item>
+                        <Form.Item>
+                            <label></label> <br />
+                            {update === false ?
+                                (<img className='image--profile--user' src={`http://127.0.0.1:8000/storage/${upUser.logo}`} alt="" />)
+                                : (<Input className='form--input' name='logo' type='file' onChange={handelAvatar}></Input>)}
+                        </Form.Item>
+                        <Form.Item
+                            name={"scale"}
+                        >
+                            <label>Quy mô</label> <br />
+                            {update === false ?
+                                (<Input className='form--input' value={upUser.scale} placeholder='Quy mô của công ty bạn' disabled></Input>) :
+                                (<input className='form--input' type='number' name='scale' value={upUser.scale} placeholder='Quy mô' onChange={handelIpnut} />)}
 
+                        </Form.Item>
+                        <Form.Item
+                            name={"website"}
+                        >
+                            <label>Webiste </label> <br />
+                            {update === false ?
+                                (<Input className='form--input' value={upUser.website} placeholder='Trang web của công ty' disabled></Input>) :
+                                (<input className='form--input' type='number' name='website' value={upUser.website} placeholder='Website' onChange={handelIpnut} />)}
+
+                        </Form.Item>
+                        
                         <Form.Item
                             name={"address"}
                         >
@@ -210,12 +246,7 @@ export const MyInformation = () => {
                                 (<input className='form--input' type='number' name='number_phone' value={upUser.number_phone} placeholder='Số điện thoại của bạn' onChange={handelIpnut} />)}
 
                         </Form.Item>
-                        <Form.Item>
-                            <label>Ảnh đại diện</label> <br />
-                            {update === false ?
-                                (<img className='image--profile--user' src={`http://127.0.0.1:8000/storage/${upUser.avatar}`} alt="" />)
-                                : (<Input className='form--input' name='avatar' type='file' onChange={handelAvatar}></Input>)}
-                        </Form.Item>
+                        
                         <Form.Item>
                             {update === false ?
                                 (<button type="primary" className='edit--button' onClick={handelUpdate} htmlType="button">
@@ -242,8 +273,8 @@ export const ChangePassword = () => {
     });
     useEffect(() => {
         const getInfor = async () => {
-            const userValue = await getTokenUser(token.token)
-            setId(userValue.data.user.id)
+            const companyValue = await getTokenUser(token.token)
+            setId(companyValue.data.company.id)
         }
         getInfor()
     }, [])

@@ -12,7 +12,7 @@ import { UserEnterCode } from "./EnterCodeConfirm";
 import { EmployeeEnterCode } from "./EnterCodeConfirm";
 import { EmployeeChangePassword } from "./ChangePassword";
 import { EmployeePayment } from "./Authennitication";
-import { UserProfile } from "../components/user/TabBar";
+import { UserProfile } from "../components/candidates/TabBar";
 import AllJobs from "../components/pages/AllJobs";
 import JobDetails from "../components/jobs/JobDetails";
 import Home from "../Home";
