@@ -40,7 +40,7 @@ Route::put("/company/{email}/confirm-email",[CompanyController::class,"confirmEm
 Route::put("/company/{email}/change-pass",[CompanyController::class,"update"]);
 Route::post("/company/login",[CompanyController::class,"EmployeeLogin"]);
 
-e::post("/company/update/{id}",[CompanyController::class,"updateCompanyInfo"]);
+Route::post("/company/update/{id}",[CompanyController::class,"updateCompanyInfo"]);
 
 
 Route::post("/company/get-token/{token}",[UserController::class,"getCompanyToken"]);
@@ -59,7 +59,7 @@ Route::get('/home/{id}',[JobApiController::class,'getJobDetails']);
 
 
 
-// company
+
 // Application
 Route::post('/applications',[ApplicationController::class,"store"]);
 
