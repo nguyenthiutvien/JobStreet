@@ -10,6 +10,9 @@ import Loader from "../components/services/Loader";
 import NavBar from "./pages/navigation/NavBar";
 import Footer from "../components/footer/Footer";
 
+import '../../src/_style/components/Blog/company.scss'
+
+
 function Company(){
     const [show,setshow]=useState([]);
     // const navigate = useNavigate();

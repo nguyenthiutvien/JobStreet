@@ -7,8 +7,7 @@ import React from 'react';
 import "../src/_style/main.scss";
 import 'antd/dist/reset.css';
 
-import '../src/_style/components/Blog/company.scss'
-import '../src/_style/components/Blog/Detail.scss'
+
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
