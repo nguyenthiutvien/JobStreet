@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 
@@ -209,25 +210,65 @@ public function getCompany(Request $request, $companyId)
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$email)
+      //public function update(Request $request,$email)
+     // {
+        // $request->validate([
+        //     "password"=>"required|string|min:8"
+        // ]);
+
+        // $company=Company::where("email",$email)->first();
+
+        // if (!$company) {
+        //     return response()->json(
+        //         "Công ty không tồn tại"
+        //     );
+        // }
+        // $company->password=bcrypt($request->password);
+        // $company->save();
+        // return response()->json(
+        //     "Thành công"
+        // );
+     // }
+
+    public function updateCompanyInfo(Request $request)
     {
         $request->validate([
-            "password"=>"required|string|min:8"
+            'company_name' => "required|string",
+            'logo' => "nullable",
+            'scale' => "required|numeric",
+            'description' => "required|string",
+            'website' => "required|string",
+            'address' => "required|string",
+            'number_phone' => "required|numeric",
         ]);
 
-        $company=Company::where("email",$email)->first();
-
-        if (!$company) {
-            return response()->json(
-                "Công ty không tồn tại"
-            );
+        $id = $request->id;
+        $company_name = $request->company_name;
+        $logo = $request -> logo;
+        $scale = $request -> scale;
+        $website = $request -> website;
+        $address = $request->address;
+        $phone_number = $request->number_phone;
+        $company = Company::findOrFail($id);
+        if ($request->hasFile("logo")) {
+            $logo=$request->file("logo");
+            $logoName = Str::random(16) . "." . $request->logo->getClientOriginalExtension();
+            Storage::disk("public")->put($logoName, file_get_contents($logo));
+            $company->avatar = $logoName;
         }
-        $company->password=bcrypt($request->password);
+        $company->company_name = $company_name;
+        $company -> scale = $scale;
+        $company -> website = $website;
+        $company->number_phone = $phone_number;
+        $company->address = $address;
+
         $company->save();
         return response()->json(
-            "Thành công"
+            "Cập nhật thành công"
         );
     }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -248,4 +289,48 @@ public function getCompany(Request $request, $companyId)
             $verificationCode
         );
     }
+
+
+    public function getCompanyToken($token){
+        $company = Company::where("token", $token)->first();
+        if(!$company){
+            return response()->json([
+                "status"=>400,
+                "message" => "Tài khoản không tồn tại"
+            ]);
+        }
+        return response()->json(
+            [ 
+            "status"=>200,
+            "company" => $company
+            ]
+           
+        );
+    }
+
+
+    //  get username- user
+    // public function getUser()
+    // {
+    //     $users = DB::table('users')->select('username')->get();
+    //     return response()->json($users);
+    // }
+    public function getUser()
+    {
+        $users = DB::table('users')->get();
+        return response()->json($users);
+    }
+
+    //  get username- companies
+    // public function getCompanyname()
+    // {
+    //     $companies = DB::table('companies')->select('company_name')->get();
+    //     return response()->json($companies);
+    // }
+    public function getCompanyname()
+{
+    $companies = DB::table('companies')->get();
+    return response()->json($companies);
+}
+
 }
