@@ -21,6 +21,7 @@ import Company from '../components/Company'
 import Detail from '../components/Detail'
 import Timvieclam from '../components/Timvieclam';
 import Blog from '../components/Blog/Blog';
+import JobItem from "../components/jobs/JobItem";
 
 
 

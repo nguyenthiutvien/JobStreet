@@ -37,7 +37,8 @@ function Timvieclam() {
     ))}
     </div>
     <div className="ungtuyen">
-      <h4>Ứng tuyển nhanh</h4>
+      
+      <Link to={'/jobs'}><h4>Show More</h4></Link>
     </div>
 
     </>
