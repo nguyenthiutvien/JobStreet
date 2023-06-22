@@ -95,7 +95,7 @@ export const EmployeeFogotPassword = () => {
       <div className="container--form">
         <form onSubmit={handelSubmit} action="" method="post">
           <div className="title--form">
-            <h3>Xác thực Email</h3>
+            <h3>Xác thực email</h3>
           </div>
           <div className="value--button">
 
