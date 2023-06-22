@@ -1,16 +1,32 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Job from "../jobs/Jobs";
 import Swal from "sweetalert2";
 import { Modal } from "../../containers/Application";
 const JobDetailsItem = ({ job }) => {
-
+  const navigate=useNavigate()
   const [openModal, setOpenModal]=useState(false)
  const handelApplication = ()=>{
     setOpenModal(true);
  }
  const handelLogin=()=>{
-  Swal.fire("Đăng nhập","Vui lòng đăng nhập trước khi nộp CV","error")
+  Swal.fire({
+    title: "Đăng nhập",
+    text: "Bạn có muốn đăng nhập?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    cancelButtonText: "Không",
+    confirmButtonText: "Đăng nhập",
+  }).then((result)=>{
+    if(result.isConfirmed){
+      navigate("/loginUser")
+    }else{
+      setOpenModal(false);
+    }
+    
+  })
 }
  const useLogined=JSON.parse(localStorage.getItem("login"))
   return (
