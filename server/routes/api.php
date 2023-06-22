@@ -59,7 +59,7 @@ Route::get('/home/{id}',[JobApiController::class,'getJobDetails']);
 
 
 
-// company
+
 // Application
 Route::post('/applications',[ApplicationController::class,"store"]);
 
