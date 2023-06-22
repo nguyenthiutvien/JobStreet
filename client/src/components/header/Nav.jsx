@@ -53,7 +53,7 @@ const Nav = ({ cmp }) => {
               ? "home-header-container-nav-right--active-menu"
               : ""
             }`}
-          to="/blogs"
+          to="/blog"
         >
 
           Bài đăng
