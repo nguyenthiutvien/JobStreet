@@ -27,33 +27,35 @@ const SearchJob = () => {
         setAddress(event.target.value);
     };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            const response = await axios.get('/api/jobs', {
-                params: {
-                    positions: positions.join(','),
-                    types: types.join(','),
-                    address: address,
-                },
-            });
-            const jobs = response.data;
-            // Xử lý dữ liệu công việc
-            console.log(jobs);
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
+    
+const handleSubmit = async (event) => {
+    event.preventDefault();
+  
+    try {
+      const response = await axios.get('/api/jobs', {
+        params: {
+          job_id: job_id,
+          company_id: company_id,
+        },
+      });
+  
+      const jobs = response.data;
+      // Xử lý dữ liệu công việc
+      console.log(jobs);
+    } catch (error) {
+      console.error(error);
+    }
+  };
     return (
 
-        <div className='container'><br /><br /><br /><br />
+        <div className='container'>
             <div className='card'>
                 <form onSubmit={handleSubmit}>
                     <div className='row'>
                         <h5>Tìm theo vị trí công việc</h5>
                         <label>
                             <input
+                                className='checkbox'
                                 type="checkbox"
                                 value="Design"
                                 checked={positions.includes('Design')}
@@ -63,33 +65,33 @@ const SearchJob = () => {
                            Design
                             </span>
                         </label>
-
                         <label>
                             <input
+                                className='checkbox'
                                 type="checkbox"
                                 value="Java Dev"
                                 checked={positions.includes('Java Dev')}
                                 onChange={() => handlePositionChange('Java Dev')}
-                            />
-                            
+                            />                            
                             <span className='text'>
                             Java Dev
                             </span>
                         </label>
                         <label>
                             <input
+                                className='checkbox'
                                 type="checkbox"
-                                value="Fullstack"
-                                checked={positions.includes('Fullstack')}
-                                onChange={() => handlePositionChange('Fullstack')}
+                                value="FullStack"
+                                checked={positions.includes('FullStack')}
+                                onChange={() => handlePositionChange('FullStack')}
                             />
                             <span className='text'>
-                            Fullstack
-                            </span>
-                           
+                            FullStack
+                            </span> 
                         </label>
                         <label>
                             <input
+                                className='checkbox'
                                 type="checkbox"
                                 value="ReactJS Dev"
                                 checked={positions.includes('ReactJS Dev')}
@@ -101,6 +103,7 @@ const SearchJob = () => {
                         </label>
                         <label>
                             <input
+                                className='checkbox'
                                 type="checkbox"
                                 value="Laravel Dev"
                                 checked={positions.includes('Laravel Dev')}
@@ -115,6 +118,7 @@ const SearchJob = () => {
                         <h5>Tìm theo loại</h5>
                         <label>
                             <input
+                                className='checkbox'
                                 type="checkbox"
                                 value="Full-time"
                                 checked={types.includes('Full-time')}
@@ -126,6 +130,7 @@ const SearchJob = () => {
                         </label>
                         <label>
                             <input
+                                className='checkbox'
                                 type="checkbox"
                                 value="Part-time"
                                 checked={types.includes('Part-time')}
@@ -141,6 +146,7 @@ const SearchJob = () => {
                         <h5>Tìm theo địa chỉ</h5>
                         <label>
                             <input
+                                className='checkbox'
                                 type="checkbox"
                                 value="Đà Nẵng"
                                 checked={types.includes('Đà Nẵng')}
@@ -152,6 +158,7 @@ const SearchJob = () => {
                         </label>
                         <label>
                             <input
+                                className='checkbox'
                                 type="checkbox"
                                 value="Hồ Chí Minh"
                                 checked={types.includes('Hồ Chí Minh')}
@@ -163,6 +170,7 @@ const SearchJob = () => {
                         </label>
                         <label>
                             <input
+                                className='checkbox'
                                 type="checkbox"
                                 value="Hà Nội"
                                 checked={types.includes('Hà Nội')}
@@ -173,12 +181,9 @@ const SearchJob = () => {
                             </span>                            
                         </label>
                     </div>
-                    <button type="submit">Search</button>
                 </form>
             </div>
         </div>
-
-
     );
 };
 

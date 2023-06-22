@@ -2,7 +2,7 @@ import React from "react";
 
 
 import JobItem from "../jobs/JobItem";
-import SearchJob from "../jobs/SearchJob";
+import SearchJob from "../jobs/searchJob";
 
 const JobItemSection = ({ jobs }) => {
  

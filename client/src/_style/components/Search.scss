@@ -9,6 +9,7 @@
     justify-content: center;
     margin-bottom: 10px;
     margin-top: 0.5rem;
+    padding-left: 30px;
   }
 
   .card {
@@ -16,10 +17,11 @@
     flex-wrap: wrap;
     gap: 10px;
     padding: 10px;
+    margin-top: 96px;
     border: 1px solid rgb(205, 196, 196);
     border-radius: 5px;
     width: 300px;
-    margin-left:80px;
+    margin-left:70px;
   }
 
   button {
@@ -38,10 +40,14 @@
     font-size: 17px;
     margin-bottom: 10px;
   }
-  .row{
-    padding-left: 30px;
-  }
   .text{
     margin-left: 10px;
+  }
+  .checkbox{
+    width: 18px;
+    height: 18px;
+    position: relative;
+    top: 4px;
+    padding-bottom: 40px;
   }
 }

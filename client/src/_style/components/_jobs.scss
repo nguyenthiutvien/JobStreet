@@ -1,8 +1,10 @@
 .job {
     background: $color-light;
+    
 
     .container {
         @include container;
+        
 
         .job-info {
             margin-top: 6rem;

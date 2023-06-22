@@ -1,39 +1,35 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Job;
 use App\Models\Company;
+use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
     public function search(Request $request)
     {
-        $position = $request->input('position');
-        $type = $request->input('type');
+        $positions = $request->input('positions');
+        $types = $request->input('types');
         $address = $request->input('address');
 
+        // Thực hiện truy vấn để lấy dữ liệu công việc dựa trên positions và types
+        $jobs = Job::whereIn('position', explode(',', $positions))
+            ->whereIn('type', explode(',', $types))
+            ->get();
 
+        // Lấy dữ liệu địa chỉ từ bảng companies dựa trên company_id trong bảng jobs
+        $companyIds = $jobs->pluck('company_id');
+        $companies = Company::whereIn('id', $companyIds)->get();
 
-        // Ví dụ: Tìm kiếm công việc và trả về kết quả
-        $jobs = Job::where('position', $position)
-                    ->where('type', $type)
-                    ->get();
-
-        // Tìm kiếm công ty và trả về kết quả
-        $companies = Company::where('address', $address)
-                            ->get();
-
-        // Kết hợp kết quả công việc và công ty để trả về
-        $results = [
-            'jobs' => $jobs,
-            'companies' => $companies
-        ];
+        // Gộp dữ liệu công việc và địa chỉ vào một mảng
+        $results = $jobs->map(function ($job) use ($companies) {
+            $company = $companies->firstWhere('id', $job->company_id);
+            $job->address = $company ? $company->address : null;
+            return $job;
+        });
 
         return response()->json($results);
     }
-
 }
-
