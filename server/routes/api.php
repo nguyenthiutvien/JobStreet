@@ -62,18 +62,15 @@ Route::get('/companies/selectdata/{id}', function (Request $request, $id) {
     $controller = new CompanyController(); 
     return $controller->getCompany($request, $id);
 });
-<<<<<<< HEAD
 Route::get('/get-applications',[ApplicationController::class,"index"]);
 
 Route::get('/get-applications/{user_id}/{job_id}', [ApplicationController::class, 'getApplication']);
 Route::get('/applications/{user_id}/{job_id}/cv', [ApplicationController::class, 'getCV']);
 
 Route::get('/applications/job/{job_id}', [ApplicationController::class, 'getApplicationsByJob']);
-=======
 
 Route::get("user/{email}/apply",[ApplicationController::class,"show"]);
 
 
 Route::get("/user",[UserController::class,"test"]);
 
->>>>>>> 84d4411697ca66311ecf3fc6e30c80ee38d2e533

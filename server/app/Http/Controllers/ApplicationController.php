@@ -36,7 +36,7 @@ class ApplicationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "email" => "required|string",
+            "token" => "required|string",
             "job_id" => "required|numeric",
             "cv" => "nullable",
             "name" => "required",
@@ -45,14 +45,14 @@ class ApplicationController extends Controller
             "status" => "required",
         ]);
 
-        $email = $request->email;
+        $token = $request->token;
         $job_id = $request->job_id;
         $name=$request->name;
         $cover_letter=$request->cover_letter;
         $position=$request->position;
         $status="Đã nhận";
         
-        $user = User::where("email", $email)->first();
+        $user = User::where("token", $token)->first();
         $application=new Application();
         $application->user_id = $user->id;
         $application->job_id = $job_id;
@@ -69,7 +69,7 @@ class ApplicationController extends Controller
                 -> where("jobs.id",$job_id)->first();
         if ($application) {
             Mail::to($job->email)->send(new NotificationToEmployee($name,$cover_letter,$fileName,$job->company_name));
-            Mail::to($request->email)->send(new NotificationToCandidate($name,$job->company_name));
+            Mail::to($user->email)->send(new NotificationToCandidate($name,$job->company_name));
             return response()->json([
                 "Thành công"=> $application,
                   "name"=>$name,
