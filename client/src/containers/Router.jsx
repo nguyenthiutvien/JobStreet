@@ -16,6 +16,8 @@ import { Application } from "./Application";
 import AllJobs from "../components/pages/AllJobs";
 import JobDetails from "../components/jobs/JobDetails";
 import Home from "../Home";
+import SearchJob from "../components/jobs/SearchJob";
+
 export const Router = () => {
     return (
         <Routes>
@@ -35,10 +37,14 @@ export const Router = () => {
             <Route path="" element={<Home />} />
           <Route path="/jobs" element={<AllJobs />} />
           <Route path="/job-details/:id" element={<JobDetails />} />
+          <Route path="/search" element={<SearchJob />} />
+          
+
+          
+
 
 
 
         </Routes>
     );
 };
-

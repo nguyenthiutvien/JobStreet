@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
+use App\Traits\ApiResponseWithHttpSTatus;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CategoriesController extends Controller
 {

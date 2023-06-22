@@ -39,7 +39,7 @@ Route::post("/company/login",[CompanyController::class,"EmployeeLogin"]);
 
 
 Route::group(['middleware' => 'api'], function ($router) {
-    Route::resource('/categories', CategoryController::class);
+    Route::resource('/categories', CategoriesController::class);
     Route::resource('/applications', ApplicationController::class);
 });
 
@@ -48,3 +48,5 @@ Route::get('/home',[JobApiController::class,'index']);
 Route::get('/home/browse',[JobApiController::class,'getALlJobs']);
 
 Route::get('/home/{id}',[JobApiController::class,'getJobDetails']);
+
+Route::get('/search', [SearchController::class, 'search']);

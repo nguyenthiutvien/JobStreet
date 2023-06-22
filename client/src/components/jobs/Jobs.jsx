@@ -1,11 +1,16 @@
 import React from "react";
 import JobItem from "./JobItem";
 
+
+
 const Jobs = ({ latest }) => {
 
+  
  
   return (
     <div className="job">
+      
+      <SearchJob />
       <div className="container">
         <div className="job-info">
           <h1>Latest Jobs</h1>
@@ -18,10 +23,6 @@ const Jobs = ({ latest }) => {
                  key={i}
                 id={job.id}
                 type={job.type}
-
-              
-            
-               
               />
             ))}
         </div>
