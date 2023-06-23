@@ -90,5 +90,11 @@ Route::get('jobs/{id}', [CompanyController::class, 'getPositionById']);
 Route::get('/getuser', [CompanyController::class, 'getUser']);
 
 
+Route::delete('/deleteuser/{id}', [CompanyController::class, 'deleteUsers']);
+
 Route::get('/getcompanies', [CompanyController::class, 'getCompanyname']);
 
+Route::delete('/deleteCompany/{id}',[CompanyController::class,'deleteCompany']);
+
+
+Route::get('/datajobs',[CompanyController::class,'getdatauser']);

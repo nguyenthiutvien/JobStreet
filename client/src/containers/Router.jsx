@@ -21,11 +21,15 @@ import Company from '../components/Company'
 import Detail from '../components/Detail'
 import Timvieclam from '../components/Timvieclam';
 
-import JobItem from "../components/jobs/JobItem";
-import Blog from '../components/Blog/Blog';
 
 import Blog from '../components/Blog/Blog';
-import JobItem from "../components/jobs/JobItem";
+import Companyad from "../components/admin/Companyadmin";
+import Userad from "../components/admin/Useradmin";
+import Admis from "../components/admin/Admin";
+import Inforusers from "../components/admin/Informationuser";
+
+
+
 
 
 
@@ -57,8 +61,10 @@ export const Router = () => {
 
             <Route path="/blog" element={<Blog />} />
       
-
-
+            <Route path="/admin" element={<Admis/>}/>
+            <Route path="/comapanyad" element={<Companyad/>}/>
+            <Route path="/userad" element={<Userad/>}/>
+            <Route path="/information" element={<Inforusers/>}/>
         </Routes>
     );
 };
