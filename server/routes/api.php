@@ -3,8 +3,10 @@
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JobApiController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controller\ApplicationController;
+    use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------

@@ -1,27 +1,27 @@
-.container {
+.container-search {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-
-  .row {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
-    margin-top: 0.5rem;
-    padding-left: 30px;
+  .row-search {
+   display: grid;
+   grid-template-columns: 30% 70%;
+   gap: 10px;
+   .col-sm-3-{
+    position: absolute;
+    left: -4%;
+   }
   }
 
-  .card {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 10px;
+  .card-search {
     margin-top: 96px;
     border: 1px solid rgb(205, 196, 196);
     border-radius: 5px;
-    width: 300px;
-    margin-left:70px;
+    width: 250px;
+    margin-left: 100px;
+    form{
+      margin-left:20px;
+      padding: 20px;
+    }
   }
 
   button {
@@ -50,4 +50,7 @@
     top: 4px;
     padding-bottom: 40px;
   }
+}
+.col-sm-9-{
+  margin-right:-180px;
 }

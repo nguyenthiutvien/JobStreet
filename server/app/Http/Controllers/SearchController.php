@@ -8,28 +8,17 @@ use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-    public function search(Request $request)
+    public function getALlJobs()
     {
-        $positions = $request->input('positions');
-        $types = $request->input('types');
-        $address = $request->input('address');
-
-        // Thực hiện truy vấn để lấy dữ liệu công việc dựa trên positions và types
-        $jobs = Job::whereIn('position', explode(',', $positions))
-            ->whereIn('type', explode(',', $types))
-            ->get();
-
-        // Lấy dữ liệu địa chỉ từ bảng companies dựa trên company_id trong bảng jobs
-        $companyIds = $jobs->pluck('company_id');
-        $companies = Company::whereIn('id', $companyIds)->get();
-
-        // Gộp dữ liệu công việc và địa chỉ vào một mảng
-        $results = $jobs->map(function ($job) use ($companies) {
-            $company = $companies->firstWhere('id', $job->company_id);
-            $job->address = $company ? $company->address : null;
-            return $job;
-        });
-
-        return response()->json($results);
+        $data['jobs'] = Job::select('position', 'type','salary','id','description','close_day', 'company_id')
+        ->with('company:id,company_name,address,logo',)
+        ->get();
     }
+    // public function search(Request $request)
+    // {
+    //     $positions = Job::whereIn('position', ['Design', 'Java Dev', 'FullStack', 'ReactJS Dev', 'Laravel Dev'])->get();
+    //     $types = Job::whereIn('type', ['Full-time', 'Part-time'])->get();
+    
+    //     return response()->json(['position'=>$positions,'type'=> $types]);
+    // }
 }
