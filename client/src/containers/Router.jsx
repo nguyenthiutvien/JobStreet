@@ -16,7 +16,7 @@ import { UserProfile } from "../components/candidates/UserProfile";
 import AllJobs from "../components/pages/AllJobs";
 import JobDetails from "../components/jobs/JobDetails";
 import Home from "../Home";
-import Blog from "../components/Blog/Blog"
+
 import Company from '../components/Company'
 import Detail from '../components/Detail'
 import Timvieclam from '../components/Timvieclam';
