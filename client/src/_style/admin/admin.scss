@@ -1,0 +1,48 @@
+.content-admins{
+    display: grid;
+    grid-template-columns: 17% 83%;
+   
+}
+
+
+div.left-admin{
+    padding-top: 30px;
+    img{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+
+    }
+    p{
+        color: white;
+    }
+}
+.leftadmin {
+   
+   
+   text-align: start;
+  
+   margin-left: 30px;
+    gap: 10px;
+    ul{
+        list-style: none;
+
+    }
+    
+   
+    
+}
+.content-admin{
+    background-color: #26AE61;
+    width: 17%;
+    height: 752px;
+    text-align: center;
+    position: fixed;
+}
+
+ul.left-conten a{
+    margin-top: -10px;
+    font-size: 18px;
+    color: white;
+}
+

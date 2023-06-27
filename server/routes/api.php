@@ -8,6 +8,7 @@ use App\Http\Controllers\JobApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\JobController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -72,9 +73,6 @@ Route::get('/companies/selectdata/{id}', function (Request $request, $id) {
     return $controller->getCompany($request, $id);
 });
 
-
-// Application
-Route::post('/applications',[ApplicationController::class,"store"]);
 Route::get('/get-applications',[ApplicationController::class,"index"]);
 
 Route::get('/get-applications/{user_id}/{job_id}', [ApplicationController::class, 'getApplication']);
@@ -84,10 +82,17 @@ Route::get('/applications/job/{job_id}', [ApplicationController::class, 'getAppl
 
 Route::get("user/{email}/apply",[ApplicationController::class,"show"]);
 
+
+Route::get("/user",[UserController::class,"test"]);
+
+
 // jobs id
 Route::get('jobs/{id}', [CompanyController::class, 'getPositionById']);
 
 Route::get('/getuser', [CompanyController::class, 'getUser']);
+
+Route::delete('/deleteuser/{id}', [CompanyController::class, 'deleteUsers']);
+
 
 
 
@@ -97,3 +102,18 @@ Route::post("/comment",[CommentController::class,"store"]);
 Route::get("/comment/{id}",[CommentController::class,"show"]);
 
 Route::get('/getcompanies', [CompanyController::class, 'getCompanyname']);
+
+Route::delete('/deleteCompany/{id}',[CompanyController::class,'deleteCompany']);
+
+
+Route::get('/datajobs',[CompanyController::class,'getdatauser']);
+
+
+
+Route::get('/getjob', [JobController::class, 'getJob']);
+Route::delete('/deletejob/{id}',[JobController::class,'deletejob']);
+
+Route::get('/getstatus', [JobController::class, 'getStatus']);
+
+
+Route::put('/selectstatus/{id}',[JobController::class,'Updatestatus']);

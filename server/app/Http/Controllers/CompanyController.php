@@ -6,11 +6,17 @@ use App\Mail\ForgotPassword;
 use App\Mail\RegisterEmail;
 use App\Models\Company;
 use App\Models\User;
+use App\Models\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Tymon\JWTAuth\Facades\JWTAuth;
+
+
+use App\Models\Job;
+use Faker\Provider\ar_EG\Address;
+
 use Illuminate\Support\Facades\DB;
 class CompanyController extends Controller
 {
@@ -292,6 +298,7 @@ public function getCompany(Request $request, $companyId)
         );
     }
 
+
     public function getCompanyToken($token){
         $company = Company::where("token", $token)->first();
         if(!$company){
@@ -309,27 +316,71 @@ public function getCompany(Request $request, $companyId)
         );
     }
 
+
     //  get username- user
     // public function getUser()
     // {
     //     $users = DB::table('users')->select('username')->get();
     //     return response()->json($users);
     // }
+
+
+    // admin user ---------------------------------------------------------
     public function getUser()
     {
         $users = DB::table('users')->get();
         return response()->json($users);
     }
 
-    //  get username- companies
-    // public function getCompanyname()
-    // {
-    //     $companies = DB::table('companies')->select('company_name')->get();
-    //     return response()->json($companies);
-    // }
+    
+    public function deleteUsers(Request $request)
+    {
+        $user = User::find($request->id);
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        $user->delete();
+
+        return response()->json(['status' => 'ok', 'message' => 'Delete succeeded']);
+    }	
+
+    //  admin company------------------------------------
+
     public function getCompanyname()
 {
     $companies = DB::table('companies')->get();
     return response()->json($companies);
 }
+
+public function deleteCompany(Request $request)
+{
+    $company = Company::find($request->id);
+
+    if (!$company) {
+        return response()->json(['error' => 'Company not found'], 404);
+    }
+
+    $company->delete();
+
+    return response()->json(['status' => 'ok', 'message' => 'Delete succeeded']);
+}	
+
+
+
+public function getdatauser()
+{
+    $jobs = Job::select('jobs.position', 'companies.company_name', 'applications.status', 'users.username')
+        ->join('companies', 'jobs.company_id', '=', 'companies.id')
+        ->join('applications', 'jobs.id', '=', 'applications.job_id')
+        ->join('users', 'users.id', '=', 'applications.user_id')
+        ->get();
+
+    return response()->json($jobs);
 }
+
+
+
+}
+
