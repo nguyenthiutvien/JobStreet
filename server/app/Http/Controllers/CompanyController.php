@@ -12,8 +12,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Tymon\JWTAuth\Facades\JWTAuth;
-
-
 use App\Models\Job;
 use Faker\Provider\ar_EG\Address;
 
@@ -372,4 +370,8 @@ public function getdatauser()
 
     return response()->json($jobs);
 }
+
+
+
 }
+

@@ -1,11 +1,18 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Table } from "antd";
+import { Table,Pagination } from "antd";
+import { Link } from "react-router-dom";
 function Inforusers(){
     const [inforuser,setInforuser]=useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 7;
     useEffect(()=>{
         getData();
     },[]);
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+      };
     const getData = async()=>{
         try {
             const data = await axios.get('http://127.0.0.1:8000/api/datajobs')
@@ -37,10 +44,22 @@ function Inforusers(){
             
         }
     ]
+    const paginatedData = inforuser.slice(
+        (currentPage - 1) * pageSize,
+        currentPage * pageSize
+      );
+    
     return(
+
         <div className="information-content">
-            <h2>Thông tin </h2>
-            <Table dataSource={inforuser} columns={columns}></Table>
+           
+            <Table dataSource={paginatedData} columns={columns}></Table>
+            <Pagination
+                current={currentPage}
+                pageSize={pageSize}
+                total={inforuser.length}
+                onChange={handlePageChange}
+            />
         </div>
     )
 }

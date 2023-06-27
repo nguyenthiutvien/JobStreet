@@ -1,25 +1,44 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+
+
+import React, { Component, useState } from 'react';
+import { Link, Route, Routes } from 'react-router-dom';
 import Userad from './Useradmin';
-    function Admis() {
-    return (
-        <div className='content-admin'>
-                <div className='admin-left'>
-                    <h2>ADMIN</h2><br></br>
-                    <Link to={'/comapanyad'} className='btn btnprimary'> COMPANIES</Link><br></br><br></br>
-                    <Link to={'/userad'} className='btn btnprimary'> USERS</Link><br></br><br></br>
-                    <Link to={'/information'} className='btn btnprimary'> InFORMATION-USER</Link>
-
-
+import Menuadmin from './Menuadmin';
+import Companyad from './Companyadmin';
+import Inforusers from './Informationuser';
+import Browse from './Browse';
+function Admis() {
+        const [changePageAdmin,setChangePageAdmin]=useState(<Companyad/>)
+        const handelCompany=()=>{
+                setChangePageAdmin(<Companyad/>)
+        }
+        const handelUser=()=>{
+                setChangePageAdmin(<Userad/>)
+        }
+        const handelInformation=()=>{
+                setChangePageAdmin(<Inforusers/>)
+        }
+        const handelbrowse=()=>{
+                setChangePageAdmin(<Browse/>)
+        }
+        return (
+                <div className='content-admins'>
+                        <div className='admin-left'>
+                                <Menuadmin handelCompany={handelCompany} handelUser={handelUser} handelInformation={handelInformation} handelbrowse={handelbrowse}></Menuadmin>
+                        </div>
+                        <div className='admin-right'>
+                               {changePageAdmin}
+                        </div>
                 </div>
-                <div className='admin-right'>
-                        <Userad/>
-                </div>
-        </div>
-    )
-     
-    
-    }
+        )
 
-    export default Admis
 
+}
+
+export default Admis
+
+{/* <Routes>
+                <Route path="/companyad" element={<Companyad/>}/>
+                <Route path="/userad" element={<Userad/>}/>
+                 <Route path="/information" element={<Inforusers/>}/>
+                 </Routes> */}

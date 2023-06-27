@@ -7,6 +7,7 @@ use App\Http\Controllers\JobApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\JobController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -89,8 +90,9 @@ Route::get('jobs/{id}', [CompanyController::class, 'getPositionById']);
 
 Route::get('/getuser', [CompanyController::class, 'getUser']);
 
-
 Route::delete('/deleteuser/{id}', [CompanyController::class, 'deleteUsers']);
+
+
 
 Route::get('/getcompanies', [CompanyController::class, 'getCompanyname']);
 
@@ -98,3 +100,13 @@ Route::delete('/deleteCompany/{id}',[CompanyController::class,'deleteCompany']);
 
 
 Route::get('/datajobs',[CompanyController::class,'getdatauser']);
+
+
+
+Route::get('/getjob', [JobController::class, 'getJob']);
+Route::delete('/deletejob/{id}',[JobController::class,'deletejob']);
+
+Route::get('/getstatus', [JobController::class, 'getStatus']);
+
+
+Route::put('/selectstatus/{id}',[JobController::class,'Updatestatus']);
