@@ -26,7 +26,7 @@ export const Modal = ({ closeModal, job }) => {
         formData.append("position", values.position)
         formData.append("job_id", values.job_id)
         formData.append("name", values.name)
-        formData.append("email", email.email)
+        formData.append("token", email.token)
         formData.append("cover_letter", values.cover_letter)
         formData.append("cv", values.file_cv)
         formData.append("status", "Đã nhận")
@@ -35,6 +35,7 @@ export const Modal = ({ closeModal, job }) => {
                 "Content-Type": "multipart/form-data"
             }
         })
+        console.log(...formData)
         Swal.fire({
             title:"Chúc mừng",
             text:"Nộp đơn thành công",

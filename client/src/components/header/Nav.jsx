@@ -40,10 +40,12 @@ const Nav = ({ cmp }) => {
         </Link>
 
         <Link
-          className={`${cmp === "company" ? "home-header-container-nav-right--active-menu" : ""
-            }`}
-          to="/jobs"
-        >
+
+          className={`${
+            cmp === "company" ? "home-header-container-nav-right--active-menu" : ""
+          }`}
+          to="/company"
+          >
           Danh sách công ty
         </Link>
         <Link
@@ -51,7 +53,7 @@ const Nav = ({ cmp }) => {
               ? "home-header-container-nav-right--active-menu"
               : ""
             }`}
-          to="/blogs"
+          to="/blog"
         >
 
           Bài đăng

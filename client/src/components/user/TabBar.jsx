@@ -64,6 +64,7 @@ export const TabBar = ({ handelInfor, changePassword ,handelLogout,handelApply})
             <div className="container--tabbar">
                 <div className="tabbar--image">
                     <div className="image--profile">
+                        
                         <img src={`http://127.0.0.1:8000/storage/${user.avatar}`} alt="" />
                     </div>
                     <div className="user--name">

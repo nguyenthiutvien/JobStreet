@@ -21,7 +21,6 @@ export const UserEnterCode = () => {
             localStorage.removeItem("code")
         }
     },[time])
-
    const resentEmail=(e)=>{
     e.preventDefault()
     ResentCodeUser()
