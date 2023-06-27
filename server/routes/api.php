@@ -66,6 +66,7 @@ Route::post("/company/get-token/{token}",[UserController::class,"getCompanyToken
 Route::group(['middleware' => 'api'], function ($router) {
     Route::resource('/categories', CategoryController::class);
 
+});
 Route::group(['middleware' => 'api'], function ($router) {
     Route::resource('/categories', CategoriesController::class);
     Route::resource('/applications', ApplicationController::class);

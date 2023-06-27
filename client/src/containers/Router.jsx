@@ -34,9 +34,6 @@ import Browse from "../components/admin/Browse";
 
 
 
-
-
-
 export const Router = () => {
     return (
         <Routes>
@@ -55,12 +52,12 @@ export const Router = () => {
             <Route path="/homePage" element={<HomePage/>}></Route>
             <Route path="" element={<Home />} />
 
-            {/* <Route path="/blog" element={<Blog></Blog>} ></Route> */}
+          
           <Route path="/jobs" element={<AllJobs />} />
           <Route path="/job-details/:id" element={<JobDetails />} />
 
 
-            <Route path="/jobs" element={<AllJobs />} />
+            {/* <Route path="/jobs" element={<AllJobs />} /> */}
             <Route path="/job-details/:id" element={<JobDetails />} />
 
             <Route exact path="/company"  element={<Company/>} />
@@ -77,7 +74,7 @@ export const Router = () => {
             <Route path="/information" element={<Inforusers/>}/>
 
             <Route path="/browse" element={<Browse/>}/>
-            <Route path="/searchjob" element={<Search/>}></Route>
+            {/* <Route path="/searchjob" element={<Search/>}></Route> */}
         </Routes>
     );
 };

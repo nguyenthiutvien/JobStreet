@@ -4,16 +4,16 @@ import '../../_style/components/Search.scss';
 
 const JobItemSection = ({ jobs }) => {
   const [search, setSearch] = useState([]);
-
   useEffect(() => {
     handleSearch();
   }, [jobs]);
 
   const handleSearch = () => {
     const allJobs = jobs.map((item) => ({
+      id: item.id,
       position: item.position,
       salary: item.salary,
-      company: item.company_name,
+      company: item.company.company_name,
       address: item.company.address,
       logo: item.company.logo,
       time_close: item.close_day,
@@ -28,7 +28,7 @@ const JobItemSection = ({ jobs }) => {
       .map((item) => ({
         position: item.position,
         salary: item.salary,
-        company: item.company_name,
+        company: item.company.company_name,
         address: item.company.address,
         logo: item.company.logo,
         time_close: item.close_day,
@@ -42,7 +42,7 @@ const JobItemSection = ({ jobs }) => {
       .map((item) => ({
         position: item.position,
         salary: item.salary,
-        company: item.company_name,
+        company: item.company.company_name,
         address: item.company.address,
         logo: item.company.logo,
         time_close: item.close_day,
@@ -56,7 +56,7 @@ const JobItemSection = ({ jobs }) => {
       .map((item) => ({
         position: item.position,
         salary: item.salary,
-        company: item.company_name,
+        company: item.company.company_name,
         address: item.company.address,
         logo: item.company.logo,
         time_close: item.close_day,
@@ -70,7 +70,7 @@ const JobItemSection = ({ jobs }) => {
       .map((item) => ({
         position: item.position,
         salary: item.salary,
-        company: item.company_name,
+        company: item.company.company_name,
         address: item.company.address,
         logo: item.company.logo,
         time_close: item.close_day,
@@ -84,7 +84,7 @@ const JobItemSection = ({ jobs }) => {
       .map((item) => ({
         position: item.position,
         salary: item.salary,
-        company: item.company_name,
+        company: item.company.company_name,
         address: item.company.address,
         logo: item.company.logo,
         time_close: item.close_day,
@@ -99,7 +99,7 @@ const JobItemSection = ({ jobs }) => {
       .map((item) => ({
         position: item.position,
         salary: item.salary,
-        company: item.company_name,
+        company: item.company.company_name,
         address: item.company.address,
         logo: item.company.logo,
         time_close: item.close_day,
@@ -114,7 +114,7 @@ const JobItemSection = ({ jobs }) => {
       .map((item) => ({
         position: item.position,
         salary: item.salary,
-        company: item.company_name,
+        company: item.company.company_name,
         address: item.company.address,
         logo: item.company.logo,
         time_close: item.close_day,
@@ -128,7 +128,7 @@ const JobItemSection = ({ jobs }) => {
       .map((item) => ({
         position: item.position,
         salary: item.salary,
-        company: item.company_name,
+        company: item.company.company_name,
         address: item.company.address,
         logo: item.company.logo,
         time_close: item.close_day,
@@ -142,7 +142,7 @@ const JobItemSection = ({ jobs }) => {
       .map((item) => ({
         position: item.position,
         salary: item.salary,
-        company: item.company_name,
+        company: item.company.company_name,
         address: item.company.address,
         logo: item.company.logo,
         time_close: item.close_day,
@@ -156,7 +156,7 @@ const JobItemSection = ({ jobs }) => {
       .map((item) => ({
         position: item.position,
         salary: item.salary,
-        company: item.company_name,
+        company: item.company.company_name,
         address: item.company.address,
         logo: item.company.logo,
         time_close: item.close_day,
