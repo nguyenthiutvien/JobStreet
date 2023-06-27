@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\UserController;
@@ -27,6 +27,11 @@ Route::post("/user/update/{id}",[UserController::class,"update"]);
 Route::put("/user/change-password/{id}",[UserController::class,"userChangePassword"]);
 Route::post("/user/compare-password/{id}",[UserController::class,"comparePassword"]);
 Route::post("/user/get-token/{token}",[UserController::class,"getUserToken"]);
+
+
+Route::get("/user",[UserController::class,"test"]);
+
+
 // Company
 Route::get("/company",[CompanyController::class,"index"]);
 Route::post("/company",[CompanyController::class,"store"]);
@@ -35,6 +40,13 @@ Route::put("/company/{email}/confirm-email",[CompanyController::class,"confirmEm
 Route::put("/company/{email}/change-pass",[CompanyController::class,"update"]);
 Route::post("/company/login",[CompanyController::class,"EmployeeLogin"]);
 Route::post("/company/get-token/{token}",[CompanyController::class,"getCompanyToken"]);
+
+Route::post("/company/update/{id}",[CompanyController::class,"updateCompanyInfo"]);
+
+
+// Route::post("/company/get-token/{token}",[UserController::class,"getCompanyToken"]);
+
+Route::post("/company/compare-password/{id}",[CompanyController::class,"comparePassword"]);
 
 Route::group(['middleware' => 'api'], function ($router) {
     Route::resource('/categories', CategoryController::class);
@@ -48,24 +60,63 @@ Route::get('/home/browse',[JobApiController::class,'getALlJobs']);
 Route::get('/home/{id}',[JobApiController::class,'getJobDetails']);
 
 
+
+
+
 // Application
 Route::post('/applications',[ApplicationController::class,"store"]);
 
+// 
 Route::get('/companies/selectdata', [CompanyController::class, 'selectdata']);
 
 Route::get('/companies/selectdata/{id}', function (Request $request, $id) {
     $controller = new CompanyController(); 
     return $controller->getCompany($request, $id);
 });
+
+
+// Application
+Route::post('/applications',[ApplicationController::class,"store"]);
 Route::get('/get-applications',[ApplicationController::class,"index"]);
 
-Route::get('/get-applications/{user_id}/{job_id}', [ApplicationController::class, 'getApplication']);
-Route::get('/applications/{user_id}/{job_id}/cv', [ApplicationController::class, 'getCV']);
+// Route::get('/get-cv/{name}', [ApplicationController::class, 'getApplication']);
+Route::get('/cv/{name}', [ApplicationController::class, 'getCV']);
 
 Route::get('/applications/job/{job_id}', [ApplicationController::class, 'getApplicationsByJob']);
 
 Route::get("user/{email}/apply",[ApplicationController::class,"show"]);
 
+// jobs id
+Route::get('jobs/{id}', [CompanyController::class, 'getPositionById']);
 
-Route::get("/user",[UserController::class,"test"]);
+Route::get('/getuser', [CompanyController::class, 'getUser']);
 
+
+Route::get('/getcompanies', [CompanyController::class, 'getCompanyname']);
+
+
+// Route::get('/companies/{companyId}/applications', [ApplicationController::class, 'getCompanyApplications']);
+
+// Route::get('/company/applications/{token}', [ApplicationController::class, 'getCompanyApplications']);
+
+Route::group(['prefix' => 'api'], function () {
+    // Đăng ký tuyến API để lấy danh sách ứng dụng theo công ty
+    // Route::get('applications/{token}', [ApplicationController::class, 'getApplicationsByCompany']);
+
+  
+});
+
+Route::get('/get-applications/{token}', [ApplicationController::class, 'getApplicationByCompany']);
+
+Route::get('/get-jobs/{token}', [CompanyController::class, 'getJobByCompany']);
+
+Route::post('/add-jobs', [JobApiController::class, 'addJob']);
+
+
+// Route để cập nhật công việc
+Route::put('/update-jobs/{id}', [JobApiController::class, 'updateJob']);
+
+// Route để xóa công việc
+Route::delete('/delete-jobs/{id}', [JobApiController::class, 'deleteJob']);
+
+Route::put('/applications/{user_id}/{job_id}/status', [ApplicationController::class, 'updateStatus']);

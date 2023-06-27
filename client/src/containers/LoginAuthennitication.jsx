@@ -102,7 +102,7 @@ export const LoginEmployee = () => {
                 break;
             case 200:
                 localStorage.setItem("login", JSON.stringify({token: token.data.token}))
-                navigate("/")
+                navigate("/employerProfile")
             default:
                 break;
         }

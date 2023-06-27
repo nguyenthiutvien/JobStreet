@@ -12,7 +12,7 @@ import { UserEnterCode } from "./EnterCodeConfirm";
 import { EmployeeEnterCode } from "./EnterCodeConfirm";
 import { EmployeeChangePassword } from "./ChangePassword";
 import { EmployeePayment } from "./Authennitication";
-import { UserProfile } from "../components/user/TabBar";
+import { UserProfile } from "../components/candidates/UserProfile";
 import AllJobs from "../components/pages/AllJobs";
 import JobDetails from "../components/jobs/JobDetails";
 import Home from "../Home";
@@ -21,6 +21,8 @@ import Company from '../components/Company'
 import Detail from '../components/Detail'
 import Timvieclam from '../components/Timvieclam';
 import Blog from '../components/Blog/Blog';
+import JobItem from "../components/jobs/JobItem";
+import  EmployerProfile  from "../components/employer/EmployerProfile";
 
 
 
@@ -28,6 +30,7 @@ export const Router = () => {
     return (
         <Routes>
             <Route path="/userProfile" element={<UserProfile/>}></Route>
+            <Route path="/employerProfile" element={<EmployerProfile/>}></Route>
             <Route path="/employeePayment" element={<EmployeePayment/>}></Route>
             <Route path="/entercodeEmployee" element={<EmployeeEnterCode/>}></Route>
             <Route path="/entercodeUser" element={<UserEnterCode/>}></Route>
