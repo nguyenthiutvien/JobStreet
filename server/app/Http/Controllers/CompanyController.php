@@ -224,7 +224,7 @@ public function getCompany(Request $request, $companyId)
         // );
      // }
 
-    public function updateCompanyInfo(Request $request)
+    public function updateCompanyInfo(Request $request, $email)
     {
         $request->validate([
             'company_name' => "required|string",
@@ -269,7 +269,7 @@ public function getCompany(Request $request, $companyId)
             "Cập nhật thành công"
         );
     }
-
+    }
 
 
     /**

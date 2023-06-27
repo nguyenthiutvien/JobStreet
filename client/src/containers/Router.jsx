@@ -20,7 +20,7 @@ import Blog from "../components/Blog/Blog"
 import Company from '../components/Company'
 import Detail from '../components/Detail'
 import Timvieclam from '../components/Timvieclam';
-import Blog from '../components/Blog/Blog';
+
 import JobItem from "../components/jobs/JobItem";
 
 
@@ -43,7 +43,7 @@ export const Router = () => {
             <Route path="/homePage" element={<HomePage/>}></Route>
             <Route path="" element={<Home />} />
 
-            <Route path="/blog" element={<Blog></Blog>} ></Route>
+            {/* <Route path="/blog" element={<Blog></Blog>} ></Route> */}
           <Route path="/jobs" element={<AllJobs />} />
           <Route path="/job-details/:id" element={<JobDetails />} />
 
