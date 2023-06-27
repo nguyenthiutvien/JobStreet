@@ -1,27 +1,25 @@
 .container--login{
     width: 500px;
     height: 450px;
-    background: #E0ECDE;
+    background: #FFFF;
     border-radius: 8px;
     margin-left: 550px;
-    margin-top: 220px;
-    box-shadow: 2px 1px 1px rgb(32, 32, 32);
+    margin-top: 150px;
+    box-shadow: 2px 1px 2px 1px rgb(32, 32, 32);
 }
 .content--login{
-    padding-top: 30px;
+    margin-top: 20px;
     text-align: center;
     justify-content: center;
     align-items: center; 
 }
-.form--login--email{
-        padding-top: 5px;
+.form--login{
         margin-left: 45px;
         justify-content: center;
         align-items: center;
-        height: 70px;
-    .login--email{
+    .login--email,.login--password{
         width: 400px;
-        height: 50px;
+        height: 40px;
         outline: none;
         padding-left: 20px;
         // border: none;
@@ -34,47 +32,20 @@
 
   
 }
-.form--login--password{
-  padding-top: 15px;
-  margin-left: 45px;
-  justify-content: center;
-  align-items: center;
-  height: 70px;
-.login--password{
-  width: 400px;
-  height: 50px;
-  outline: none;
-  padding-left: 20px;
-  // border: none;
-  border-radius: 8px;
-  &::placeholder{
-      font-size: 14px;
-      padding-left: 10px;
-  }
-}
-
-
-}
 .forgot--pass{
-    margin-top: 40px;
+    margin-top: 50px;
     text-align: center;
     justify-content: center;
     align-items: center;
-}
-.login--error{
-  color: red;
 }
 .button--login{
     margin-top: 20px;
   margin-left: 50px;
   width: 400px;
-  background:#26AE61;
+  background: rgb(214, 240, 216);
   height: 50px;
   border-radius: 50px;
   border: none;
-  h3{
-    color: #FFFFFF;
-  }
   &:hover{
     cursor: pointer;
   }
@@ -83,9 +54,6 @@
     text-align: center;
     justify-content: center;
     align-items: center;
-    p{
-      margin-top: 10px;
-    }
 }
 .login--password-toggles {
     position: absolute;

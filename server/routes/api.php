@@ -18,6 +18,22 @@ Route::post('add_posts', [PostController::class, 'store']);
 Route::get('/posts/{id}', [PostController::class, 'show']);
 Route::put('/posts/{id}', [PostController::class, 'update']);
 Route::delete('/posts/{id}', [PostController::class, 'destroy']);
+
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "api" middleware group. Make something great!
+|
+*/
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
 // User
 Route::get("/users",[UserController::class,"index"]);
 Route::post("/users",[UserController::class,"store"]);
@@ -49,6 +65,9 @@ Route::post("/company/get-token/{token}",[UserController::class,"getCompanyToken
 
 Route::group(['middleware' => 'api'], function ($router) {
     Route::resource('/categories', CategoryController::class);
+
+Route::group(['middleware' => 'api'], function ($router) {
+    Route::resource('/categories', CategoriesController::class);
     Route::resource('/applications', ApplicationController::class);
 });
 
@@ -117,3 +136,4 @@ Route::get('/getstatus', [JobController::class, 'getStatus']);
 
 
 Route::put('/selectstatus/{id}',[JobController::class,'Updatestatus']);
+Route::get('/search', [SearchController::class, 'search']);

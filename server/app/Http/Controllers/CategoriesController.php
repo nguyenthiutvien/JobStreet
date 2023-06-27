@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
+use App\Traits\ApiResponseWithHttpSTatus;
 use Illuminate\Http\Request;
 use ApiResponseWithHttpSTatus;
 use App\Models\Categories;
@@ -9,14 +11,10 @@ use Illuminate\Http\Response;
 
 class CategoriesController extends Controller
 {
-
-    
+    use ApiResponseWithHttpSTatus;
     public function __construct() {
-        $this->middleware('auth:api', ['except' => ['index']]);
+   
     }
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $data['categories'] = Categories::all();

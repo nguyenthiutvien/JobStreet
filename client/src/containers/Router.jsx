@@ -77,6 +77,7 @@ export const Router = () => {
             <Route path="/information" element={<Inforusers/>}/>
 
             <Route path="/browse" element={<Browse/>}/>
+            <Route path="/searchjob" element={<Search/>}></Route>
         </Routes>
     );
 };

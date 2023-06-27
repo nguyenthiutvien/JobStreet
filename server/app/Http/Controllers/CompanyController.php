@@ -5,6 +5,7 @@ use Illuminate\Support\Str;
 use App\Mail\ForgotPassword;
 use App\Mail\RegisterEmail;
 use App\Models\Company;
+
 use App\Models\User;
 use App\Models\Application;
 use Illuminate\Http\Request;
@@ -12,7 +13,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Tymon\JWTAuth\Facades\JWTAuth;
-
 
 use App\Models\Job;
 use Faker\Provider\ar_EG\Address;
@@ -29,6 +29,7 @@ class CompanyController extends Controller
         return response()->json(
             $company
         );
+
     }
   
 
@@ -100,6 +101,7 @@ public function getCompany(Request $request, $companyId)
     public function getJobs()
     {
 
+
     }
 
     /**
@@ -107,6 +109,7 @@ public function getCompany(Request $request, $companyId)
      */
     public function EmployeeLogin(Request $request)
     {
+
         if(empty($request->email)){
             return response()->json([
                 "status" => "empty_email",
@@ -133,6 +136,7 @@ public function getCompany(Request $request, $companyId)
                 'token' => $token]
             );
         }
+
     }
 
 
@@ -152,6 +156,7 @@ public function getCompany(Request $request, $companyId)
             'address'=>"required|string",
             'number_phone'=>"required|numeric"
         ]);
+
         $company=new Company();
         $company->company_name=$request->company_name;
         $company->logo="company.png";
@@ -169,6 +174,7 @@ public function getCompany(Request $request, $companyId)
             $token=JWTAuth::fromUser($company);
             $company->token=$token;
             $company->save();
+
         }
       
         Mail::to($request->email)->send(new RegisterEmail($request->company_name));
@@ -191,6 +197,7 @@ public function getCompany(Request $request, $companyId)
     public function edit($email)
     {
         $company= Company::where("email",$email)->first();
+
         if(!$company){
             return response()->json([
                 "status"=>400,
@@ -204,12 +211,14 @@ public function getCompany(Request $request, $companyId)
          
             ]
            
+
         );
     }
 
     /**
      * Update the specified resource in storage.
      */
+
       //public function update(Request $request,$email)
      // {
         // $request->validate([
@@ -243,10 +252,12 @@ public function getCompany(Request $request, $companyId)
         ]);
 
         $company=Company::where("email",$email)->first();
+
         if (!$company) {
             return response()->json(
                 "Công ty không tồn tại"
             );
+
 
 
         $id = $request->id;
@@ -273,6 +284,7 @@ public function getCompany(Request $request, $companyId)
         $company->save();
         return response()->json(
             "Cập nhật thành công"
+
         );
     }
     }
@@ -288,15 +300,18 @@ public function getCompany(Request $request, $companyId)
 
     public function confirmEmail(Request $request){
         $companyEmail=$request->email;
+
         $company=Company::where("email",$companyEmail)->first();
         if ($company) {
             $verificationCode =strval(rand(100000, 999999));
           Mail::to($companyEmail)->send(new ForgotPassword($verificationCode));
         }
+
         return response()->json(
             $verificationCode
         );
     }
+
 
 
     public function getCompanyToken($token){
@@ -352,6 +367,7 @@ public function getCompany(Request $request, $companyId)
 {
     $companies = DB::table('companies')->get();
     return response()->json($companies);
+
 }
 
 public function deleteCompany(Request $request)
