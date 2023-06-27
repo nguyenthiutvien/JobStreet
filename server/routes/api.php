@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JobApiController;
@@ -88,5 +89,11 @@ Route::get('jobs/{id}', [CompanyController::class, 'getPositionById']);
 
 Route::get('/getuser', [CompanyController::class, 'getUser']);
 
+
+
+// Comment
+
+Route::post("/comment",[CommentController::class,"store"]);
+Route::get("/comment/{id}",[CommentController::class,"show"]);
 
 Route::get('/getcompanies', [CompanyController::class, 'getCompanyname']);

@@ -11,11 +11,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Tymon\JWTAuth\Facades\JWTAuth;
-
-
-use App\Models\Job;
-use Faker\Provider\ar_EG\Address;
-
 use Illuminate\Support\Facades\DB;
 class CompanyController extends Controller
 {
@@ -60,7 +55,6 @@ public function getCompany(Request $request, $companyId)
     $results = Company::leftJoin('jobs', 'companies.id', '=', 'jobs.company_id')
         ->select(
             DB::raw('SUM(CASE WHEN jobs.status = "open" THEN 1 ELSE 0 END) AS count'),
-            
             'companies.id',
             'jobs.id as job_id',
             'companies.company_name',
@@ -242,6 +236,13 @@ public function getCompany(Request $request, $companyId)
             'number_phone' => "required|numeric",
         ]);
 
+        $company=Company::where("email",$email)->first();
+        if (!$company) {
+            return response()->json(
+                "Công ty không tồn tại"
+            );
+
+
         $id = $request->id;
         $company_name = $request->company_name;
         $logo = $request -> logo;
@@ -255,6 +256,7 @@ public function getCompany(Request $request, $companyId)
             $logoName = Str::random(16) . "." . $request->logo->getClientOriginalExtension();
             Storage::disk("public")->put($logoName, file_get_contents($logo));
             $company->avatar = $logoName;
+
         }
         $company->company_name = $company_name;
         $company -> scale = $scale;

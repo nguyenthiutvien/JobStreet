@@ -7,7 +7,7 @@ const BlogForm = ({ handleShow }) => {
     const [body, setBody] = useState('');
     const [image, setImage] = useState('');
     const [userAvatar, setUserAvatar] = useState('');
-
+    
     useEffect(() => {
         // Fetch the user's avatar based on their ID
         const fetchUserAvatar = async () => {
@@ -34,14 +34,13 @@ const BlogForm = ({ handleShow }) => {
         const file = e.target.files[0];
         setImage(file);
     };
-
+    const token=JSON.parse(localStorage.getItem("login"))    
     const handleSubmit = async e => {
         e.preventDefault();
-
         try {
             // Create a new FormData object
             const formData = new FormData();
-            formData.append('user_id', 2);
+            formData.append('token',token.token );
             formData.append('title', title);
             formData.append('body', body);
             formData.append('image', image);
@@ -72,13 +71,16 @@ const BlogForm = ({ handleShow }) => {
     return (
         <>
             <div className="wraper" onClick={handleShow}></div>
-            <form className="blog_form" onSubmit={handleSubmit}>
-                <input type="text" placeholder="Chủ đề" value={title} onChange={handleTitleChange} required />
-                <textarea placeholder="Nội dung" value={body} onChange={handleBodyChange} required></textarea>
-                <input className="blog-post-image" type="file" onChange={handleImageChange} />
+            <div className='boder'>
+                <form className="blog_form" onSubmit={handleSubmit}>
+                    
+                    <input type="text" placeholder="Chủ đề" value={title} onChange={handleTitleChange} required />
+                    <textarea placeholder="Nội dung" value={body} onChange={handleBodyChange} required></textarea>
+                    <input className="blog-post-image" type="file" onChange={handleImageChange} />
 
-                <button className='sub' type="submit">Thêm bài đăng</button>
-            </form>
+                    <button className='sub' type="submit">Thêm bài đăng</button>
+                </form>
+            </div>
         </>
     );
 };
