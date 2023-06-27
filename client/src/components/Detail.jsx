@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import {Link } from 'react-router-dom';
-import "../_style/components/Blog/Detail.scss";
+
+import '../../src/_style/components/Blog/Detail.scss';
+
+
 function Detail() {
   const { id } = useParams();
   const [detail, setDetail] = useState([]);
@@ -77,16 +80,16 @@ function Detail() {
         <h5>Việc làm</h5>
         <div className="row_gioithieu">
           {detail.map((detail) => (
-            <div className="card-text">
-              <p className="card-text">{detail.positions}</p>
+            <div className="row-vieclam">
+              <div className="job_position">  <Link activeclassName="active" to={`/job-details/${detail.job_id}`}>{detail.positions} </Link></div>
               <p className="card-text">{detail.address}</p>
               
               <hr />
             </div>
           ))}
         </div>
-      </div>
-      <div className="btn btn-primary" >  <Link activeclassName="active" to={`/`}>Xem tất cả việc làm</Link></div>
+      </div><br></br>
+      <div className="btn btn-primary" >  <Link activeclassName="active" to={`/jobs`}>Xem tất cả việc làm</Link></div>
     </div>
   );
   

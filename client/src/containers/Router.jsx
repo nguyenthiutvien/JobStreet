@@ -12,7 +12,7 @@ import { UserEnterCode } from "./EnterCodeConfirm";
 import { EmployeeEnterCode } from "./EnterCodeConfirm";
 import { EmployeeChangePassword } from "./ChangePassword";
 import { EmployeePayment } from "./Authennitication";
-import { UserProfile } from "../components/user/TabBar";
+import { UserProfile } from "../components/candidates/UserProfile";
 import AllJobs from "../components/pages/AllJobs";
 import JobDetails from "../components/jobs/JobDetails";
 import Home from "../Home";
@@ -20,6 +20,8 @@ import Blog from "../components/Blog/Blog"
 import Company from '../components/Company'
 import Detail from '../components/Detail'
 import Timvieclam from '../components/Timvieclam';
+import Blog from '../components/Blog/Blog';
+import JobItem from "../components/jobs/JobItem";
 
 
 
@@ -40,19 +42,25 @@ export const Router = () => {
             <Route path="/registerUser" element={<Register/>}></Route>
             <Route path="/homePage" element={<HomePage/>}></Route>
             <Route path="" element={<Home />} />
+
             <Route path="/blog" element={<Blog></Blog>} ></Route>
           <Route path="/jobs" element={<AllJobs />} />
           <Route path="/job-details/:id" element={<JobDetails />} />
 
-        
 
-          <Route exact path="/company"  element={<Company/>} />
-          <Route path="/detail/:id" element={<Detail></Detail>} />
-          <Route path="/timvieclam/:id" element={<Timvieclam></Timvieclam>} />
+            <Route path="/jobs" element={<AllJobs />} />
+            <Route path="/job-details/:id" element={<JobDetails />} />
+
+            <Route exact path="/company"  element={<Company/>} />
+            <Route path="/detail/:id" element={<Detail></Detail>} />
+            <Route path="/timvieclam/:id" element={<Timvieclam></Timvieclam>} />
+
+            <Route path="/blog" element={<Blog />} />
       
 
 
         </Routes>
     );
 };
+
 

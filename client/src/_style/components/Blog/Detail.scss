@@ -14,7 +14,14 @@
 .card_content{
     width: 100px;
     height: auto;
-    box-shadow:1px 1px 0px 0px ;
+    box-shadow:2px 2px 4px 2px ;
+    border-radius: 10px;
+}
+.card_content{
+    transition: color 1s ease;
+}
+.card_content:hover{
+    color: rgb(0, 255, 72)
 }
 .container_detail{
     margin-top: 70px;
@@ -45,4 +52,41 @@
     box-shadow: 2px 2px 12px 2px;
   
   
+}
+.row-vieclam{
+    width: 400px;
+   height: 100px;
+   margin-top: 30px;
+  
+   padding-top: 10px;
+   padding-left: 10px;
+}
+div.row-vieclam:hover{
+    box-shadow: 1px 1px 1px 2px;
+    border-radius: 10px;
+}
+
+.job_position{
+ font-size: 18px;
+   font-weight: bold;
+}
+// .row-vieclam{
+//    animation: blink 2s infinite;
+// }
+// @keyframes blink {
+//     0% {
+//       opacity: 1;
+//     }
+//     50% {
+//       opacity: 0;
+//     }
+//     100% {
+//       opacity: 1;
+//     }
+//   }
+.row-vieclam{
+    transition: color 2s ease;
+}
+.row-vieclam:hover{
+    color: rgb(0, 255, 123);
 }

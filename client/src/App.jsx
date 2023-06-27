@@ -1,17 +1,23 @@
+
 import React from 'react';
-import { Router } from './containers/Router'; 
+ 
 
-// Import các thành phần khác trong App
 
-const App = () => {
+import { useState } from 'react'
+import { Router } from './containers/Router'
+import 'roboto-fontface/css/roboto/roboto-fontface.css';
+
+function App() {
+  const [count, setCount] = useState(0)
+
+
   return (
-    
-      <>
+    <div style={{ fontFamily: 'Roboto, sans-serif' }}>
       <Router />
-      {/* <Route path="/" element={<Blog />} /> */}
-      </>
+
+    </div>
+
       
-     
   )
 }
 
