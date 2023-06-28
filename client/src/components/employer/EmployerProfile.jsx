@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 
 
-import { addJob, updateJob, deleteJob, getApplicationsCompany, getTokenCompany, UserChangePassword, getJobsCompany, updateCompanyInfo} from '../../api/Api';
+import { addJob, updateJob, deleteJob, getApplicationsCompany, getTokenCompany, getJobsCompany, updateCompanyInfo} from '../../api/Api';
 
 const EmployerProfile = () => {
     const navigate = useNavigate();
@@ -16,9 +16,7 @@ const EmployerProfile = () => {
         setContent(<CompanyInformation />);
     };
 
-    const changePassword = () => {
-        setContent(<ChangePassword />);
-    };
+   
 
     const handelApply = () => {
         setContent(<Apply />);
@@ -157,26 +155,7 @@ const Apply = () => {
         fetchData();
     }, [token.token]);
     
-    const handleStatusChange = async (applicationId, newStatus) => {
-        try {
-          const response = await axios.put(`/api/applications/${applicationId}/status`, {
-            status: newStatus
-          });
-          if (response.data.message === 'Status updated successfully') {
-            // Cập nhật trạng thái thành công, bạn có thể thực hiện các thay đổi phù hợp
-            // ví dụ: cập nhật danh sách ứng cử viên sau khi thay đổi trạng thái
-            const updatedApplications = applications.map(application => {
-              if (application.id === applicationId) {
-                return { ...application, status: newStatus };
-              }
-              return application;
-            });
-            setApplications(updatedApplications);
-          }
-        } catch (error) {
-          console.error(error);
-        }
-      };
+   
     // console.log(apply)
     const columns = [
         {
@@ -661,90 +640,6 @@ const Jobs = () => {
     )
 }
 
-const ChangePassword = () => {
-    const token = JSON.parse(localStorage.getItem("login"));
-    const [form] = Form.useForm();
 
-    const onFinish = async (values) => {
-        try {
-            const response = await UserChangePassword(token.token, values);
-            if (response.status === 200) {
-                Swal.fire({
-                    title: "Thành công",
-                    text: "Đổi mật khẩu thành công!",
-                    icon: "success",
-                    confirmButtonColor: "#3085d6",
-                    confirmButtonText: "OK"
-                });
-                form.resetFields();
-            } else {
-                Swal.fire({
-                    title: "Lỗi",
-                    text: "Có lỗi xảy ra. Vui lòng thử lại!",
-                    icon: "error",
-                    confirmButtonColor: "#3085d6",
-                    confirmButtonText: "OK"
-                });
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-    return (
-        <div className="container--profile">
-            <div className="content--profile">
-                <div className="container--title">
-                    <p>Đổi mật khẩu</p>
-                </div>
-                <div className="form--change--password">
-                    <Form
-                        form={form}
-                        onFinish={onFinish}
-                        labelCol={{ span: 8 }}
-                        wrapperCol={{ span: 16 }}
-                    >
-                        <Form.Item
-                            label="Mật khẩu cũ"
-                            name="old_password"
-                            rules={[{ required: true, message: "Vui lòng nhập mật khẩu cũ!" }]}
-                        >
-                            <Input.Password />
-                        </Form.Item>
-                        <Form.Item
-                            label="Mật khẩu mới"
-                            name="new_password"
-                            rules={[{ required: true, message: "Vui lòng nhập mật khẩu mới!" }]}
-                        >
-                            <Input.Password />
-                        </Form.Item>
-                        <Form.Item
-                            label="Xác nhận mật khẩu"
-                            name="confirm_password"
-                            rules={[
-                                { required: true, message: "Vui lòng xác nhận mật khẩu!" },
-                                ({ getFieldValue }) => ({
-                                    validator(_, value) {
-                                        if (!value || getFieldValue("new_password") === value) {
-                                            return Promise.resolve();
-                                        }
-                                        return Promise.reject("Mật khẩu xác nhận không khớp!");
-                                    }
-                                })
-                            ]}
-                        >
-                            <Input.Password />
-                        </Form.Item>
-                        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                            <Button type="primary" htmlType="submit">
-                                Đổi mật khẩu
-                            </Button>
-                        </Form.Item>
-                    </Form>
-                </div>
-            </div>
-        </div>
-    );
-};
 
 export default EmployerProfile;
