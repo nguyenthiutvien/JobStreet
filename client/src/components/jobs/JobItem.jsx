@@ -19,7 +19,7 @@ const JobItem = ({ position, type, company, address, logo,salary,id, time_close 
           </p>
           <p>
           <FontAwesomeIcon icon={faDollarSign} /> {salary}
-          </p>
+          </p>  
           <p>
             <FontAwesomeIcon icon={faMapMarkerAlt} /> {address}
           </p>
