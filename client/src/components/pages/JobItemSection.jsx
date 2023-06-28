@@ -4,10 +4,6 @@ import React from "react";
 import JobItem from "../jobs/JobItem";
 
 const JobItemSection = ({ jobs }) => {
- 
-  console.log("why",jobs);
-  
-  
   return (
     <div className="featured_job">
       <div className="container">

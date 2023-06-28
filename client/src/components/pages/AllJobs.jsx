@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchApiData } from "../../api/Api";
+import { fetchApiData } from "../../api/api";
 import Loader from "../../components/services/Loader";
 import Footer from "../footer/Footer";
 import JobItemSection from "./JobItemSection";
@@ -13,7 +13,7 @@ const AllJobs = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetchApiData(`api/home/browse`);
-      if (response.status === true) {
+      if (response.status=== true) {
         setjobs(response.data.jobs);
         
       } else {
