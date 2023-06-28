@@ -5,13 +5,14 @@ use Illuminate\Support\Str;
 use App\Mail\ForgotPassword;
 use App\Mail\RegisterEmail;
 use App\Models\Company;
+
 use App\Models\User;
+use App\Models\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Tymon\JWTAuth\Facades\JWTAuth;
-
 
 use App\Models\Job;
 use Faker\Provider\ar_EG\Address;
@@ -28,6 +29,7 @@ class CompanyController extends Controller
         return response()->json(
             $company
         );
+
     }
   
 
@@ -60,7 +62,6 @@ public function getCompany(Request $request, $companyId)
     $results = Company::leftJoin('jobs', 'companies.id', '=', 'jobs.company_id')
         ->select(
             DB::raw('SUM(CASE WHEN jobs.status = "open" THEN 1 ELSE 0 END) AS count'),
-            
             'companies.id',
             'jobs.id as job_id',
             'companies.company_name',
@@ -100,6 +101,7 @@ public function getCompany(Request $request, $companyId)
     public function getJobs()
     {
 
+
     }
 
     /**
@@ -107,6 +109,7 @@ public function getCompany(Request $request, $companyId)
      */
     public function EmployeeLogin(Request $request)
     {
+
         if(empty($request->email)){
             return response()->json([
                 "status" => "empty_email",
@@ -133,6 +136,7 @@ public function getCompany(Request $request, $companyId)
                 'token' => $token]
             );
         }
+
     }
 
 
@@ -152,6 +156,7 @@ public function getCompany(Request $request, $companyId)
             'address'=>"required|string",
             'number_phone'=>"required|numeric"
         ]);
+
         $company=new Company();
         $company->company_name=$request->company_name;
         $company->logo="company.png";
@@ -169,6 +174,7 @@ public function getCompany(Request $request, $companyId)
             $token=JWTAuth::fromUser($company);
             $company->token=$token;
             $company->save();
+
         }
       
         Mail::to($request->email)->send(new RegisterEmail($request->company_name));
@@ -191,6 +197,7 @@ public function getCompany(Request $request, $companyId)
     public function edit($email)
     {
         $company= Company::where("email",$email)->first();
+
         if(!$company){
             return response()->json([
                 "status"=>400,
@@ -204,12 +211,14 @@ public function getCompany(Request $request, $companyId)
          
             ]
            
+
         );
     }
 
     /**
      * Update the specified resource in storage.
      */
+
       //public function update(Request $request,$email)
      // {
         // $request->validate([
@@ -230,7 +239,7 @@ public function getCompany(Request $request, $companyId)
         // );
      // }
 
-    public function updateCompanyInfo(Request $request)
+    public function updateCompanyInfo(Request $request, $email)
     {
         $request->validate([
             'company_name' => "required|string",
@@ -241,6 +250,15 @@ public function getCompany(Request $request, $companyId)
             'address' => "required|string",
             'number_phone' => "required|numeric",
         ]);
+
+        $company=Company::where("email",$email)->first();
+
+        if (!$company) {
+            return response()->json(
+                "Công ty không tồn tại"
+            );
+
+
 
         $id = $request->id;
         $company_name = $request->company_name;
@@ -255,6 +273,7 @@ public function getCompany(Request $request, $companyId)
             $logoName = Str::random(16) . "." . $request->logo->getClientOriginalExtension();
             Storage::disk("public")->put($logoName, file_get_contents($logo));
             $company->avatar = $logoName;
+
         }
         $company->company_name = $company_name;
         $company -> scale = $scale;
@@ -265,9 +284,10 @@ public function getCompany(Request $request, $companyId)
         $company->save();
         return response()->json(
             "Cập nhật thành công"
+
         );
     }
-
+    }
 
 
     /**
@@ -280,15 +300,18 @@ public function getCompany(Request $request, $companyId)
 
     public function confirmEmail(Request $request){
         $companyEmail=$request->email;
+
         $company=Company::where("email",$companyEmail)->first();
         if ($company) {
             $verificationCode =strval(rand(100000, 999999));
           Mail::to($companyEmail)->send(new ForgotPassword($verificationCode));
         }
+
         return response()->json(
             $verificationCode
         );
     }
+
 
 
     public function getCompanyToken($token){
@@ -315,22 +338,65 @@ public function getCompany(Request $request, $companyId)
     //     $users = DB::table('users')->select('username')->get();
     //     return response()->json($users);
     // }
+
+
+    // admin user ---------------------------------------------------------
     public function getUser()
     {
         $users = DB::table('users')->get();
         return response()->json($users);
     }
 
-    //  get username- companies
-    // public function getCompanyname()
-    // {
-    //     $companies = DB::table('companies')->select('company_name')->get();
-    //     return response()->json($companies);
-    // }
+    
+    public function deleteUsers(Request $request)
+    {
+        $user = User::find($request->id);
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        $user->delete();
+
+        return response()->json(['status' => 'ok', 'message' => 'Delete succeeded']);
+    }	
+
+    //  admin company------------------------------------
+
     public function getCompanyname()
 {
     $companies = DB::table('companies')->get();
     return response()->json($companies);
-}
 
 }
+
+public function deleteCompany(Request $request)
+{
+    $company = Company::find($request->id);
+
+    if (!$company) {
+        return response()->json(['error' => 'Company not found'], 404);
+    }
+
+    $company->delete();
+
+    return response()->json(['status' => 'ok', 'message' => 'Delete succeeded']);
+}	
+
+
+
+public function getdatauser()
+{
+    $jobs = Job::select('jobs.position', 'companies.company_name', 'applications.status', 'users.username')
+        ->join('companies', 'jobs.company_id', '=', 'companies.id')
+        ->join('applications', 'jobs.id', '=', 'applications.job_id')
+        ->join('users', 'users.id', '=', 'applications.user_id')
+        ->get();
+
+    return response()->json($jobs);
+}
+
+
+
+}
+

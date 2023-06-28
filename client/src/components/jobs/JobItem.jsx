@@ -19,7 +19,7 @@ const JobItem = ({ position, type, company, address, logo,salary,id, time_close 
           </p>
           <p>
           <FontAwesomeIcon icon={faDollarSign} /> {salary}
-          </p>
+          </p>  
           <p>
             <FontAwesomeIcon icon={faMapMarkerAlt} /> {address}
           </p>
@@ -32,7 +32,7 @@ const JobItem = ({ position, type, company, address, logo,salary,id, time_close 
             className={type === "full time" ? "full-time" : "half-time"}
             to={`/job-details/${id}`}
           >
-            {type}E
+            {type}
           </Link>
         </div>
         <div className="job__wrapper__card--right__part-2">

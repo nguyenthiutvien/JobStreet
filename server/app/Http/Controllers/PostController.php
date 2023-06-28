@@ -15,7 +15,9 @@ class PostController extends Controller
 */
     public function index()
     {
-        $posts = Post::select('id','title','image','body','user_id')->with('user:id,avatar')->get();
+        $posts = Post::join("users","posts.user_id","=", "users.id")
+        ->select(".users.username","posts.title","posts.body","posts.id","users.avatar","posts.image")
+        ->get();
         return response()->json($posts);
     }
 /**
@@ -24,15 +26,20 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'user_id'=>'required',
+            'token'=>'required',
             'title' => 'required',
             'body' => 'required',
             'image'=>'nullable'
         ]);
+
+        $token=$request->token ;
+        $title=$request->title;
+        $body=$request->body;
+        $user=User::where("token",$token)->first();
         $post=new Post();
-        $post-> user_id =$request-> user_id ;
-        $post-> body=$request-> body;
-        $post-> title =$request->  title ;
+        $post->user_id=$user->id;
+        $post->title=$title;
+        $post->body=$body;
         if ($request->hasFile("image")) {
             $image = $request->file("image");
             $imageName =Str::random(16) . "." . $image->getClientOriginalExtension();
