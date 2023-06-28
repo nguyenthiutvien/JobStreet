@@ -30,6 +30,7 @@ import Admis from "../components/admin/Admin";
 import Inforusers from "../components/admin/Informationuser";
 import Menuadmin from "../components/admin/Menuadmin";
 import Browse from "../components/admin/Browse";
+import Contact from "../components/pages/Contact"
 
 
 
@@ -52,7 +53,7 @@ export const Router = () => {
             <Route path="/homePage" element={<HomePage/>}></Route>
             <Route path="" element={<Home />} />
 
-          
+          <Route path="/contact" element={<Contact/>}></Route>
           <Route path="/jobs" element={<AllJobs />} />
           <Route path="/job-details/:id" element={<JobDetails />} />
 
