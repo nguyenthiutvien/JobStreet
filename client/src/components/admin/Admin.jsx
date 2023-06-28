@@ -37,8 +37,3 @@ function Admis() {
 
 export default Admis
 
-{/* <Routes>
-                <Route path="/companyad" element={<Companyad/>}/>
-                <Route path="/userad" element={<Userad/>}/>
-                 <Route path="/information" element={<Inforusers/>}/>
-                 </Routes> */}
