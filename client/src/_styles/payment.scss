@@ -11,11 +11,10 @@
     width: 800px;
     height: 400px;
     border-radius: 8px;
-    background: #E0ECDE;
-    box-shadow: 1px 2px  1px #333232;
+    background: #f5eaea;
+    box-shadow: 1px 2px 2px 1px #333232;
 
     .infor--title{
-        padding-top: 20px;
         height: 60px;
         text-align: center;
     }
@@ -30,14 +29,10 @@
         
         div{
             padding-top: 20px;
-            label{
-                font-size: 22px;
-            }
             input{
-                font-size: 18px;
                 margin-top: 10px;
                 width: 350px;
-                height: 50px;
+                height: 40px;
                 outline: none;
                 border-radius: 20px;
                 padding-left: 10px;
@@ -53,14 +48,10 @@
         align-items: center;
         div{
             padding-top: 20px;
-            label{
-                font-size: 22px;
-            }
             input{
-                font-size: 18px;
                 margin-top: 10px;
                 width: 350px;
-                height: 50px;
+                height: 40px;
                 outline: none;
                 border-radius: 20px;
                 padding-left: 10px;
@@ -74,10 +65,9 @@
 }
 .payment--confirm{
     border-radius: 8px;
-    background: #E0ECDE;
+    background: #f5eaea;
     box-shadow: 1px 2px 2px 1px #333232;
     .payment--title{
-        padding-top: 20px;
         text-align: center;
     }
 }
@@ -89,10 +79,8 @@
     margin-top: -30px;
     label{
         margin-left: 30px;
-        font-size: 22px;
     }
     input{
-        font-size: 18px;
         width: 350px;
         height: 40px;
         border-radius: 5px;
@@ -104,7 +92,6 @@
 .payment--select--bank{
     label{
         margin-left: 30px;
-        font-size: 22px;
     }
     select{
         margin-left: 30px;
@@ -134,7 +121,7 @@
         }
     }
     .success{
-        background: #26AE61;
+        background: rgb(74, 240, 74);
     }
     .cancel{
         background: rgb(206, 86, 7);

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import {Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
+import "../_style/components/Blog/company.scss";
 import Loader from "../components/services/Loader";
 
 

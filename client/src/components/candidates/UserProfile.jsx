@@ -123,6 +123,7 @@ export const Apply = () => {
                     <p>Danh sách công ty ứng tuyển</p>
                 </div>
                 <div className="list--cv">
+                    
                     <Table dataSource={apply} columns={columns}>
                     </Table>
                 </div>

@@ -3,6 +3,11 @@
 
     .container {
         @include container;
+    
+
+    .container {
+        @include container;
+        
 
         .job-info {
             margin-top: 6rem;
@@ -94,5 +99,6 @@
                 }
             }
         }
+    }
     }
 }

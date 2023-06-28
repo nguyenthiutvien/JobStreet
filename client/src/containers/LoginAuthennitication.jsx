@@ -1,8 +1,9 @@
 import "../_styles/login.scss";
 import { Link, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { userLogin,employeeLogin } from "../api/Api";
 import axios from "axios";
+import { userLogin,employeeLogin } from "../api/Api";
+
 export const LoginUser = () => {
     const navigate = useNavigate()
     const [login, setLogin] = useState({

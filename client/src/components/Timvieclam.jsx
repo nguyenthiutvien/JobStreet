@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
+import Footer from "./footer/Footer";
+import NavBar from "./pages/navigation/NavBar";
 function Timvieclam() {
   const { id } = useParams();
   const [detail, setDetail] = useState([]);
@@ -24,6 +26,7 @@ function Timvieclam() {
   };
   return (
     <>
+  <NavBar/>
     <div className="row_content">
       {detail.map((item)=>(
       <div className="card_content" style={{width: '18rem'}} key={item.id}>
@@ -40,8 +43,9 @@ function Timvieclam() {
       
       <Link to={'/jobs'}><h4>Show More</h4></Link>
     </div>
-
+        <Footer/>
     </>
+  
   );
  
 }

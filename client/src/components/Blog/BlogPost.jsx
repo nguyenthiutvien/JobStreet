@@ -1,32 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../_style/components/Blog/blogPost.scss';
-
-
-
 const BlogPost = ({ post }) => {
-    const { user_id, title, body, image, user } = post;
-    // const { avatar } = user_id;
-    // console.log(user.avatar)
+    const { username,id, title, body, image, avatar } = post;
+  
+    
     return (
         <div className="blog-post">
             <div className="blog-post-header">
-                {user_id && (
+                {id && (
                     <div className="blog-post-avatar-container">
-                        <img className="blog-post-avatar" src={`http://127.0.0.1:8000/storage/${user.avatar}`} alt="" />
+                        <img className="blog-post-avatar" src={`http://127.0.0.1:8000/storage/${avatar}`} alt="" />
                     </div>
                 )}
                 
-                <h2 className="blog-post-title">{title}</h2>
-            </div>
-            <p className="blog-post-body">{body}</p>
-            {image && <img className="blog-post-image" src={image} alt="Blog post" />}
-
-            <div className="comment-section">
-                <h3>Comment:</h3>
-                <textarea className='comment' type="text" placeholder="Your Comment" ></textarea>
+                <p className="blog-post-title">{username}</p> <br />
                 
-                <button className="submit" type="submit">Submit</button>
             </div>
+            <h5>{title}</h5>
+            <p className="blog-post-body">{body}</p>
+            {image && <img className="blog-post-image" src={`http://127.0.0.1:8000/storage/${image}`} alt="Blog post" />}
+           
         </div>
     );
 };

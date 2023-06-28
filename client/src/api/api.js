@@ -6,6 +6,9 @@ export const postUser =async (e) => {
       await axios.post("http://127.0.0.1:8000/api/users",e)
   )
 } 
+
+
+// //  FETCH API JOB 
 export const fetchApiData = async (url) => {
   return await axios
     .get(url)
@@ -57,6 +60,9 @@ export const userLogin=async(e)=>{
 
 
 
+
+
+
 export const employeeLogin=async(e)=>{
   return(
     axios.post("http://127.0.0.1:8000/api/company/login",e)
@@ -67,7 +73,6 @@ export const postCompany=async (employee)=>{
     await axios.post("http://127.0.0.1:8000/api/company",employee)
   )
 }
-
 export const getCompany=async ()=>{
   return (
     await axios.get("http://127.0.0.1:8000/api/company")

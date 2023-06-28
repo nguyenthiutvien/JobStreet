@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Loader from "../../../services/Loader";
+import Loader from "../../components/services/Loader";
 import Footer from "../footer/Footer";
-import ContactForm from "./ContactForm";
-import NavBar from "./navigation/NavBar";
+
+import ContactForm from "../../components/pages/ContactForm";
+import NavBar from "../../components/pages/navigation/NavBar";
 
 const Contact = () => {
   const [loader, setloader] = useState(true);

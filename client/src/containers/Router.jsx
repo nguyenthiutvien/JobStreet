@@ -20,9 +20,19 @@ import Home from "../Home";
 import Company from '../components/Company'
 import Detail from '../components/Detail'
 import Timvieclam from '../components/Timvieclam';
-import Blog from '../components/Blog/Blog';
+
 import JobItem from "../components/jobs/JobItem";
 import  EmployerProfile  from "../components/employer/EmployerProfile";
+
+import Blog from '../components/Blog/Blog';
+import Companyad from "../components/admin/Companyadmin";
+import Userad from "../components/admin/Useradmin";
+import Admis from "../components/admin/Admin";
+import Inforusers from "../components/admin/Informationuser";
+import Menuadmin from "../components/admin/Menuadmin";
+import Browse from "../components/admin/Browse";
+import Contact from "../components/pages/Contact"
+
 
 
 
@@ -45,7 +55,12 @@ export const Router = () => {
             <Route path="/homePage" element={<HomePage/>}></Route>
             <Route path="" element={<Home />} />
 
-            <Route path="/jobs" element={<AllJobs />} />
+          <Route path="/contact" element={<Contact/>}></Route>
+          <Route path="/jobs" element={<AllJobs />} />
+          <Route path="/job-details/:id" element={<JobDetails />} />
+
+
+            {/* <Route path="/jobs" element={<AllJobs />} /> */}
             <Route path="/job-details/:id" element={<JobDetails />} />
 
             <Route exact path="/company"  element={<Company/>} />
@@ -53,9 +68,16 @@ export const Router = () => {
             <Route path="/timvieclam/:id" element={<Timvieclam></Timvieclam>} />
 
             <Route path="/blog" element={<Blog />} />
-      
 
+             <Route path="/admin/*" element={<Admis/>} />
+            <Route path="/menuadmin" element={<Menuadmin/>} />
+            
+            <Route path="/companyad" element={<Companyad/>}/>
+            <Route path="/userad" element={<Userad/>}/>
+            <Route path="/information" element={<Inforusers/>}/>
 
+            <Route path="/browse" element={<Browse/>}/>
+            {/* <Route path="/searchjob" element={<Search/>}></Route> */}
         </Routes>
     );
 };
