@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CompanyController;
@@ -28,6 +28,11 @@ Route::post("/user/update/{id}",[UserController::class,"update"]);
 Route::put("/user/change-password/{id}",[UserController::class,"userChangePassword"]);
 Route::post("/user/compare-password/{id}",[UserController::class,"comparePassword"]);
 Route::post("/user/get-token/{token}",[UserController::class,"getUserToken"]);
+
+
+Route::get("/user",[UserController::class,"test"]);
+
+
 // Company
 Route::get("/company",[CompanyController::class,"index"]);
 Route::post("/company",[CompanyController::class,"store"]);
@@ -35,6 +40,10 @@ Route::get("/company/{email}/edit",[CompanyController::class,"edit"]);
 Route::put("/company/{email}/confirm-email",[CompanyController::class,"confirmEmail"]);
 Route::put("/company/{email}/change-pass",[CompanyController::class,"update"]);
 Route::post("/company/login",[CompanyController::class,"EmployeeLogin"]);
+
+Route::post("/company/update/{id}",[CompanyController::class,"updateCompanyInfo"]);
+
+
 Route::post("/company/get-token/{token}",[UserController::class,"getCompanyToken"]);
 
 Route::group(['middleware' => 'api'], function ($router) {
@@ -49,15 +58,23 @@ Route::get('/home/browse',[JobApiController::class,'getALlJobs']);
 Route::get('/home/{id}',[JobApiController::class,'getJobDetails']);
 
 
+
+
+
 // Application
 Route::post('/applications',[ApplicationController::class,"store"]);
 
+// 
 Route::get('/companies/selectdata', [CompanyController::class, 'selectdata']);
 
 Route::get('/companies/selectdata/{id}', function (Request $request, $id) {
     $controller = new CompanyController(); 
     return $controller->getCompany($request, $id);
 });
+
+
+// Application
+Route::post('/applications',[ApplicationController::class,"store"]);
 Route::get('/get-applications',[ApplicationController::class,"index"]);
 
 Route::get('/get-applications/{user_id}/{job_id}', [ApplicationController::class, 'getApplication']);
@@ -67,10 +84,16 @@ Route::get('/applications/job/{job_id}', [ApplicationController::class, 'getAppl
 
 Route::get("user/{email}/apply",[ApplicationController::class,"show"]);
 
+// jobs id
+Route::get('jobs/{id}', [CompanyController::class, 'getPositionById']);
 
-Route::get("/user",[UserController::class,"test"]);
+Route::get('/getuser', [CompanyController::class, 'getUser']);
+
+
 
 // Comment
 
 Route::post("/comment",[CommentController::class,"store"]);
 Route::get("/comment/{id}",[CommentController::class,"show"]);
+
+Route::get('/getcompanies', [CompanyController::class, 'getCompanyname']);
