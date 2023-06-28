@@ -1,8 +1,11 @@
 import React from 'react'
 import axios from 'axios'
-import "../config"
-
-// //  FETCH API JOB 
+import '../config'
+export const postUser =async (e) => {
+  return (
+      await axios.post("http://127.0.0.1:8000/api/users",e)
+  )
+} 
 export const fetchApiData = async (url) => {
   return await axios
     .get(url)
@@ -23,12 +26,6 @@ export const deleteApiData = async (url) => {
     .then((response) => response.data)
     .catch((response) => response.response.data);
 };
-
-export const postUser =async (e) => {
-  return (
-      await axios.post("http://127.0.0.1:8000/api/users",e)
-  )
-} 
 export const getUser = async ()=>{
   return (
     await axios.get("http://127.0.0.1:8000/api/users")
@@ -94,47 +91,8 @@ export const resetPasswordEmployee=async(email,password)=>{
     await axios.put(`http://127.0.0.1:8000/api/company/${email}/change-pass`,password)
   )
 }
-
-
-export const UserChangePassword=async(id,password)=>{
-  return (
-    await axios.put(`http://127.0.0.1:8000/api/user/change-password/${id}`,password)
-  )
-}
-//Application
-
-export const getTokenUser = async (token)=>{
-  return (
-    await axios.post(`http://127.0.0.1:8000/api/user/get-token/${token}`)
-  )
-}
-export const updateUser=async (id,formData)=>{
-  return (
-    await axios.post(`http://127.0.0.1:8000/api/user/update/${id}`,formData)
-  )
-}
-
-
-export const getApplications=async (email)=>{
-  return (
-      await axios.get(`http://127.0.0.1:8000/api/user/${email}/apply`)
-    )
-}
 export const postApplication=async (formData)=>{
   return (
     await axios.post("http://127.0.0.1:8000/api/applications",formData)
-  )
-}
-
-// Company Management
-
-export const getTokenCompany= async (token)=>{
-  return (
-    await axios.post(`http://127.0.0.1:8000/api/company/get-token/{token}`)
-  )
-}
-export const updateCompanyInfo=async (id,formData)=>{
-  return (
-    await axios.post(`http://127.0.0.1:8000/api/user/update/${id}`,formData)
   )
 }
