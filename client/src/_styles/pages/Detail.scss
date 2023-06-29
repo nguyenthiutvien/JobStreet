@@ -51,7 +51,7 @@
     padding-top: 30px;
     border-radius: 9px;
     margin-left: -40px;
-    background-color: rgb(47, 96, 96);
+    background-color: #26AE61;
     color: white;
     img{
         margin-left: 30px;
@@ -63,7 +63,7 @@
 
 .company_detail:hover{
     box-shadow: 1px 1px 14px 1px;
-    background-color: rgb(47, 96, 96) ;
+    background-color: #26AE61 ;
   
   
 }
@@ -150,7 +150,8 @@ p.card-texts{
 }
 .item_tvl:hover{
     box-shadow: 1px 0px 5px 0px;
-    background-color: #ffffff;
+    background-color: #F0F0F0;
+    font-family: 'Courier New', Courier, monospace;
     width: 360px;
     height: 270px;
     cursor: pointer;
@@ -191,7 +192,10 @@ p.card-texts{
 }
 div.context h5:hover{
     a{
-         color: rgb(12, 234, 53);
+         color:  #26AE61;
       border-bottom: 1px solid black;
     }
+}
+h5.text_tvl{
+    font-size: 16px;
 }

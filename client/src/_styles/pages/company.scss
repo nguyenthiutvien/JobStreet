@@ -55,6 +55,9 @@ div.card{
     padding-left: -40px;
     display: flex;
    }
+   .job:hover a{
+    color: #26AE61;
+   }
   
    .time{
     padding-left: -40px;
@@ -78,12 +81,16 @@ div.card{
    .item{
     margin-top: 10px;
     margin-left: 10px;
+    svg{
+      color: black;
+    }
    }
   div.content:hover{
     box-shadow: 1px 2px 8px 4px;
     border-color: black;
+    
     div.company_name a{
-      color: rgb(12, 234, 53);
+      color:  #26AE61;
       border-bottom: 1px solid black;
 
     }
@@ -99,3 +106,4 @@ div.card{
     }
      }
   }
+  
