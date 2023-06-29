@@ -1,92 +1,200 @@
-// .container{
-//     margin-top: 70px;
-//    border-radius: 5px;
-//    box-shadow: 0px 1px 1px 2px;
-//    height: 200px;
-// }
-// trang detail-----------------------------------------
-.row_content{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    margin-top: 70px;
-    margin-left: 90px;
-}
-.card_content{
-    width: 100px;
-    height: auto;
-    box-shadow:2px 2px 4px 2px ;
-    border-radius: 10px;
-}
-.card_content{
-    transition: color 1s ease;
-}
-.card_content:hover{
-    color: rgb(0, 255, 72)
-}
-.container_detail{
-    margin-top: 70px;
-    margin-left: 90px;
-}
-
-.card-img-top-img{
-    width: 50%;
-    height: 50%;
-}
-.gioithieu h5{
-    color: blue;
-}
-.job_chitiet{
-    color: blue;
-}
-.ungtuyen{
-    margin-left: 50px;
-    margin-top: 80px;
-}
-.company_detail{
-    box-shadow: 1px 1px 1px 1px;
-    height: 330px;
-    padding-top: 30px;
-    border-radius: 10px;
-}
-.company_detail:hover{
-    box-shadow: 2px 2px 12px 2px;
+.container_detail {
+    margin-top: 70px !important;
+    height: 200px !important;
+  }
   
+  .row_content {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr !important;
+    margin-top: 70px !important;
+    margin-left: 90px !important;
+  }
   
-}
-.row-vieclam{
-    width: 400px;
-   height: 100px;
-   margin-top: 30px;
+  .card_content:hover {
+    transition: background-color 0.3s, border-color 0.3s !important;
+    background-color: #e1e1e1 !important;
+    box-shadow: 1px 1px 12px 1px !important;
+  }
   
-   padding-top: 10px;
-   padding-left: 10px;
-}
-div.row-vieclam:hover{
-    box-shadow: 1px 1px 1px 2px;
-    border-radius: 10px;
-}
-
-.job_position{
- font-size: 18px;
-   font-weight: bold;
-}
-// .row-vieclam{
-//    animation: blink 2s infinite;
-// }
-// @keyframes blink {
-//     0% {
-//       opacity: 1;
-//     }
-//     50% {
-//       opacity: 0;
-//     }
-//     100% {
-//       opacity: 1;
-//     }
-//   }
-.row-vieclam{
-    transition: color 2s ease;
-}
-.row-vieclam:hover{
-    color: rgb(0, 255, 123);
-}
+  .card_content {
+    width: 150px !important;
+    height: 290px !important;
+    box-shadow: 0px 0px 1px 1px !important;
+    border-radius: 5px !important;
+    align-items: center !important;
+  }
+  
+  .card_content {
+    transition: color 1s ease !important;
+  }
+  
+  .container_detail {
+    margin-top: 70px !important;
+    margin-left: 90px !important;
+  }
+  
+  .card-img-top-img {
+    width: 180px !important;
+    height: 180px !important;
+    border-radius: 50px !important;
+    left: 30px !important;
+  }
+  
+  .ungtuyen {
+    margin-left: 50px !important;
+    margin-top: 80px !important;
+  }
+  
+  .company_detail {
+    height: 330px !important;
+    padding-top: 30px !important;
+    border-radius: 9px !important;
+    margin-left: -40px !important;
+    background-color: #26AE61 !important;
+    color: white !important;
+  
+    img {
+      margin-left: 30px !important;
+      box-sizing: 30px !important;
+      border-radius: 100px !important;
+    }
+  }
+  
+  .company_detail:hover {
+    box-shadow: 1px 1px 14px 1px !important;
+    background-color: #26AE61 !important;
+  }
+  
+  .row-vieclam {
+    width: 400px !important;
+    height: 100px !important;
+    margin-top: 30px !important;
+    margin-left: 60px !important;
+    padding-top: 10px !important;
+    padding-left: 10px !important;
+  }
+  
+  div.row-vieclam:hover {
+    box-shadow: 1px 1px 12px 1px !important;
+    border-radius: 5px !important;
+    background-color: #e3dede !important;
+  }
+  
+  .job_position {
+    font-size: 18px !important;
+    font-weight: bold !important;
+  }
+  
+  .row-vieclam {
+    transition: color 2s ease !important;
+  }
+  
+  .row-vieclam:hover {
+    box-shadow: 1px 1px 12px 1px !important;
+  }
+  
+  .card-text {
+    text-align: center !important;
+    margin-left: 40px !important;
+    text-align: start !important;
+  
+    h5 {
+      font-size: 15px !important;
+    }
+  }
+  
+  .context {
+    display: flex !important;
+    margin-top: 40px !important;
+    margin-left: 30px !important;
+  
+    h5 {
+      row-gap: 10px !important;
+      font-size: 20px !important;
+      margin-top: 15px !important;
+      margin-left: 10px !important;
+    }
+  }
+  
+  div.row_gioithieu {
+    margin-left: -70px !important;
+  
+    h5 {
+      color: black !important;
+    }
+  }
+  
+  p.card-texts {
+    margin-left: 30px !important;
+  }
+  
+  .row-vieclam {
+    padding-left: 70px !important;
+  }
+  
+  .content_tvl {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr !important;
+    margin-left: 80px !important;
+    margin-top: 30px !important;
+  }
+  
+  .item_tvl {
+    width: 350px !important;
+    height: 260px !important;
+    border: 1px solid rgb(210, 209, 209) !important;
+    border-radius: 5px !important;
+  }
+  
+  .item_tvl:hover {
+    box-shadow: 1px 0px 5px 0px !important;
+    background-color: #f0f0f0 !important;
+    font-family: 'Courier New', Courier, monospace !important;
+    width: 360px !important;
+    height: 270px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease-in-out !important;
+    font-weight: bolder !important;
+  }
+  
+  .text_tvl {
+    text-align: center !important;
+    margin-left: 40px !important;
+    text-align: start !important;
+    font-size: 18px !important;
+  }
+  
+  .text_tvl_type {
+    text-align: center !important;
+    border-radius: 20px !important;
+    margin-left: 110px !important;
+    text-align: start !important;
+    font-family: Calibri !important;
+    width: 116px !important;
+    height: 50px !important;
+    padding-left: 12px !important;
+    padding-top: 10px !important;
+    background-color: #ffd8d2 !important;
+  
+    h4 {
+      color: #ff7b66 !important;
+    }
+  }
+  
+  .text_tvl_type:hover {
+    h4 {
+      color: #0d6efd !important;
+    }
+  }
+  
+  div.context h5:hover {
+    a {
+      color: #26ae61 !important;
+      border-bottom: 1px solid black !important;
+    }
+  
+  }
+  h5.text_tvl {
+    font-size: 16px !important;
+  }
+  

@@ -174,49 +174,49 @@ const JobItemSection = ({ jobs }) => {
                 <h5>Tìm theo vị trí công việc</h5>
                 <label>
                   <input className="checkbox" type="checkbox" value="Design" onClick={handleDesign}/>
-                  <span className="text">Thiết kế</span>
+                  <span className="textSearch">Thiết kế</span>
                 </label>
                 <label>
                   <input className="checkbox" type="checkbox" value="Java Dev" onClick={handleJavaDev}/>
-                  <span className="text">Java Dev</span>
+                  <span className="textSearch">Java Dev</span>
                 </label>
                 <label>
                   <input className="checkbox" type="checkbox" value="FullStack" onClick={handleFullStack} />
-                  <span className="text">FullStack</span>
+                  <span className="textSearch">FullStack</span>
                 </label>
                 <label>
                   <input className="checkbox" type="checkbox" value="ReactJS Dev" onClick={handleReactJSDev} />
-                  <span className="text">ReactJS Dev</span>
+                  <span className="textSearch">ReactJS Dev</span>
                 </label>
                 <label>
                   <input className="checkbox" type="checkbox" value="Laravel Dev" onClick={handleLaravelDev}/>
-                  <span className="text">Laravel Dev</span>
+                  <span className="textSearch">Laravel Dev</span>
                 </label>
               </div>
               <div className="row">
                 <h5>Tìm theo loại</h5>
                 <label>
                   <input className="checkbox" type="checkbox" value="Full-time"  onClick={handleFulltime}/>
-                  <span className="text">Full-time</span>
+                  <span className="textSearch">Full-time</span>
                 </label>
                 <label>
                   <input className="checkbox" type="checkbox" value="Part-time" onClick={handleParttime}/>
-                  <span className="text">Part-time</span>
+                  <span className="textSearch">Part-time</span>
                 </label>
               </div>
               <div className="row">
                 <h5>Tìm theo địa chỉ</h5>
                 <label>
                   <input className="checkbox" type="checkbox" value="Đà Nẵng" onClick={handleDaNang}/>
-                  <span className="text">Đà Nẵng</span>
+                  <span className="textSearch">Đà Nẵng</span>
                 </label>
                 <label>
                   <input className="checkbox" type="checkbox" value="Hồ Chí Minh" onClick={handleHoChiMinh}/>
-                  <span className="text">Hồ Chí Minh</span>
+                  <span className="textSearch">Hồ Chí Minh</span>
                 </label>
                 <label>
                   <input className="checkbox" type="checkbox" value="Hà Nội" onClick={handleHaNoi}/>
-                  <span className="text">Hà Nội</span>
+                  <span className="textSearch">Hà Nội</span>
                 </label>
               </div>
             </form>

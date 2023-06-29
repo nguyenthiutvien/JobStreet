@@ -1,103 +1,111 @@
-div.card{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 50px;
-    padding: 30px;
-    border: none;
-   
-    
-   }
-   .content img{
-     width: 50px;
-     height: 50px;
-     margin-left: 3px;
-   }
-   .content{
-     border: 1px solid black;
-     border-radius: 5px;
-     height: 220px;
-     width: 100%;
-    
-   }
-   
-   .item{
-     display: grid;
-     grid-template-columns: 12% 75% 13%;
-   }
-   img.icon{
-     width: 100%;
-     height: 70%;
-     margin-top: 10px;
-   }
-  
-   .content{
-     padding-top: 5px;
-   }
-   .adress{
-    padding-left: -40px;
-    display: flex;
-   
-   }
-   .inform{
-    padding-left: -40px;
-    display: flex;
-   }
-   .job{
-    padding-left: -40px;
-    display: flex;
-   }
-   .time{
-    padding-left: -40px;
-    display: flex;
-   }
-   div.company_name{
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-    margin-left: 10px;
-    
-   }
-   .item{
-    margin-top: 10px;
-    margin-left: 10px;
-   }
-   .content:hover{
-    box-shadow: 2px 2px 4px 2px;
-   }
-   .content:hover a{
-    color: rgb(5, 79, 149);
-   }
-   a.div.job{
-    color:  rgb(5, 79, 149);
-   }
-    a{
-      text-decoration: none;
-      color: black;
-   }
-   a:hover {
-    text-decoration: none;
+div.card {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr !important;
+  gap: 50px !important;
+  padding: 30px !important;
+  border: none !important;
+}
+
+.content img {
+  width: 50px !important;
+  height: 50px !important;
+  margin-left: 3px !important;
+}
+
+.content {
+  border: 1px solid rgb(129, 129, 129) !important;
+  border-radius: 5px !important;
+  height: 220px !important;
+  width: 100% !important;
+}
+
+.item {
+  display: grid !important;
+  grid-template-columns: 12% 75% 13% !important;
+}
+
+img.icon {
+  width: 100% !important;
+  height: 70% !important;
+  margin-top: 10px !important;
+}
+
+.content {
+  padding-top: 5px !important;
+}
+
+.adress {
+  padding-left: -40px !important;
+  display: flex !important;
+}
+
+.IconStyle {
+  color: black !important;
+}
+
+div.inform {
+  padding-left: -40px !important;
+  color: black !important;
+  display: flex !important;
+
+  path {
+    color: black !important;
   }
- 
-  
-  
-.linka:hover .item .inform,.time {
-  text-decoration:none;
-  color:black;
 }
 
-.company_name:hover {
-  text-decoration: underline;
+.job {
+  padding-left: -40px !important;
+  display: flex !important;
 }
 
-.job:hover {
-  text-decoration: underline;
+.job:hover a {
+  color: #26AE61 !important;
 }
 
-// .item .job{
-//   text-decoration:underline;
-//   color:red;
-// }
-.linka:hover .item .company_name {
-  text-decoration:underline;
-  color:rgb(26, 26, 216);
+.time {
+  padding-left: -40px !important;
+  display: flex !important;
+  color: black !important;
+}
+
+div.company_name {
+  font-size: 18px !important;
+  font-weight: bold !important;
+  text-decoration: none !important;
+  margin-left: 10px !important;
+
+  a {
+    color: black !important;
+    padding-top: 10px !important;
+  }
+
+  img {
+    border-radius: 100px !important;
+  }
+}
+
+.item {
+  margin-top: 10px !important;
+  margin-left: 10px !important;
+
+  svg {
+    color: black !important;
+  }
+}
+
+div.content:hover {
+  box-shadow: 1px 2px 8px 4px !important;
+  border-color: black !important;
+
+  div.company_name a {
+    color: #26AE61 !important;
+    border-bottom: 1px solid black !important;
+  }
+}
+
+div.content:hover .if div .job:hover {
+  div.company_name a {
+    color: none !important;
+    border-bottom: none !important;
+  }
 }

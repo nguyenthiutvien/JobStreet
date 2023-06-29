@@ -10,6 +10,10 @@ export const LoginUser = () => {
         email: "",
         password: ""
     })
+    const exist=JSON.parse(localStorage.getItem("login"))
+    if(exist) {
+        navigate("/")
+    }
     const handelInput = (e) => {
         const values = { ...login, [e.target.name]: e.target.value }
         setLogin(values)
@@ -32,6 +36,7 @@ export const LoginUser = () => {
                 break;
             case 200:
                 localStorage.setItem("login", JSON.stringify({ token: token.data.token}))
+                localStorage.setItem('userType', JSON.stringify("candidate"));
                 navigate("/")
             default:
                 break;
@@ -90,6 +95,10 @@ export const LoginEmployee = () => {
     const handelSubmit = async (e) => {
         e.preventDefault();
         let error = {}
+        const exist=JSON.parse(localStorage.getItem("login"))
+        if(exist) {
+        navigate("/")
+    }
         const token = await employeeLogin(login)
         switch (token.data.status) {
             case "empty_email":
@@ -103,7 +112,8 @@ export const LoginEmployee = () => {
                 break;
             case 200:
                 localStorage.setItem("login", JSON.stringify({token: token.data.token}))
-                navigate("/employerProfile")
+                localStorage.setItem('userType', JSON.stringify("company"));
+                navigate("/")
             default:
                 break;
         }

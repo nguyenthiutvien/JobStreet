@@ -3,7 +3,11 @@ import axios from 'axios';
 import BlogPost from './BlogPost';
 import BlogForm from './BlogForm';
 import { BlogComment } from './BlogComment';
-import '../../_style/components/Blog/blog.scss';
+import '../../_style/components/Blog/blog.scss';4
+import '../header/Header';
+import '../footer/Footer';
+import Nav from '../header/Nav'
+import Footer from '../footer/Footer';
 
 const Blog = () => {
     const [blogPostsData, setBlogPostsData] = useState([]);
@@ -32,6 +36,7 @@ const Blog = () => {
 
     return (
         <>
+        <Nav/>
             {show && <BlogForm handleShow={handleShow} />}
             <div className="blog">
                 <h1 className="blog-title">Blog tìm việc làm</h1>
@@ -57,6 +62,7 @@ const Blog = () => {
                     
                 </div>
             </div>
+            <Footer/>
         </>
     );
 };

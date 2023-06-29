@@ -1,25 +1,27 @@
 .container--modal{
-    position: fixed;
-    padding-top: 50px;
-    width: 500px;
-    height: 570px;
-    margin: auto;
-    box-shadow: 1px 2px 1px rgb(66, 63, 63);
-    left: 35%;
-    top: 10%;
-    background:#E0ECDE;
-    border-radius: 8px;
-    position: relative;
+    position: absolute;
     padding-top: 50px;
     width: 500px;
     height: 550px;
     margin: auto;
-    box-shadow: 1px 2px 2px 1px rgb(66, 63, 63);
+    box-shadow: 8px 8px 22px 0px rgb(8, 132, 18);
+    left: 35%;
+    top: 10%;
+    background: #26AE61;
+    border-radius: 5px;
 }
 .modal--title{
     height: 60px;
     margin-left: 20px;
-    font-size: 17px;
+    
+    h4{
+        color: aliceblue;
+        margin-left: 40px;
+        margin-top: -20px;
+        span{
+            color:black;
+        }
+    }
 }
 .modal--form{
     width: 450px;
@@ -34,29 +36,29 @@
 .form--button--application{
     display: flex;
     justify-content: center;
-    align-items: center;
     
-    .btn--group{
-        display: flex;
-        gap: 20px;
-        .modal--submit{
-            height: 50px;
-            width: 120px;
-            background: #26AE61;
-            font-size: 18px;
-        }
-        .modal--cancel{
-            height: 50px;
-            width: 120px;
-            font-size: 18px;
-        }
-    }
-    
-}
     .modal--submit{
-        height: 50px;
+        height: 40px;
+        color: #26AE61;
+        background-color: #00AAFF;
+        margin-left: -20px;
+        row-gap: 20px;
+    }
+    .modal--submit:hover{
+        font-size: 15px;
+        font-family: 'Courier New', Courier, monospace;
+        background-color: chartreuse;
     }
     .modal--cancel{
-        height: 50px;
+        height: 40px;
+        width: 100px;
+       margin-left: 30px;
+       background-color: #00AAFF;
     }
-
+    .modal--cancel:hover{
+        background-color:rgb(178, 52, 7);;
+        font-size: 20px;
+        font-family: 'Courier New', Courier, monospace;
+        
+    }
+}

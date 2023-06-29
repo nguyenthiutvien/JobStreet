@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import {Link } from 'react-router-dom';
-
-import '../../src/_style/components/Blog/Detail.scss';
-
-
+import NavBar from "./pages/navigation/NavBar";
+import Footer from "./footer/Footer";
+// import "../_style/components/Blog/Detail.scss";
 function Detail() {
   const { id } = useParams();
   const [detail, setDetail] = useState([]);
@@ -27,12 +26,14 @@ function Detail() {
   };
 
   return (
+    <>
+    <NavBar/>
     <div className="container_detail">
       <div className="company_detail">
       {detail.slice(0, 1).map((detail) => (
         <div className="row">
           <div className="col-md-3">
-            <img src={`http://127.0.0.1:8000/storage/${detail.logo}`} className="img-fluid rounded-start" />
+            <img className="card-img-top-img" src={`http://127.0.0.1:8000/storage/${detail.logo}`}  />
           </div>
           <div className="col-md-7">
             <h5 className="card-title" style={{ fontSize: '38px', fontWeight: 'bold' }}>{detail.company_name}</h5>
@@ -71,7 +72,7 @@ function Detail() {
         <div className="row_gioithieu">
           {detail.slice(0, 1).map((detail) => (
             <div className="card-text">
-              <p className="card-text">{detail.address}</p>
+              <p className="card-texts">{detail.address}</p>
             </div>
           ))}
         </div>
@@ -80,17 +81,19 @@ function Detail() {
         <h5>Việc làm</h5>
         <div className="row_gioithieu">
           {detail.map((detail) => (
-            <div className="row-vieclam">
+            <div className="row-vieclam" >
               <div className="job_position">  <Link activeclassName="active" to={`/job-details/${detail.job_id}`}>{detail.positions} </Link></div>
-              <p className="card-text">{detail.address}</p>
+              <p className="card-texts">{detail.address}</p>
               
               <hr />
             </div>
           ))}
         </div>
       </div><br></br>
-      <div className="btn btn-primary" >  <Link activeclassName="active" to={`/jobs`}>Xem tất cả việc làm</Link></div>
+<div className="btn btn-warning" >  <Link activeclassName="active" to={`/jobs`}>Xem tất cả việc làm</Link></div>
     </div>
+ 
+    </>
   );
   
 }

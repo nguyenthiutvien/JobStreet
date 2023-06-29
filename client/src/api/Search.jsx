@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { fetchApiData } from './api'
+import { fetchApiData } from './Api'
 const Search = () => {
     const [search,setSearch]=useState([])
     const [searchItem,setSearchItem]=useState([])
