@@ -54,7 +54,7 @@ const EmployerProfile = () => {
                         handelInfor={handelInfor}
                         handelApply={handelApply}
                         handelJob={handelJob}
-                        changePassword={changePassword}
+                        // changePassword={changePassword}
                         handelLogout={handelLogout}
                     />
                 </div>

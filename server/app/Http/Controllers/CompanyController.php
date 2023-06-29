@@ -218,11 +218,11 @@ public function getCompany(Request $request, $companyId)
     /**
      * Update the specified resource in storage.
      */
-      //public function update(Request $request,$email)
-     // {
-        // $request->validate([
-        //     "password"=>"required|string|min:8"
-        // ]);
+      public function update(Request $request,$email)
+     {
+        $request->validate([
+            "password"=>"required|string|min:8"
+        ]);
 
         $company=Company::where("email",$email)->first();
 
@@ -230,7 +230,7 @@ public function getCompany(Request $request, $companyId)
             return response()->json(
                 "Công ty không tồn tại"
             );
-        }
+        };
         $company->password=bcrypt($request->password);
         $company->save();
         return response()->json(
