@@ -39,14 +39,8 @@ export const Register = () => {
                 <div className='container--register'>
                     <div className="register--title">
                         <h2>Tạo tài khoản của bạn</h2>
-                    </div> <br />
-                    <div className="register--button">
-                        <button type="submit">ĐĂNG KÝ BẰNG FACEBOOK</button> <br /><br />
-                        <button type="submit">ĐĂNG KÝ BẰNG LINKEDIN</button>
-                    </div>
-                    <div className="or--option">
-                        --- Hoặc ---
-                    </div>
+                    </div> <br /><br />
+                  
                     <Form onFinish={handelSubmit} action="" method="post">
                         <div className="form--register">
                             <div className="left--for">
@@ -173,7 +167,7 @@ export const Register = () => {
                         </Form.Item>
                     </Form>
                     <div className="login">
-                        <h5>Bạn đã có tài khoản <Link className="link--to" to={"/"}>Đăng nhập</Link></h5>
+                        <p>Bạn đã có tài khoản <Link className="link--to" to={"/"}>Đăng nhập</Link></p>
                     </div>
                 </div>
             </div>
@@ -225,191 +219,193 @@ export const RegisterEmployee = () => {
 
     }
     return (
-        <div className="container--body">
-            <div className='container--register'>
-                <div className="register--title">
-                    <h3>Tạo tài khoản của bạn</h3>
-                </div>
-                <Form onFinish={handelSubmit} action="" method="post">
-                    <div className="form--register">
-                        <div className="left--for">
-                            <Form.Item
-                                name="company_name"
-                                rules={[{
-                                    required: true,
-                                    message: 'Vui lòng nhập tên công ty'
-                                },
-                                {
-                                    validator: checkCompanyExists
-                                }
-                                ]}
-                                hasFeedback
-                            >
-
-                                <Input className='form--name' placeholder='Nhập họ tên công ty' />
-                            </Form.Item>
-                            <Form.Item
-                                name="email"
-                                hasFeedback
-                                rules={[{
-                                    required: true,
-                                    message: 'Vui lòng nhập email'
-                                },
-                                {
-                                    type: "email",
-                                    message: 'Email không hợp lệ'
-                                }, {
-                                    validator: checkEmailExists
-                                }
-                                ]}
-
-
-                            >
-
-                                <Input className='form--name' placeholder='Nhập Email của bạn' />
-
-                            </Form.Item>
-
-                            <Form.Item
-                                name="number_phone"
-
-                                rules={[{
-                                    required: true,
-                                    message: 'Vui lòng nhập số điện thoại'
-                                },
-                                {
-                                    pattern: /^\d+$/,
-                                    message: 'Vui lòng chỉ nhập số',
-                                },
-                                {
-                                    len: 10,
-                                    message: 'Số điện thoại phải có đúng 10 chữ số',
-                                },]}
-                                hasFeedback
-                            >
-                                <Input className='form--name' placeholder='Nhập số điện thoại của bạn' />
-                            </Form.Item>
-                            <Form.Item
-                                name="website"
-                                rules={[
-                                    {
+        <div className="background-image">
+            <div className="container--body">
+                <div className='container--register'>
+                    <div className="register--title">
+                        <h3>Tạo tài khoản của bạn</h3>
+                    </div> <br /> 
+                    <Form onFinish={handelSubmit} action="" method="post">
+                        <div className="form--register">
+                            <div className="left--for">
+                                <Form.Item
+                                    name="company_name"
+                                    rules={[{
                                         required: true,
-                                        message: 'Không được bỏ trống'
+                                        message: 'Vui lòng nhập tên công ty'
+                                    },
+                                    {
+                                        validator: checkCompanyExists
+                                    }
+                                    ]}
+                                    hasFeedback
+                                >
+
+                                    <Input className='form--name' placeholder='Nhập họ tên công ty' />
+                                </Form.Item>
+                                <Form.Item
+                                    name="email"
+                                    hasFeedback
+                                    rules={[{
+                                        required: true,
+                                        message: 'Vui lòng nhập email'
+                                    },
+                                    {
+                                        type: "email",
+                                        message: 'Email không hợp lệ'
                                     }, {
-                                        validator: validateWebsite
+                                        validator: checkEmailExists
+                                    }
+                                    ]}
+
+
+                                >
+
+                                    <Input className='form--name' placeholder='Nhập Email của bạn' />
+
+                                </Form.Item>
+
+                                <Form.Item
+                                    name="number_phone"
+
+                                    rules={[{
+                                        required: true,
+                                        message: 'Vui lòng nhập số điện thoại'
+                                    },
+                                    {
+                                        pattern: /^\d+$/,
+                                        message: 'Vui lòng chỉ nhập số',
+                                    },
+                                    {
+                                        len: 10,
+                                        message: 'Số điện thoại phải có đúng 10 chữ số',
+                                    },]}
+                                    hasFeedback
+                                >
+                                    <Input className='form--name' placeholder='Nhập số điện thoại của bạn' />
+                                </Form.Item>
+                                <Form.Item
+                                    name="website"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Không được bỏ trống'
+                                        }, {
+                                            validator: validateWebsite
+                                        }]}
+                                    hasFeedback>
+                                    <Input className="form--name" placeholder="Website của công ty" />
+                                </Form.Item>
+                            </div>
+                            <div className="right--form">
+                                <Form.Item
+                                    name="address"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: "Vui lòng nhập địa chỉ"
+                                        }
+                                    ]}
+                                    hasFeedback
+                                >
+                                    <Select className='form--name' placeholder='Địa chỉ của bạn' >
+                                        <Option value="Đã Nẵng">Đã Nẵng</Option>
+                                        <Option value="Hồ Chí Minh">Hồ Chí Minh</Option>
+                                        <Option value="Hà Nội">Hà Nội</Option>
+                                        <Option value="Quy Nhơn">Quy Nhơn</Option>
+                                        <Option value="Huế">Huế</Option>
+                                    </Select>
+                                </Form.Item>
+                                <Form.Item
+                                    name="scale"
+                                    rules={[{
+                                        required: true,
+                                        message: "Số lượn nhân viên công ty"
                                     }]}
-                                hasFeedback>
-                                <Input className="form--name" placeholder="Website của công ty" />
-                            </Form.Item>
+                                    hasFeedback
+                                >
+                                    <Select placeholder="Số lượng nhân viên" className='form--name'>
+                                        <Option value="20-30">20-30</Option>
+                                        <Option value="30-40">30-40</Option>
+                                        <Option value="40-100">40-100</Option>
+                                        <Option value="60-120">60-120</Option>
+                                        <Option value="120-150">120-150</Option>
+                                        <Option value="Trên 200">Trên 200</Option>
+                                    </Select>
+                                </Form.Item>
+                                <Form.Item
+                                    name="password"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: "Vui lòng nhập mật khẩu ",
+
+                                        },
+                                        {
+                                            min: 8,
+                                            message: "Vui lòng nhập lớn hơn 8 ký tự",
+
+                                        }]}
+                                    hasFeedback
+                                >
+                                    <Input.Password className='form--name' placeholder='Nhập mật khẩu của bạn' />
+                                </Form.Item>
+                                <Form.Item
+                                    name="confirmPass"
+                                    dependencies={["password"]}
+                                    hasFeedback
+                                    rules={[
+                                        {
+
+                                            required: true,
+                                            message: "Vui lòng nhập mật khẩu",
+                                        },
+                                        {
+                                            min: 8,
+                                            message: "Vui lòng nhập trên 8 ký tự"
+                                        },
+                                        ({ getFieldValue }) => ({
+                                            validator(_, value) {
+                                                if (!value || getFieldValue("password") === value) {
+                                                    return Promise.resolve();
+                                                }
+                                                return Promise.reject("Xác thực không đúng");
+                                            },
+                                        }),
+                                    ]}
+                                >
+                                    <Input.Password className="form--name" placeholder="Xác thực mật khẩu" />
+                                </Form.Item>
+
+                            </div>
                         </div>
-                        <div className="right--form">
+                        <div className="text--area">
                             <Form.Item
-                                name="address"
+                                name="description"
                                 rules={[
                                     {
                                         required: true,
-                                        message: "Vui lòng nhập địa chỉ"
+                                        message: "Vui lòng nhập nội dung"
                                     }
                                 ]}
                                 hasFeedback
                             >
-                                <Select className='form--name' placeholder='Địa chỉ của bạn' >
-                                    <Option value="Đã Nẵng">Đã Nẵng</Option>
-                                    <Option value="Hồ Chí Minh">Hồ Chí Minh</Option>
-                                    <Option value="Hà Nội">Hà Nội</Option>
-                                    <Option value="Quy Nhơn">Quy Nhơn</Option>
-                                    <Option value="Huế">Huế</Option>
-                                </Select>
+                                <Input.TextArea rows={4} className='form--area' placeholder='Nội dung của bạn' />
                             </Form.Item>
                             <Form.Item
-                                name="scale"
-                                rules={[{
-                                    required: true,
-                                    message: "Số lượn nhân viên công ty"
-                                }]}
-                                hasFeedback
+                                name="logo"
+                                initialValue="logo.png"
                             >
-                                <Select placeholder="Số lượng nhân viên" className='form--name'>
-                                    <Option value="20-30">20-30</Option>
-                                    <Option value="30-40">30-40</Option>
-                                    <Option value="40-100">40-100</Option>
-                                    <Option value="60-120">60-120</Option>
-                                    <Option value="120-150">120-150</Option>
-                                    <Option value="Trên 200">Trên 200</Option>
-                                </Select>
+                                <Input type="hidden"></Input>
                             </Form.Item>
-                            <Form.Item
-                                name="password"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Vui lòng nhập mật khẩu ",
-
-                                    },
-                                    {
-                                        min: 8,
-                                        message: "Vui lòng nhập lớn hơn 8 ký tự",
-
-                                    }]}
-                                hasFeedback
-                            >
-                                <Input.Password className='form--name' placeholder='Nhập mật khẩu của bạn' />
-                            </Form.Item>
-                            <Form.Item
-                                name="confirmPass"
-                                dependencies={["password"]}
-                                hasFeedback
-                                rules={[
-                                    {
-
-                                        required: true,
-                                        message: "Vui lòng nhập mật khẩu",
-                                    },
-                                    {
-                                        min: 8,
-                                        message: "Vui lòng nhập trên 8 ký tự"
-                                    },
-                                    ({ getFieldValue }) => ({
-                                        validator(_, value) {
-                                            if (!value || getFieldValue("password") === value) {
-                                                return Promise.resolve();
-                                            }
-                                            return Promise.reject("Xác thực không đúng");
-                                        },
-                                    }),
-                                ]}
-                            >
-                                <Input.Password className="form--name" placeholder="Xác thực mật khẩu" />
-                            </Form.Item>
-
                         </div>
-                    </div>
-                    <div className="text--area">
-                        <Form.Item
-                            name="description"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: "Vui lòng nhập nội dung"
-                                }
-                            ]}
-                            hasFeedback
-                        >
-                            <Input.TextArea rows={4} className='form--area' placeholder='Nội dung của bạn' />
+                        <Form.Item>
+                            <Button htmlType="submit" className="register"><b>Đăng ký</b> </Button>
                         </Form.Item>
-                        <Form.Item
-                            name="logo"
-                            initialValue="logo.png"
-                        >
-                            <Input type="hidden"></Input>
-                        </Form.Item>
+                    </Form>
+                    <div className="login">
+                        <p>Bạn đã có tài khoản <Link className="link--to" to={"/"}>Đăng nhập</Link></p>
                     </div>
-                    <Form.Item>
-                        <Button htmlType="submit" className="register"><b>Đăng ký</b> </Button>
-                    </Form.Item>
-                </Form>
-                <div className="login">
-                    <h4>Bạn đã có tài khoản <Link className="link--to" to={"/"}>Đăng nhập</Link></h4>
                 </div>
             </div>
         </div>
