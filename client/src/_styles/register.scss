@@ -1,20 +1,54 @@
+.background-image {
+    background-image: url('https://images.pexels.com/photos/2330137/pexels-photo-2330137.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-size: cover;
+    // background-position: center;
+
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.container--body {
+    display: flex;
+    justify-content: center;   
+    height: 100vh;
+   
+    /* Adjust the height as needed */
+}
 .container--register {
-    margin-left: 380px;
+    display: flex;       
+    flex-direction: column;
     width: 940px;
-    height: 600px;
-    background: #f9f6f699;
+    height: 700px;
+    text-align: center;
+    background: #33333399;
     border-radius: 8px;
     margin-top: 100px;
-    box-shadow: 2px 1px 1px 2px rgb(68, 66, 66);
+    box-shadow: 2px 1px 1px 2px rgb(77, 77, 77);
 }
 
 .register--title {
     text-align: center;
     justify-content: center;
     align-items: center;
-    color: #0ac9f4;
+    color:white;
+    margin-top: 20px;
+    
+}
+.register--button button {
+    background-color: #3b5998;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
+.register--button button:last-child {
+    background-color: #0077b5;
+    /* LinkedIn button background color */
+    /* Add other styles for the LinkedIn button as needed */
+}
 .text--area{
     display: flex;
     justify-self: center;
@@ -30,6 +64,7 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 30px;
+    color: #fff;
 }
 
 .form--register {
@@ -56,7 +91,8 @@
     margin-top: 30px;
     width: 410px;
     margin-left: 270px;
-    background: orangered;
+    background: green;
+    color: #fff;
     height: 50px;
     border-radius: 50px;
     border: none;
@@ -70,9 +106,13 @@
     text-align: center;
     align-items: center;
     justify-content: center;
+    h5{
+        color: #fff;
+    }
 
     .link--to {
-        color: #84ced6;
+        color:deepskyblue;
+        
     }
 }
 .password--eyes{

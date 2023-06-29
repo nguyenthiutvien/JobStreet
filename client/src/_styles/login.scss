@@ -1,75 +1,152 @@
-.container--login{
-    width: 500px;
-    height: 450px;
-    background: #FFFF;
-    border-radius: 8px;
-    margin-left: 550px;
-    margin-top: 150px;
-    box-shadow: 2px 1px 2px 1px rgb(32, 32, 32);
+.background-image {
+  background-image: url('https://images.pexels.com/photos/2330137/pexels-photo-2330137.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+   background-size: cover;
+  // background-position: center;
+   
+   width: 100%;
+   height: 100%;
+   position: absolute;
 }
-.content--login{
-    margin-top: 20px;
-    text-align: center;
-    justify-content: center;
-    align-items: center; 
-}
-.form--login{
-        margin-left: 45px;
-        justify-content: center;
-        align-items: center;
-    .login--email,.login--password{
-        width: 400px;
-        height: 40px;
-        outline: none;
-        padding-left: 20px;
-        // border: none;
-        border-radius: 8px;
-        &::placeholder{
-            font-size: 14px;
-            padding-left: 10px;
-        }
-    }
-
+.container--login {
+  position: relative;
+  background-color: #58585899;
+  width: 500px;
+  height: 490px;
   
+  border-radius: 8px;
+  margin: 0 auto;
+  margin-top: 220px;
+  
+  align-items: center;
+  justify-content: center;
+
+  h2{
+    color: #FFFFFF;
+  }
 }
-.forgot--pass{
-    margin-top: 50px;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+.content--login {
+  padding-top: 30px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
-.button--login{
-    margin-top: 20px;
-  margin-left: 50px;
-  width: 400px;
-  background: rgb(214, 240, 216);
-  height: 50px;
+
+.form--login--email {
+  padding-top: 5px;
+  margin-left: 45px;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+
+  .login--email {
+    width: 400px;
+    height: 50px;
+    outline: none;
+    padding-left: 20px;
+    // border: none;
+    border-radius: 8px;
+
+    &::placeholder {
+      font-size: 14px;
+      padding-left: 10px;
+    }
+  }
+
+
+}
+
+.form--login--password {
+  padding-top: 15px;
+  margin-left: 45px;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+
+  .login--password {
+    width: 400px;
+    height: 50px;
+    outline: none;
+    padding-left: 20px;
+    // border: none;
+    border-radius: 8px;
+
+    &::placeholder {
+      font-size: 14px;
+      padding-left: 10px;
+    }
+    
+  }
+
+
+}
+
+.forgot--pass {
+  margin-top: 40px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  p {
+      color:deepskyblue;
+    }
+}
+
+.login--error {
+  color: red;
+}
+
+.button--login {
+  margin-top: 10px;
+  margin-left: 165px;
+  align-items: center;
+  width: 170px;
+  background: #26AE61;
+  height: 45px;
   border-radius: 50px;
   border: none;
-  &:hover{
+
+  h5 {
+    color: #FFFFFF;
+    margin-bottom: auto;
+  }
+
+  &:hover {
     cursor: pointer;
   }
 }
-.another--relevent{
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+
+.another--relevent {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+
+  p {
+    margin-top: 10px;
+    color: #FFFFFF;
+  }
+  h7{
+    color: deepskyblue;
+  }
 }
+
 .login--password-toggles {
-    position: absolute;
-    top: 42.5%;
-    left: 60%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    pointer-events: auto; /* Đảm bảo biểu tượng "mắt" có thể nhấp được */
-  }
-  
-  .login--password-toggle svg {
-    width: 18px;
-    height: 18px;
-    color: #999; /* Màu sắc của biểu tượng "mắt" */
-  }
-  
-  .login--password-toggle.active svg {
-    color: #000; /* Màu sắc của biểu tượng "mắt" khi nút được nhấp */
-  }
+  position: absolute;
+  top: 42.5%;
+  left: 60%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  pointer-events: auto;
+  /* Đảm bảo biểu tượng "mắt" có thể nhấp được */
+}
+
+.login--password-toggle svg {
+  width: 18px;
+  height: 18px;
+  color: #999;
+  /* Màu sắc của biểu tượng "mắt" */
+}
+
+.login--password-toggle.active svg {
+  color: white;
+  /* Màu sắc của biểu tượng "mắt" khi nút được nhấp */
+}
