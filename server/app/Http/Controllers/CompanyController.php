@@ -224,6 +224,11 @@ public function getCompany(Request $request, $companyId)
         // $request->validate([
         //     "password"=>"required|string|min:8"
         // ]);
+      public function update(Request $request,$email)
+     {
+        $request->validate([
+            "password"=>"required|string|min:8"
+        ]);
 
         // $company=Company::where("email",$email)->first();
 
@@ -238,6 +243,17 @@ public function getCompany(Request $request, $companyId)
         //     "Thành công"
         // );
      // }
+        // if (!$company) {
+        //     return response()->json(
+        //         "Công ty không tồn tại"
+        //     );
+        // };
+        // $company->password=bcrypt($request->password);
+        // $company->save();
+        // return response()->json(
+        //     "Thành công"
+        // );
+     }
 
     public function updateCompanyInfo(Request $request, $email)
     {

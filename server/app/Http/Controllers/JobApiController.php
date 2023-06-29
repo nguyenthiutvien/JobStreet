@@ -51,58 +51,65 @@ class JobApiController extends Controller
         $type = $request->input('type');
         $closeDay = $request->input('close_day');
 
-        $job = new Job();
-        $job->company_id = $company->id;
-        $job->position = $position;
-        $job->cat_id = $cat_id;
-        $job->status = $status;
-        $job->description = $description;
-        $job->salary = $salary;
-        $job->type = $type;
-        $job->close_day = $closeDay;
-        $job->save();
+    // Thực hiện logic để thêm công việc vào cơ sở dữ liệu
+    $job = new Job();
+    $job->company_id = $company->id;
+    $job->position = $position;
+    $job ->cat_id = $cat_id;
+    $job->status = $status;
+    $job->description = $description;
+    $job->salary = $salary;
+    $job->type = $type;
+    $job->close_day = $closeDay;
+    $job->save();
+    Mail::to('vien.nguyen24@student.passerellesnumeriques.org')->send(new JobAddAdmin($position,$type,$description, $salary, $closeDay,$status, ));
+   
 
-        Mail::to('vien.nguyen24@student.passerellesnumeriques.org')->send(new JobAddAdmin($position, $type, $description, $salary, $closeDay, $status));
+    return response()->json($job);
+}
+public function updateJob(Request $request, $id)
+{
+    // Lấy thông tin công việc từ request
+    $position = $request->input('position');
+    $status = $request->input('status');
+    $description = $request->input('description');
+    $salary = $request->input('salary');
+    $type = $request->input('type');
+    $closeDay = $request->input('close_day');
 
-        return response()->json($job);
+    // Tìm công việc theo ID
+    $job = Job::find($id);
+
+    if (!$job) {
+        return response()->json(['error' => 'Không tìm thấy công việc']);
     }
 
-    public function updateJob(Request $request, $id)
-    {
-        $position = $request->input('position');
-        $status = $request->input('status', 'waiting');
-        $description = $request->input('description');
-        $salary = $request->input('salary');
-        $type = $request->input('type');
-        $closeDay = $request->input('close_day');
+    // Cập nhật thông tin công việc
+    $job->position = $position;
+    $job->status = $status;
+    $job->description = $description;
+    $job->salary = $salary;
+    $job->type = $type;
+    $job->close_day = $closeDay;
+    $job->save();
 
-        $job = Job::find($id);
-
-        if (!$job) {
-            return response()->json(['error' => 'Không tìm thấy công việc']);
-        }
-
-        $job->position = $position;
-        $job->status = $status;
-        $job->description = $description;
-        $job->salary = $salary;
-        $job->type = $type;
-        $job->close_day = $closeDay;
-        $job->save();
-
-        return response()->json($job);
-    }
+    return response()->json(['message' => 'Công việc đã được cập nhật thành công']);
+}
 
     public function deleteJob($id)
-    {
-        $job = Job::find($id);
+{
+    // Tìm và xóa công việc theo ID
+    $job = Job::find($id);
 
-        if (!$job) {
-            return response()->json(['error' => 'Không tìm thấy công việc']);
-        }
-
-        $job->delete();
-
-        return response()->json($job);
+    if (!$job) {
+        return response()->json(['error' => 'Không tìm thấy công việc']);
     }
+
+    $job->delete();
+
+    return response()->json(['message' => 'Công việc đã được xóa thành công']);
+
+
+}
+
 }
