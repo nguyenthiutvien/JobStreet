@@ -10,7 +10,6 @@ use App\Models\User;
 use App\Models\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -99,8 +98,9 @@ public function getCompany(Request $request, $companyId)
 // }
 
     // ---------------------------------------------------------------
-    public function getJobByCompany($token)
+    public function getJobs()
     {
+
 
     }
 
@@ -218,25 +218,26 @@ public function getCompany(Request $request, $companyId)
     /**
      * Update the specified resource in storage.
      */
+
       //public function update(Request $request,$email)
      // {
         // $request->validate([
         //     "password"=>"required|string|min:8"
         // ]);
 
-        $company=Company::where("email",$email)->first();
+        // $company=Company::where("email",$email)->first();
 
-        if (!$company) {
-            return response()->json(
-                "Công ty không tồn tại"
-            );
-        }
-        $company->password=bcrypt($request->password);
-        $company->save();
-        return response()->json(
-            "Thành công"
-        );
-     }
+        // if (!$company) {
+        //     return response()->json(
+        //         "Công ty không tồn tại"
+        //     );
+        // }
+        // $company->password=bcrypt($request->password);
+        // $company->save();
+        // return response()->json(
+        //     "Thành công"
+        // );
+     // }
 
     public function updateCompanyInfo(Request $request, $email)
     {
@@ -394,5 +395,39 @@ public function getdatauser()
 
     return response()->json($jobs);
 }
+
+  // ---------------------------------------------------------------
+  public function getJobByCompany($token)
+  {
+     
+      $jobs = DB::table('jobs')
+          ->select('jobs.id', 'jobs.cat_id','jobs.position', 'jobs.status', 'jobs.description','jobs.salary', 'jobs.type','jobs.created_at', 'jobs.close_day')
+          ->join('companies', 'companies.id', '=', 'jobs.company_id')
+          ->where('companies.token', $token)
+          ->get();
+  
+      return response()->json($jobs);
+  }
+  public function Updatestatus(Request $request)
+  {
+      $id = $request->id;
+      $status = 'Open';
+      $company=Company::all();
+      $application=Job::select('companies.company_name',"companies.email")
+      ->where("jobs.id",$id)
+      ->join('companies', 'jobs.company_id', '=', 'companies.id')
+      ->first();
+      $job = Job::findOrFail($id);
+      $job->status = $status;
+      $job->save();
+     
+      return response()->json(
+          "Cập nhật thành công"
+      );
+  }
+  
+
+
+
 }
 

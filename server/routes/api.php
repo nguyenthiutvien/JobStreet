@@ -125,3 +125,45 @@ Route::post("/comment",[CommentController::class,"store"]);
 Route::get("/comment/{id}",[CommentController::class,"show"]);
 
 Route::get('/getcompanies', [CompanyController::class, 'getCompanyname']);
+
+
+// Route::get('/companies/{companyId}/applications', [ApplicationController::class, 'getCompanyApplications']);
+
+// Route::get('/company/applications/{token}', [ApplicationController::class, 'getCompanyApplications']);
+
+Route::group(['prefix' => 'api'], function () {
+    // Đăng ký tuyến API để lấy danh sách ứng dụng theo công ty
+    // Route::get('applications/{token}', [ApplicationController::class, 'getApplicationsByCompany']);
+
+  
+});
+
+Route::get('/get-applications/{token}', [ApplicationController::class, 'getApplicationByCompany']);
+
+Route::get('/get-jobs/{token}', [CompanyController::class, 'getJobByCompany']);
+
+Route::post('/add-jobs', [JobApiController::class, 'addJob']);
+
+
+// Route để cập nhật công việc
+Route::put('/update-jobs/{id}', [JobApiController::class, 'updateJob']);
+
+// Route để xóa công việc
+Route::delete('/delete-jobs/{id}', [JobApiController::class, 'deleteJob']);
+
+Route::put('/applications/{user_id}/{job_id}/status', [ApplicationController::class, 'updateStatus']);
+Route::delete('/deleteCompany/{id}',[CompanyController::class,'deleteCompany']);
+
+
+Route::get('/datajobs',[CompanyController::class,'getdatauser']);
+
+
+
+Route::get('/getjob', [JobController::class, 'getJob']);
+Route::delete('/deletejob/{id}',[JobController::class,'deletejob']);
+
+Route::get('/getstatus', [JobController::class, 'getStatus']);
+
+
+Route::put('/selectstatus/{id}',[JobController::class,'Updatestatus']);
+Route::get('/search', [SearchController::class, 'search']);

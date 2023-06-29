@@ -250,5 +250,6 @@ public function updateStatus(Request $request, $user_id, $job_id)
     return response()->json(['message' => 'Status updated successfully']);
 }
 
+
 }
 
