@@ -55,7 +55,7 @@ export const Modal = ({ closeModal, job }) => {
 
         <div className="container--modal">
             <div className="modal--title">
-                <h3>Ứng tuyển ngay {job.position}</h3>
+                <h4>Ứng tuyển ngay <span>{job.position}</span></h4>
             </div>
             <div className="modal--form">
                 <Form onFinish={handelSubmit}>
