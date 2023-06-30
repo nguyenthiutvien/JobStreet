@@ -339,12 +339,36 @@ public function getCompany(Request $request, $companyId)
     return response()->json($companies);
 }
 
+public function CompanyChangePassword(Request $request){
+    $id=$request->id;
+    $password=$request->password;
+    $company=Company::where("id",$id)->first();
+    if(!$company){
+        return response()->json(
+            [
+                "status"=>400,
+                "message" => "Không thể đổi mật khẩu"
+            ]
+         
+        );
+    }
+    $company->password =Hash::make($password);
+    $company->save();
+    return response()->json(
+        [
+            "status"=>200,
+            "company"=>$password
+        ]
+    );
+    
+}
+
 
 public function comparePassword(Request $request){
     $id=$request->id;
     $password=$request->password;
-    $user=Company::where("id",$id)->first();
-    if(!Hash::check($password,$user->password) ){
+    $company=Company::where("id",$id)->first();
+    if(!Hash::check($password,$company->password) ){
         return response()->json(
             [ "status"=>400,
                 "message"=>"Mật khẩu sai"]

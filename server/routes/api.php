@@ -40,6 +40,9 @@ Route::put("/company/{email}/confirm-email",[CompanyController::class,"confirmEm
 Route::put("/company/{email}/change-pass",[CompanyController::class,"update"]);
 Route::post("/company/login",[CompanyController::class,"EmployeeLogin"]);
 Route::post("/company/get-token/{token}",[CompanyController::class,"getCompanyToken"]);
+Route::put("/company/change-password/{id}",[CompanyController::class,"CompanyChangePassword"]);
+Route::post("/company/compare-password/{id}",[CompanyController::class,"comparePassword"]);
+
 
 Route::post("/company/update/{id}",[CompanyController::class,"updateCompanyInfo"]);
 
