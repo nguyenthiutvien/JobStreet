@@ -1,8 +1,8 @@
 .footer__section {
-    background: $color-footer-background;
+    background: rgb(4, 6, 6);
 
     &__container {
-        @include container;
+        // @include container;
 
         &__footer {
             margin-top: 3rem;
@@ -23,32 +23,32 @@
 
             &__links {
                 h1 {
-                    color: $color-white;
+                    color: white;
                 }
 
                 p {
-                    color: $color-secondary;
+                    color: #26AE61;
                 }
 
                 &--quick {
                     a {
                         margin-top: 1rem;
                         display: block;
-                        color: $color-secondary;
+                        color: #26AE61;
                     }
                 }
             }
 
             &__conditions {
                 h1 {
-                    color: $color-white;
+                    color: white;
                 }
 
                 &--links {
                     a {
                         margin-top: 1rem;
                         display: block;
-                        color: $color-secondary;
+                        color: #26AE61;
                     }
                 }
             }
@@ -56,11 +56,11 @@
             &__subscribe {
 
                 h1 {
-                    color: $color-white;
+                    color: white;
                 }
 
                 p {
-                    color: $color-secondary;
+                    color: #26AE61;
                 }
 
                 &__form {

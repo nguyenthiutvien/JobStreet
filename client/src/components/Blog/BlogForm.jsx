@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../_style/components/Blog/blogform.scss';
+import Swal from 'sweetalert2';
 
 const BlogForm = ({ handleShow }) => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [image, setImage] = useState('');
     const [userAvatar, setUserAvatar] = useState('');
-    
+    const login=JSON.parse(localStorage.getItem('login'));
     useEffect(() => {
         // Fetch the user's avatar based on their ID
         const fetchUserAvatar = async () => {
@@ -68,6 +69,24 @@ const BlogForm = ({ handleShow }) => {
         }
     };
 
+    const handelLogin=(e)=>{
+        e.preventDefault();
+        Swal.fire({
+            title:"Đăng nhập",
+            text:"Vui lòng đăng nhập trước khi bình luận",
+            icon:"warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            cancelButtonText: "Không",
+            confirmButtonText: "Đăng nhập",
+        }).then((result)=>{
+            if(result.isConfirmed){
+            navigate("/loginUser")
+            }
+        })
+    }
+    
     return (
         <>
             <div className="wraper" onClick={handleShow}></div>
@@ -77,8 +96,9 @@ const BlogForm = ({ handleShow }) => {
                     <input type="text" placeholder="Chủ đề" value={title} onChange={handleTitleChange} required />
                     <textarea placeholder="Nội dung" value={body} onChange={handleBodyChange} required></textarea>
                     <input className="blog-post-image" type="file" onChange={handleImageChange} />
-
-                    <button className='sub' type="submit">Thêm bài đăng</button>
+                    {login?
+                    ( <button className='sub' type="submit">Thêm bài đăng</button>):
+                    ( <button className='sub' onClick={handelLogin} type="buton">Thêm bài đăng</button>)}
                 </form>
             </div>
         </>

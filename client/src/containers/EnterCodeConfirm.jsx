@@ -34,6 +34,7 @@ export const UserEnterCode = () => {
         }else if(code.code!=localCode){
             error.code="Mã xác thực không đúng"
         }else{
+            localStorage.removeItem("code")
             navigate("/newpasswordUser")
         }
         setError(error)
@@ -91,6 +92,7 @@ export const EmployeeEnterCode = () => {
         }else if(code.code!=localCode){
             error.code="Mã xác thực không đúng"
         }else{
+            localStorage.removeItem("code")
             navigate("/newpasswordEmployee")
         }
         setError(error)

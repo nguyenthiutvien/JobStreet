@@ -1,9 +1,9 @@
 .details_info {
     padding: 3rem;
-    background: $color-white;
+    background: #FFFFFF;
 
     .container {
-        @include container;
+        // @include container;
 
         .row {
             display: flex;
@@ -13,7 +13,7 @@
                 width: 730px;
                 height: 100%;
                 padding: 15px 20px;
-                box-shadow: $box-shadow-2;
+                box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 
                 h1,
                 p,
@@ -31,7 +31,7 @@
                 width: 350px;
                 height: 100%;
                 padding: 15px 20px;
-                box-shadow: $box-shadow-2;
+                box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 
                 h1 {
                     margin-top: 1rem;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\WaitingSendMail;
 use Illuminate\Support\Str;
 use App\Mail\ForgotPassword;
 use App\Mail\RegisterEmail;
@@ -21,7 +22,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        // $id=Auth::user();
+        $users = User::All();
         return response()->json(
             $users
         );
@@ -92,8 +94,8 @@ class UserController extends Controller
             $user->token=$token;
             $user->save();
         }
-        
-        Mail::to($request->email)->send(new RegisterEmail($request->username));
+        dispatch(new WaitingSendMail($request->username,$request->email))->delay(now()->addSeconds(20));
+        // Mail::to($request->email)->send(new RegisterEmail($request->username));
         return response()->json(
             $user
         );
@@ -191,7 +193,8 @@ class UserController extends Controller
         $user = User::where("email", $confirmemail)->first();
         if ($user) {
             $verificationCode =strval(rand(100000, 999999));
-            Mail::to($confirmemail)->send(new ForgotPassword($verificationCode));
+            dispatch(new WaitingSendMail($verificationCode,$confirmemail))->delay(now()->addSeconds(5));
+            // Mail::to($confirmemail)->send(new ForgotPassword($verificationCode));
         }
         return response()->json(
             $verificationCode

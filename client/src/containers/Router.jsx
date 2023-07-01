@@ -22,45 +22,74 @@ import Detail from '../components/Detail'
 import Timvieclam from '../components/Timvieclam';
 // import Blog from '../components/Blog/Blog';
 import JobItem from "../components/jobs/JobItem";
+import  EmployerProfile  from "../components/employer/EmployerProfile";
+import Header from "../components/header/Header";
+import Hero from "../components/header/Hero";
+import { MyInformation } from "../components/candidates/InformationUser";
+import { Apply } from "../components/candidates/UserApplication";
+import { ChangePassword } from "../components/candidates/ChangePasswordUser";
 
 
-
-export const Router = () => {
-    return (
-        <Routes>
-            <Route path="/userProfile" element={<UserProfile/>}></Route>
-            <Route path="/employeePayment" element={<EmployeePayment/>}></Route>
-            <Route path="/entercodeEmployee" element={<EmployeeEnterCode/>}></Route>
-            <Route path="/entercodeUser" element={<UserEnterCode/>}></Route>
-            <Route path="/newpasswordUser" element={<UserChangePassword/>}></Route>
-            <Route path="/newpasswordEmployee" element={<EmployeeChangePassword/>}></Route>
-            <Route path="/employeeForgot" element={<EmployeeFogotPassword/>}></Route>
-            <Route path="/userForgot" element={<UserFogotPassword/>}></Route>
-            <Route path="/loginEmployee" element={<LoginEmployee/>}></Route>
-            <Route path="/loginUser" element={<LoginUser/>}></Route>
-            <Route path="/registerEmployee" element={<RegisterEmployee/>}></Route>
-            <Route path="/registerUser" element={<Register/>}></Route>
-            <Route path="/homePage" element={<HomePage/>}></Route>
-            <Route path="" element={<Home />} />
-
-            <Route path="/blog" element={<Blog></Blog>} ></Route>
-          <Route path="/jobs" element={<AllJobs />} />
-          <Route path="/job-details/:id" element={<JobDetails />} />
-
-
-            <Route path="/jobs" element={<AllJobs />} />
-            <Route path="/job-details/:id" element={<JobDetails />} />
-
-            <Route exact path="/company"  element={<Company/>} />
-            <Route path="/detail/:id" element={<Detail></Detail>} />
-            <Route path="/timvieclam/:id" element={<Timvieclam></Timvieclam>} />
-
-            <Route path="/blog" element={<Blog />} />
+export const Router = () =>[
+    {
+        path:"/",element:<Header/>,
+        children:[
+            {path:"",element:<Hero/>},
+            {path:"jobs",element:<AllJobs/>},
+            {path:"job-details/:id",element:<JobDetails/>},
+            {path:"blog",element:<Blog/>},
+            {path:"company",element:<Company/>},
+           
+        ]
+    },
+    {  path:"loginUser",element:<LoginUser/>,},
+    {  path:"userForgot",element:<UserFogotPassword/>,},
+    {  path:"entercodeUser",element:<UserEnterCode/>,},
+    {  path:"newpasswordUser",element:<UserChangePassword/>,},
+    {
+        path:"loginEmployee",element:<LoginEmployee/>
+    },{
+        path:"userProfile",element:<UserProfile/>,
+        children:[
+            {path:"",element:<Apply/>},
+            {path:"infomation",element:<MyInformation/>},
+            {path:"change-password",element:<ChangePassword/>}
+        ]
+    }
+]
+// {
+//     return (
+//         <Routes>
+//             <Route path="/userProfile" element={<UserProfile/>}></Route>
+//             <Route path="/employerProfile" element={<EmployerProfile/>}></Route>
+//             <Route path="/employeePayment" element={<EmployeePayment/>}></Route>
+//             <Route path="/entercodeEmployee" element={<EmployeeEnterCode/>}></Route>
+//             <Route path="/entercodeUser" element={<UserEnterCode/>}></Route>
+//             <Route path="/newpasswordUser" element={<UserChangePassword/>}></Route>
+//             <Route path="/newpasswordEmployee" element={<EmployeeChangePassword/>}></Route>
+//             <Route path="/employeeForgot" element={<EmployeeFogotPassword/>}></Route>
+//             <Route path="/userForgot" element={<UserFogotPassword/>}></Route>
+//             <Route path="/loginEmployee" element={<LoginEmployee/>}></Route>
+//             <Route path="/loginUser" element={<LoginUser/>}></Route>
+//             <Route path="/registerEmployee" element={<RegisterEmployee/>}></Route>
+//             <Route path="/registerUser" element={<Register/>}></Route>
+//             <Route path="/homePage" element={<HomePage/>}></Route>
+//             <Route path="" element={<Home />} />
+//             <Route path="/blog" element={<Blog></Blog>} ></Route>
+//             <Route path="/jobs" element={<AllJobs />} />
+//             <Route path="/job-details/:id" element={<JobDetails />} />
+//             <Route path="/jobs" element={<AllJobs />} />
+//             <Route path="/job-details/:id" element={<JobDetails />} />
+//             <Route exact path="/company"  element={<Company/>} />
+//             <Route path="/detail/:id" element={<Detail></Detail>} />
+//             <Route path="/timvieclam/:id" element={<Timvieclam></Timvieclam>} />
+//             <Route path="/employeeProfile" element={<EmployerProfile/>}></Route>
+//             <Route path="/blog" element={<Blog />} />
       
 
 
-        </Routes>
-    );
-};
+//         </Routes>
+//     );
+// };
 
 

@@ -25,10 +25,10 @@ export const UserFogotPassword = () => {
           error.email = status.data.message
           break;
         case 200:
+          navigate("/entercodeUser")
           const code = await recoverPassword(email.email)
           localStorage.setItem("code",JSON.stringify(code.data))
           localStorage.setItem("user",JSON.stringify(email.email))
-          navigate("/entercodeUser")
         default:
           break;
       }

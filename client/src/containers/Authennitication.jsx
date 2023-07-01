@@ -31,9 +31,9 @@ export const Register = () => {
         return Promise.resolve();
     };
     const handelSubmit = async (e) => {
-        postUser(e);
+        
         navigate("/loginUser")
-
+        postUser(e);
     }
     return (
         <div className="container--body">

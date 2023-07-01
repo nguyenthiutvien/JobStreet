@@ -36,7 +36,7 @@ const JobDetails = () => {
           <NavBar job={job} cmp="jobs" />
           <JobDetailsItem job={job} />
           {/* <Modal job={job}/> */}
-          <Footer />
+          {/* <Footer /> */}
         </>
       )}
     </>

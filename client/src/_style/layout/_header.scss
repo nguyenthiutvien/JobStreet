@@ -1,11 +1,15 @@
 .home-header {
-    background: $color-white;
+    background: #fff;
 
     &-container {
-        @include container;
+        // @include container;
 
         &-nav {
-            @include flexBetween;
+            // @include flexBetween;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            align-items: center;
 
             &-left {
                 &__branding {
@@ -17,22 +21,22 @@
 
             &-right {
                 a {
-                    color: $color-secondary;
+                    color: #26AE61;
                     text-decoration: none;
                     margin-right: 2rem;
                     text-transform: uppercase;
                     font-weight: bold;
 
                     &:hover {
-                        color: $color-green;
+                        color: #26AE61;
                     }
                 }
 
                 &--active-menu {
-                    color: $color-green;
+                    color: #26AE61;
                     font-size: 1rem;
                     padding: 5px;
-                    border-bottom: 2px solid $color-green;
+                    border-bottom: 2px solid #26AE61;
                 }
 
 
@@ -42,7 +46,8 @@
         &-hero {
             width: 100%;
             padding-top: 3rem;
-            @include flexBetween;
+            // @include flexBetween;
+            justify-content: space-between;
 
             &__left {
                 width: 55%;
@@ -54,17 +59,18 @@
                 &-search {
                     width: 40%;
                     margin-top: 2rem;
-                    @include flexCenter;
+                    // @include flexCenter;
+                    justify-content: center;
 
                     &__form {
-                        @include formControl;
+                        // @include formControl;
 
                         &--search-btn {
                             margin-left: 0.6rem;
 
                             i {
                                 font-size: 2rem;
-                                color: $color-green;
+                                color: #26AE61;
                                 cursor: pointer;
                             }
                         }

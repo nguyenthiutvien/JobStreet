@@ -32,7 +32,7 @@ function Company(){
     };
     return(
         <div>
-        <NavBar/>
+        {/* <NavBar/> */}
      
         <div className="container">
         
@@ -101,7 +101,7 @@ function Company(){
             ))}
             </div>
         </div>
-        <Footer/>
+        {/* <Footer/> */}
         </div>
         
     )

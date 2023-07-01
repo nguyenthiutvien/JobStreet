@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Job from "../jobs/Jobs";
 import Swal from "sweetalert2";
 import { Modal } from "../../containers/Application";
+import "../../_style/components/_detailsJob.scss"
+
 const JobDetailsItem = ({ job }) => {
   const navigate=useNavigate()
   const [openModal, setOpenModal]=useState(false)
@@ -31,6 +33,7 @@ const JobDetailsItem = ({ job }) => {
  const useLogined=JSON.parse(localStorage.getItem("login"))
   return (
     <section className="details_info">
+   
       <div className="container">
         <div className="row">
           <div className="left">

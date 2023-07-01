@@ -31,7 +31,6 @@ const Home = () => {
         <>
           <Header cmp="home" />
           <Category categories={data.categories} />
-          {/* <Jobs latest={data.latest} /> */}
           <Footer />
         </>
       )}

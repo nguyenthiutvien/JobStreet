@@ -7,8 +7,8 @@
    grid-template-columns: 30% 70%;
    gap: 10px;
    .col-sm-3-{
-    position: absolute;
-    left: -4%;
+    // position: absolute;
+    // left: -4%;
    }
   }
 
@@ -18,9 +18,14 @@
     border-radius: 5px;
     width: 250px;
     margin-left:99px;
-    form{
-      margin-left:20px;
-      padding: 20px;
+    ul{
+      li{
+        list-style: none;
+        input{
+          width: 15px;
+          height: 15px;
+        }
+      }
     }
   }
 
@@ -51,6 +56,6 @@
     padding-bottom: 40px;
   }
 }
-.col-sm-9-{
-  margin-right:-180px;
-}
+// .col-sm-9-{
+//   margin-right:-180px;
+// }

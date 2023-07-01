@@ -40,11 +40,14 @@ Route::get("/company/{email}/edit",[CompanyController::class,"edit"]);
 Route::put("/company/{email}/confirm-email",[CompanyController::class,"confirmEmail"]);
 Route::put("/company/{email}/change-pass",[CompanyController::class,"update"]);
 Route::post("/company/login",[CompanyController::class,"EmployeeLogin"]);
+Route::post("/company/get-token/{token}",[CompanyController::class,"getCompanyToken"]);
 
 Route::post("/company/update/{id}",[CompanyController::class,"updateCompanyInfo"]);
 
 
-Route::post("/company/get-token/{token}",[UserController::class,"getCompanyToken"]);
+// Route::post("/company/get-token/{token}",[UserController::class,"getCompanyToken"]);
+
+Route::post("/company/compare-password/{id}",[CompanyController::class,"comparePassword"]);
 
 Route::group(['middleware' => 'api'], function ($router) {
     Route::resource('/categories', CategoryController::class);
@@ -77,8 +80,8 @@ Route::get('/companies/selectdata/{id}', function (Request $request, $id) {
 Route::post('/applications',[ApplicationController::class,"store"]);
 Route::get('/get-applications',[ApplicationController::class,"index"]);
 
-Route::get('/get-applications/{user_id}/{job_id}', [ApplicationController::class, 'getApplication']);
-Route::get('/applications/{user_id}/{job_id}/cv', [ApplicationController::class, 'getCV']);
+// Route::get('/get-cv/{name}', [ApplicationController::class, 'getApplication']);
+Route::get('/cv/{name}', [ApplicationController::class, 'getCV']);
 
 Route::get('/applications/job/{job_id}', [ApplicationController::class, 'getApplicationsByJob']);
 

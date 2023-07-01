@@ -5,6 +5,10 @@ import { userLogin,employeeLogin } from "../api/Api";
 import axios from "axios";
 export const LoginUser = () => {
     const navigate = useNavigate()
+    const exist=JSON.parse(localStorage.getItem("login"))
+    if(exist) {
+        navigate("/")
+    }
     const [login, setLogin] = useState({
         email: "",
         password: ""
@@ -31,6 +35,7 @@ export const LoginUser = () => {
                 break;
             case 200:
                 localStorage.setItem("login", JSON.stringify({ token: token.data.token}))
+                localStorage.setItem('userType', JSON.stringify("candidate"));
                 navigate("/")
             default:
                 break;
@@ -76,6 +81,10 @@ export const LoginUser = () => {
 
 export const LoginEmployee = () => {
     const navigate = useNavigate()
+    const exist=JSON.parse(localStorage.getItem("login"))
+    if(exist) {
+        navigate("/")
+    }
     const [login, setLogin] = useState({
         email: "",
         password: ""
@@ -102,7 +111,8 @@ export const LoginEmployee = () => {
                 break;
             case 200:
                 localStorage.setItem("login", JSON.stringify({token: token.data.token}))
-                navigate("/")
+                localStorage.setItem('userType',JSON.stringify("company"));
+                navigate("/employerProfile")
             default:
                 break;
         }

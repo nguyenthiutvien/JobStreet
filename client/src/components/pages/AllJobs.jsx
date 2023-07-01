@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchApiData } from "../../api/api";
+import { fetchApiData } from "../../api/Api";
 import Loader from "../../components/services/Loader";
 import Footer from "../footer/Footer";
 import JobItemSection from "./JobItemSection";
@@ -33,7 +33,7 @@ const AllJobs = () => {
         <>
           <NavBar hero="jobs" cmp="jobs" />
           <JobItemSection jobs={jobs} />
-          <Footer />
+          {/* <Footer /> */}
         </>
       )}
     </>
