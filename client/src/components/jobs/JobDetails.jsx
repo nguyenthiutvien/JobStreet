@@ -4,17 +4,18 @@ import { fetchApiData } from "../../api/Api";
 import Loader from "../../components/services/Loader";
 import JobDetailsItem from "./JobDetailsItem";
 import "../../_style/pages/navHero.scss";
-const JobDetails = () => {
+import NavBar from "../pages/navigation/NavBar";
+import NavHero from "../pages/navigation/NavHero";
+const JobDetails = (hero) => {
   const { id } = useParams();
   const [loader, setloader] = useState(true);
   const [job, setjob] = useState([]);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetchApiData(`api/home/${id}`);
       if (response.status === true) {
         setjob(response.data.job);
-     
       } else {
         console.log(response);
       }
@@ -22,19 +23,22 @@ const JobDetails = () => {
     fetchData();
     setTimeout(() => {
       setloader(false);
-    }, 3000);
+    }, 1500);
   }, [id]);
   return (
     <>
-      {loader ? (
+     
+      {/* {loader ? (
+      
         <Loader />
-      ) : (
+        
+      ) : ( */}
         <>
-          {/* <NavBar job={job} cmp="jobs" /> */}
-          <JobDetailsItem job={job} />
-          {/* <Footer /> */}
+          {/* <NavHero hero={hero} job={job} />*/}
+          <JobDetailsItem job={job} /> 
+          
         </>
-      )}
+      {/* )}  */}
     </>
   );
 };

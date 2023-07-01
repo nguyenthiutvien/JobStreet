@@ -4,14 +4,28 @@ import logo from "../../../public/assets/images/logo.png";
 import { getTokenUser,getTokenCompany } from "../../api/Api";
 import { Outlet } from "react-router-dom";
 import Footer from "../footer/Footer";
+import Loader from "../services/Loader";
 const Nav = ({ cmp }) => {
   const location = useLocation();
   const token = JSON.parse(localStorage.getItem("login"));
   const userType=JSON.parse(localStorage.getItem("userType"));
+  const [loader, setLoader]=useState(false);
   const [image, setImage] = useState([])
   useEffect(() => {
     userAlready()
   }, [])
+
+  const handelClickLink=()=>{
+    setLoader(true)
+    setTimeout(()=>{
+      setLoader(false)
+    },2000)
+  }
+
+  useEffect(()=>{
+    setLoader(false)
+  },[])
+
   const userAlready = async () => {
     if(userType==="candidate"){
       const values = await getTokenUser(token.token);
@@ -29,6 +43,10 @@ const Nav = ({ cmp }) => {
   }
   return (
     <>
+    {loader?(
+      <Loader/>
+    ):(
+<>
     <div className="home-header-container-nav">
       <div className="home-header-container-nav-left">
         <div className="home-header-container-nav-left__branding">
@@ -36,33 +54,27 @@ const Nav = ({ cmp }) => {
         </div>
       </div>
       <div className="home-header-container-nav-right">
-        {/* <Link
-          className={`${cmp === "home" ? "home-header-container-nav-right--active-menu" : ""}`}
-          to="/"
-        >
-          Trang chủ
-        </Link> */}
         <Link
           className={`${cmp === "jobs" ? "home-header-container-nav-right--active-menu" : ""}`}
-          to="/"
+          to="/" onClick={handelClickLink}
         >
           Tìm việc làm
         </Link>
         <Link
           className={`${cmp === "company" ? "home-header-container-nav-right--active-menu" : ""}`}
-          to="/company"
+          to="/company" onClick={handelClickLink}
         >
           Danh sách công ty
         </Link>
         <Link
           className={`${cmp === "blogs" ? "home-header-container-nav-right--active-menu" : ""}`}
-          to="/blog"
+          to="/blog" onClick={handelClickLink}
         >
           Bài đăng
         </Link>
         <Link
           className={`${cmp === "contact" ? "home-header-container-nav-right--active-menu" : ""}`}
-          to="/contact"
+          to="/contact" onClick={handelClickLink}
         >
           Liên hệ
         </Link>
@@ -103,8 +115,10 @@ const Nav = ({ cmp }) => {
     {/* <footer> */}
       <Footer/>
     {/* </footer> */}
-  </>
-
+    </>
+    )}
+    
+    </>
   );
 };
 

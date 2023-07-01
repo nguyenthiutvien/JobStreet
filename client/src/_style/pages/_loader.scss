@@ -8,10 +8,13 @@ $offset: calc($lat - $thikness);
 
 .loader {
     position: relative;
+    // top:0;
+    // bottom:0;
+    // z-index:999;
     width: $size;
     height: $size;
     transform: rotate(165deg);
-
+    background-color: white;
     &:before,
     &:after {
         content: '';

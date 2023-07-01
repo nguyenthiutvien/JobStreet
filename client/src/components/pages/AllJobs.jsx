@@ -21,21 +21,21 @@ const AllJobs = () => {
       }
     };
     fetchData();
-    setTimeout(() => {
-      setloader(false);
-    }, 300);
+    // setTimeout(() => {
+    //   setloader(false);
+    // }, 300);
   }, []);
 
   return (
     <>
-      {(loader && <Loader />) || (
+      {/* {(loader && <Loader />) || ( */}
         
         <>
-          {/* <NavBar hero="jobs" cmp="jobs" /> */}
-          <JobItemSection jobs={jobs} />
+          {/* <NavBar hero="jobs" /> */}
+          <JobItemSection jobs={jobs}/>
           {/* <Footer /> */}
         </>
-      )}
+      {/* )} */}
     </>
   );
 
