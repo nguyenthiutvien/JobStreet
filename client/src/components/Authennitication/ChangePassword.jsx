@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import "../_styles/changepassword.scss"
+import "../../_style/pages/changepassword.scss"
 import { useNavigate, Link } from 'react-router-dom'
-import { resetPassword, resetPasswordEmployee } from '../api/Api'
+import { resetPassword, resetPasswordEmployee } from '../../api/Api'
 import { Form, Input, Button } from "antd"
 export const UserChangePassword = () => {
     const [password,setPassword] =useState({
@@ -37,26 +37,28 @@ export const UserChangePassword = () => {
         setError(error)
     }
     return (
-        <div className="container--form--pass">
+        <div className='backgroud__image'>
+            <div className="container__form__pass">
             <form onSubmit={handelSubmit} action="" method="post">
-                <div className="title--form--pass">
+                <div className="title__form__pass">
                     <h3>Lấy lại mật khẩu</h3>
                 </div>
-                <div className="value--button--password">
-                    <input name='password' type='password' className='data--button' placeholder='Nhâp mật khẩu mới'  onChange={(e)=>setPassword({password:e.target.value})}/> <br />
-                    <p className='password--error'>{error && error.password}</p> 
+                <div className="value__button__password">
+                    <input name='password' type='password' className='data__button' placeholder='Nhâp mật khẩu mới'  onChange={(e)=>setPassword({password:e.target.value})}/> <br />
+                    <p className='password__error'>{error && error.password}</p> 
                 </div>
-                <div className="value--button--confirm">
-                    <input name='confirm_pass' type='password' className='data--button' placeholder='Xác thực mật khẩu' onChange={(e)=>setConfirm_pass({confirm_pass:e.target.value})}/>  
-                    <p className='password--error'>{error && error.confirm_pass}</p>
+                <div className="value__button__confirm">
+                    <input name='confirm_pass' type='password' className='data__button' placeholder='Xác thực mật khẩu' onChange={(e)=>setConfirm_pass({confirm_pass:e.target.value})}/>  
+                    <p className='password__error'>{error && error.confirm_pass}</p>
                 </div>
-                <button className='data--button confirm' htmlType="submit">Xác thực</button>
+                <button className='data__button confirm_' htmlType="submit">Xác thực</button>
                
             </form>
-            <div className="link--back">
+            <div className="link__back">
                 <p>Tôi muốn <Link className="color" to={"/"}>quay về</Link></p>
             </div>
 
+        </div>
         </div>
     )
 }
@@ -95,26 +97,28 @@ export const EmployeeChangePassword = () => {
         setError(error)
     }
     return (
-        <div className="container--form--pass">
-            <form onSubmit={handelSubmit} action="" method="post">
-                <div className="title--form">
-                    <h3>Lấy lại mật khẩu</h3>
-                </div>
-                <div className="value--button--password">
-                    <input name='password' type='password' className='data--button' placeholder='Nhâp mật khẩu mới'  onChange={(e)=>setPassword({password:e.target.value})}/> <br />
-                    <p className='password--error'>{error && error.password}</p> 
-                </div>
-                <div className="value--button--confirm">
-                    <input name='confirm_pass' type='password' className='data--button' placeholder='Xác thực mật khẩu' onChange={(e)=>setConfirm_pass({confirm_pass:e.target.value})}/>  
-                    <p className='password--error'>{error && error.confirm_pass}</p>
-                </div>
-                <button className='data--button confirm' htmlType="submit">Xác thực</button>
-               
-            </form>
-            <div className="link--back">
-                <p>Tôi muốn <Link className="color" to={"/"}>quay về</Link></p>
+        <div className='backgroud__image'>
+        <div className="container__form__pass">
+        <form onSubmit={handelSubmit} action="" method="post">
+            <div className="title__form__pass">
+                <h3>Lấy lại mật khẩu</h3>
             </div>
-
+            <div className="value__button__password">
+                <input name='password' type='password' className='data__button' placeholder='Nhâp mật khẩu mới'  onChange={(e)=>setPassword({password:e.target.value})}/> <br />
+                <p className='password__error'>{error && error.password}</p> 
+            </div>
+            <div className="value__button__confirm">
+                <input name='confirm_pass' type='password' className='data__button' placeholder='Xác thực mật khẩu' onChange={(e)=>setConfirm_pass({confirm_pass:e.target.value})}/>  
+                <p className='password__error'>{error && error.confirm_pass}</p>
+            </div>
+            <button className='data__button confirm_' htmlType="submit">Xác thực</button>
+           
+        </form>
+        <div className="link__back">
+            <p>Tôi muốn <Link className="color" to={"/"}>quay về</Link></p>
         </div>
+
+    </div>
+    </div>
     )
 }

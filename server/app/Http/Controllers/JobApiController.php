@@ -71,7 +71,7 @@ public function updateJob(Request $request, $id)
 {
     // Lấy thông tin công việc từ request
     $position = $request->input('position');
-    $status = $request->input('status');
+    $status = $request->input('status', 'waiting');
     $description = $request->input('description');
     $salary = $request->input('salary');
     $type = $request->input('type');

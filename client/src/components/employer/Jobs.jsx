@@ -226,7 +226,7 @@ const Jobs = () => {
                 name="close_day"
                 rules={[{ required: true, message: 'Vui lòng nhập ngày đóng' }]}
               >
-                <Input type='date'></Input>
+                <Input type='datetime'></Input>
              
               </Form.Item>
             </Form>

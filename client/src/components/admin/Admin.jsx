@@ -2,12 +2,13 @@
 
 import React, { Component, useState } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
+import "../../_style/admin/admin.scss"
 import Userad from './Useradmin';
 import Menuadmin from './Menuadmin';
 import Companyad from './Companyadmin';
 import Inforusers from './Informationuser';
 import Browse from './Browse';
-function Admis() {
+function Admin() {
         const [changePageAdmin,setChangePageAdmin]=useState(<Companyad/>)
         const handelCompany=()=>{
                 setChangePageAdmin(<Companyad/>)
@@ -35,10 +36,4 @@ function Admis() {
 
 }
 
-export default Admis
-
-{/* <Routes>
-                <Route path="/companyad" element={<Companyad/>}/>
-                <Route path="/userad" element={<Userad/>}/>
-                 <Route path="/information" element={<Inforusers/>}/>
-                 </Routes> */}
+export default Admin

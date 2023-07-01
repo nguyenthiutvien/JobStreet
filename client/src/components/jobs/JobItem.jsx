@@ -8,13 +8,12 @@ const JobItem = ({ position, type, company, address, logo,salary,id, time_close 
   return (
     <div className="job__wrapper__card">
       <div className="job__wrapper__card--left">
-        <img src={logo} alt="Icon" />
+        <img src={`http://127.0.0.1:8000/storage/${logo}`} alt="Icon" />
       </div>
-      <div className="job__wrapper__card--line"></div>
       <div className="job__wrapper__card--right">
         <div className="job__wrapper__card--right__part-1">
         <p>{position}</p>
-        <p>
+          <p>
             <FontAwesomeIcon icon={faBuilding} /> {company}
           </p>
           <p>
@@ -29,7 +28,7 @@ const JobItem = ({ position, type, company, address, logo,salary,id, time_close 
          
           
           <Link
-            className={type === "full time" ? "full-time" : "half-time"}
+            className={type === "full time" ? "btn btn-success" : "btn btn-success"}
             to={`/job-details/${id}`}
           >
             {type}

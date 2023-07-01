@@ -233,23 +233,69 @@ public function getApplicationByCompany($token)
         ->join('jobs', 'jobs.id', '=', 'applications.job_id')
         ->join('companies', 'companies.id', '=', 'jobs.company_id')
         ->where('companies.token', $token)
-        ->get();
+
+                ->get();
 
     return response()->json($applications);
 }
 
-public function updateStatus(Request $request, $user_id, $job_id)
-{
-    $application = Application::where('user_id', $user_id)
-                             ->where('job_id', $job_id)
-                             ->firstOrFail();
+
+
+// public function updateStatus(Request $request, $user_id, $job_id)
+// {
+//     $application = Application::where('user_id', $user_id)
+//                              ->where('job_id', $job_id)
+//                              ->firstOrFail();
                              
-    $application->status = $request->input('status');
+//     $application->status = $request->input('status');
+//     $application->save();
+
+//     return response()->json(['message' => 'Status updated successfully']);
+// }
+public function AcceptApplication(Request $request, $token)
+{
+    $id = $request->id;
+    $status = 'Đồng ý';
+    // $user=User::all();
+    $application=Application::select('applications.created_at', 'applications.status', 'applications.user_id','applications.job_id','applications.cv', 'users.email', 'users.username' ,'jobs.position')
+    ->where('companies.token', $token)
+    ->join('companies', 'jobs.company_id', '=', 'companies.id');
+  
+    $application = Job::findOrFail($id);
+    $application->status = $status;
     $application->save();
+    // Mail::to($company->email)->send(new Noticetothecompany("Chấp nhận",$company->company_name));
+    // foreach ($user as $value) {
+    //     // Mail::to($value->email)->send(new AdminBrowseInformation($value->username,$company->company_name,$job->position));
+    // }
+    return response()->json(
+        "Cập nhật thành công"
+    );
+}
 
-    return response()->json(['message' => 'Status updated successfully']);
+public function RejectApplication(Request $request, $token)
+{
+    $id = $request->id;
+    $status = 'đồng ý';
+    $user=User::all();
+    $application=Application::select('applications.created_at', 'applications.status', 'applications.user_id','applications.job_id','applications.cv', 'users.email', 'users.username' ,'jobs.position')
+    ->where('companies.token', $token)
+    ->join('companies', 'jobs.company_id', '=', 'companies.id')
+    ->first();
+    $job = Job::findOrFail($id);
+    $job->status = $status;
+    $job->save();
+    // Mail::to($company->email)->send(new Noticetothecompany("Chấp nhận",$company->company_name));
+    foreach ($user as $value) {
+        // Mail::to($value->email)->send(new AdminBrowseInformation($value->username,$company->company_name,$job->position));
+    }
+    return response()->json(
+        "Cập nhật thành công"
+    );
 }
 
 
 }
+
+
 

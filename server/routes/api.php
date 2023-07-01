@@ -61,7 +61,8 @@ Route::post("/company/get-token/{token}",[CompanyController::class,"getCompanyTo
 
 Route::post("/company/update/{id}",[CompanyController::class,"updateCompanyInfo"]);
 
-
+Route::put("/company/change-password/{id}",[CompanyController::class,"CompanyChangePassword"]);
+Route::post("/company/compare-password/{id}",[CompanyController::class,"comparePassword"]);
 // Route::post("/company/get-token/{token}",[UserController::class,"getCompanyToken"]);
 
 Route::post("/company/compare-password/{id}",[CompanyController::class,"comparePassword"]);

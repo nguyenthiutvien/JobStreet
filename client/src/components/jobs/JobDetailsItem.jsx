@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Job from "../jobs/Jobs";
 import Swal from "sweetalert2";
-import { Modal } from "../../containers/Application";
+import { Modal } from "../Authennitication/Application";
+import "../../_style/components/_detailsJob.scss"
+import "../../_style/pages/navHero.scss"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {  faBuilding,faClock,faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import NavBar from "../pages/navigation/NavBar";
+import NavHero from "../pages/navigation/NavHero";
 const JobDetailsItem = ({ job }) => {
   const navigate=useNavigate()
   const [openModal, setOpenModal]=useState(false)
@@ -30,6 +35,10 @@ const JobDetailsItem = ({ job }) => {
 }
  const useLogined=JSON.parse(localStorage.getItem("login"))
   return (
+    <>
+    <div className="container">
+     <NavHero  job={job} />
+     </div>
     <section className="details_info">
       <div className="container">
         <div className="row">
@@ -37,11 +46,11 @@ const JobDetailsItem = ({ job }) => {
             <h1>Mô tả công việc</h1>
             <div className="job-description">{job && job.description}</div>
             {useLogined ===null?(
-              <Link className="button" onClick={handelLogin}>
+              <Link className="btn btn-success" onClick={handelLogin}>
               Ứng tuyển ngay
             </Link>
             ):(
-              <Link className="button" onClick={handelApplication}>
+              <Link className="btn btn-success" onClick={handelApplication}>
               Ứng tuyển ngay
             </Link>
             )}
@@ -56,6 +65,7 @@ const JobDetailsItem = ({ job }) => {
         {/* <Job  similar={true} /> */}
       </div>
     </section>
+    </>
   );
 };
 

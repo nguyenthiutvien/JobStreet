@@ -5,7 +5,7 @@ use Illuminate\Support\Str;
 use App\Mail\ForgotPassword;
 use App\Mail\RegisterEmail;
 use App\Models\Company;
-
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Application;
 use Illuminate\Http\Request;
@@ -275,7 +275,6 @@ public function getCompany(Request $request, $companyId)
             );
 
 
-
         $id = $request->id;
         $company_name = $request->company_name;
         $logo = $request -> logo;
@@ -424,26 +423,48 @@ public function getdatauser()
   
       return response()->json($jobs);
   }
-  public function Updatestatus(Request $request)
-  {
-      $id = $request->id;
-      $status = 'Open';
-      $company=Company::all();
-      $application=Job::select('companies.company_name',"companies.email")
-      ->where("jobs.id",$id)
-      ->join('companies', 'jobs.company_id', '=', 'companies.id')
-      ->first();
-      $job = Job::findOrFail($id);
-      $job->status = $status;
-      $job->save();
-     
-      return response()->json(
-          "Cập nhật thành công"
-      );
-  }
-  
+ 
+  public function CompanyChangePassword(Request $request){
+    $id=$request->id;
+    $password=$request->password;
+    $company=Company::where("id",$id)->first();
+    if(!$company){
+        return response()->json(
+            [
+                "status"=>400,
+                "message" => "Không thể đổi mật khẩu"
+            ]
+         
+        );
+    }
+    $company->password =Hash::make($password);
+    $company->save();
+    return response()->json(
+        [
+            "status"=>200,
+            "company"=>$password
+        ]
+    );
+    
+}
 
 
+public function comparePassword(Request $request){
+    $id=$request->id;
+    $password=$request->password;
+    $company=Company::where("id",$id)->first();
+    if(!Hash::check($password,$company->password) ){
+        return response()->json(
+            [ "status"=>400,
+                "message"=>"Mật khẩu sai"]
+        );
+    }
+    return response()->json(
+        [ 
+        "status"=>200,
+        ]
+        );
+}
 
 }
 

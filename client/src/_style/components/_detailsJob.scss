@@ -1,9 +1,13 @@
+.container {
+    padding-top: 100px;
+}
+
 .details_info {
     padding: 3rem;
-    background: $color-white;
+    background: #FFFFFF;
 
     .container {
-        @include container;
+        // @include container;
 
         .row {
             display: flex;
@@ -13,7 +17,8 @@
                 width: 730px;
                 height: 100%;
                 padding: 15px 20px;
-                box-shadow: $box-shadow-2;
+                box-shadow: 1px 2px 1px 2px #6d6c6c;
+                line-height: 30px;
 
                 h1,
                 p,
@@ -22,16 +27,27 @@
                     margin-top: 1rem;
                     color: #191c1e;
                 }
+
                 .job-description {
+
                     white-space: pre-line;
-                  }
+                }
+            }
+
+            .button {
+                text-decoration: none;
+                width: 200px;
+                height: 50px;
+                border-radius: 50px;
+                background-color: #26AE61;
+                ;
             }
 
             .right {
                 width: 350px;
                 height: 100%;
                 padding: 15px 20px;
-                box-shadow: $box-shadow-2;
+                box-shadow: 1px 2px 1px 2px #6d6c6c;
 
                 h1 {
                     margin-top: 1rem;

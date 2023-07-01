@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
-import "../_styles/forgotpassword.scss"
+import "../../_style/pages/forgotpassword.scss";
 import { Link, useNavigate } from "react-router-dom"
-import { recoverPassword, confirmEmail,confirmEmailEmployee,recoverPasswordEmployee } from "../api/Api"
+import { recoverPassword, confirmEmail, confirmEmailEmployee, recoverPasswordEmployee } from "../../api/Api"
 import { Form, Input, Button } from "antd"
 
 export const UserFogotPassword = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   const [email, setEmail] = useState({
     email: ""
   })
@@ -26,8 +26,8 @@ export const UserFogotPassword = () => {
           break;
         case 200:
           const code = await recoverPassword(email.email)
-          localStorage.setItem("code",JSON.stringify(code.data))
-          localStorage.setItem("user",JSON.stringify(email.email))
+          localStorage.setItem("code", JSON.stringify(code.data))
+          localStorage.setItem("user", JSON.stringify(email.email))
           navigate("/entercodeUser")
         default:
           break;
@@ -35,33 +35,37 @@ export const UserFogotPassword = () => {
     }
     setError(error)
   }
-    return (
-      <div className="container--form">
-        <form onSubmit={handelSubmit} action="" method="post">
-          <div className="title--form">
-            <h3>Xác thực Email</h3>
-          </div>
-          <div className="value--button">
+  return (
+    <div className="backgroud--image">
+      
+        <div className="container--form">
+          <form onSubmit={handelSubmit} action="" method="post">
+            <div className="title--form"><br />
+            <h3><b>Xác thực Email</b></h3>
+            </div>
+            <div className="value--button">
 
-            <input name="email"
-              type="email"
-              className='data--button'
-              placeholder="Nhập email của bạn"
-              onChange={(e) => setEmail({ email: e.target.value })}></input><br />
-            <p className="confirm--error">{error && error.email}</p>
-           
+              <input name="email"
+                type="email"
+                className='data--button'
+                placeholder="Nhập email của bạn"
+                onChange={(e) => setEmail({ email: e.target.value })}></input><br />
+              <p className="confirm--error">{error && error.email}</p>
+
+            </div>
+            <button className='data--button confirm' type="submit">Xác thực</button>
+          </form>
+          <div className="link--back">
+            <p>Tôi muốn <Link className="color" to={"/"}>quay về</Link></p>
           </div>
-          <button className='data--button confirm' type="submit">Xác thực</button>
-        </form>
-        <div className="link--back">
-          <p>Tôi muốn <Link className="color" to={"/"}>quay về</Link></p>
+
         </div>
-
-      </div>
-    )
+      
+    </div>
+  )
 }
 export const EmployeeFogotPassword = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   const [email, setEmail] = useState({
     email: ""
   })
@@ -82,8 +86,8 @@ export const EmployeeFogotPassword = () => {
           break;
         case 200:
           const code = await recoverPasswordEmployee(email.email)
-          localStorage.setItem("code",JSON.stringify(code.data))
-          localStorage.setItem("user",JSON.stringify(email.email))
+          localStorage.setItem("code", JSON.stringify(code.data))
+          localStorage.setItem("user", JSON.stringify(email.email))
           navigate("/entercodeEmployee")
         default:
           break;
@@ -91,11 +95,12 @@ export const EmployeeFogotPassword = () => {
     }
     setError(error)
   }
-    return (
+  return (
+    <div className="backgroud--image">
       <div className="container--form">
-        <form onSubmit={handelSubmit} action="" method="post">
+        <form onSubmit={handelSubmit} action="" method="post"> <br />
           <div className="title--form">
-            <h3>Xác thực email</h3>
+            <h3><b>XÁC THỰC CÔNG TY</b></h3>
           </div>
           <div className="value--button">
 
@@ -105,7 +110,7 @@ export const EmployeeFogotPassword = () => {
               placeholder="Nhập email của bạn"
               onChange={(e) => setEmail({ email: e.target.value })}></input><br />
             <p className="confirm--error">{error && error.email}</p>
-           
+
           </div>
           <button className='data--button confirm' type="submit">Xác thực</button>
         </form>
@@ -114,7 +119,8 @@ export const EmployeeFogotPassword = () => {
         </div>
 
       </div>
-    )
+    </div>
+  )
 }
 
 

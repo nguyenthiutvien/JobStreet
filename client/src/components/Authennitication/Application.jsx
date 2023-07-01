@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import "../_styles/application.scss"
+import "../../_style/pages/application.scss";
 import { Form, Input, Button } from "antd"
-import { postApplication } from '../api/Api'
+import { postApplication } from '../../api/Api'
 import Swal from "sweetalert2"
 export const Application = () => {
     const [openModal, setOpenModal] = useState(false)

@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchApiData } from "../../api/Api";
 import Loader from "../../components/services/Loader";
-import Footer from "../footer/Footer";
-import NavBar from "../pages/navigation/NavBar";
 import JobDetailsItem from "./JobDetailsItem";
 import "../../_style/pages/navHero.scss";
 const JobDetails = () => {
@@ -32,9 +30,9 @@ const JobDetails = () => {
         <Loader />
       ) : (
         <>
-          <NavBar job={job} cmp="jobs" />
+          {/* <NavBar job={job} cmp="jobs" /> */}
           <JobDetailsItem job={job} />
-          <Footer />
+          {/* <Footer /> */}
         </>
       )}
     </>

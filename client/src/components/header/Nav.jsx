@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../../public/assets/images/logo.png";
 import { getTokenUser,getTokenCompany } from "../../api/Api";
+import { Outlet } from "react-router-dom";
+import Footer from "../footer/Footer";
 const Nav = ({ cmp }) => {
   const location = useLocation();
   const token = JSON.parse(localStorage.getItem("login"));
@@ -26,6 +28,7 @@ const Nav = ({ cmp }) => {
     // console.log(values.data.user.avatar)
   }
   return (
+    <>
     <div className="home-header-container-nav">
       <div className="home-header-container-nav-left">
         <div className="home-header-container-nav-left__branding">
@@ -33,15 +36,15 @@ const Nav = ({ cmp }) => {
         </div>
       </div>
       <div className="home-header-container-nav-right">
-        <Link
+        {/* <Link
           className={`${cmp === "home" ? "home-header-container-nav-right--active-menu" : ""}`}
           to="/"
         >
           Trang chủ
-        </Link>
+        </Link> */}
         <Link
           className={`${cmp === "jobs" ? "home-header-container-nav-right--active-menu" : ""}`}
-          to="/jobs"
+          to="/"
         >
           Tìm việc làm
         </Link>
@@ -92,7 +95,16 @@ const Nav = ({ cmp }) => {
           </>
         )}
       </div>
+      
     </div>
+    <main>
+      <Outlet></Outlet>
+    </main>
+    {/* <footer> */}
+      <Footer/>
+    {/* </footer> */}
+  </>
+
   );
 };
 

@@ -1,8 +1,12 @@
 .footer__section {
-    background: $color-footer-background;
-
+    background:#24324a;
+   
+    height: 100%;
+    // .footer__section__container__footer{
+       
+    // }
     &__container {
-        @include container;
+        // @include container;
 
         &__footer {
             margin-top: 3rem;
@@ -10,7 +14,7 @@
             grid-template-columns: repeat(4, 1fr);
             grid-column-gap: 1rem;
             padding: 3rem 0;
-
+            width: 90%;
             &__info {
                 width: 285px;
                 height: auto;
@@ -23,32 +27,32 @@
 
             &__links {
                 h1 {
-                    color: $color-white;
+                    color:#FFFFFF;
                 }
 
                 p {
-                    color: $color-secondary;
+                    color: #6c757d;
                 }
 
                 &--quick {
                     a {
                         margin-top: 1rem;
                         display: block;
-                        color: $color-secondary;
+                        color: #6c757d;
                     }
                 }
             }
 
             &__conditions {
                 h1 {
-                    color: $color-white;
+                    color: #FFFFFF;
                 }
 
                 &--links {
                     a {
                         margin-top: 1rem;
                         display: block;
-                        color: $color-secondary;
+                        color: #6c757d;
                     }
                 }
             }
@@ -56,11 +60,11 @@
             &__subscribe {
 
                 h1 {
-                    color: $color-white;
+                    color: #FFFFFF;
                 }
 
                 p {
-                    color: $color-secondary;
+                    color: #6c757d;
                 }
 
                 &__form {

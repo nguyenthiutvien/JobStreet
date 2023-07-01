@@ -1,111 +1,176 @@
-div.card {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr 1fr !important;
-  gap: 50px !important;
-  padding: 30px !important;
-  border: none !important;
+a {
+  text-decoration: none;
 }
-
-.content img {
-  width: 50px !important;
-  height: 50px !important;
-  margin-left: 3px !important;
+.justify-content-center{
+    padding-top: 100px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    .col-sm-6{
+      padding-top: 15px;
+      input{
+        height: 50px;
+        width: 450px;
+        border-radius: 8px;
+        outline: none;
+        padding-left: 10px;
+      }
+    }
+}
+div.card {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 50px;
+  padding: 30px;
+  border: none;
 }
 
 .content {
-  border: 1px solid rgb(129, 129, 129) !important;
-  border-radius: 5px !important;
-  height: 220px !important;
-  width: 100% !important;
-}
+  border: 1px solid rgb(129, 129, 129);
+  padding: 8px 12px;
+  border-radius: 5px;
+  height: 220px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  a {
+    color: black;
+    font-size: 18px;
+    text-decoration: none;
+  }
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .time {
+      color: black;
+    }
+    img {
+      width: 50px;
+      height: 50px;
+      margin-left: 3px;
+    }
+    display: grid;
+    grid-template-columns: 12% 75% 13%;
+    .company_name {
+      margin-left: 10px;
+      a {
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+    .IconStyle {
+      color: black;
+      margin-top: 5px;
+      margin-left: 5px;
+    }
+    .inform {
+      color: black;
+    }
+    .job {
+      a {
+        color: black;
+        text-decoration: solid;
+      &:hover {
+        color: green;
+      }}
+    }
+  }
+  &:hover {
+    border: 1px solid black;
+    box-shadow: 0 0 6px 4px green;
+  }
+  &:hover .company_name a.none{
+    color: green;
 
-.item {
-  display: grid !important;
-  grid-template-columns: 12% 75% 13% !important;
+  }
 }
 
 img.icon {
-  width: 100% !important;
-  height: 70% !important;
-  margin-top: 10px !important;
+  width: 100%;
+  height: 70%;
+  margin-top: 10px;
 }
 
-.content {
-  padding-top: 5px !important;
-}
+// .content {
+//   padding-top: 5px ;
+// }
 
-.adress {
-  padding-left: -40px !important;
-  display: flex !important;
-}
+// .adress {
+//   padding-left: -40px ;
+//   display: flex ;
+// }
 
-.IconStyle {
-  color: black !important;
-}
+// .IconStyle {
+//   color: black ;
+// }
 
-div.inform {
-  padding-left: -40px !important;
-  color: black !important;
-  display: flex !important;
+// div.inform {
+//   padding-left: -40px ;
+//   color: black ;
+//   display: flex ;
 
-  path {
-    color: black !important;
-  }
-}
+//   path {
+//     color: black ;
+//   }
+// }
 
-.job {
-  padding-left: -40px !important;
-  display: flex !important;
-}
+// .job {
+//   padding-left: -40px ;
+//   display: flex ;
+// }
 
-.job:hover a {
-  color: #26AE61 !important;
-}
+// .job:hover a {
+//   color: #26AE61 ;
+//   text-decoration: none;
+// }
 
-.time {
-  padding-left: -40px !important;
-  display: flex !important;
-  color: black !important;
-}
+// .time {
+//   padding-left: -40px ;
+//   display: flex ;
+//   color: black ;
+// }
 
-div.company_name {
-  font-size: 18px !important;
-  font-weight: bold !important;
-  text-decoration: none !important;
-  margin-left: 10px !important;
+// .company_name {
+//   font-size: 18px ;
+//   font-weight: bold ;
 
-  a {
-    color: black !important;
-    padding-top: 10px !important;
-  }
+//   margin-left: 10px ;
 
-  img {
-    border-radius: 100px !important;
-  }
-}
+//   .none {
+//     color: black ;
+//     padding-top: 10px ;
+//     // text-decoration: none;
+//   }
 
-.item {
-  margin-top: 10px !important;
-  margin-left: 10px !important;
+//   img {
+//     border-radius: 100px ;
+//   }
+// }
 
-  svg {
-    color: black !important;
-  }
-}
+// .item {
+//   margin-top: 10px ;
+//   margin-left: 10px ;
 
-div.content:hover {
-  box-shadow: 1px 2px 8px 4px !important;
-  border-color: black !important;
+//   svg {
+//     color: black ;
+//   }
+// }
 
-  div.company_name a {
-    color: #26AE61 !important;
-    border-bottom: 1px solid black !important;
-  }
-}
+// div.content:hover {
+//   box-shadow: 1px 2px 8px 4px ;
+//   border-color: black ;
 
-div.content:hover .if div .job:hover {
-  div.company_name a {
-    color: none !important;
-    border-bottom: none !important;
-  }
-}
+//   div.company_name a {
+//     // color: #26AE61 ;
+//     border-bottom: 1px solid black ;
+//   }
+// }
+
+// div.content:hover .if div .job:hover {
+//   div.company_name a {
+//     color: none ;
+//     border-bottom: none ;
+//   }
+// }

@@ -36,7 +36,7 @@ const Blog = () => {
 
     return (
         <>
-        <Nav/>
+        {/* <Nav/> */}
             {show && <BlogForm handleShow={handleShow} />}
             <div className="blog">
                 <h1 className="blog-title">Blog tìm việc làm</h1>
@@ -62,7 +62,7 @@ const Blog = () => {
                     
                 </div>
             </div>
-            <Footer/>
+            {/* <Footer/> */}
         </>
     );
 };

@@ -101,6 +101,12 @@ export const UserChangePassword=async(id,password)=>{
     await axios.put(`http://127.0.0.1:8000/api/user/change-password/${id}`,password)
   )
 }
+
+export const companyChangePassword=async(id,password)=>{
+  return (
+    await axios.put(`http://127.0.0.1:8000/api/company/change-password/${id}`,password)
+  )
+}
 //Application
 
 export const getTokenUser = async (token)=>{

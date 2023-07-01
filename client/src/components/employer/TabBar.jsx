@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import {  Button } from "antd";
 import { getTokenCompany } from '../../api/Api';
 
 
-const TabBar = ({ handleInfor, handleLogout, handleApply, handleJob }) => {
+const TabBar = ({ handleInfor, handleLogout, handleApply, handleJob, handelCompanyChangePassword }) => {
   const [company, setCompany] = useState({});
   const token = JSON.parse(localStorage.getItem('login'));
 
@@ -37,17 +37,22 @@ const TabBar = ({ handleInfor, handleLogout, handleApply, handleJob }) => {
               </Link>
             </li>
             <li>
-              <Link className="color" onClick={handleApply}>
+              <Link className="color" to="">
                 Hồ sơ ứng tuyển
               </Link>
             </li>
             <li>
-              <Link className="color" onClick={handleJob}>
+              <Link className="color" to="jobs">
                 Công việc
               </Link>
             </li>
             <li>
-              <Link className="color" onClick={handleInfor}>
+              <Link className="color" to="changePassword">
+                Đổi mật khẩu
+              </Link>
+            </li>
+            <li>
+              <Link className="color" to="updateInformation">
                 Cập nhật thông tin
               </Link>
             </li>
@@ -58,6 +63,7 @@ const TabBar = ({ handleInfor, handleLogout, handleApply, handleJob }) => {
         </Button>
       </div>
     </div>
+   
   );
 };
 

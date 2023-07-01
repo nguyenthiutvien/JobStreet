@@ -101,7 +101,7 @@ const Application = () => {
                       }).then((result) => {
                         if (result.isConfirmed) {
                           // Người dùng đã xác nhận, gửi yêu cầu cập nhật trạng thái
-                          handleStatusChange(record.id, 'Đã xem');
+                          handleStatusChange(record.id, 'Đồng ý');
                         }
                       });
                       console.log("hgwhdg",record.status)

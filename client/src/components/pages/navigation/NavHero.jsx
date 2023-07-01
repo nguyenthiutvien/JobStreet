@@ -1,9 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  faBuilding,faClock,faLocationDot } from "@fortawesome/free-solid-svg-icons";
-
-
-
+import "../../../_style/pages/navHero.scss"
 const NavHero = ({ hero, job }) => {
   return (
     <div className="hero_section">

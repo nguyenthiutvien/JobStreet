@@ -31,9 +31,9 @@ const AllJobs = () => {
       {(loader && <Loader />) || (
         
         <>
-          <NavBar hero="jobs" cmp="jobs" />
+          {/* <NavBar hero="jobs" cmp="jobs" /> */}
           <JobItemSection jobs={jobs} />
-          <Footer />
+          {/* <Footer /> */}
         </>
       )}
     </>

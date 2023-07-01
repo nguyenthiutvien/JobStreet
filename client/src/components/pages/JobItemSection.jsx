@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import JobItem from '../jobs/JobItem';
 import '../../_style/components/Search.scss';
-
+import "../../_style/components/_featuredjob.scss"
 const JobItemSection = ({ jobs }) => {
   const [search, setSearch] = useState([]);
   useEffect(() => {
@@ -10,7 +10,7 @@ const JobItemSection = ({ jobs }) => {
 
   const handleSearch = () => {
     const allJobs = jobs.map((item) => ({
-      id: item.id,
+      id: item.company.id,
       position: item.position,
       salary: item.salary,
       company: item.company.company_name,
@@ -26,6 +26,7 @@ const JobItemSection = ({ jobs }) => {
     const fullStackJobs = jobs
       .filter((item) => item.position == 'FullStack')
       .map((item) => ({
+        id: item.company.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -40,6 +41,7 @@ const JobItemSection = ({ jobs }) => {
     const Design = jobs
       .filter((item) => item.position == 'Design')
       .map((item) => ({
+        id: item.company.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -54,6 +56,7 @@ const JobItemSection = ({ jobs }) => {
     const JavaDev = jobs
       .filter((item) => item.position == 'Java Dev')
       .map((item) => ({
+        id: item.company.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -68,6 +71,7 @@ const JobItemSection = ({ jobs }) => {
     const ReactJSDev = jobs
       .filter((item) => item.position == 'ReactJS Dev')
       .map((item) => ({
+        id: item.company.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -82,6 +86,7 @@ const JobItemSection = ({ jobs }) => {
     const LaravelDev = jobs
       .filter((item) => item.position == 'Laravel Dev')
       .map((item) => ({
+        id: item.company.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -97,6 +102,7 @@ const JobItemSection = ({ jobs }) => {
     const Fulltime = jobs
       .filter((item) => item.type === 'Full-time')
       .map((item) => ({
+        id: item.company.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -112,6 +118,7 @@ const JobItemSection = ({ jobs }) => {
     const Parttime = jobs
       .filter((item) => item.type === 'Part-time')
       .map((item) => ({
+        id: item.company.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -126,6 +133,7 @@ const JobItemSection = ({ jobs }) => {
     const DaNang = jobs
       .filter((item) => item.company.address === 'Đà Nẵng')
       .map((item) => ({
+        id: item.company.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -140,6 +148,7 @@ const JobItemSection = ({ jobs }) => {
     const HoChiMinh = jobs
       .filter((item) => item.company.address === 'Hồ Chí Minh')
       .map((item) => ({
+        id: item.company.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -154,6 +163,7 @@ const JobItemSection = ({ jobs }) => {
     const HaNoi = jobs
       .filter((item) => item.company.address === 'Hà Nội')
       .map((item) => ({
+        id: item.company.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -173,49 +183,49 @@ const JobItemSection = ({ jobs }) => {
               <div className="row">
                 <h5>Tìm theo vị trí công việc</h5>
                 <label>
-                  <input className="checkbox" type="checkbox" value="Design" onClick={handleDesign}/>
+                  <input className="checkbox" type="radio" value="Design" name='radio' onClick={handleDesign}/>
                   <span className="textSearch">Thiết kế</span>
                 </label>
                 <label>
-                  <input className="checkbox" type="checkbox" value="Java Dev" onClick={handleJavaDev}/>
+                  <input className="checkbox" type="radio" value="Java Dev" name='radio' onClick={handleJavaDev}/>
                   <span className="textSearch">Java Dev</span>
                 </label>
                 <label>
-                  <input className="checkbox" type="checkbox" value="FullStack" onClick={handleFullStack} />
+                  <input className="checkbox" type="radio" value="FullStack" name='radio' onClick={handleFullStack} />
                   <span className="textSearch">FullStack</span>
                 </label>
                 <label>
-                  <input className="checkbox" type="checkbox" value="ReactJS Dev" onClick={handleReactJSDev} />
+                  <input className="checkbox" type="radio" value="ReactJS Dev" name='radio' onClick={handleReactJSDev} />
                   <span className="textSearch">ReactJS Dev</span>
                 </label>
                 <label>
-                  <input className="checkbox" type="checkbox" value="Laravel Dev" onClick={handleLaravelDev}/>
+                  <input className="checkbox" type="radio" value="Laravel Dev" name='radio' onClick={handleLaravelDev}/>
                   <span className="textSearch">Laravel Dev</span>
                 </label>
               </div>
               <div className="row">
                 <h5>Tìm theo loại</h5>
                 <label>
-                  <input className="checkbox" type="checkbox" value="Full-time"  onClick={handleFulltime}/>
+                  <input className="checkbox" type="radio" value="Full-time" name='radio'  onClick={handleFulltime}/>
                   <span className="textSearch">Full-time</span>
                 </label>
                 <label>
-                  <input className="checkbox" type="checkbox" value="Part-time" onClick={handleParttime}/>
+                  <input className="checkbox" type="radio" value="Part-time" name='radio' onClick={handleParttime}/>
                   <span className="textSearch">Part-time</span>
                 </label>
               </div>
               <div className="row">
                 <h5>Tìm theo địa chỉ</h5>
                 <label>
-                  <input className="checkbox" type="checkbox" value="Đà Nẵng" onClick={handleDaNang}/>
+                  <input className="checkbox" type="radio" value="Đà Nẵng" name='radio' onClick={handleDaNang}/>
                   <span className="textSearch">Đà Nẵng</span>
                 </label>
                 <label>
-                  <input className="checkbox" type="checkbox" value="Hồ Chí Minh" onClick={handleHoChiMinh}/>
+                  <input className="checkbox" type="radio" value="Hồ Chí Minh" name='radio' onClick={handleHoChiMinh}/>
                   <span className="textSearch">Hồ Chí Minh</span>
                 </label>
                 <label>
-                  <input className="checkbox" type="checkbox" value="Hà Nội" onClick={handleHaNoi}/>
+                  <input className="checkbox" type="radio" value="Hà Nội" name='radio' onClick={handleHaNoi}/>
                   <span className="textSearch">Hà Nội</span>
                 </label>
               </div>
@@ -242,9 +252,6 @@ const JobItemSection = ({ jobs }) => {
                       time_close={item.time_close}
                     />
                   ))}
-              </div>
-              <div className="load-data">
-                <button className="button">Xem thêm</button>
               </div>
             </div>
           </div>
