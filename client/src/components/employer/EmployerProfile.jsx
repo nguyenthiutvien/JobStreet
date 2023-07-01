@@ -160,7 +160,7 @@ const Apply = () => {
     };
 
     fetchData();
-  }, [token.token]);
+  }, []);
 
 
   // console.log(apply)
