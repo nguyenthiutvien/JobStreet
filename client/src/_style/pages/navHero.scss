@@ -1,12 +1,16 @@
 .hero_section {
+  margin-left: 50px;
     .hero-data {
+      padding: 100px;
       display: flex;
       align-items: center;
-  
       .left {
         display: flex;
+        margin-top: 20px;
         align-items: center;
-  
+        box-shadow: 1px 2px 2px 1px #302f2f;
+        height: 200px;
+        line-height: 30px;
         .icon {
           margin-right: 10px;
           margin-left: 20px;
@@ -65,10 +69,20 @@
       }
   
       .right {
-        margin-right: 290px;
-     
+        margin-left: 200px;
+        width: 150px;
+        height: 100px;
+        border-radius: 8px;
+        background: #26AE61;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
         .amount {
-           
+          margin-top: 15px;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+           color: #FFFF;
           h2 {
             font-size: 18px; /* Kích thước lương hàng tháng */
           }

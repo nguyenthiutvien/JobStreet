@@ -1,9 +1,9 @@
 .featured_job {
     padding: 2rem 0;
-
-
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     .container {
-        @include container;
+        // @include container;
 
         .featured_job-info {
             margin-top: 6rem;
@@ -22,16 +22,16 @@
             grid-template-columns: repeat(3, 1fr);
             grid-gap: 1rem;
      
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-gap: 2rem;
-            margin-left: 100px;
+            // display: grid;
+            // grid-template-columns: repeat(3, 1fr);
+            // grid-gap: 2rem;
+            // margin-left: 100px;
 
             &__card {
-                background: $color-white;
-                @include flexCenter;
-                @include card;
-                box-shadow: $box-shadow;
+                background: #ffffff;
+                // @include flexCenter;
+                // @include card;
+                // box-shadow: $box-shadow;
 
                 &--left {
                     width: 15%;
@@ -60,8 +60,8 @@
                         border-radius: 50px;
                         cursor: pointer;
                         text-transform: uppercase;
-                        background: $color-green;
-                        color: $color-white-light;
+                        // background: $color-green;
+                        // color: $color-white-light;
                         font-weight: normal;
                         transition: all .3s ease-in-out;
                     }
@@ -69,9 +69,9 @@
                 }
 
                 &:hover {
-                    box-shadow: $boxshadow-card-hover;
+                    // box-shadow: $boxshadow-card-hover;
                     transition: box-shadow .6 linear;
-                    border-left: .3rem solid $color-green;
+                    border-left: .3rem solid #6c757d;
                     cursor: pointer
                 }
             }

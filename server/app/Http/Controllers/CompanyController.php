@@ -5,7 +5,7 @@ use Illuminate\Support\Str;
 use App\Mail\ForgotPassword;
 use App\Mail\RegisterEmail;
 use App\Models\Company;
-
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Application;
 use Illuminate\Http\Request;
@@ -224,6 +224,11 @@ public function getCompany(Request $request, $companyId)
         // $request->validate([
         //     "password"=>"required|string|min:8"
         // ]);
+      public function update(Request $request,$email)
+     {
+        $request->validate([
+            "password"=>"required|string|min:8"
+        ]);
 
         // $company=Company::where("email",$email)->first();
 
@@ -238,6 +243,17 @@ public function getCompany(Request $request, $companyId)
         //     "Thành công"
         // );
      // }
+        // if (!$company) {
+        //     return response()->json(
+        //         "Công ty không tồn tại"
+        //     );
+        // };
+        // $company->password=bcrypt($request->password);
+        // $company->save();
+        // return response()->json(
+        //     "Thành công"
+        // );
+     }
 
     public function updateCompanyInfo(Request $request, $email)
     {
@@ -257,7 +273,6 @@ public function getCompany(Request $request, $companyId)
             return response()->json(
                 "Công ty không tồn tại"
             );
-
 
 
         $id = $request->id;
@@ -396,7 +411,60 @@ public function getdatauser()
     return response()->json($jobs);
 }
 
+  // ---------------------------------------------------------------
+  public function getJobByCompany($token)
+  {
+     
+      $jobs = DB::table('jobs')
+          ->select('jobs.id', 'jobs.cat_id','jobs.position', 'jobs.status', 'jobs.description','jobs.salary', 'jobs.type','jobs.created_at', 'jobs.close_day')
+          ->join('companies', 'companies.id', '=', 'jobs.company_id')
+          ->where('companies.token', $token)
+          ->get();
+  
+      return response()->json($jobs);
+  }
+ 
+  public function CompanyChangePassword(Request $request){
+    $id=$request->id;
+    $password=$request->password;
+    $company=Company::where("id",$id)->first();
+    if(!$company){
+        return response()->json(
+            [
+                "status"=>400,
+                "message" => "Không thể đổi mật khẩu"
+            ]
+         
+        );
+    }
+    $company->password =Hash::make($password);
+    $company->save();
+    return response()->json(
+        [
+            "status"=>200,
+            "company"=>$password
+        ]
+    );
+    
+}
 
+
+public function comparePassword(Request $request){
+    $id=$request->id;
+    $password=$request->password;
+    $company=Company::where("id",$id)->first();
+    if(!Hash::check($password,$company->password) ){
+        return response()->json(
+            [ "status"=>400,
+                "message"=>"Mật khẩu sai"]
+        );
+    }
+    return response()->json(
+        [ 
+        "status"=>200,
+        ]
+        );
+}
 
 }
 

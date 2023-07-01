@@ -50,4 +50,22 @@ class Company extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Job::class);
     }
+
+    public function getApplicationsByCompany(Request $request)
+    {
+        $companyId = $request->input('company_id');
+
+        // Lấy danh sách các công việc của công ty
+        $jobs = Job::where('company_id', $companyId)->get();
+
+        // Lấy danh sách ứng dụng từ các công việc
+        $applications = [];
+
+        foreach ($jobs as $job) {
+            $jobApplications = $job->applications()->get();
+            $applications = array_merge($applications, $jobApplications->toArray());
+        }
+
+        return response()->json(['applications' => $applications], 200);
+    }
 }

@@ -3,6 +3,7 @@ import { userComment,getUserComment } from '../../api/Api';
 import Swal from 'sweetalert2';
 export const BlogComment = ({post,handelHiden}) => {
     const [commentBlog,setCommentBlog]=useState([])
+    const login=JSON.parse(localStorage.getItem("login"))
     const handelComment=async(e)=>{
         e.preventDefault()
         const tokens=JSON.parse(localStorage.getItem("login"))
@@ -33,6 +34,23 @@ export const BlogComment = ({post,handelHiden}) => {
     },[]
     )
     
+    const handelLogin=(e)=>{
+        e.preventDefault()
+        Swal.fire({
+            title:"Đăng nhập",
+            text:"Vui lòng đăng nhập trước khi bình luận",
+            icon:"warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            cancelButtonText: "Không",
+            confirmButtonText: "Đăng nhập",
+        }).then((result)=>{
+            if(result.isConfirmed){
+            navigate("/loginUser")
+            }
+        })
+    }
     
   
   return (
@@ -43,7 +61,10 @@ export const BlogComment = ({post,handelHiden}) => {
                         <textarea className="comment" name="content" type="text" placeholder="Your Comment"></textarea>
                         <input type="hidden" name="post_id" value={post.id} />
                         <div className='d-flex'>
-                        <button className="btn btn-success" type="submit">Bình luận</button>
+                        {login?
+                        (<button className="btn btn-success" type="submit">Bình luận</button>):
+                        (<button className="btn btn-success" onClick={handelLogin} type="button">Bình luận</button>)}
+                        
                         <button className="btn btn-danger ml-4" onClick={()=>handelHiden(false)} type="button">Hủy</button>
                         </div>
                         </div>

@@ -1,72 +1,94 @@
+.background-image {
+    background-image: url('https://images.pexels.com/photos/2330137/pexels-photo-2330137.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-size: cover;
+    // background-position: center;
+
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.container--body {
+    display: flex;
+    justify-content: center;   
+    height: 100vh;
+   
+    /* Adjust the height as needed */
+}
 .container--register {
-    margin-left: 340px;
+    display: flex;       
+    flex-direction: column;
     width: 940px;
-    height: 600px;
-    background: #E0ECDE;
+    height: 670px;
+    text-align: center;
+    background: #33333399;
     border-radius: 8px;
-    margin-top: 100px;
-    box-shadow: 1px 1px 2px rgb(68, 66, 66);
+    margin-top: 40px;
+    box-shadow: 2px 1px 1px 2px rgb(77, 77, 77);
 }
 
 .register--title {
-    padding-top: 20px;
     text-align: center;
     justify-content: center;
     align-items: center;
-    color: #0ac9f4;
+    color:white;
+    margin-top: 40px;
+    
 }
 
 .text--area{
     display: flex;
     justify-self: center;
     align-items: center;
-    margin-left: 50px;
+    margin-left: 74px;
     .form--area{
         width: 840px;
     }
 }
-.or--option {
-    margin-top: 20px;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 30px;
-}
 
 .form--register {
-    margin-top: 20px;
+    margin-top: 30px;
     margin-left: 50px;
     display: grid;
     grid-template-columns: 50% 50%;
 
     .form--name {
+        
         width: 400px;
-        height: 50px;
+        height: 40px;
         border-radius: 8px;
         outline: none;
         padding-left: 10px;
+        
         &::placeholder{
             font-size:14px;
             padding-left: 10px;
         }
     }
+    
 
 }
 
 .register {
-    margin-top: 15px;
+    margin-top: 30px;
     width: 410px;
     margin-left: 270px;
-    background: #26AE61;
+    background: green;
+    color: #fff;
     height: 50px;
     border-radius: 50px;
     border: none;
     text-transform: uppercase;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    h5{
+        margin-top: 10px;
+    }   
     &:hover{
         cursor: pointer;
-        b{
-            color: #FFFFFF;
-        }
     }
 }
 
@@ -74,11 +96,13 @@
     text-align: center;
     align-items: center;
     justify-content: center;
+    p{
+        color: #fff;
+    }
+
     .link--to {
-        color: #04616b;
-    }&:hover .link--to{
-      color: #26AE61;
-      border-bottom: 1px solid;
+        color:deepskyblue;
+        
     }
 }
 .password--eyes{

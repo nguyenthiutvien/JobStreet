@@ -16,7 +16,8 @@ const Jobs = ({ latest }) => {
               <JobItem
                  key={i}
                 id={job.id}
-                type={job.type}   
+                type={job.type}  
+              
               />
             ))}
         </div>

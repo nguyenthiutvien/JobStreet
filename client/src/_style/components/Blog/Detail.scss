@@ -1,92 +1,308 @@
-// .container{
-//     margin-top: 70px;
-//    border-radius: 5px;
-//    box-shadow: 0px 1px 1px 2px;
-//    height: 200px;
-// }
-// trang detail-----------------------------------------
-.row_content{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    margin-top: 70px;
-    margin-left: 90px;
-}
-.card_content{
-    width: 100px;
-    height: auto;
-    box-shadow:2px 2px 4px 2px ;
-    border-radius: 10px;
-}
-.card_content{
-    transition: color 1s ease;
-}
-.card_content:hover{
-    color: rgb(0, 255, 72)
-}
-.container_detail{
-    margin-top: 70px;
-    margin-left: 90px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.card-img-top-img{
-    width: 50%;
-    height: 50%;
+.container_detail {
+  // margin-top: 70px ;
+  top: 0px;
+  left: 0px;
+  height: 200px;
+  // background: ;
 }
-.gioithieu h5{
-    color: blue;
-}
-.job_chitiet{
-    color: blue;
-}
-.ungtuyen{
-    margin-left: 50px;
-    margin-top: 80px;
-}
-.company_detail{
-    box-shadow: 1px 1px 1px 1px;
-    height: 330px;
-    padding-top: 30px;
-    border-radius: 10px;
-}
-.company_detail:hover{
-    box-shadow: 2px 2px 12px 2px;
-  
-  
-}
-.row-vieclam{
-    width: 400px;
-   height: 100px;
-   margin-top: 30px;
-  
-   padding-top: 10px;
-   padding-left: 10px;
-}
-div.row-vieclam:hover{
-    box-shadow: 1px 1px 1px 2px;
-    border-radius: 10px;
+.company_detail {
+  background: #26ae61;
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr;
+  .profile-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .card-img-top-img {
+      padding: 10px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .card-title {
+      margin-top: -7px;
+      padding-left: 10px;
+      color: #ffff;
+    }
+  }
+  .col-md-6{
+    padding-top: 40px;
+    .card-text{
+      padding: 8px;
+      color: #FFFFFF;
+      span{
+        margin-bottom: 10px;
+        h5{
+          font-size: 18px;
+          color: #FFFFFF;
+        }
+      }
+    }
+  }
+
 }
 
-.job_position{
- font-size: 18px;
-   font-weight: bold;
+.company-information {
+  height: 100vh;
+  padding: 40px 36px;
+  h3 {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  h5 {
+    font-size: 20px;
+  }
+  div {
+    margin: 24px 0;
+  }
+  p.card-text {
+    max-width: 750px;
+    font-size: 18px;
+  }
+  .job {
+    max-width: 450px;
+    height: 100px;
+    padding-top: 8px;
+    padding-left: 24px;
+    .row-vieclam {
+      padding: 10px 0px 20px 8px;
+      .job_position {
+        a {
+          text-decoration: none;
+          font-size: 18px;
+          color: #0d6efd;
+          font-weight: bold;
+        }
+      }
+      .card-texts {
+        margin: 10px 0;
+      }
+      &:hover {
+        background: #ccc;
+        border-radius: 4px;
+        box-shadow: 0 0 6px 3px rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+
+  .btn {
+    margin: 48px 0;
+    border: none;
+    border-radius: 6px;
+    background: #ffc107;
+    width: 170px;
+    height: 38px;
+    line-height: 38px;
+    display: flex;
+    justify-content: center;
+    a {
+      text-decoration: none;
+      font-size: 16px;
+    color: #0d6efd;
+      
+    }
+  }
 }
-// .row-vieclam{
-//    animation: blink 2s infinite;
+
+// .row_content {
+//   display: grid ;
+//   grid-template-columns: 1fr 1fr 1fr ;
+//   margin-top: 70px ;
+//   margin-left: 90px ;
 // }
-// @keyframes blink {
-//     0% {
-//       opacity: 1;
-//     }
-//     50% {
-//       opacity: 0;
-//     }
-//     100% {
-//       opacity: 1;
-//     }
+
+// .card_content:hover {
+//   transition: background-color 0.3s, border-color 0.3s ;
+//   background-color: #e1e1e1 ;
+//   box-shadow: 1px 1px 12px 1px ;
+// }
+
+// .card_content {
+//   width: 150px ;
+//   height: 290px ;
+//   box-shadow: 0px 0px 1px 1px ;
+//   border-radius: 5px ;
+//   align-items: center ;
+// }
+
+// .card_content {
+//   transition: color 1s ease ;
+// }
+
+// .container_detail {
+//   margin-top: 70px ;
+//   margin-left: 90px ;
+// }
+
+// .card-img-top-img {
+//   width: 180px ;
+//   height: 180px ;
+//   border-radius: 50px ;
+//   left: 30px ;
+// }
+
+// .ungtuyen {
+//   margin-left: 50px ;
+//   margin-top: 80px ;
+// }
+
+// .company_detail {
+//   height: 330px ;
+//   padding-top: 30px ;
+//   border-radius: 9px ;
+//   margin-left: -40px ;
+//   background-color: #26AE61 ;
+//   color: white ;
+
+//   img {
+//     margin-left: 30px ;
+//     box-sizing: 30px ;
+//     border-radius: 100px ;
 //   }
-.row-vieclam{
-    transition: color 2s ease;
-}
-.row-vieclam:hover{
-    color: rgb(0, 255, 123);
-}
+// }
+
+// .company_detail:hover {
+//   box-shadow: 1px 1px 14px 1px ;
+//   background-color: #26AE61 ;
+// }
+
+// .row-vieclam {
+//   width: 400px ;
+//   height: 100px ;
+//   margin-top: 30px ;
+//   margin-left: 60px ;
+//   padding-top: 10px ;
+//   padding-left: 10px ;
+// }
+
+// div.row-vieclam:hover {
+//   box-shadow: 1px 1px 12px 1px ;
+//   border-radius: 5px ;
+//   background-color: #e3dede ;
+// }
+
+// .job_position {
+//   font-size: 18px ;
+//   font-weight: bold ;
+// }
+
+// .row-vieclam {
+//   transition: color 2s ease ;
+// }
+
+// .row-vieclam:hover {
+//   box-shadow: 1px 1px 12px 1px ;
+// }
+
+// .card-text {
+//   text-align: center ;
+//   margin-left: 40px ;
+//   text-align: start ;
+
+//   h5 {
+//     font-size: 15px ;
+//   }
+// }
+
+// .context {
+//   display: flex ;
+//   margin-top: 40px ;
+//   margin-left: 30px ;
+
+//   h5 {
+//     row-gap: 10px ;
+//     font-size: 20px ;
+//     margin-top: 15px ;
+//     margin-left: 10px ;
+//   }
+// }
+
+// div.row_gioithieu {
+//   margin-left: -70px ;
+
+//   h5 {
+//     color: black ;
+//   }
+// }
+
+// p.card-texts {
+//   margin-left: 30px ;
+// }
+
+// .row-vieclam {
+//   padding-left: 70px ;
+// }
+
+// .content_tvl {
+//   display: grid ;
+//   grid-template-columns: 1fr 1fr 1fr ;
+//   margin-left: 80px ;
+//   margin-top: 30px ;
+// }
+
+// .item_tvl {
+//   width: 350px ;
+//   height: 260px ;
+//   border: 1px solid rgb(210, 209, 209) ;
+//   border-radius: 5px ;
+// }
+
+// .item_tvl:hover {
+//   box-shadow: 1px 0px 5px 0px ;
+//   background-color: #f0f0f0 ;
+//   font-family: 'Courier New', Courier, monospace ;
+//   width: 360px ;
+//   height: 270px ;
+//   cursor: pointer ;
+//   transition: all 0.3s ease-in-out ;
+//   font-weight: bolder ;
+// }
+
+// .text_tvl {
+//   text-align: center ;
+//   margin-left: 40px ;
+//   text-align: start ;
+//   font-size: 18px ;
+// }
+
+// .text_tvl_type {
+//   text-align: center ;
+//   border-radius: 20px ;
+//   margin-left: 110px ;
+//   text-align: start ;
+//   font-family: Calibri ;
+//   width: 116px ;
+//   height: 50px ;
+//   padding-left: 12px ;
+//   padding-top: 10px ;
+//   background-color: #ffd8d2 ;
+
+//   h4 {
+//     color: #ff7b66 ;
+//   }
+// }
+
+// .text_tvl_type:hover {
+//   h4 {
+//     color: #0d6efd ;
+//   }
+// }
+
+// div.context h5:hover {
+//   a {
+//     color: #26ae61 ;
+//     border-bottom: 1px solid black ;
+//   }
+
+// }
+// h5.text_tvl {
+//   font-size: 16px ;
+// }

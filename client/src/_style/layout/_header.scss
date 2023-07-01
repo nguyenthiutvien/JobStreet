@@ -1,11 +1,33 @@
 .home-header {
-    background: $color-white;
+    background: #FFFFFF;
 
+   .home-header-container-nav{
+    background: #6c757d;
+    box-shadow: 1px 2px 1px 2px #6c757d;
+    position: fixed;
+    width: 100%;
+    z-index: 3;
+    .home-header-container-nav-right{
+        margin-left: 150px;
+        
+        a{
+            color: #FFFFFF;
+            &:hover{
+                color: #26AE61;
+            }
+        }
+        
+    }
+   }
     &-container {
-        @include container;
+        // @include container;
 
         &-nav {
-            @include flexBetween;
+            // @include flexBetween;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align:center ;
 
             &-left {
                 &__branding {
@@ -17,22 +39,22 @@
 
             &-right {
                 a {
-                    color: $color-secondary;
+                    color: #6c757d;
                     text-decoration: none;
                     margin-right: 2rem;
                     text-transform: uppercase;
                     font-weight: bold;
 
                     &:hover {
-                        color: $color-green;
+                        color: #26AE61;;
                     }
                 }
 
                 &--active-menu {
-                    color: $color-green;
+                    color: #26AE61;;
                     font-size: 1rem;
                     padding: 5px;
-                    border-bottom: 2px solid $color-green;
+                    border-bottom: 2px solid #26AE61;;
                 }
 
 
@@ -42,7 +64,7 @@
         &-hero {
             width: 100%;
             padding-top: 3rem;
-            @include flexBetween;
+            // @include flexBetween;
 
             &__left {
                 width: 55%;
@@ -54,17 +76,17 @@
                 &-search {
                     width: 40%;
                     margin-top: 2rem;
-                    @include flexCenter;
+                    // @include flexCenter;
 
                     &__form {
-                        @include formControl;
+                        // @include formControl;
 
                         &--search-btn {
                             margin-left: 0.6rem;
 
                             i {
                                 font-size: 2rem;
-                                color: $color-green;
+                                color: #26AE61;;
                                 cursor: pointer;
                             }
                         }

@@ -1,10 +1,9 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  faBuilding,faClock,faLocationDot } from "@fortawesome/free-solid-svg-icons";
-
-
-
-const NavHero = ({ hero, job }) => {
+import "../../../_style/pages/navHero.scss"
+const NavHero = ({hero,job}) => {
+  console.log(job.company.logo)
   return (
     <div className="hero_section">
       <>
@@ -17,7 +16,7 @@ const NavHero = ({ hero, job }) => {
               <div className="hero-data">
                 <div className="left">
                   <div className="icon">
-                    <img src={job.company.logo} alt="icon" />
+                    <img src={`http://127.0.0.1:8000/storage/${job.company.logo}`} alt="icon" />
                   </div>
                   <div className="details">
                     <h1>{job.position}</h1>
