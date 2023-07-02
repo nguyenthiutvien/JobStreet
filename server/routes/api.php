@@ -168,3 +168,5 @@ Route::get('/getstatus', [JobController::class, 'getStatus']);
 
 Route::put('/selectstatus/{id}',[JobController::class,'Updatestatus']);
 Route::get('/search', [SearchController::class, 'search']);
+
+Route::get('/countenduser', [UserController::class, 'countEndUser']);

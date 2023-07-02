@@ -1,16 +1,20 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee, faUser, faEnvelopeOpenText, faClipboardList } from '@fortawesome/free-solid-svg-icons';
 import { Table, Pagination } from "antd";
 import { Link } from "react-router-dom";
 
 function Companyad() {
   const [company, setCompany] = useState([]);
+  const [endUser,setEndUser]=useState([])
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 7;
 
   useEffect(() => {
     getData();
+    getEndUser()
   }, []);
 
   const handlePageChange = (page) => {
@@ -26,6 +30,10 @@ function Companyad() {
     }
   };
 
+  const getEndUser = async () => {
+    const data = await axios.get("http://127.0.0.1:8000/api/countenduser");
+    setEndUser(data.data)
+  }
   const getImageUrl = (fileName) => {
     const baseUrl = "http://127.0.0.1:8000/storage/";
     return `${baseUrl}${fileName}`;
@@ -68,13 +76,22 @@ function Companyad() {
 
   return (
     <div className="table-container">
-      <Table dataSource={paginatedData} columns={columns} />
-      <Pagination
-        current={currentPage}
-        pageSize={pageSize}
-        total={company.length}
-        onChange={handlePageChange}
-      />
+      <div className="card">
+        <div className="card-user"><FontAwesomeIcon icon={faCoffee} />{ endUser.company}</div>
+        <div className="card-company"><FontAwesomeIcon icon={faUser} />{endUser.user} </div>
+        <div className="card-apply"> <FontAwesomeIcon icon={faEnvelopeOpenText} /></div>
+        <div className="card-candidate"><FontAwesomeIcon icon={faClipboardList} /></div>
+
+      </div> <br /><br />
+      <div>
+        <Table className="card-table" dataSource={paginatedData} columns={columns} />
+        <Pagination
+          current={currentPage}
+          pageSize={pageSize}
+          total={company.length}
+          onChange={handlePageChange}
+        />
+      </div>
     </div>
   );
 }

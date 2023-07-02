@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { Table,Pagination } from "antd";
+import { Table, Pagination } from "antd";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee, faUser, faEnvelopeOpenText, faClipboardList } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 function Userad(){
     const [users, setUsers]= useState([]);
@@ -56,14 +58,22 @@ function Userad(){
   );
     return (
         <div  className="table-container">
-             
-            <Table dataSource={paginatedData} columns={columns}></Table>
-            <Pagination
-                current={currentPage}
-                pageSize={pageSize}
-                total={users.length}
-                onChange={handlePageChange}
-            />
+            <div className="card">
+                <div className="card-user"><FontAwesomeIcon icon={faCoffee} /></div>
+                <div className="card-company"><FontAwesomeIcon icon={faUser} /> </div>
+                <div className="card-apply"> <FontAwesomeIcon icon={faEnvelopeOpenText} /></div>
+                <div className="card-candidate"><FontAwesomeIcon icon={faClipboardList} /></div>
+
+            </div> <br /><br />
+            <div>
+                <Table className="card-table" dataSource={paginatedData} columns={columns}></Table>
+                <Pagination
+                    current={currentPage}
+                    pageSize={pageSize}
+                    total={users.length}
+                    onChange={handlePageChange}
+                />
+            </div>
         </div>
       );
 }

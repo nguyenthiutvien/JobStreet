@@ -1,6 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Table,Pagination } from "antd";
+import { Table, Pagination } from "antd";
+import "../../_style/admin/admin.scss"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee, faUser, faEnvelopeOpenText, faClipboardList } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 function Inforusers(){
     const [inforuser,setInforuser]=useState([]);
@@ -52,14 +55,22 @@ function Inforusers(){
     return(
 
         <div className="information-content">
-           
-            <Table dataSource={paginatedData} columns={columns}></Table>
-            <Pagination
-                current={currentPage}
-                pageSize={pageSize}
-                total={inforuser.length}
-                onChange={handlePageChange}
-            />
+            <div className="card">
+                <div className="card-user"><FontAwesomeIcon icon={faCoffee} /></div>
+                <div className="card-company"><FontAwesomeIcon icon={faUser} /> </div>
+                <div className="card-apply"> <FontAwesomeIcon icon={faEnvelopeOpenText} /></div>
+                <div className="card-candidate"><FontAwesomeIcon icon={faClipboardList} /></div>
+
+            </div> <br /><br />
+            <div>
+                <Table className="card-table" dataSource={paginatedData} columns={columns}></Table>
+                <Pagination
+                    current={currentPage}
+                    pageSize={pageSize}
+                    total={inforuser.length}
+                    onChange={handlePageChange}
+                />
+            </div>
         </div>
     )
 }

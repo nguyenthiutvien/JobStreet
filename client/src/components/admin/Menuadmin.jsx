@@ -8,17 +8,18 @@ function Menuadmin({handelCompany,handelUser,handelInformation,handelbrowse}) {
         <div className='left-admin'>
             
            
-            <img src="https://image.lag.vn/upload/news/20/11/17/latest_LHPC.jpg" alt="" /> 
-           <p><b>Admin </b></p> 
+            <img src="https://image.lag.vn/upload/news/20/11/17/latest_LHPC.jpg" alt="" /> <br />
+        <p><h2>Admin </h2></p> 
         </div><br></br><br></br>
-        <div className='leftadmin'>
-          <ul className='left-conten'>
-          <li><Link  onClick={handelbrowse}>Duyệt thông tin</Link></li><br></br>
-            <li><Link onClick={handelCompany}>Công ty</Link></li><br></br>
-            <li><Link onClick={handelUser}>Ứng viên</Link></li><br></br>
-            <li><Link  onClick={handelInformation}>Đơn ứng tuyển</Link></li><br></br>
-            
-          </ul>
+      <div className='leftadmin'>
+        <ul className='left-content'>
+          <li><Link onClick={handelbrowse}><b>Duyệt thông tin</b></Link></li>
+          <li><Link onClick={handelCompany}><b>Công ty</b></Link></li>
+          <li><Link onClick={handelUser}><b>Ứng viên</b></Link></li>
+          <li><Link onClick={handelInformation}><b>Đơn ứng tuyển</b></Link></li>
+        </ul>
+      
+        <button className='login-button'>Đăng Xuất</button>
         </div>
     </div>
 
