@@ -172,3 +172,4 @@ Route::get('/search', [SearchController::class, 'search']);
 Route::put('/accept-applications/{user_id}/{job_id}', [ApplicationController::class, 'AcceptApplication']);
 
 Route::delete('/reject-applications/{user_id}/{job_id}', [ApplicationController::class, 'RejectApplication']);
+Route::get('/countenduser', [UserController::class, 'countEndUser']);

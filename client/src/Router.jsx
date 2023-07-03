@@ -94,7 +94,9 @@ export const Router = () => [
     {path:"entercodeEmployee", element:<EmployeeEnterCode/>},
     {path:"registerEmployee", element:<RegisterEmployee/>},
     {path:"navBar", element:<NavBar/>},
-    {path:"admin", element:<Admin/>},
+    { path: "admin", element: <Admin /> },
+    { path:"/employeePayment", element :< EmployeePayment />  },
+    
         // <Routes>
         //     <Route path="/userProfile" element={<UserProfile/>}></Route>
         //     <Route path="/employerProfile" element={<EmployerProfile/>}></Route>

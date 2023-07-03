@@ -309,7 +309,7 @@ export const RegisterEmployee = () => {
                                     hasFeedback
                                 >
                                     <Select className='form--name' placeholder='Địa chỉ của bạn' >
-                                        <Option value="Đã Nẵng">Đã Nẵng</Option>
+                                        <Option value="Đã Nẵng">Đà Nẵng</Option>
                                         <Option value="Hồ Chí Minh">Hồ Chí Minh</Option>
                                         <Option value="Hà Nội">Hà Nội</Option>
                                         <Option value="Quy Nhơn">Quy Nhơn</Option>
@@ -450,69 +450,71 @@ export const EmployeePayment = () => {
     }
 
     return (
-        <div className='container--payment--body'>
-            <div className="conatiner--payment">
-                <div className="payment--information">
-                    <div className="infor--title">
-                        <h2>Thông tin</h2>
-                    </div>
-                    <div className="infor--company">
-                        <div className="company--left">
-                            <div>
-                                <label htmlFor="">Tên công ty</label> <br />
-                                <input type="text" value={employee.company_name} readOnly /><br />
+        <div className="background-image">
+            <div className='container--payment--body'>
+                <div className="conatiner--payment">
+                    <div className="payment--information"> <br />
+                        <div className="infor--title">
+                            <h1>Thông tin</h1>
+                        </div> <br />
+                        <div className="infor--company">
+                            <div className="company--left">
+                                <div>
+                                    <label htmlFor=""><b>Tên công ty</b></label> <br />
+                                    <input type="text" value={employee.company_name} readOnly /><br />
+                                </div>
+                                <div>
+                                    <label htmlFor=""><b>Số điện thoại</b></label> <br />
+                                    <input type="number" value={employee.number_phone} readOnly /><br />
+                                </div>
                             </div>
-                            <div>
-                                <label htmlFor="">Số điện thoại</label> <br />
-                                <input type="number" value={employee.number_phone} readOnly /><br />
+                            <div className="company--right">
+                                <div>
+                                    <label htmlFor=""><b>Email </b></label> <br />
+                                    <input type="text" value={employee.email} readOnly /><br />
+                                </div>
+                                <div>
+                                    <label htmlFor=""><b>Địa chỉ</b></label> <br />
+                                    <input type="text" value={employee.address} readOnly /> <br />
+                                </div>
                             </div>
                         </div>
-                        <div className="company--right">
-                            <div>
-                                <label htmlFor="">Email </label> <br />
-                                <input type="text" value={employee.email} readOnly /><br />
-                            </div>
-                            <div>
-                                <label htmlFor="">Địa chỉ</label> <br />
-                                <input type="text" value={employee.address} readOnly /> <br />
-                            </div>
+                    </div>
+                    <div className="payment--confirm"><br />
+                        <div className="payment--title">
+                            <h1>Thanh Toán</h1><br />
+                            <p>Vui lòng thanh toán trước khi trở thành nhà tuyển dụng</p>
+                        </div> <br />
+                        <div className="payment--price">
+                            <b>1.500.000 VND</b>
                         </div>
-                    </div>
-                </div>
-                <div className="payment--confirm">
-                    <div className="payment--title">
-                        <h2>Thanh Toán</h2>
-                        <p>Vui lòng thanh toán trước khi trở thành nhà tuyển dụng</p>
-                    </div>
-                    <div className="payment--price">
-                        <h1>1.500.000 VND</h1>
-                    </div>
-                    <div className="payment--number--cart">
-                        <label htmlFor="">Nhập số thẻ</label> <br />
-                        <input type="number" onChange={(e) => setNumberCart({ number: e.target.value })} />
+                        <div className="payment--number--cart">
+                            <label htmlFor=""><b>Nhập số thẻ:</b></label> <br /> <br />
+                            <input type="number" onChange={(e) => setNumberCart({ number: e.target.value })} />
 
-                    </div>
-                    <span style={{ color: "red", marginLeft: 30 }}>{error.number}</span>
-                    <div className="payment--select--bank">
-                        <label htmlFor="">Chọn ngân hàng</label> <br />
-                        <select name="" id="">
-                            <option value="1">Chọn ngân hàng</option>
-                            <option value="1">Vietcombank</option>
-                            <option value="2">Agribank</option>
-                            <option value="3">Techcombank</option>
-                            <option value="4">VietinBank</option>
-                            <option value="5">Sacombank</option>
-                        </select>
-                    </div>
-                    <div className="payment--button">
-                        <button className='success' onClick={handelPayment}>Xác nhận</button>
-                        <button className='cancel'>Từ chối</button>
+                        </div>
+                        <span style={{ color: "red", marginLeft: 30 }}>{error.number}</span>
+                        <div className="payment--select--bank">
+                            <label htmlFor="" className="pay"><b>Trả bằng thẻ </b></label> <br /><br />
+                            <select name="" id="">
+                                <option value="1">Chọn ngân hàng</option>
+                                <option value="1">Vietcombank</option>
+                                <option value="2">Agribank</option>
+                                <option value="3">Techcombank</option>
+                                <option value="4">VietinBank</option>
+                                <option value="5">Sacombank</option>
+                            </select>
+                        </div> <br />
+                        <div className="payment--button">
+                            <button className='success' onClick={handelPayment}>Xác nhận</button>
+                            <button className='cancel'>Từ chối</button>
+                        </div>
                     </div>
                 </div>
+
+                {/* <button onClick={handelPayment} style={{ background:"red" }}>Thanh Toán</button> */}
+
             </div>
-
-            {/* <button onClick={handelPayment} style={{ background:"red" }}>Thanh Toán</button> */}
-
         </div>
     )
 }
