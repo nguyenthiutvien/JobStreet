@@ -5,9 +5,19 @@ use Illuminate\Support\Str;
 use App\Mail\ForgotPassword;
 use App\Mail\RegisterEmail;
 use App\Models\Company;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use App\Models\Application;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
+use App\Models\Job;
+use Faker\Provider\ar_EG\Address;
+
+use Illuminate\Support\Facades\DB;
 class CompanyController extends Controller
 {
     /**
@@ -19,6 +29,84 @@ class CompanyController extends Controller
         return response()->json(
             $company
         );
+
+    }
+  
+
+    public function selectData()
+    {
+    $results = Company::leftJoin('jobs', 'companies.id', '=', 'jobs.company_id')
+        ->select(
+            DB::raw('SUM(CASE WHEN jobs.status = "open" THEN 1 ELSE 0 END) AS count'),
+            'companies.id',
+            'companies.company_name',
+            'companies.logo',
+            'companies.address',
+            'companies.number_phone',
+            DB::raw('GROUP_CONCAT(CASE WHEN jobs.status = "open" THEN jobs.position ELSE "Không có vị trí nào đang tuyển" END) AS positions')
+        )
+        ->where('jobs.status', 'open')
+        ->groupBy('companies.id', 'companies.company_name', 'companies.logo', 'companies.address', 'companies.number_phone','companies.id')
+        ->get();
+
+    return response()->json($results);
+
+
+   
+    }
+
+
+
+public function getCompany(Request $request, $companyId)
+{
+    $results = Company::leftJoin('jobs', 'companies.id', '=', 'jobs.company_id')
+        ->select(
+            DB::raw('SUM(CASE WHEN jobs.status = "open" THEN 1 ELSE 0 END) AS count'),
+            'companies.id',
+            'companies.company_name',
+            'companies.website',
+            'companies.number_phone',
+            'companies.description',
+            'companies.scale',
+            'companies.logo',
+            "companies.address",
+            'jobs.id as job_id',
+            
+            'jobs.salary',
+            'jobs.type',
+            'jobs.close_day',
+            DB::raw('GROUP_CONCAT(CASE WHEN jobs.status = "open" THEN jobs.position ELSE "Không có vị trí nào đang tuyển" END) AS position')
+        )
+        ->where('companies.id', '=', $companyId)
+        ->groupBy('companies.id',"companies.address", 'companies.company_name', 'companies.logo', 'companies.scale','companies.website',
+        'companies.number_phone',
+        'companies.description','companies.id','jobs.salary','jobs.id',"jobs.type","jobs.close_day")
+        ->get();
+
+    return response()->json($results);
+
+}
+
+
+
+
+
+// public function getPositionById($id)
+// {
+//     $job = Job::find($id);
+
+//     if ($job) {
+//         return response()->json(['position' => $job->position]);
+//     } else {
+//         return response()->json(['error' => 'Job not found'], 404);
+//     }
+// }
+
+    // ---------------------------------------------------------------
+    public function getJobs()
+    {
+
+
     }
 
     /**
@@ -26,21 +114,34 @@ class CompanyController extends Controller
      */
     public function EmployeeLogin(Request $request)
     {
-        $request->validate([
-            "email"=>"required",
-            "password"=>"required"
-        ]);
-        $company=Company::where('email',$request->email)->first();
-        if($company && $company->password === $request->password){
-                return response()->json(
-                    [
-                       "200"
-                    ]
-                );
+
+        if(empty($request->email)){
+            return response()->json([
+                "status" => "empty_email",
+                'message' => 'Vui lòng nhâp email của bạn'
+            ]);
+        }elseif(empty($request->password)){
+            return response()->json([
+            "status" => "empty_password",
+              'message' => 'Vui lòng nhâp mật khẩu của bạn'
+            ]);
+        }else{
+            $companies=$request->only("email","password");
+            if(Auth::guard('companies')->attempt($companies)){
+                $company = Auth::guard('companies')->user();
+                $token=$company->token;
+            }else{
+                return response()->json([
+                    "status"=>404,
+                    "message"=>"Tài khoản hoặc mật khẩu sai"
+                ]);
+            }
+            return response()->json([
+                "status"=>200,
+                'token' => $token]
+            );
         }
-        return response()->json([
-            "400"
-        ]);
+
     }
 
 
@@ -60,21 +161,25 @@ class CompanyController extends Controller
             'address'=>"required|string",
             'number_phone'=>"required|numeric"
         ]);
-        $company=Company::create([
-            'company_name'=>$request->company_name,
-            'logo'=>"company.png",
-            'scale'=>$request->scale,
-            'description'=>$request->description,
-            'website'=>$request->website,
-            'email'=>$request->email,
-            'password'=>$request->password,
-            'address'=>$request->address,
-            'number_phone'=>$request->number_phone
-        ]);
-        if(!$company){
-            return response()->json(
-                    "Không thể chèn"
-            );
+
+        $company=new Company();
+        $company->company_name=$request->company_name;
+        $company->logo="company.png";
+        $company->scale=$request->scale;
+        $company->description=$request->description;
+        $company->website=$request->website;
+        $company->email=$request->email;
+        $company->password=bcrypt($request->password);
+        $company->address=$request->address;
+        $company->number_phone=$request->number_phone;
+        $company->save();
+        
+        if(Auth::guard('companies')->attempt(["email"=>$request->email, "password"=>$request->password])){
+            $company=Auth::guard('companies')->user();
+            $token=JWTAuth::fromUser($company);
+            $company->token=$token;
+            $company->save();
+
         }
       
         Mail::to($request->email)->send(new RegisterEmail($request->company_name));
@@ -97,18 +202,74 @@ class CompanyController extends Controller
     public function edit($email)
     {
         $company= Company::where("email",$email)->first();
+
+        if(!$company){
+            return response()->json([
+                "status"=>400,
+                "message" => "Tài khoản không tồn tại"
+            ]);
+        }
         return response()->json(
-            $company
+            [ 
+            "status"=>200,
+            "user" => $company
+         
+            ]
+           
+
         );
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$email)
-    {
+
+      //public function update(Request $request,$email)
+     // {
+        // $request->validate([
+        //     "password"=>"required|string|min:8"
+        // ]);
+      public function update(Request $request,$email)
+     {
         $request->validate([
             "password"=>"required|string|min:8"
+        ]);
+
+        // $company=Company::where("email",$email)->first();
+
+        // if (!$company) {
+        //     return response()->json(
+        //         "Công ty không tồn tại"
+        //     );
+        // }
+        // $company->password=bcrypt($request->password);
+        // $company->save();
+        // return response()->json(
+        //     "Thành công"
+        // );
+     // }
+        // if (!$company) {
+        //     return response()->json(
+        //         "Công ty không tồn tại"
+        //     );
+        // };
+        // $company->password=bcrypt($request->password);
+        // $company->save();
+        // return response()->json(
+        //     "Thành công"
+        // );
+     }
+
+    public function updateCompanyInfo(Request $request, $email)
+    {
+        $request->validate([
+            'company_name' => "required|string",
+            'logo' => "nullable",
+            'scale' => "required|numeric",
+            'description' => "required|string",
+            'website' => "required|string",
+            'address' => "required|string",
+            'number_phone' => "required|numeric",
         ]);
 
         $company=Company::where("email",$email)->first();
@@ -117,13 +278,37 @@ class CompanyController extends Controller
             return response()->json(
                 "Công ty không tồn tại"
             );
+
+
+        $id = $request->id;
+        $company_name = $request->company_name;
+        $logo = $request -> logo;
+        $scale = $request -> scale;
+        $website = $request -> website;
+        $address = $request->address;
+        $phone_number = $request->number_phone;
+        $company = Company::findOrFail($id);
+        if ($request->hasFile("logo")) {
+            $logo=$request->file("logo");
+            $logoName = Str::random(16) . "." . $request->logo->getClientOriginalExtension();
+            Storage::disk("public")->put($logoName, file_get_contents($logo));
+            $company->avatar = $logoName;
+
         }
-        $company->password=$request->password;
+        $company->company_name = $company_name;
+        $company -> scale = $scale;
+        $company -> website = $website;
+        $company->number_phone = $phone_number;
+        $company->address = $address;
+
         $company->save();
         return response()->json(
-            "Thành công"
+            "Cập nhật thành công"
+
         );
     }
+    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -137,9 +322,8 @@ class CompanyController extends Controller
         $companyEmail=$request->email;
 
         $company=Company::where("email",$companyEmail)->first();
-
         if ($company) {
-          $verificationCode=Str::random(6);
+            $verificationCode =strval(rand(100000, 999999));
           Mail::to($companyEmail)->send(new ForgotPassword($verificationCode));
         }
 
@@ -147,4 +331,149 @@ class CompanyController extends Controller
             $verificationCode
         );
     }
+
+
+
+    public function getCompanyToken($token){
+        $company = Company::where("token", $token)->first();
+        if(!$company){
+            return response()->json([
+                "status"=>400,
+                "message" => "Tài khoản không tồn tại"
+            ]);
+        }
+        return response()->json(
+            [ 
+            "status"=>200,
+            "company" => $company
+            ]
+           
+        );
+    }
+
+
+    //  get username- user
+    // public function getUser()
+    // {
+    //     $users = DB::table('users')->select('username')->get();
+    //     return response()->json($users);
+    // }
+
+
+    // admin user ---------------------------------------------------------
+    public function getUser()
+    {
+        $users = DB::table('users')->get();
+        return response()->json($users);
+    }
+
+    
+    public function deleteUsers(Request $request)
+    {
+        $user = User::find($request->id);
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        $user->delete();
+
+        return response()->json(['status' => 'ok', 'message' => 'Delete succeeded']);
+    }	
+
+    //  admin company------------------------------------
+
+    public function getCompanyname()
+{
+    $companies = DB::table('companies')->get();
+    return response()->json($companies);
+
 }
+
+public function deleteCompany(Request $request)
+{
+    $company = Company::find($request->id);
+
+    if (!$company) {
+        return response()->json(['error' => 'Company not found'], 404);
+    }
+
+    $company->delete();
+
+    return response()->json(['status' => 'ok', 'message' => 'Delete succeeded']);
+}	
+
+
+
+public function getdatauser()
+{
+    $jobs = Job::select('jobs.position', 'companies.company_name', 'applications.status', 'users.username')
+        ->join('companies', 'jobs.company_id', '=', 'companies.id')
+        ->join('applications', 'jobs.id', '=', 'applications.job_id')
+        ->join('users', 'users.id', '=', 'applications.user_id')
+        ->get();
+
+    return response()->json($jobs);
+}
+
+  // ---------------------------------------------------------------
+  public function getJobByCompany($token)
+  {
+     
+      $jobs = DB::table('jobs')
+          ->select('jobs.id', 'jobs.cat_id','jobs.position', 'jobs.status', 'jobs.description','jobs.salary', 'jobs.type','jobs.created_at', 'jobs.close_day')
+          ->join('companies', 'companies.id', '=', 'jobs.company_id')
+          ->where('companies.token', $token)
+          ->get();
+  
+      return response()->json($jobs);
+  }
+ 
+  public function CompanyChangePassword(Request $request){
+    $id=$request->id;
+    $password=$request->password;
+    $company=Company::where("id",$id)->first();
+    if(!$company){
+        return response()->json(
+            [
+                "status"=>400,
+                "message" => "Không thể đổi mật khẩu"
+            ]
+         
+        );
+    }
+    $company->password =Hash::make($password);
+    $company->save();
+    return response()->json(
+        [
+            "status"=>200,
+            "company"=>$password
+        ]
+    );
+    
+}
+
+
+public function comparePassword(Request $request){
+    $id=$request->id;
+    $password=$request->password;
+    $company=Company::where("id",$id)->first();
+    if(!Hash::check($password,$company->password) ){
+        return response()->json(
+            [ "status"=>400,
+                "message"=>"Mật khẩu sai"]
+        );
+    }
+    return response()->json(
+        [ 
+        "status"=>200,
+        ]
+        );
+}
+
+
+
+
+
+}
+

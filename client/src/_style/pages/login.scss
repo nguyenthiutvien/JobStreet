@@ -1,0 +1,152 @@
+.background-image {
+  background-image: url('https://images.pexels.com/photos/2330137/pexels-photo-2330137.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+   background-size: cover;
+  // background-position: center;
+   
+   width: 100%;
+   height: 100%;
+   position: absolute;
+}
+.container--login {
+  position: relative;
+  background-color: #33333399;;
+  width: 500px;
+  height: 490px;
+  
+  border-radius: 8px;
+  margin: 0 auto;
+  margin-top: 120px;
+  
+  align-items: center;
+  justify-content: center;
+
+  h2{
+    color: #FFFFFF;
+  }
+}
+.content--login {
+  padding-top: 30px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.form--login--email {
+  padding-top: 5px;
+  margin-left: 45px;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+
+  .login--email {
+    width: 400px;
+    height: 50px;
+    outline: none;
+    padding-left: 20px;
+    // border: none;
+    border-radius: 8px;
+
+    &::placeholder {
+      font-size: 14px;
+      padding-left: 10px;
+    }
+  }
+
+
+}
+
+.form--login--password {
+  padding-top: 15px;
+  margin-left: 45px;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+
+  .login--password {
+    width: 400px;
+    height: 50px;
+    outline: none;
+    padding-left: 20px;
+    // border: none;
+    border-radius: 8px;
+
+    &::placeholder {
+      font-size: 14px;
+      padding-left: 10px;
+    }
+    
+  }
+
+
+}
+
+.forgot--pass {
+  margin-top: 40px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  p {
+      color:deepskyblue;
+    }
+}
+
+.login--error {
+  color: red;
+}
+
+.button--login {
+  margin-top: 10px;
+  margin-left: 165px;
+  align-items: center;
+  width: 170px;
+  background: #26AE61;
+  height: 45px;
+  border-radius: 50px;
+  border: none;
+
+  h5 {
+    color: #FFFFFF;
+    margin-bottom: auto;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.another--relevent {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+
+  p {
+    margin-top: 10px;
+    color: #FFFFFF;
+  }
+  h7{
+    color: deepskyblue;
+  }
+}
+
+.login--password-toggles {
+  position: absolute;
+  top: 42.5%;
+  left: 60%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  pointer-events: auto;
+  /* Đảm bảo biểu tượng "mắt" có thể nhấp được */
+}
+
+.login--password-toggle svg {
+  width: 18px;
+  height: 18px;
+  color: #999;
+  /* Màu sắc của biểu tượng "mắt" */
+}
+
+.login--password-toggle.active svg {
+  color: white;
+  /* Màu sắc của biểu tượng "mắt" khi nút được nhấp */
+}
