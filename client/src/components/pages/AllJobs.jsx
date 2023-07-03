@@ -23,20 +23,20 @@ const AllJobs = () => {
     fetchData();
     // setTimeout(() => {
     //   setloader(false);
-    // }, 300);
+    // }, 3000);
   }, []);
 
   return (
     <>
-      {/* {(loader && <Loader />) || ( */}
+      {/* {(loader && <Loader />) || (
         
         <>
-          {/* <NavBar hero="jobs" /> */}
+          <NavBar hero="jobs" /> */}
           <JobItemSection jobs={jobs}/>
           {/* <Footer /> */}
         </>
-      {/* )} */}
-    </>
+    //  )}
+    // </>
   );
 
 };

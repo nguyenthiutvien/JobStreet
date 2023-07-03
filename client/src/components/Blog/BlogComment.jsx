@@ -62,10 +62,10 @@ export const BlogComment = ({post,handelHiden}) => {
                         <input type="hidden" name="post_id" value={post.id} />
                         <div className='d-flex'>
                         {login?
-                        (<button className="btn btn-success" type="submit">Bình luận</button>):
-                        (<button className="btn btn-success" onClick={handelLogin} type="button">Bình luận</button>)}
+                        (<button className="btn btn-post" type="submit">Bình luận</button>):
+                        (<button className="btn btn-post" onClick={handelLogin} type="button">Bình luận</button>)}
                         
-                        <button className="btn btn-danger ml-4" onClick={()=>handelHiden(false)} type="button">Hủy</button>
+                        <button className="btn btn-cancel" onClick={()=>handelHiden(false)} type="button">Hủy</button>
                         </div>
                         </div>
                     <div className="comment-list-section">

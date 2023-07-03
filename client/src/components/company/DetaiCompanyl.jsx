@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "../_style/components/Blog/Detail.scss";
+import "../../_style/components/Blog/Detail.scss";
 function Detail() {
   const { id } = useParams();
   const [detail, setDetail] = useState([]);
@@ -114,7 +114,7 @@ function Detail() {
                       activeclassName="active"
                       to={`/job-details/${detail.job_id}`}
                     >
-                      {detail.positions}{" "}
+                      {detail.position}{" "}
                     </Link>
                   </div>
                   <p className="card-texts">{detail.address}</p>
@@ -122,17 +122,14 @@ function Detail() {
                   <hr />
                 </div>
               ))}
+              <div className="btn btn-warning">
+                <Link activeclassName="active" to={`/company`}>
+                  Xem tất cả công ty
+                </Link>
+              </div>
             </div>
           </div>
-          <br></br>
-          <div className="btn btn-warning">
-            {" "}
-            <Link activeclassName="active" to={`/company`}>
-              Xem tất cả việc làm
-            </Link>
-          </div>
         </div>
-        <br></br>
       </div>
     </>
   );

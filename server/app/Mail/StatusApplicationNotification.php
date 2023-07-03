@@ -9,17 +9,26 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class JobAddAdmin extends Mailable
+class StatusApplicationNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(public $position,public $type,  public $description, public $salary, public $closeDay,public $status)
+    public $user;
+    public $job;
+    public $applicationStatus;
+    public $company;
+
+    public function __construct($user, $job, $applicationStatus, $company)
     {
-        //
+        $this->user = $user;
+        $this->job = $job;
+        $this->applicationStatus = $applicationStatus;
+        $this->company = $company;
     }
+
 
     /**
      * Get the message envelope.
@@ -27,7 +36,7 @@ class JobAddAdmin extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'JobStreet Admin',
+            subject: 'Thông báo về đơn ứng tuyển của bạn',
         );
     }
 
@@ -37,20 +46,7 @@ class JobAddAdmin extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'job_added_admin',
-            with:[
-                "job" => $this->position,
-                "job" => $this->type,
-                "job" => $this->description,
-                "job" => $this->salary,
-                "job" => $this->closeDay,
-                "job" => $this->status
-                // "job" => $this->
-
-             
-
-            ]
-
+            view: 'statusApplication',
         );
     }
 

@@ -152,7 +152,7 @@ Route::put('/update-jobs/{id}', [JobApiController::class, 'updateJob']);
 // Route để xóa công việc
 Route::delete('/delete-jobs/{id}', [JobApiController::class, 'deleteJob']);
 
-Route::put('/applications/{user_id}/{job_id}/status', [ApplicationController::class, 'updateStatus']);
+// Route::put('/applications/{user_id}/{job_id}/status', [ApplicationController::class, 'updateStatus']);
 Route::delete('/deleteCompany/{id}',[CompanyController::class,'deleteCompany']);
 
 
@@ -168,3 +168,7 @@ Route::get('/getstatus', [JobController::class, 'getStatus']);
 
 Route::put('/selectstatus/{id}',[JobController::class,'Updatestatus']);
 Route::get('/search', [SearchController::class, 'search']);
+
+Route::put('/accept-applications/{user_id}/{job_id}', [ApplicationController::class, 'AcceptApplication']);
+
+Route::delete('/reject-applications/{user_id}/{job_id}', [ApplicationController::class, 'RejectApplication']);

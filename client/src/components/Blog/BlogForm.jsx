@@ -1,28 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Modal,Input,Button,Form } from 'antd';
 import '../../_style/components/Blog/blogform.scss';
 import Swal from 'sweetalert2';
 
-const BlogForm = ({ handleShow }) => {
+const BlogForm = ({ handleHiden,handelCancel,handelOk,visible }) => {
+
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [image, setImage] = useState('');
-    const [userAvatar, setUserAvatar] = useState('');
     const login=JSON.parse(localStorage.getItem('login'));
-    useEffect(() => {
-        // Fetch the user's avatar based on their ID
-        const fetchUserAvatar = async () => {
-            try {
-                const response = await axios.get(`http://127.0.0.1:8000/api/user/${user_id}/avatar`);
-                setUserAvatar(response.data.avatar);
-            } catch (error) {
-                console.error('Error fetching user avatar:', error);
-            }
-        };
-
-        fetchUserAvatar();
-    }, []);
-
     const handleTitleChange = e => {
         setTitle(e.target.value);
     };
@@ -36,33 +23,21 @@ const BlogForm = ({ handleShow }) => {
         setImage(file);
     };
     const token=JSON.parse(localStorage.getItem("login"))    
-    const handleSubmit = async e => {
-        e.preventDefault();
+    const handleSubmit = async (e) => {
         try {
-            // Create a new FormData object
             const formData = new FormData();
             formData.append('token',token.token );
             formData.append('title', title);
             formData.append('body', body);
             formData.append('image', image);
-
-            // Send a POST request to the backend endpoint
           const status=  await axios.post('http://127.0.0.1:8000/api/add_posts', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Accept: 'application/json',
                 },
           });
-            
             console.log(status.data)
-
-            // Reset the form fields
-            setTitle('');
-            setBody('');
-            setImage('');
-
-            // Call handleShow to close the form and trigger a refresh of the blog posts
-            handleShow();
+            handleHiden(false)
         } catch (error) {
             console.error('Error adding blog post:', error);
             // Handle error, show an error message, etc.
@@ -89,18 +64,69 @@ const BlogForm = ({ handleShow }) => {
     
     return (
         <>
-            <div className="wraper" onClick={handleShow}></div>
-            <div className='boder'>
-                <form className="blog_form" onSubmit={handleSubmit}>
-                    
-                    <input type="text" placeholder="Chủ đề" value={title} onChange={handleTitleChange} required />
-                    <textarea placeholder="Nội dung" value={body} onChange={handleBodyChange} required></textarea>
-                    <input className="blog-post-image" type="file" onChange={handleImageChange} />
+            {/* <div className='boder'> */}
+            <Modal
+            onOk={handelOk}
+            onCancel={handelCancel}
+            footer={null}
+            visible={visible}
+            >
+                <Form onFinish={handleSubmit}>
+                    <Form.Item
+                        name={"title"}
+                        rules={
+                            [
+                                {
+                                    required: true,
+                                    message: "Vui lòng nhập tiêu đề"
+                                }
+                            ]
+                        }
+                    >
+                    <Input type="text" placeholder="Chủ đề" value={title} onChange={handleTitleChange}/>
+                    </Form.Item>
+                    <Form.Item
+                    name={"body"}
+                    rules={
+                            [
+                                {
+                                    required: true,
+                                    message: "Vui lòng nhập nội dung"
+                                }
+                            ]
+                        }
+                    >
+                        <Input.TextArea rows={6} placeholder="Nội dung" value={body} onChange={handleBodyChange}/>
+
+                       
+                    </Form.Item>
+                    <Form.Item
+                    name={"image"}
+                    rules={
+                            [
+                                {
+                                    required: false,
+                                    message: "Vui lòn đính kèm file"
+                                }
+                            ]
+                        }
+                    >
+                        <Input className="blog-post-image" type="file" onChange={handleImageChange}></Input>
+                    </Form.Item>
                     {login?
-                    ( <button className='sub' type="submit">Thêm bài đăng</button>):
-                    ( <button className='sub' onClick={handelLogin} type="buton">Thêm bài đăng</button>)}
-                </form>
-            </div>
+                    (
+                        <Form.Item>
+                        <Button className='sub' htmlType="submit">Thêm bài đăng</Button>
+                        </Form.Item>
+                       ):
+                       (
+                       <Form.Item>
+                       <Button className='sub' onClick={handelLogin} htmlType="buton">Thêm bài đăng</Button>
+                       </Form.Item>
+                     )}
+                </Form>
+            </Modal>
+            {/* </div> */}
         </>
     );
 };

@@ -20,7 +20,7 @@ const JobItem = ({
   time_close,
 }) => {
   // Format the time_close variable as "day-month-year" (e.g., "11-05-2023")
-  const formattedTimeClose = new Date(time_close).toLocaleDateString("en-US", {
+  const formattedTimeClose = new Date(time_close).toLocaleDateString("en-VN", {
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
@@ -52,13 +52,13 @@ const JobItem = ({
           <Link
             className={
               type === "full time"
-                ? "vien-btn btn btn-success"
+                ? "btn btn-success"
                 : "btn btn-success"
             }
             to={`/job-details/${id}`} 
            
           >
-            {type}
+            {/* {type} */} Chi tiết
           </Link>
         </div>
         <div className="job__wrapper__card--right__part-2">

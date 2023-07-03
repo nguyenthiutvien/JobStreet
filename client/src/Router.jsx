@@ -16,17 +16,17 @@ import { UserProfile } from "./components/candidates/UserProfile";
 import AllJobs from "./components/pages/AllJobs";
 import JobDetails from "./components/jobs/JobDetails";
 import Header from "./components/header/Header";
-import Company from './components/Company'
-import Detail from './components/Detail'
-import Timvieclam from './components/Timvieclam';
-import Hero from "./components/header/Hero";
+import Company from './components/company/Company'
+import DetailCompany from './components/company/DetaiCompanyl'
+import CompanyJob from './components/company/CompanyJob';
+
 import JobItem from "./components/jobs/JobItem";
 import  EmployerProfile  from "./components/employer/EmployerProfile";
 
 import Blog from './components/Blog/Blog';
 import Companyad from "./components/admin/Companyadmin";
 import Userad from "./components/admin/Useradmin";
-import Admis from "./components/admin/Admin";
+import Admin from "./components/admin/Admin";
 import Inforusers from "./components/admin/Informationuser";
 import Menuadmin from "./components/admin/Menuadmin";
 import Browse from "./components/admin/Browse";
@@ -36,7 +36,7 @@ import NavBar from "./components/pages/navigation/NavBar";
 import { MyInformation } from "./components/candidates/UserInfor";
 import { Apply } from "./components/candidates/UserApply";
 import { ChangePassword } from "./components/candidates/ChangePassUser";
-import Admin from "./components/admin/Admin";
+
 import Jobs from "./components/employer/Jobs";
 import CompanyChangePassword from "./components/employer/CompanyChangePassword";
 import Application from "./components/employer/Application";
@@ -55,11 +55,11 @@ export const Router = () => [
                 {path:"blog",element:<Blog/>},
                 {path:"company",element:<Company/>},
                 {path:"contact",element:<Contact/>},
-                {path:"timvieclam/:id",element:<Timvieclam/>},
+                {path:"companyJob/:id",element:<CompanyJob/>},
             ]
     },
     {path:"company",element:<Company/>},
-    {path:"detail/:id", element:<Detail/>,},
+    {path:"detailCompany/:id", element:<DetailCompany/>,},
     {path:"loginUser", element:<LoginUser/>},
     {path:"loginEmployee", element:<LoginEmployee/>},
     {path:"employeePayment",element:<EmployeePayment/>},
@@ -124,7 +124,7 @@ export const Router = () => [
 
         //     <Route path="/blog" element={<Blog />} />
 
-        //      <Route path="/admin/*" element={<Admis/>} />
+        //      <Route path="/admin/*" element={<n/>} />
         //     <Route path="/menuadmin" element={<Menuadmin/>} />
             
         //     <Route path="/companyad" element={<Companyad/>}/>

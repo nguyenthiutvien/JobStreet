@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import "../_style/components/Blog/company.scss";
+import "../../_style/components/Blog/company.scss";
 
 function Company() {
   const [show, setshow] = useState([]);
@@ -53,12 +53,12 @@ function Company() {
           <div className="card">
             {filter &&
               filter.map((item) => (
-                <Link to={`/detail/${item.id}`} className="linka" key={item.id}>
+                <Link to={`/detailCompany/${item.id}`} className="linka" key={item.id}>
                   <div className="content">
                     <div className="item">
                       <img src={`http://127.0.0.1:8000/storage/${item.logo}`} />
                       <div className="company_name">
-                        <Link className="none" to={`/detail/${item.id}`}>
+                        <Link className="none" to={`/detailCompany/${item.id}`}>
                           {item.company_name}
                         </Link>
                       </div>
@@ -122,7 +122,7 @@ function Company() {
                         <Link
                           activeclassName="active"
                           style={{ textDecoration: "none" }}
-                          to={`/timvieclam/${item.id}`}
+                          to={`/companyJob/${item.id}`}
                         >
                           {item.count > 0 ? item.count : ""}{" "}
                           {"vị trí đang tuyển"}
