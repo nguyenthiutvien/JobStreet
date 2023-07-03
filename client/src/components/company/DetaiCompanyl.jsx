@@ -32,7 +32,7 @@ function Detail() {
         <div className="company_detail">
           {detail.slice(0, 1).map((detail) => (
             <>
-              <div className="col-md-3 profile-img">
+              <div className="col-md-4 profile-img">
                 <img
                   className="card-img-top-img"
                   src={`http://127.0.0.1:8000/storage/${detail.logo}`}
@@ -61,13 +61,13 @@ function Detail() {
                 </p>
               </div>
               <div className="col-md-6">
-                <p className="card-text">
+                <p className="card">
                   <span>
                     <h5>Website: </h5>
                   </span>
                   {detail?.website}
                 </p>
-                <p className="card-text">
+                <p className="card">
                   <span>
                     <h5>Quy mô:</h5>
                   </span>{" "}
@@ -78,11 +78,13 @@ function Detail() {
             </>
           ))}
         </div>
-        <div className="company-information">
-          <h3>Thông tin công ty</h3>
-
+        <div className="container">
+          <div className="row">
+            <div className="left">
+            <div className="company-information">
+          <h2>Thông tin công ty</h2>
           <div className="gioithieu">
-            <h5>Giới thiệu</h5>
+            <h5>Giới thiệu</h5><br/>
             <div className="row_gioithieu">
               {detail.slice(0, 1).map((detail) => (
                 <div className="card-text">
@@ -90,7 +92,7 @@ function Detail() {
                 </div>
               ))}
             </div>
-          </div>
+          </div><hr/>
           <br />
           <div className="gioithieu">
             <h5>Địa chỉ văn phòng</h5>
@@ -100,7 +102,7 @@ function Detail() {
                   <p className="card-texts">{detail.address}</p>
                 </div>
               ))}
-            </div>
+            </div><hr />
           </div>
           <div className="gioithieu">
             <br />
@@ -124,12 +126,19 @@ function Detail() {
               ))}
               <div className="btn btn-warning">
                 <Link activeclassName="active" to={`/company`}>
-                  Xem tất cả công ty
+                  <p className="link">Xem tất cả công ty</p>
                 </Link>
               </div>
             </div>
           </div>
         </div>
+            </div>
+            <div className="right">
+                <h2>Thông tin công ty</h2>
+            </div>
+          </div>
+
+        </div><br/><br/><br/>
       </div>
     </>
   );
