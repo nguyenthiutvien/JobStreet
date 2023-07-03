@@ -77,12 +77,30 @@ function Companyad() {
   return (
     <div className="table-container">
       <div className="card">
-        <div className="card-user"><FontAwesomeIcon icon={faCoffee} />{ endUser.company}</div>
-        <div className="card-company"><FontAwesomeIcon icon={faUser} />{endUser.user} </div>
-        <div className="card-apply"> <FontAwesomeIcon icon={faEnvelopeOpenText} /></div>
-        <div className="card-candidate"><FontAwesomeIcon icon={faClipboardList} /></div>
-
-      </div> <br /><br />
+        <div className="card-user">
+          <div className="icon-container">
+            <span><FontAwesomeIcon icon={faCoffee} /></span>
+          </div>
+          <span className="card-text">{endUser.company}</span>
+        </div>
+        <div className="card-company">
+          <div className="icon-container">
+            <span> <FontAwesomeIcon icon={faUser} /></span>  
+          </div>
+          <span className="card-text">{endUser.user}</span>
+        </div>
+        <div className="card-apply">
+          <div className="icon-container">
+            <span><FontAwesomeIcon icon={faEnvelopeOpenText} /></span>  
+          </div>
+        </div>
+        <div className="card-candidate">
+          <div className="icon-container">
+            <span>  <FontAwesomeIcon icon={faClipboardList} /></span>  
+          </div>
+        </div>
+      </div>
+ <br /><br />
       <div>
         <Table className="card-table" dataSource={paginatedData} columns={columns} />
         <Pagination

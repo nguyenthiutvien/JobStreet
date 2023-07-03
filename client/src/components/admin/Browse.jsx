@@ -7,11 +7,13 @@ import { Table, Button } from "antd";
 
 function Browse() {
   const [job, setJob] = useState([]);
+  const [endUser, setEndUser] = useState([])
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 7;
 
   useEffect(() => {
     getData();
+    getEndUser()
   }, []);
 
   const handlePageChange = (page) => {
@@ -43,6 +45,10 @@ function Browse() {
         console.error("Error deleting user:", error);
       });
   };
+  const getEndUser = async () => {
+    const data = await axios.get("http://127.0.0.1:8000/api/countenduser");
+    setEndUser(data.data)
+  }
 
   const handleUpdate = (id) => {
     fetch(`http://127.0.0.1:8000/api/selectstatus/${id}`, {
@@ -113,11 +119,28 @@ function Browse() {
   return (
     <div className="content-delete">
       <div className="card">
-        <div className="card-user"><FontAwesomeIcon icon={faCoffee} /></div>
-        <div className="card-company"><FontAwesomeIcon icon={faUser} /> </div>
-        <div className="card-apply"> <FontAwesomeIcon icon={faEnvelopeOpenText} /></div>
-        <div className="card-candidate"><FontAwesomeIcon icon={faClipboardList} /></div>
-
+        <div className="card-user">
+          <div className="icon-container">
+            <span><FontAwesomeIcon icon={faCoffee} /></span>
+          </div>
+          <span className="card-text">{endUser.company}</span>
+        </div>
+        <div className="card-company">
+          <div className="icon-container">
+            <span> <FontAwesomeIcon icon={faUser} /></span>
+          </div>
+          <span className="card-text">{endUser.user}</span>
+        </div>
+        <div className="card-apply">
+          <div className="icon-container">
+            <span><FontAwesomeIcon icon={faEnvelopeOpenText} /></span>
+          </div>
+        </div>
+        <div className="card-candidate">
+          <div className="icon-container">
+            <span>  <FontAwesomeIcon icon={faClipboardList} /></span>
+          </div>
+        </div>
       </div> <br /><br />
       <div>
         <Table className="card-table"
