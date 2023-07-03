@@ -63,17 +63,24 @@ public function getCompany(Request $request, $companyId)
         ->select(
             DB::raw('SUM(CASE WHEN jobs.status = "open" THEN 1 ELSE 0 END) AS count'),
             'companies.id',
-            'jobs.id as job_id',
             'companies.company_name',
+            'companies.website',
+            'companies.number_phone',
+            'companies.description',
+            'companies.scale',
             'companies.logo',
             "companies.address",
+            'jobs.id as job_id',
+            
             'jobs.salary',
             'jobs.type',
             'jobs.close_day',
             DB::raw('GROUP_CONCAT(CASE WHEN jobs.status = "open" THEN jobs.position ELSE "Không có vị trí nào đang tuyển" END) AS position')
         )
         ->where('companies.id', '=', $companyId)
-        ->groupBy('companies.id',"companies.address", 'companies.company_name', 'companies.logo', 'companies.id','jobs.salary','jobs.id',"jobs.type","jobs.close_day")
+        ->groupBy('companies.id',"companies.address", 'companies.company_name', 'companies.logo', 'companies.scale','companies.website',
+        'companies.number_phone',
+        'companies.description','companies.id','jobs.salary','jobs.id',"jobs.type","jobs.close_day")
         ->get();
 
     return response()->json($results);

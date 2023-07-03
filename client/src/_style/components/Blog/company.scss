@@ -78,8 +78,8 @@ div.card {
     }
   }
   &:hover {
-    border: 1px solid black;
-    box-shadow: 0 0 6px 4px green;
+    border: 1px solid rgb(108, 222, 108);
+    box-shadow: 0 0 4px 2px green;
   }
   &:hover .company_name a.none{
     color: green;

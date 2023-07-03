@@ -41,6 +41,7 @@ import Jobs from "./components/employer/Jobs";
 import CompanyChangePassword from "./components/employer/CompanyChangePassword";
 import Application from "./components/employer/Application";
 import { CompanyInformation } from "./components/employer/CompanyInformation";
+import Map from "./components/jobs/map";
 
 
 
@@ -58,6 +59,7 @@ export const Router = () => [
                 {path:"companyJob/:id",element:<CompanyJob/>},
             ]
     },
+    {path:"map" ,element:<Map/>},
     {path:"company",element:<Company/>},
     {path:"detailCompany/:id", element:<DetailCompany/>,},
     {path:"loginUser", element:<LoginUser/>},
@@ -65,10 +67,10 @@ export const Router = () => [
     {path:"employeePayment",element:<EmployeePayment/>},
     {path:"employerProfile",element:<EmployerProfile/>,
     children:[
-        {path:"",element:<Application/>},
+        {path:"",element:<CompanyInformation/>},
         {path:"jobs",element:<Jobs/>},
         {path:"changePassword",element:<CompanyChangePassword/>},
-        {path:"updateInformation",element:<CompanyInformation/>}
+        {path:"companyApllication" ,element:<Application/>}
     ]
 },
 
@@ -134,6 +136,8 @@ export const Router = () => [
         //     <Route path="/browse" element={<Browse/>}/>
         //     {/* <Route path="/searchjob" element={<Search/>}></Route> */}
         // </Routes>
+    
+
 ]
 
 

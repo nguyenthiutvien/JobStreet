@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import TabBar from './TabBar';
 import { Outlet } from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "../../_style/admin/admin.scss"
 
 
 
@@ -30,11 +32,11 @@ const EmployerProfile = () => {
 
   return (
     <>
-      <div className="container--user--profile">
-        <div className="user--profile--left">
+      <div className="content-admins">
+        <div className="admin-left">
           <TabBar  handleLogout={handleLogout} />
         </div>
-        <div className="user--profile--content">
+        <div className="admin-right">
         <Outlet></Outlet>
         </div>
       </div>

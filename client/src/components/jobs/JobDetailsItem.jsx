@@ -13,9 +13,9 @@ import {
 import NavBar from "../pages/navigation/NavBar";
 import NavHero from "../pages/navigation/NavHero";
 import Loader from "../services/Loader";
-// import Map from "./map";
-const userAddress = { lat: 10.123, lng: 20.456 };
-const companyAddress = { lat: 30.789, lng: 40.012 };
+import Map from "./map";
+
+
 const JobDetailsItem = ({ job ,hero}) => {
   const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
@@ -76,10 +76,7 @@ const JobDetailsItem = ({ job ,hero}) => {
             <div className="right">
         <h1>Địa chỉ công ty</h1>
         <div className="location-map">
-          {/* <Map
-            userAddress={userAddress}
-            companyAddress={companyAddress}
-          /> */}
+          <Map/>
         </div>
       </div>
           </div>

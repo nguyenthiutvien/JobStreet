@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import {  Button } from "antd";
 import { getTokenCompany } from '../../api/Api';
-
+import "../../_style/admin/admin.scss"
 
 const TabBar = ({ handleInfor, handleLogout, handleApply, handleJob, handelCompanyChangePassword }) => {
   const [company, setCompany] = useState({});
@@ -37,7 +37,7 @@ const TabBar = ({ handleInfor, handleLogout, handleApply, handleJob, handelCompa
               </Link>
             </li>
             <li>
-              <Link className="color" to="">
+              <Link className="color" to="companyApllication">
                 Hồ sơ ứng tuyển
               </Link>
             </li>
@@ -52,7 +52,7 @@ const TabBar = ({ handleInfor, handleLogout, handleApply, handleJob, handelCompa
               </Link>
             </li>
             <li>
-              <Link className="color" to="updateInformation">
+              <Link className="color" to="">
                 Cập nhật thông tin
               </Link>
             </li>
