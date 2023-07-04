@@ -74,7 +74,7 @@ class ApplicationController extends Controller
             Mail::to($job->email)->send(new NotificationToEmployee($name,$cover_letter,$fileName,$job->company_name));
             Mail::to($user->email)->send(new NotificationToCandidate($name,$job->company_name));
             return response()->json([
-                "Thành công"=> $application,
+                "status"=> 200,
                   "name"=>$name,
                   "cover_letter"=>$cover_letter,
                   "position"=>$position,
