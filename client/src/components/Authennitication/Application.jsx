@@ -17,6 +17,10 @@ export const Modals = ({ closeModal,visible,handleOk,handleCancel,job }) => {
         const value = { ...values, [e.target.name]: e.target.value }
         setValues(value)
     }
+    const handelFile = (e) => {
+        const files = e.target.files[0]
+        setValues({ ...values, file_cv: files })
+    }
     return (
 
         <>
