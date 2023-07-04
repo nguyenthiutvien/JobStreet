@@ -17,7 +17,7 @@ function Map() {
       {...viewport}
       mapStyle="mapbox://styles/mapbox/streets-v11"
       onViewportChange={(viewport) => setViewport(viewport)}
-      mapboxApiAccessToken="pk.eyJ1IjoiaG9hbmIyNCIsImEiOiJjbGpnamV4bXowNmFtM2xxaWZnYnEwaWQ4In0.aSnV4rCTGUxjMMEXOnA9iQ"
+      mapboxApiAccessToken="pk.eyJ1IjoidmllbnZpZW4iLCJhIjoiY2xqbWNieW5jMHl2ZzNtcXF4bXVpejI0dyJ9.FT4rJy7clInglA8ssgt5sA"
     >
       {showPopup && (
         <Popup

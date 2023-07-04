@@ -1,6 +1,4 @@
-import React from 'react'
-import axios from 'axios'
-import "../config"
+import axios from "../config";
 
 // //  FETCH API JOB 
 export const fetchApiData = async (url) => {
@@ -24,11 +22,14 @@ export const deleteApiData = async (url) => {
     .catch((response) => response.response.data);
 };
 
+// FETCH API USER
+
+
 export const postUser =async (e) => {
   return (
       await axios.post("http://127.0.0.1:8000/api/users",e)
   )
-} 
+}
 export const getUser = async ()=>{
   return (
     await axios.get("http://127.0.0.1:8000/api/users")
@@ -60,6 +61,9 @@ export const userLogin=async(e)=>{
 
 
 
+
+
+
 export const employeeLogin=async(e)=>{
   return(
     axios.post("http://127.0.0.1:8000/api/company/login",e)
@@ -70,7 +74,6 @@ export const postCompany=async (employee)=>{
     await axios.post("http://127.0.0.1:8000/api/company",employee)
   )
 }
-
 export const getCompany=async ()=>{
   return (
     await axios.get("http://127.0.0.1:8000/api/company")
@@ -133,11 +136,7 @@ export const postApplication=async (formData)=>{
 }
 
 
-// export const getCV=async (name)=>{
-//   return (
-//     await axios.get(`http://127.0.0.1:8000/api/cv/${name}`)
-//   )
-// }
+
 // Company Management
 
 export const getTokenCompany= async (token)=>{
