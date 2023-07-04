@@ -30,7 +30,7 @@ export const Register = () => {
     };
     const handelSubmit = async (e) => {
         postUser(e);
-        navigate("/hi")
+        navigate("/loginUser")
 
     }
     return (

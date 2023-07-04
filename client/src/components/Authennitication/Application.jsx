@@ -1,23 +1,9 @@
 import React, { useState } from 'react'
 import "../../_style/pages/application.scss";
-import { Form, Input, Button } from "antd"
+import { Form, Input, Button,Modal } from "antd"
 import { postApplication } from '../../api/Api'
 import Swal from "sweetalert2"
-export const Application = () => {
-    const [openModal, setOpenModal] = useState(false)
-    const handelApllication = () => {
-        setOpenModal(true)
-    }
-    return (
-        <div>
-            <button onClick={handelApllication} className='ApplicatinModal' style={{ background: "yellow" }}>Nộp đơn</button>
-            {openModal && <Modal closeModal={setOpenModal} />}
-        </div>
-    )
-}
-
-export const Modal = ({ closeModal, job }) => {
-
+export const Modals = ({ closeModal,visible,handleOk,handleCancel,job }) => {
     const [values, setValues] = useState({
         position: job.position,
         job_id: job.id,
@@ -48,68 +34,84 @@ export const Modal = ({ closeModal, job }) => {
                 "Content-Type": "multipart/form-data"
             }
         })
-        console.log(status.data)
+        // console.log(status.data)
         setValues("")
     }
     return (
 
-        <div className="container--modal">
-            <div className="modal--title">
-                <h4>Ứng tuyển ngay <span>{job.position}</span></h4>
-            </div>
-            <div className="modal--form">
-                <Form onFinish={handelSubmit}>
-                    <Form.Item
-                        name="name"
-                        rules={[{
-                            required: true,
-                            message: 'Vui lòng tên của bạn'
-                        }]}
-                        hasFeedback
-                    >
-                        <Input name="name" placeholder='Nhâp họ và tên viết hoa' className='form--values' onChange={handelInput} />
-                    </Form.Item>
-                    <Form.Item
-                        name="email"
-                        rules={[
-                            {
+        <>
+        <Modal
+        title={null}
+        visible={visible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        footer={null}
+        bodyStyle={{ backgroundColor: '#26AE61' }}
+        wrapClassName="custom-modal"
+        >
+                    <Form onFinish={handelSubmit} >
+                    <h4>Ứng tuyển ngay <span>{job.position}</span> tại công ty <span>{job.company_name}</span></h4>
+                        <Form.Item
+                            name="name"
+                            rules={[{
                                 required: true,
-                                message: 'Vui lòng nhập email'
-                            }
-                        ]}
-                        hasFeedback
-                    >
-                        <Input name="email" placeholder='Nhâp đúng email của bạn' className="form--values" onChange={handelInput} />
-                    </Form.Item>
-                    <Form.Item
-                        name="cover_letter"
-                    >
-                        <Input.TextArea name="cover_letter" rows={4} placeholder='Viết thư nguyện vọng' onChange={handelInput}></Input.TextArea>
-                    </Form.Item>
-                    <Form.Item
-                        name="file_cv"
-                        rules={[{
-                            required: true,
-                            message: 'Vui lòng đính kèm file'
-                        }]}
-                    >
-                        <Input type='file' name="file_cv" placeholder='Đính kèm file' className='form--values' onChange={handelFile}></Input>
-                    </Form.Item>
-                    <div className="form--button--application">
-                        <Form.Item>
-                            <Button type="primary" htmlType="submit" className="modal--submit">
-                                Nộp Ngay
-                            </Button>
-                            <Button onClick={() => closeModal(false)} className="modal--cancel">
-                                Hủy
-                            </Button>
+                                message: 'Vui lòng tên của bạn'
+                            }]}
+                            hasFeedback
+                        >
+                            <Input name="name" placeholder='Nhâp họ và tên viết hoa' className='form--values' onChange={handelInput} />
                         </Form.Item>
-                    </div>
+                        <Form.Item
+                            name="email"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Vui lòng nhập email'
+                                }
+                            ]}
+                            hasFeedback
+                        >
+                            <Input name="email" placeholder='Nhâp đúng email của bạn' className="form--values" onChange={handelInput} />
+                        </Form.Item>
+                        <Form.Item
+                            name="cover_letter"
+                        >
+                            <Input.TextArea name="cover_letter" rows={4} placeholder='Viết thư nguyện vọng' onChange={handelInput}></Input.TextArea>
+                        </Form.Item>
+                        <Form.Item
+                            name="file_cv"
+                            rules={[{
+                                required: true,
+                                message: 'Vui lòng đính kèm file'
+                            }]}
+                        >
+                            <Input type='file' name="file_cv" placeholder='Đính kèm file' className='form--values' onChange={handelFile}></Input>
+                        </Form.Item>
+                        <div className="form--button--application">
+                            <Form.Item>
+                                <Button type="primary" htmlType="submit" className="modal--submit">
+                                    Nộp Ngay
+                                </Button>
+                                <Button onClick={() => closeModal(false)} className="modal--cancel">
+                                    Hủy
+                                </Button>
+                            </Form.Item>
+                        </div>
+                    </Form>
+        </Modal>
+        <style>
+  {`
+    .custom-modal .ant-modal-content {
+      background-color: #26AE61;
+      border: none;
+    }
 
-                </Form>
-            </div>
-
-        </div>
+    .custom-modal .container--modal {
+      background-color: transparent;
+    }
+  `}
+</style>
+    </>
 
 
     )

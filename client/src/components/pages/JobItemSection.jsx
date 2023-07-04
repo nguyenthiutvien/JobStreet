@@ -10,7 +10,7 @@ const JobItemSection = ({ jobs }) => {
 
   const handleSearch = () => {
     const allJobs = jobs.map((item) => ({
-      id: item.company.id,
+      id: item.id,
       position: item.position,
       salary: item.salary,
       company: item.company.company_name,
@@ -26,7 +26,7 @@ const JobItemSection = ({ jobs }) => {
     const fullStackJobs = jobs
       .filter((item) => item.position == 'FullStack')
       .map((item) => ({
-        id: item.company.id,
+        id: item.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -41,7 +41,7 @@ const JobItemSection = ({ jobs }) => {
     const Design = jobs
       .filter((item) => item.position == 'Design')
       .map((item) => ({
-        id: item.company.id,
+        id: item.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -56,7 +56,7 @@ const JobItemSection = ({ jobs }) => {
     const JavaDev = jobs
       .filter((item) => item.position == 'Java Dev')
       .map((item) => ({
-        id: item.company.id,
+        id: item.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -71,7 +71,7 @@ const JobItemSection = ({ jobs }) => {
     const ReactJSDev = jobs
       .filter((item) => item.position == 'ReactJS Dev')
       .map((item) => ({
-        id: item.company.id,
+        id: item.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -86,7 +86,7 @@ const JobItemSection = ({ jobs }) => {
     const LaravelDev = jobs
       .filter((item) => item.position == 'Laravel Dev')
       .map((item) => ({
-        id: item.company.id,
+        id: item.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -102,7 +102,7 @@ const JobItemSection = ({ jobs }) => {
     const Fulltime = jobs
       .filter((item) => item.type === 'Full-time')
       .map((item) => ({
-        id: item.company.id,
+        id: item.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -111,14 +111,14 @@ const JobItemSection = ({ jobs }) => {
         time_close: item.close_day,
         type: item.type
       }));
-    setSearch(Fulltime);
+    setSearch(Fulltime.address);
   };
 
   const handleParttime = () => {
     const Parttime = jobs
       .filter((item) => item.type === 'Part-time')
       .map((item) => ({
-        id: item.company.id,
+        id: item.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -131,9 +131,9 @@ const JobItemSection = ({ jobs }) => {
   };
   const handleDaNang = () => {
     const DaNang = jobs
-      .filter((item) => item.company.address === 'Đà Nẵng')
+      .filter((item) => item.company.address == 'Đà Nẵng')
       .map((item) => ({
-        id: item.company.id,
+        id: item.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -146,9 +146,9 @@ const JobItemSection = ({ jobs }) => {
   };
   const handleHoChiMinh = () => {
     const HoChiMinh = jobs
-      .filter((item) => item.company.address === 'Hồ Chí Minh')
+      .filter((item) => item.company.address == 'Hồ Chí Minh')
       .map((item) => ({
-        id: item.company.id,
+        id: item.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -158,12 +158,13 @@ const JobItemSection = ({ jobs }) => {
         type: item.type
       }));
     setSearch(HoChiMinh);
+    // console.log(HoChiMinh);
   };
   const handleHaNoi = () => {
     const HaNoi = jobs
-      .filter((item) => item.company.address === 'Hà Nội')
+      .filter((item) => item.company.address == 'Hà Nội')
       .map((item) => ({
-        id: item.company.id,
+        id: item.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,

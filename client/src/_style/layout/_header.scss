@@ -7,9 +7,13 @@
     position: fixed;
     width: 100%;
     z-index: 3;
+    
     .home-header-container-nav-right{
         margin-left: 150px;
-        
+        justify-content: center;
+    align-items: center;
+    display: flex;
+    align-items: center;
         a{
             color: #FFFFFF;
             &:hover{

@@ -35,7 +35,7 @@ function Company() {
     <>
       {/* <NavBar/> */}
       <div>
-        <div className="container">
+        <div className="container--company">
           <div className="row  d-flex justify-content-center">
             <h1>Danh sách công ty</h1>
             <div className="col-sm-6">

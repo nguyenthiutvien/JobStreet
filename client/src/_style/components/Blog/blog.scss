@@ -1,3 +1,6 @@
+.container--blog{
+  height: 100%;
+}
 .button_post {
     background-color: #4CAF50;
     color: white;
@@ -19,7 +22,6 @@
 }
 
 .blog {
-    // styles for the main container
     background-color: #FFFFFF;
     padding: 20px;
 }
@@ -38,22 +40,22 @@
 
 
 .blog-post-container {
-    // styles for each individual blog post container
     margin-bottom: 20px;
-    // border: 1px solid #ccc;
     padding: 10px;
 }
 
 .comment-section {
-    position:relative;
+    margin-left: 40px;
+    justify-content: center;
+    align-items: center;
     .blog-comment {
         position: fixed;
         left: 25%;
-        top: 10%;
+        top: 16%;
         z-index: 2;
         background-color: #fff;
         width: 780px;
-          
+        box-shadow: 2px 2px 2px 2px #333;
         form {
             width: 500px;
             height: 250px;
@@ -62,14 +64,36 @@
             .comment {
                 width: 400px;
                 margin-left: 40px;
+                outline: none;
             }
             .d-flex{
                 display: flex;
                 gap: 10px;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
             }
 
-            .btn-success {
+            .btn-post {
                 margin-left: 40px;
+                min-width: 100px;
+                height: 50px;
+                background: #4CAF50;
+                color: #FFFFFF;
+                font-size: 18px;
+                border-radius: 8px;
+                outline: none;
+                border: none;
+            }
+            .btn-cancel {
+              min-width: 100px;
+              height: 50px;
+              background: #fb1905;
+              color: #FFFFFF;
+              font-size: 18px;
+              border-radius: 8px;
+              outline: none;
+              border: none;
             }
         }
     }
@@ -111,13 +135,10 @@
 }
 .blog-comment {
     width: 780px;
-    /* CSS cho phần tổng thể */
-    
   }
   
   .comment-section {
     margin-bottom: 20px;
-    
   }
   
   .comment {
@@ -140,15 +161,14 @@
   }
   .comment-list-section {
     width: 780px;
-    // border: 1px solid #ccc;
+    border: 1px solid #ccc;
     padding: 10px;
     background: #ffff;
-    height: 200px; /* Set a fixed height for the container */
-    overflow-y: auto; /* Add scrollbar when content exceeds the container height */
+    height: 200px; 
+    overflow-y: auto; 
   }
 
   .comment--backlog {
-    // border: 1px solid #ccc;
     padding: 10px;
     margin-bottom: 10px;
     

@@ -34,9 +34,21 @@ class JobApiController extends Controller
 
     public function getJobDetails($id)
     {
-        $data['job'] = Job::where('id', $id)->with('categories:id')->with('company:id,company_name,address,logo')->first();
-        $data['similar'] = Job::where([['status', 'active'], ['cat_id', $data['job']->cat_id]])->get();
-        return $this->apiResponse('success', $data, Response::HTTP_OK, true);
+        $detail=Job::where('jobs.id', $id)
+        ->join("companies", 'jobs.company_id', '=', 'companies.id')
+        ->select("jobs.id","jobs.position","jobs.type","jobs.salary","jobs.status","jobs.description","jobs.close_day","companies.company_name","companies.address","companies.logo")
+        ->first();
+        return response()->json(
+            [
+                "status"=>true,
+                "job"=>$detail
+            ]);
+
+
+
+        // $data['job'] = Job::where('id', $id)->with('categories:id')->with('company:id,company_name,address,logo')->first();
+        // // $data['similar'] = Job::where([['status', 'active'], ['cat_id', $data['job']->cat_id]])->get();
+        // return $this->apiResponse('success', $data, Response::HTTP_OK, true);
     }
 
     public function addJob(Request $request)

@@ -12,14 +12,11 @@ const BlogPost = ({ post }) => {
                         <img className="blog-post-avatar" src={`http://127.0.0.1:8000/storage/${avatar}`} alt="" />
                     </div>
                 )}
-                
                 <p className="blog-post-title">{username}</p> <br />
-                
             </div>
             <h5>{title}</h5>
             <p className="blog-post-body">{body}</p>
             {image && <img className="blog-post-image" src={`http://127.0.0.1:8000/storage/${image}`} alt="Blog post" />}
-           
         </div>
     );
 };

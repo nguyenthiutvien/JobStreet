@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { getTokenUser } from "../../api/Api";
+import { getTokenUser,UserChangePassword } from "../../api/Api";
+import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 export const ChangePassword = () => {
     const navigate=useNavigate()
     const token = JSON.parse(localStorage.getItem("login"));
@@ -19,6 +21,12 @@ export const ChangePassword = () => {
     const [pass1,setPassword]=useState({
         password:""
     })
+    const [password,setNewPass]=useState({
+        password:""
+    })
+    const [confirm_password,setCon_Pass]=useState({
+        password:""
+    })
     const handelSubmit = async(e) => {
         e.preventDefault();
         let error={}
@@ -29,17 +37,14 @@ export const ChangePassword = () => {
             if(status.data.status==400){
                 error.password=status.data.message
             }else if(status.data.status==200){
+                
                 setPass(true)
+                setNewPass("")
             }
         }
        setErorr(error)
     }
-    const [password,setNewPass]=useState({
-        password:""
-    })
-    const [confirm_password,setCon_Pass]=useState({
-        password:""
-    })
+
     const handelConfirm=async(e)=>{
         e.preventDefault();
         let error={}
@@ -65,6 +70,7 @@ export const ChangePassword = () => {
             })
             .then(()=>{
                 setPass(false)
+                setPassword("")
             })
         }
             
@@ -86,10 +92,10 @@ export const ChangePassword = () => {
                     <form onSubmit={handelConfirm} className='container--form--password'>
                     <label htmlFor="">Mật khẩu mới</label> <br />
                     <input className='form--input' name='new_password' type='password' onChange={(e)=>setNewPass({password:e.target.value})}/>
-                    <p className='password--error'>{error && error.password}</p>
+                    <p className='password--error'>{error && error.passwor}</p>
                     <label htmlFor="">Xác thực mật khẩu</label><br />
                     <input className='form--input' name='confirm_password' type='password' onChange={(e)=>setCon_Pass({password:e.target.value})}/>
-                    <p className='password--error'>{error && error.password}</p>
+                    <p className='password--error'>{error && error.passwo}</p>
                         <button type='submit' className='button--form'>Cập nhật</button>
                    
                 </form>)}

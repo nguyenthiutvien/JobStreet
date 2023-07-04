@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string("type");
             $table->string("description");
             $table->string("status",30);
-            $table->dateTime("close_day");  
+            $table->dateTime("close_day"); 
             $table->foreign("company_id")->references("id")->on("companies")->onDelete("cascade");
             $table->foreign("cat_id")->references("id")->on("categories")->onDelete("cascade");
             $table->timestamps();

@@ -58,6 +58,7 @@ export const Router = () => [
                 {path:"timvieclam/:id",element:<Timvieclam/>},
             ]
     },
+    {path:"jobdetail",element:<JobDetails/>},
     {path:"company",element:<Company/>},
     {path:"detail/:id", element:<Detail/>,},
     {path:"loginUser", element:<LoginUser/>},

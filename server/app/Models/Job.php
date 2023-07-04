@@ -17,7 +17,7 @@ class Job extends Model
         "type",
         "description",
         "status",
-        "close_day"
+        "close_day",
      ];
      public function company()
      {
