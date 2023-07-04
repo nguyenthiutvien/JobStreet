@@ -17,28 +17,6 @@ export const Modals = ({ closeModal,visible,handleOk,handleCancel,job }) => {
         const value = { ...values, [e.target.name]: e.target.value }
         setValues(value)
     }
-    const handelFile = (e) => {
-        const files = e.target.files[0]
-        setValues({ ...values, file_cv: files })
-    }
-    const handelSubmit = async () => {
-        const formData = new FormData()
-        formData.append("position", values.position)
-        formData.append("job_id", values.job_id)
-        formData.append("name", values.name)
-        formData.append("token", token.token)
-        formData.append("cover_letter", values.cover_letter)
-        formData.append("cv", values.file_cv)
-        formData.append("status", "Đã nhận")
-        const status = await postApplication(formData, {
-            headers: {
-                "Content-Type": "multipart/form-data"
-            }
-        })
-        if (status.data.status === 200) {
-            Swal.fire("Thành công","Ứng tuyển thành công","success")
-        }
-    }
     return (
 
         <>
