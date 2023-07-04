@@ -21,6 +21,20 @@ export const Modals = ({ closeModal,visible,handleOk,handleCancel,job }) => {
         const files = e.target.files[0]
         setValues({ ...values, file_cv: files })
     }
+    const handelSubmit = async () => {
+        const formData = new FormData()
+        formData.append("position", values.position)
+        formData.append("job_id", values.job_id)
+        formData.append("name", values.name)
+        formData.append("token", token.token)
+        formData.append("cover_letter", values.cover_letter)
+        formData.append("cv", values.file_cv)
+        formData.append("status", "Đã nhận")
+        const status = await postApplication(formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        })}
     return (
 
         <>
@@ -35,7 +49,7 @@ export const Modals = ({ closeModal,visible,handleOk,handleCancel,job }) => {
         >
                     <Form onFinish={handelSubmit} >
                     <h3>Ứng tuyển ngay <span>{job.position}</span> tại công ty <span>{job.company_name}</span></h3><br/>
-                        <Form.Item
+                    <Form.Item
                             name="name"
                             rules={[{
                                 required: true,
