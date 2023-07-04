@@ -34,11 +34,7 @@ export const Modals = ({ closeModal,visible,handleOk,handleCancel,job }) => {
             headers: {
                 "Content-Type": "multipart/form-data"
             }
-        })
-        if (status.data.status === 200) {
-            Swal.fire("Thành công","Ứng tuyển thành công","success")
-        }
-    }
+        })}
     return (
 
         <>
@@ -53,7 +49,7 @@ export const Modals = ({ closeModal,visible,handleOk,handleCancel,job }) => {
         >
                     <Form onFinish={handelSubmit} >
                     <h3>Ứng tuyển ngay <span>{job.position}</span> tại công ty <span>{job.company_name}</span></h3><br/>
-                        <Form.Item
+                    <Form.Item
                             name="name"
                             rules={[{
                                 required: true,
@@ -73,7 +69,7 @@ export const Modals = ({ closeModal,visible,handleOk,handleCancel,job }) => {
                             ]}
                             hasFeedback
                         >
-                            <Input name="email" placeholder='Nhâp đúng email của bạn' className="form--values" onChange={handelInput} />
+<Input name="email" placeholder='Nhâp đúng email của bạn' className="form--values" onChange={handelInput} />
                         </Form.Item>
                         <Form.Item
                             name="cover_letter"
