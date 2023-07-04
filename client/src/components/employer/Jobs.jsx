@@ -154,7 +154,7 @@ const Jobs = () => {
     return (
       <div className="content-delete">
         <div className="user--title">
-          <p>Công việc đã đăng</p>
+          <h2>Công việc đã đăng</h2> <br/>
         </div>
         <div className="user--content">
           <Button type="primary" onClick={() => setModalVisible(true)}>Thêm công việc</Button>
