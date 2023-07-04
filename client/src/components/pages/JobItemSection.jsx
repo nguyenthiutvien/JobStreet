@@ -10,7 +10,7 @@ const JobItemSection = ({ jobs }) => {
 
   const handleSearch = () => {
     const allJobs = jobs.map((item) => ({
-      id: item.company.id,
+      id: item.id,
       position: item.position,
       salary: item.salary,
       company: item.company.company_name,
@@ -26,7 +26,7 @@ const JobItemSection = ({ jobs }) => {
     const fullStackJobs = jobs
       .filter((item) => item.position == 'FullStack')
       .map((item) => ({
-        id: item.company.id,
+        id: item.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -41,7 +41,7 @@ const JobItemSection = ({ jobs }) => {
     const Design = jobs
       .filter((item) => item.position == 'Design')
       .map((item) => ({
-        id: item.company.id,
+        id: item.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -56,7 +56,7 @@ const JobItemSection = ({ jobs }) => {
     const JavaDev = jobs
       .filter((item) => item.position == 'Java Dev')
       .map((item) => ({
-        id: item.company.id,
+        id: item.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -71,7 +71,7 @@ const JobItemSection = ({ jobs }) => {
     const ReactJSDev = jobs
       .filter((item) => item.position == 'ReactJS Dev')
       .map((item) => ({
-        id: item.company.id,
+        id: item.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -86,7 +86,7 @@ const JobItemSection = ({ jobs }) => {
     const LaravelDev = jobs
       .filter((item) => item.position == 'Laravel Dev')
       .map((item) => ({
-        id: item.company.id,
+        id: item.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -102,7 +102,7 @@ const JobItemSection = ({ jobs }) => {
     const Fulltime = jobs
       .filter((item) => item.type === 'Full-time')
       .map((item) => ({
-        id: item.company.id,
+        id: item.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -118,7 +118,7 @@ const JobItemSection = ({ jobs }) => {
     const Parttime = jobs
       .filter((item) => item.type === 'Part-time')
       .map((item) => ({
-        id: item.company.id,
+        id: item.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -133,7 +133,7 @@ const JobItemSection = ({ jobs }) => {
     const DaNang = jobs
       .filter((item) => item.company.address === 'Đà Nẵng')
       .map((item) => ({
-        id: item.company.id,
+        id: item.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -148,7 +148,7 @@ const JobItemSection = ({ jobs }) => {
     const HoChiMinh = jobs
       .filter((item) => item.company.address === 'Hồ Chí Minh')
       .map((item) => ({
-        id: item.company.id,
+        id: item.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,
@@ -163,7 +163,7 @@ const JobItemSection = ({ jobs }) => {
     const HaNoi = jobs
       .filter((item) => item.company.address === 'Hà Nội')
       .map((item) => ({
-        id: item.company.id,
+        id: item.id,
         position: item.position,
         salary: item.salary,
         company: item.company.company_name,

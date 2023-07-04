@@ -8,13 +8,14 @@
 div.left-admin{
     padding-top: 30px;
     img{
-        width: 50px;
-        height: 50px;
+        width: 90px;
+        height: 90px;
         border-radius: 50%;
 
     }
     p{
         color: white;
+
     }
 }
 .leftadmin {
@@ -33,16 +34,137 @@ div.left-admin{
     
 }
 .content-admin{
-    background-color: #26AE61;
+    background-color: #0e0f0e;
     width: 17%;
-    height: 752px;
+    height: 100%;
     text-align: center;
     position: fixed;
 }
+.login-button {
+    background-color:green;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 5px;
+    margin-top: 440px;
+    width: 200px;
+}
 
-ul.left-conten a{
+
+
+.left-content {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+ul.left-conten a {
     margin-top: -10px;
     font-size: 18px;
     color: white;
 }
+.left-content li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: aliceblue;
+    border-bottom: 1px solid #ccc;
+    b{
+        color: #c91a1a;
+    }
+}
 
+.left-content li:hover {
+    background-color:white;
+}
+
+.left-content li Link {
+    text-decoration: none;
+    color: black;
+    margin-right: 10px;
+}
+.content-delete,
+.table-container,
+.information-content {
+    width: 100%;
+    padding: 20px;
+    background-image: url('https://images.pexels.com/photos/48753/pexels-photo-48753.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+}
+
+// companyAdmin  Browse informationuser
+.card-table {
+    .ant-table-tbody>tr {
+        width: 200px;
+        background: white;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .ant-table-thead>tr>th {
+        background: green;
+        font-weight: bold;
+        color: white;
+
+    }
+
+    .ant-table-tbody>tr:hover {
+        background: #333232;
+    }
+}
+
+// table
+div.card {
+    display: flex;
+    flex-direction: row;
+    gap: 10px; 
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f5f5f5;
+}
+
+.icon-container {
+    background-color: pink;
+    width: 45px;
+    height: 35px;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 20px;
+    // margin-top: -px;
+    // margin-right: 5px;
+  
+}
+.icon-container span {
+   margin-top: 100px;
+      margin-left: 9px;
+  }
+.card-apply,
+.card-candidate {
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-text {
+    margin-left: 125px;
+    margin-top: 50px;
+    font-size: 40px;
+    color: #1b1a1a;
+    
+}
+
+.card-user,
+.card-company,
+.card-apply,
+.card-candidate {
+    padding: 20px;
+    width: 900px;
+    height: 140px;
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    margin: 10px;
+}

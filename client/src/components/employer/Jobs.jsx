@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, Table, Modal, Select } from 'antd';
 import Swal from 'sweetalert2';
 import { getJobsCompany, addJob, updateJob, deleteJob } from '../../api/Api';
+import "../../_style/pages/employer.scss"
 
 const Jobs = () => {
     const [jobs, setJobs] = useState([]);
@@ -84,10 +85,8 @@ const Jobs = () => {
           
           const response = await addJob(Values);
           if (response.data) {
-            // Thêm công việc thành công
             setModalVisible(false);
             form.resetFields();
-            // Cập nhật danh sách công việc
             const updatedJobs = [...jobs, response.data.job];
             setJobs(updatedJobs);
           }
@@ -111,7 +110,7 @@ const Jobs = () => {
     const handleUpdate = async (values) => {
       try {
         const response = await updateJob(token.token, selectedJob.id, values);
-        if (response.data) {
+        
           // Cập nhật công việc thành công
           setModalVisible(false);
           form.resetFields();
@@ -128,7 +127,7 @@ const Jobs = () => {
             title: 'Thành công',
             text: 'Công việc đã được cập nhật!',
           });
-        }
+        
       } catch (error) {
         // Xử lý lỗi khi cập nhật công việc
         console.error(error);
@@ -138,9 +137,7 @@ const Jobs = () => {
     const handleDelete = async (job) => {
       try {
         const response = await deleteJob(token.token, job.id);
-        if (response.success) {
-          // Xóa công việc thành công
-          // Cập nhật danh sách công việc
+
           const updatedJobs = jobs.filter((item) => item.id !== job.id);
           setJobs(updatedJobs);
           Swal.fire({
@@ -148,7 +145,6 @@ const Jobs = () => {
             title: 'Thành công',
             text: 'Công việc đã được xóa!',
           });
-        }
       } catch (error) {
         // Xử lý lỗi khi xóa công việc
         console.error(error);
@@ -156,13 +152,13 @@ const Jobs = () => {
     };
   
     return (
-      <div className="container--user--infor">
+      <div className="content-delete">
         <div className="user--title">
           <p>Công việc đã đăng</p>
         </div>
         <div className="user--content">
           <Button type="primary" onClick={() => setModalVisible(true)}>Thêm công việc</Button>
-          <Table dataSource={jobs} columns={columns} />
+          <Table dataSource={jobs} columns={columns}  className='card-table'/>
   
           <Modal
             title={selectedJob ? 'Sửa công việc' : 'Thêm công việc'}

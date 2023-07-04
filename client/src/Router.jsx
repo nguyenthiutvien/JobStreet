@@ -16,17 +16,17 @@ import { UserProfile } from "./components/candidates/UserProfile";
 import AllJobs from "./components/pages/AllJobs";
 import JobDetails from "./components/jobs/JobDetails";
 import Header from "./components/header/Header";
-import Company from './components/Company'
-import Detail from './components/Detail'
-import Timvieclam from './components/Timvieclam';
-import Hero from "./components/header/Hero";
+import Company from './components/company/Company'
+import DetailCompany from './components/company/DetaiCompanyl'
+import CompanyJob from './components/company/CompanyJob';
+
 import JobItem from "./components/jobs/JobItem";
 import  EmployerProfile  from "./components/employer/EmployerProfile";
 
 import Blog from './components/Blog/Blog';
 import Companyad from "./components/admin/Companyadmin";
 import Userad from "./components/admin/Useradmin";
-import Admis from "./components/admin/Admin";
+import Admin from "./components/admin/Admin";
 import Inforusers from "./components/admin/Informationuser";
 import Menuadmin from "./components/admin/Menuadmin";
 import Browse from "./components/admin/Browse";
@@ -36,11 +36,12 @@ import NavBar from "./components/pages/navigation/NavBar";
 import { MyInformation } from "./components/candidates/UserInfor";
 import { Apply } from "./components/candidates/UserApply";
 import { ChangePassword } from "./components/candidates/ChangePassUser";
-import Admin from "./components/admin/Admin";
+
 import Jobs from "./components/employer/Jobs";
 import CompanyChangePassword from "./components/employer/CompanyChangePassword";
 import Application from "./components/employer/Application";
 import { CompanyInformation } from "./components/employer/CompanyInformation";
+import Map from "./components/jobs/map";
 
 
 
@@ -55,20 +56,21 @@ export const Router = () => [
                 {path:"blog",element:<Blog/>},
                 {path:"company",element:<Company/>},
                 {path:"contact",element:<Contact/>},
-                {path:"timvieclam/:id",element:<Timvieclam/>},
+                {path:"companyJob/:id",element:<CompanyJob/>},
             ]
     },
+    {path:"map" ,element:<Map/>},
     {path:"company",element:<Company/>},
-    {path:"detail/:id", element:<Detail/>,},
+    {path:"detailCompany/:id", element:<DetailCompany/>,},
     {path:"loginUser", element:<LoginUser/>},
     {path:"loginEmployee", element:<LoginEmployee/>},
     {path:"employeePayment",element:<EmployeePayment/>},
     {path:"employerProfile",element:<EmployerProfile/>,
     children:[
-        {path:"",element:<Application/>},
+        {path:"",element:<CompanyInformation/>},
         {path:"jobs",element:<Jobs/>},
         {path:"changePassword",element:<CompanyChangePassword/>},
-        {path:"updateInformation",element:<CompanyInformation/>}
+        {path:"companyApllication" ,element:<Application/>}
     ]
 },
 
@@ -92,7 +94,9 @@ export const Router = () => [
     {path:"entercodeEmployee", element:<EmployeeEnterCode/>},
     {path:"registerEmployee", element:<RegisterEmployee/>},
     {path:"navBar", element:<NavBar/>},
-    {path:"admin", element:<Admin/>},
+    { path: "admin", element: <Admin /> },
+    { path:"/employeePayment", element :< EmployeePayment />  },
+    
         // <Routes>
         //     <Route path="/userProfile" element={<UserProfile/>}></Route>
         //     <Route path="/employerProfile" element={<EmployerProfile/>}></Route>
@@ -124,7 +128,7 @@ export const Router = () => [
 
         //     <Route path="/blog" element={<Blog />} />
 
-        //      <Route path="/admin/*" element={<Admis/>} />
+        //      <Route path="/admin/*" element={<n/>} />
         //     <Route path="/menuadmin" element={<Menuadmin/>} />
             
         //     <Route path="/companyad" element={<Companyad/>}/>
@@ -134,6 +138,8 @@ export const Router = () => [
         //     <Route path="/browse" element={<Browse/>}/>
         //     {/* <Route path="/searchjob" element={<Search/>}></Route> */}
         // </Routes>
+    
+
 ]
 
 

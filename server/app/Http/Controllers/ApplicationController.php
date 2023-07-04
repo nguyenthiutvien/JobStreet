@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Mail\NotificationToCandidate;
 use App\Mail\NotificationToEmployee;
+use App\Mail\StatusApplicationNotification;
+
 use App\Models\Application;
 use App\Models\Job;
 use App\Models\User;
@@ -233,65 +235,55 @@ public function getApplicationByCompany($token)
         ->join('jobs', 'jobs.id', '=', 'applications.job_id')
         ->join('companies', 'companies.id', '=', 'jobs.company_id')
         ->where('companies.token', $token)
-
-                ->get();
+        ->get();
 
     return response()->json($applications);
 }
 
 
-
-// public function updateStatus(Request $request, $user_id, $job_id)
-// {
-//     $application = Application::where('user_id', $user_id)
-//                              ->where('job_id', $job_id)
-//                              ->firstOrFail();
-                             
-//     $application->status = $request->input('status');
-//     $application->save();
-
-//     return response()->json(['message' => 'Status updated successfully']);
-// }
-public function AcceptApplication(Request $request, $token)
+public function AcceptApplication(Request $request, $user_id, $job_id)
 {
-    $id = $request->id;
-    $status = 'Đồng ý';
-    // $user=User::all();
-    $application=Application::select('applications.created_at', 'applications.status', 'applications.user_id','applications.job_id','applications.cv', 'users.email', 'users.username' ,'jobs.position')
-    ->where('companies.token', $token)
-    ->join('companies', 'jobs.company_id', '=', 'companies.id');
-  
-    $application = Job::findOrFail($id);
-    $application->status = $status;
-    $application->save();
-    // Mail::to($company->email)->send(new Noticetothecompany("Chấp nhận",$company->company_name));
-    // foreach ($user as $value) {
-    //     // Mail::to($value->email)->send(new AdminBrowseInformation($value->username,$company->company_name,$job->position));
-    // }
-    return response()->json(
-        "Cập nhật thành công"
-    );
-}
+    $status = $request->input('status');
 
-public function RejectApplication(Request $request, $token)
-{
-    $id = $request->id;
-    $status = 'đồng ý';
-    $user=User::all();
-    $application=Application::select('applications.created_at', 'applications.status', 'applications.user_id','applications.job_id','applications.cv', 'users.email', 'users.username' ,'jobs.position')
-    ->where('companies.token', $token)
-    ->join('companies', 'jobs.company_id', '=', 'companies.id')
-    ->first();
-    $job = Job::findOrFail($id);
-    $job->status = $status;
-    $job->save();
-    // Mail::to($company->email)->send(new Noticetothecompany("Chấp nhận",$company->company_name));
-    foreach ($user as $value) {
-        // Mail::to($value->email)->send(new AdminBrowseInformation($value->username,$company->company_name,$job->position));
+    $result = DB::table('applications')
+        ->where('user_id', $user_id)
+        ->where('job_id', $job_id)
+        ->update(['status' => $status]);
+
+    if ($result) {
+        $user = User::find($user_id);
+        $job = Job::find($job_id);
+        $company = Company::find($job->company_id); // Lấy thông tin công ty từ bảng companies
+
+        $email = new StatusApplicationNotification($user, $job, $status, $company);
+        Mail::to($user->email)->send($email);
+
+        return response()->json("Cập nhật thành công và đã gửi email");
+    } else {
+        return response()->json("Lỗi khi cập nhật", 500);
     }
-    return response()->json(
-        "Cập nhật thành công"
-    );
+}
+public function RejectApplication(Request $request, $user_id, $job_id)
+{
+    $status = 'rejected';
+
+    $result = DB::table('applications')
+        ->where('user_id', $user_id)
+        ->where('job_id', $job_id)
+        ->update(['status' => $status]);
+
+        if ($result) {
+            $user = User::find($user_id);
+            $job = Job::find($job_id);
+            $company = Company::find($job->company_id);
+    
+            $email = new StatusApplicationNotification($user, $job, $status, $company);
+            Mail::to($user->email)->send($email);
+    
+            return response()->json("Cập nhật thành công và đã gửi email");
+        } else {
+            return response()->json("Lỗi khi cập nhật", 500);
+        }
 }
 
 

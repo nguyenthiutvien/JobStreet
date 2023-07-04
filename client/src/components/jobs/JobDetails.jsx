@@ -15,15 +15,15 @@ const JobDetails = (hero) => {
     const fetchData = async () => {
       const response = await fetchApiData(`api/home/${id}`);
       if (response.status === true) {
-        setjob(response.data.job);
+        setjob(response.job);
       } else {
         console.log(response);
       }
     };
     fetchData();
-    setTimeout(() => {
-      setloader(false);
-    }, 1500);
+    // setTimeout(() => {
+    //   setloader(false);
+    // }, 1500);
   }, [id]);
   return (
     <>
@@ -34,7 +34,7 @@ const JobDetails = (hero) => {
         
       ) : ( */}
         <>
-          {/* <NavHero hero={hero} job={job} />*/}
+        {/* <NavHero hero={hero} job={job} /> */}
           <JobDetailsItem job={job} /> 
           
         </>

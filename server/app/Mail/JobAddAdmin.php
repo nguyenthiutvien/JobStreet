@@ -44,7 +44,6 @@ class JobAddAdmin extends Mailable
                 "job" => $this->description,
                 "job" => $this->salary,
                 "job" => $this->closeDay,
-               
                 "job" => $this->status
                 // "job" => $this->
 

@@ -2,16 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import BlogPost from './BlogPost';
 import BlogForm from './BlogForm';
+import { Button } from 'antd';
 import { BlogComment } from './BlogComment';
-import '../../_style/components/Blog/blog.scss';4
-import '../header/Header';
-import '../footer/Footer';
-import Nav from '../header/Nav'
-import Footer from '../footer/Footer';
-
+import '../../_style/components/Blog/blog.scss';
+import { useNavigate } from 'react-router-dom';
 const Blog = () => {
+    const navigate=useNavigate()
     const [blogPostsData, setBlogPostsData] = useState([]);
-    const [show, setShow] = useState(false);
+    const [visible, setVisible] = useState(false);
     const [openModel, setOpenModel] = useState(false);
     const [selectedProductId, setSelectedProductId] = useState(null);
     useEffect(() => {
@@ -28,20 +26,24 @@ const Blog = () => {
         fetchData();
     }, []);
     const handleShow = () => {
-        setShow(!show)
+        setVisible(true)
     }
-    const handelComment=()=>{
-
+    const handelCancel=()=>{
+        setVisible(false)
     }
-
+    const handelOk=()=>{
+        setVisible(false);
+        navigate("blog")
+    }
+   
     return (
         <>
-        {/* <Nav/> */}
-            {show && <BlogForm handleShow={handleShow} />}
+        <div className="container--blog">
+            {visible && <BlogForm handleHiden={setVisible} handelCancel={handelCancel} handelOk={handelOk} visible={visible} handleShow={handleShow} />}
             <div className="blog">
                 <h1 className="blog-title">Blog tìm việc làm</h1>
                 <div class="header_post">
-                    <button class="button_post" onClick={handleShow}>Đăng bài</button>
+                    <Button class="button_post" onClick={handleShow}>Đăng bài</Button>
                 </div>
 
                 <div className="blog-posts">
@@ -62,7 +64,7 @@ const Blog = () => {
                     
                 </div>
             </div>
-            {/* <Footer/> */}
+         </div>
         </>
     );
 };

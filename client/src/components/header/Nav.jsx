@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../../public/assets/images/logo.png";
+import "../../_style/layout/_header.scss"
 import { getTokenUser,getTokenCompany } from "../../api/Api";
-import { Outlet } from "react-router-dom";
-import Footer from "../footer/Footer";
-import Loader from "../services/Loader";
-const Nav = ({ cmp }) => {
+const Nav = ({ cmp ,handelClickLink}) => {
   const location = useLocation();
   const token = JSON.parse(localStorage.getItem("login"));
   const userType=JSON.parse(localStorage.getItem("userType"));
@@ -14,17 +12,6 @@ const Nav = ({ cmp }) => {
   useEffect(() => {
     userAlready()
   }, [])
-
-  const handelClickLink=()=>{
-    setLoader(true)
-    setTimeout(()=>{
-      setLoader(false)
-    },2000)
-  }
-
-  useEffect(()=>{
-    setLoader(false)
-  },[])
 
   const userAlready = async () => {
     if(userType==="candidate"){
@@ -43,9 +30,6 @@ const Nav = ({ cmp }) => {
   }
   return (
     <>
-    {loader?(
-      <Loader/>
-    ):(
 <>
     <div className="home-header-container-nav">
       <div className="home-header-container-nav-left">
@@ -109,15 +93,7 @@ const Nav = ({ cmp }) => {
       </div>
       
     </div>
-    <main>
-      <Outlet></Outlet>
-    </main>
-    {/* <footer> */}
-      <Footer/>
-    {/* </footer> */}
     </>
-    )}
-    
     </>
   );
 };

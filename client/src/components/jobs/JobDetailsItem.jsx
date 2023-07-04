@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { Modal } from "../Authennitication/Application";
+import { Modals } from "../Authennitication/Application";
 import "../../_style/components/_detailsJob.scss";
 import "../../_style/pages/navHero.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,12 +13,21 @@ import {
 import NavBar from "../pages/navigation/NavBar";
 import NavHero from "../pages/navigation/NavHero";
 import Loader from "../services/Loader";
+import Map from "./map";
+
 
 const JobDetailsItem = ({ job ,hero}) => {
   const navigate = useNavigate();
-  const [openModal, setOpenModal] = useState(false);
+  const [visible, setVisible] = useState(false);
   const handelApplication = () => {
-    setOpenModal(true);
+    setVisible(true);
+  };
+  const handleOk = () => {
+    setVisible(false);
+  };
+
+  const handleCancel = () => {
+    setVisible(false);
   };
   const handelLogin = () => {
     Swal.fire({
@@ -34,7 +43,7 @@ const JobDetailsItem = ({ job ,hero}) => {
       if (result.isConfirmed) {
         navigate("/loginUser");
       } else {
-        setOpenModal(false);
+        setVisible(false);
       }
     });
   };
@@ -43,34 +52,38 @@ const JobDetailsItem = ({ job ,hero}) => {
     <>
       <div className="container">
       <NavHero job={job} hero={hero} />
-        {/* {console.log(job)} */}
       </div>
       <section className="details_info">
         <div className="container">
           <div className="row">
             <div className="left">
               <h1>Mô tả công việc</h1>
-              <div className="job-description">{job && job.description}</div>
+              <div className="job-description">{job.description}</div>
               {useLogined === null ? (
                 <Link className="btn btn-success" onClick={handelLogin}>
-                  Ứng tuyển ngay
+                 <p className="link"> Ứng tuyển ngay</p>
                 </Link>
               ) : (
                 <Link className="btn btn-success" onClick={handelApplication}>
-                  Ứng tuyển ngay
+                  <p className="link"> Ứng tuyển ngay</p> 
                 </Link>
               )}
 
-              {openModal && <Modal closeModal={setOpenModal} job={job} />}
+              {visible && <Modals closeModal={setVisible} job={job} visible={visible}
+        handleOk={handleOk}
+        handleCancel={handleCancel}/>}
             </div>
             <div className="right">
-              <h1>Địa chỉ công việc</h1>
-              <div className="location-map">Map will be rendered here</div>
-            </div>
+        <h1>Địa chỉ công ty</h1>
+        <div className="location-map">
+          <Map/>
+        </div>
+      </div>
           </div>
-          {/* <Job  similar={true} /> */}
+          
         </div>
       </section>
+
     </>
   );
 };
