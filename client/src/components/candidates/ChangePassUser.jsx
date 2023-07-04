@@ -76,10 +76,11 @@ export const ChangePassword = () => {
         <>
             {pass == false ?
                 (<form onSubmit={handelSubmit} className='container--form--password'>
-                    <label htmlFor="">Nhập mật khẩu</label> <br />
+                    <label htmlFor=""><b>Nhập mật khẩu</b></label> <br /> <br />
                         <input type='password' name='password' className='form--input' placeholder='Nhập mật khẩu' onChange={(e)=>setPassword({password:e.target.value})}/> <br />
-                        <p className='password--error'>{error && error.password}</p>
-                        <button type='submit' className='button--form'>OK</button>
+                        <p className='password--error'>{error && error.password}</p> <br />
+                    <button type='submit' className='button--form'>OK</button>
+                    
                     
                 </form>) :
                 (
