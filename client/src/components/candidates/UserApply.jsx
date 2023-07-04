@@ -36,7 +36,7 @@ export const Apply = () => {
         <>
             <div className="container--table--cv">
                 <div className="cv--title">
-                    <p>Danh sách công ty ứng tuyển</p>
+                    <b>Danh sách công ty ứng tuyển</b>
                 </div>
                 <div className="list--cv">
                     

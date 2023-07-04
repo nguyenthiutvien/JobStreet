@@ -50,10 +50,17 @@ export const MyInformation = () => {
         <>
             <div className="container--table-inform">
                 <div className="cv--title">
-                    <p>Thông tin cá nhân</p>
+                    <b>Thông tin cá nhân</b>
                 </div>
+                <br />
                 <div className="list--cv">
                     <Form onFinish={handelSubmit}>
+                        <Form.Item>
+                            {update === false ?
+                                (<img className='image--profile--user' src={`http://127.0.0.1:8000/storage/${upUser.avatar}`} alt="" />)
+                                : (<Input className='form--input' name='avatar' type='file' onChange={handelAvatar}></Input>)}<br /> <br />
+                            <label><b>Ảnh đại diện</b></label> 
+                        </Form.Item>
                         <Form.Item
                             name="name"
                         >
@@ -82,22 +89,19 @@ export const MyInformation = () => {
                                 (<input className='form--input' type='number' name='number_phone' value={upUser.number_phone} placeholder='Số điện thoại của bạn' onChange={handelIpnut} />)}
 
                         </Form.Item>
+                        
                         <Form.Item>
-                            <label>Ảnh đại diện</label> <br />
-                            {update === false ?
-                                (<img className='image--profile--user' src={`http://127.0.0.1:8000/storage/${upUser.avatar}`} alt="" />)
-                                : (<Input className='form--input' name='avatar' type='file' onChange={handelAvatar}></Input>)}
-                        </Form.Item>
-                        <Form.Item>
-                            {update === false ?
-                                (<button type="primary" className='edit--button' onClick={handelUpdate} htmlType="button">
+                            {update === false ? (
+                                <Button type="primary" className="edit--button" onClick={handelUpdate} htmlType="button">
                                     Sửa
-                                </button>) :
-                                (<Button  className="update--button" htmlType="submit">
+                                </Button>
+                            ) : (
+                                <Button type="primary" className="update--button" htmlType="submit">
                                     Cập nhật
-                                </Button>)}
-
+                                </Button>
+                            )}
                         </Form.Item>
+
                     </Form>
                 </div>
             </div>
