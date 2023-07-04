@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, Table, Modal, Select } from 'antd';
 import Swal from 'sweetalert2';
 import { getJobsCompany, addJob, updateJob, deleteJob } from '../../api/Api';
+import "../../_style/pages/employer.scss"
 
 const Jobs = () => {
     const [jobs, setJobs] = useState([]);
@@ -151,13 +152,13 @@ const Jobs = () => {
     };
   
     return (
-      <div className="container--user--infor">
+      <div className="content-delete">
         <div className="user--title">
-          <p>Công việc đã đăng</p>
+          <h2>Công việc đã đăng</h2> <br/>
         </div>
         <div className="user--content">
           <Button type="primary" onClick={() => setModalVisible(true)}>Thêm công việc</Button>
-          <Table dataSource={jobs} columns={columns} />
+          <Table dataSource={jobs} columns={columns}  className='card-table'/>
   
           <Modal
             title={selectedJob ? 'Sửa công việc' : 'Thêm công việc'}

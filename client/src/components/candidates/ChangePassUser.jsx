@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { getTokenUser } from "../../api/Api";
+import { getTokenUser,UserChangePassword } from "../../api/Api";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Swal from "sweetalert2";
 export const ChangePassword = () => {
     const navigate=useNavigate()
     const token = JSON.parse(localStorage.getItem("login"));

@@ -6,7 +6,7 @@ export const Apply = () => {
     const [apply, setAppy] = useState([])
     useEffect(() => {
         const getApply = async () => {
-            const values = await getApplications(email.email);
+            const values = await getApplications(email.token);
             setAppy(values.data)
         }
         getApply();

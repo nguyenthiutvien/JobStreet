@@ -12,6 +12,7 @@ export const Modals = ({ closeModal,visible,handleOk,handleCancel,job }) => {
         cover_letter: "",
         file_cv: ""
     })
+    const token=JSON.parse(localStorage.getItem("login"))
     const handelInput = (e) => {
         const value = { ...values, [e.target.name]: e.target.value }
         setValues(value)
@@ -25,7 +26,7 @@ export const Modals = ({ closeModal,visible,handleOk,handleCancel,job }) => {
         formData.append("position", values.position)
         formData.append("job_id", values.job_id)
         formData.append("name", values.name)
-        formData.append("email", values.email)
+        formData.append("token", token.token)
         formData.append("cover_letter", values.cover_letter)
         formData.append("cv", values.file_cv)
         formData.append("status", "Đã nhận")
@@ -34,9 +35,11 @@ export const Modals = ({ closeModal,visible,handleOk,handleCancel,job }) => {
                 "Content-Type": "multipart/form-data"
             }
         })
-        // console.log(status.data)
-        setValues("")
+        if (status.data.status ===200) {
+            Swal.fire("Thành Công","Nộp đơn ứng tuyển thành công","success")
+        }
     }
+        
     return (
 
         <>
@@ -51,7 +54,7 @@ export const Modals = ({ closeModal,visible,handleOk,handleCancel,job }) => {
         >
                     <Form onFinish={handelSubmit} >
                     <h3>Ứng tuyển ngay <span>{job.position}</span> tại công ty <span>{job.company_name}</span></h3><br/>
-                        <Form.Item
+                    <Form.Item
                             name="name"
                             rules={[{
                                 required: true,
@@ -71,7 +74,7 @@ export const Modals = ({ closeModal,visible,handleOk,handleCancel,job }) => {
                             ]}
                             hasFeedback
                         >
-                            <Input name="email" placeholder='Nhâp đúng email của bạn' className="form--values" onChange={handelInput} />
+<Input name="email" placeholder='Nhâp đúng email của bạn' className="form--values" onChange={handelInput} />
                         </Form.Item>
                         <Form.Item
                             name="cover_letter"

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use App\Mail\ForgotPassword;
 use App\Mail\RegisterEmail;
+use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -102,8 +103,15 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function countEndUser()
     {
+        $userCount = User::count();
+        $companyCount = Company::count();
+
+        return response()->json([
+            "user" => $userCount,
+            "company" => $companyCount
+        ]);
     }
 
     /**
