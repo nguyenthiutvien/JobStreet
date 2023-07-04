@@ -30,7 +30,7 @@ export const Register = () => {
     };
     const handelSubmit = async (e) => {
         postUser(e);
-        navigate("/hi")
+        navigate("/loginUser")
 
     }
     return (
@@ -167,7 +167,7 @@ export const Register = () => {
                         </Form.Item>
                     </Form>
                     <div className="login">
-                        <p>Bạn đã có tài khoản <Link className="link--to" to={"/"}>Đăng nhập</Link></p>
+                        <p>Bạn đã có tài khoản <Link className="link--to" to={"/loginUser"}>Đăng nhập</Link></p>
                     </div>
                 </div>
             </div>
@@ -404,7 +404,7 @@ export const RegisterEmployee = () => {
                         </Form.Item>
                     </Form>
                     <div className="login">
-                        <p>Bạn đã có tài khoản <Link className="link--to" to={"/"}>Đăng nhập</Link></p>
+                        <p>Bạn đã có tài khoản <Link className="link--to" to={"/loginEmployee"}>Đăng nhập</Link></p>
                     </div>
                 </div>
             </div>

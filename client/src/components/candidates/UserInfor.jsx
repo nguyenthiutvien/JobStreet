@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getTokenUser } from "../../api/Api";
+import { getTokenUser,updateUser } from "../../api/Api";
 import { Form,Input,Button } from "antd";
 export const MyInformation = () => {
     const [update, setUpdate] = useState(false)

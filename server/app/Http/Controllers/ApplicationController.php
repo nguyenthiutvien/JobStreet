@@ -53,7 +53,7 @@ class ApplicationController extends Controller
         $name=$request->name;
         $cover_letter=$request->cover_letter;
         $position=$request->position;
-        $status="Đã nhận";
+        $status="Pending";
         
         $user = User::where("token", $token)->first();
         $application=new Application();
@@ -87,13 +87,13 @@ class ApplicationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($email)
+    public function show($token)
     {
         $apply=Job::join("companies","jobs.company_id","=","companies.id")
         ->join("applications","jobs.id","=","applications.job_id")
         ->join("users","applications.user_id","=","users.id")
         ->select("companies.company_name","jobs.position","applications.status","applications.created_at")
-        ->where("users.email",$email)
+        ->where("users.token",$token)
         ->get();
         return response()->json($apply);
     }

@@ -34,7 +34,12 @@ export const Modals = ({ closeModal,visible,handleOk,handleCancel,job }) => {
             headers: {
                 "Content-Type": "multipart/form-data"
             }
-        })}
+        })
+        if (status.data.status ===200) {
+            Swal.fire("Thành Công","Nộp đơn ứng tuyển thành công","success")
+        }
+    }
+        
     return (
 
         <>
