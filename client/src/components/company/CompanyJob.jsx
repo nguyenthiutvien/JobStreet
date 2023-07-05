@@ -66,7 +66,7 @@ function Timvieclam() {
                     to={`/job-details/${item.job_id}`} 
                   
                   >
-                    {item.type}
+                   <p>Chi tiết</p> 
                   </Link>
                 </div>
               </div>

@@ -77,8 +77,8 @@ export const ChangePassword = () => {
     return (
         <>
             {pass == false ?
-                (<form onSubmit={handelSubmit} className='container--form--password'>
-                    <label htmlFor=""><b>Nhập mật khẩu</b></label> <br /> <br />
+                (<form onSubmit={handelSubmit} className='container--form--passwords'>
+                    <label htmlFor=""><b>Nhập mật khẩu hiện tại</b></label> <br /> <br />
                         <input type='password' name='password' className='form--input' placeholder='Nhập mật khẩu' onChange={(e)=>setPassword({password:e.target.value})}/> <br />
                         <p className='password--error'>{error && error.password}</p> <br />
                     <button type='submit' className='button--form'>OK</button>
@@ -86,13 +86,13 @@ export const ChangePassword = () => {
                     
                 </form>) :
                 (
-                    <form onSubmit={handelConfirm} className='container--form--password'>
+                    <form onSubmit={handelConfirm} className='container--form--passwords'>
                     <label htmlFor="">Mật khẩu mới</label> <br />
                     <input className='form--input' name='new_password' type='password' onChange={(e)=>setNewPass({password:e.target.value})}/>
                     <p className='password--error'>{error && error.password}</p>
                     <label htmlFor="">Xác thực mật khẩu</label><br />
                     <input className='form--input' name='confirm_password' type='password' onChange={(e)=>setCon_Pass({password:e.target.value})}/>
-                    <p className='password--error'>{error && error.password}</p>
+                    <p className='password--error'>{error && error.password}</p> 
                         <button type='submit' className='button--form'>Cập nhật</button>
                    
                 </form>)}

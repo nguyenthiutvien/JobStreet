@@ -58,7 +58,7 @@ export const MyInformation = () => {
   };
   return (
     <>
-      <div className="container-inform">
+      <div className="container-informs">
         <div className="cv--title">
           <b>Thông tin cá nhân</b>
         </div>
