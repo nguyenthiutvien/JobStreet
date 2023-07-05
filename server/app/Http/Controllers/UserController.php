@@ -163,7 +163,10 @@ class UserController extends Controller
         $user->address = $address;
         $user->save();
         return response()->json(
-            "Cập nhật thành công"
+            [
+                "status" => 200,
+                "success" => "Thành công"
+            ]
         );
     }
 

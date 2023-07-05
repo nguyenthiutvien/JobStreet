@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import "../../_style/user/tabbar.scss";
 import { Link, Outlet, useNavigate } from "react-router-dom"
 import { TabarUser } from './TabarUser';
+import "../../_style/admin/admin.scss"
 import Swal from 'sweetalert2';
 import axios from 'axios';
 export const UserProfile = () => {

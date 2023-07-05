@@ -35,7 +35,7 @@ export const BlogComment = ({post,handelHiden}) => {
     )
     
     const handelLogin=(e)=>{
-        e.preventDefault()
+        e.preventDefault(),
         Swal.fire({
             title:"Đăng nhập",
             text:"Vui lòng đăng nhập trước khi bình luận",

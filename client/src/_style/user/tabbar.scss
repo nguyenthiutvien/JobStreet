@@ -1,7 +1,7 @@
 
 .container--tabbar {
     width: 250px;
-    height: 900px;
+    height: 920px;
     background: black;
     border-right: 2px solid #fff;
 }
@@ -52,25 +52,29 @@
                 transition: color 0.3s ease;
             }
 
-            &:hover {
-                color:green;
-                background-color: white;
+            // &:hover {
+            //     color:red;
+            //     background-color: white;
+            // }
+        }
+        .button{
+            margin-left: 4px;
+            border-radius: 8px;
+            margin-top: 120px;
+            color:#FFFFFF;
+            border: none ;
+            width: 150px;
+            height: 40px;
+            font-size: 17px;
+            background-color: #26AE61;
+            &:hover{
+                background-color: #2e6f4a; 
             }
         }
-            button.color {
-                width: 130px;
-                height: 50px;
-                background:green;
-                color: #fff;
-                border: none;
-                border-radius: 6px;
-                font-size: 18px;
-                margin-top: 400px;
-                
-            }
     
-            button:hover {
+            button:hover a {
                 background: #9b9e9d;
+                color: red;
             }
     }
 }
@@ -84,6 +88,7 @@
     }
 }
 .container--user--profile{
+    
     display: grid;
     grid-template-columns: 19% 81%;
     // .user--profile--left{
@@ -114,7 +119,7 @@
 
 
 // =========== UseerInfor==============
-.container--table-inform{
+.container-inform{
     margin-top: 30px;
     box-shadow: 1px 1px 1px 1px #9b9e9d;
     width: 90%;
@@ -148,7 +153,7 @@
     height: 70px;
     border-radius: 50px;
 }
-.edit--button{
+.edit--btn{
     width: 130px;
     height: 40px;
     border-radius: 8px;
@@ -156,7 +161,7 @@
     background:#26AE61;
     color: #FFFFFF;
 }
-.update--button{
+.update--btn{
     width: 130px;
     height: 40px;
     border-radius: 8px;

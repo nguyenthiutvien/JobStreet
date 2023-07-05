@@ -31,7 +31,7 @@ export const TabarUser = ({handelLogout}) => {
                         <li><Link className='color' to="" > <b>Nộp đơn</b></Link></li>
                         <li><Link className='color' to="Information"> <b>Thông tin</b></Link></li>
                         <li><Link className='color' to="ChangePassword"> <b>Đổi mật khẩu</b></Link></li>
-                        <button className="color" onClick={handelLogout}><b>Đăng xuất</b></button>
+                        <button className="button" onClick={handelLogout}><b>Đăng xuất</b></button>
                         
 
                     </ul>

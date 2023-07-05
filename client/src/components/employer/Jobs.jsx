@@ -7,6 +7,8 @@ import "../../_style/pages/employer.scss"
 const Jobs = () => {
     const [jobs, setJobs] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
+    const [add, setAdd] = useState(false);
+
     const [selectedJob, setSelectedJob] = useState(null);
     const [form] = Form.useForm();
     const token = JSON.parse(localStorage.getItem('login'));
@@ -17,7 +19,7 @@ const Jobs = () => {
         setJobs(response.data);
       };
       fetchData();
-    }, [token.token]);
+    }, [token.token,add]);
     console.log(jobs)
     const columns = [
       {
@@ -85,10 +87,12 @@ const Jobs = () => {
           
           const response = await addJob(Values);
           if (response.data) {
-            setModalVisible(false);
+          
             form.resetFields();
             const updatedJobs = [...jobs, response.data.job];
             setJobs(updatedJobs);
+            setModalVisible(false);
+            setAdd(!add)
           }
           Swal.fire({
             icon: 'success',
@@ -112,7 +116,7 @@ const Jobs = () => {
         const response = await updateJob(token.token, selectedJob.id, values);
         
           // Cập nhật công việc thành công
-          setModalVisible(false);
+         
           form.resetFields();
           // Cập nhật danh sách công việc
           const updatedJobs = jobs.map((job) => {
@@ -121,12 +125,13 @@ const Jobs = () => {
             }
             return job;
           });
-          setJobs(updatedJobs);
+           setJobs(updatedJobs);
           Swal.fire({
             icon: 'success',
             title: 'Thành công',
             text: 'Công việc đã được cập nhật!',
           });
+          setModalVisible(false);
         
       } catch (error) {
         // Xử lý lỗi khi cập nhật công việc
@@ -222,7 +227,7 @@ const Jobs = () => {
                 name="close_day"
                 rules={[{ required: true, message: 'Vui lòng nhập ngày đóng' }]}
               >
-                <Input type='datetime'></Input>
+                <Input type='date'></Input>
              
               </Form.Item>
             </Form>
