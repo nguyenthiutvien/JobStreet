@@ -99,18 +99,6 @@ class CompanyController extends Controller
 
 
     // ---------------------------------------------------------------
-    // public function addGoogleCalender()
-    // {
-    //     $event = new Event();
-    //     $event->name = 'A new event';
-    //     $event->description = 'Event description';
-    //     $event->startDateTime = Carbon::now();
-    //     $event->endDateTime = Carbon::now()->addHour();
-
-    //     $calendar = GoogleCalendarFactory::createForCalendarId('c_6f2f2211790263975074a7c5c99e3be5600d0d642304de1595052df21820ca58@group.calendar.google.com');
-    //     $calendar->insertEvent($event);
-    //     return view("welcome");
-    // }
 
     /**
      * Show the form for creating a new resource.
