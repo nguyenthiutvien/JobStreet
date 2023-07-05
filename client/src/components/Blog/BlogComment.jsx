@@ -71,9 +71,16 @@ export const BlogComment = ({post,handelHiden}) => {
                     <div className="comment-list-section">
                         {commentBlog.map((value) => (
                             <div className="comment--backlog">
-                            <img src={`http://127.0.0.1:8000/storage/${value.avatar}`} alt="" />
+                            {value.avatar!=null?
+                            (<> <img src={`http://127.0.0.1:8000/storage/${value.avatar}`} alt="" />
                             <h6>{value.username}</h6>
+                            <p>{value.content}</p></>):
+                            (<> <img src={`http://127.0.0.1:8000/storage/${value.logo}`} alt="" />
+                            <h6>{value.company_name}</h6>
                             <p>{value.content}</p>
+                            </>)
+                            }
+                           
                             </div>
                         ))}
                     </div>
