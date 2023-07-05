@@ -81,15 +81,6 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        // $post_id=$request->post_id;
-        // $user_comment = Comment::where("post_id", $id)
-        //     ->join("users", "comments.user_id", "=", "users.id")
-        //     ->join("posts", "comments.post_id", "=", "posts.id")
-        //     ->select("users.username", "users.avatar", "comments.content")
-        //     ->groupBy("users.id", "users.username", "users.avatar", "comments.content")
-        //     ->get();
-        // return response()->json($user_comment);
-
         $user_comment = Comment::leftJoin("users", "comments.user_id", "=", "users.id")
             ->leftJoin("companies", "comments.company_id", "=", "companies.id")
             ->leftJoin("posts", "comments.post_id", "=", "posts.id")
