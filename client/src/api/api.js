@@ -191,8 +191,7 @@ export const deleteJob = async (token, jobId) => {
     throw error.response.data;
   }
 };
-export const 
-userComment=async(dataCommet)=>{
+export const userComment=async(dataCommet)=>{
   return (
     await axios.post("http://127.0.0.1:8000/api/comment",dataCommet)
   )
