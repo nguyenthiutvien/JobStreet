@@ -36,8 +36,9 @@ const BlogForm = ({ handleHiden,handelCancel,handelOk,visible }) => {
                     Accept: 'application/json',
                 },
           });
-            console.log(status.data)
-            handleHiden(false)
+            if(status.data.status ===200){
+                Swal.fire("Thanh cong","Ban da dang bai thanh cong","success")
+            }
         } catch (error) {
             console.error('Error adding blog post:', error);
             // Handle error, show an error message, etc.
