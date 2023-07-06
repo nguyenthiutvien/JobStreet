@@ -44,19 +44,17 @@ function Detail() {
                   {detail.company_name}
                 </h5>
               </div>
-              {/* <div className="col-md-7"> */}
-
               <div className="col-md-6">
                 <p className="card">
                   <span>
-                    <h5>Địa điểm:</h5>
-                  </span>{" "}
+                    <h5>Địa điểm: </h5>
+                  </span>
                   {detail?.address}
                 </p>
                 <p className="card">
                   <span>
-                    <h5>Số điện thoại:</h5>
-                  </span>{" "}
+                    <h5>Số điện thoại: </h5>
+                  </span>
                   {detail?.number_phone}
                 </p>
               </div>
@@ -141,7 +139,7 @@ function Detail() {
             </div>
           </div>
 
-        </div><br/><br/><br/>
+        </div>
       </div>
     </>
   );
