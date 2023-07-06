@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use App\Mail\ForgotPassword;
 use App\Mail\RegisterEmail;
+use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -137,4 +138,17 @@ class UserController extends Controller
             $verificationCode
         );
     }
+
+    // controller user/---------------------------------------------
+    public function countUsers()
+    {
+        $userCount = User::count();
+        $companyCount = Company::count();
+    
+        return response()->json([
+            "userCount"=>$userCount,
+            "companyCount"=>$companyCount
+        ]);
+    }
 }
+

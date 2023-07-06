@@ -254,4 +254,13 @@ public function getCompany(Request $request, $companyId)
     $companies = DB::table('companies')->get();
     return response()->json($companies);
 }
+
+
+// controller  company/---------------------------------
+public function countCompany()
+{
+    $companyCount = Company::count();
+
+    return $companyCount;
+}
 }

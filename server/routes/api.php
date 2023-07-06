@@ -69,3 +69,11 @@ Route::get('/getuser', [CompanyController::class, 'getUser']);
 
 
 Route::get('/getcompanies', [CompanyController::class, 'getCompanyname']);
+
+
+//  API của countUser------------------------------------
+Route::get('/countuser',[UserController::class,'countUsers']);
+
+
+//  API của countCompany------------------------------------
+Route::get('/countcompany',[CompanyController::class,'countCompany']);
