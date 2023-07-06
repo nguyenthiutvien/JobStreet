@@ -75,6 +75,7 @@ const JobDetailsItem = ({ job ,hero}) => {
             </div>
             <div className="right">
         <h1>Địa chỉ công ty</h1>
+        <img src="https://www.google.com/maps/d/thumbnail?mid=1JwrFnS69sR3pVhdmBC1AnS4pibw&hl=en_US"></img>
         <div className="location-map">
           <Map/>
         </div>

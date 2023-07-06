@@ -4,11 +4,13 @@ import { Modal,Input,Button,Form } from 'antd';
 import '../../_style/components/Blog/blogform.scss';
 import Swal from 'sweetalert2';
 
+
 const BlogForm = ({ handleHiden,handelCancel,handelOk,visible }) => {
 
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [image, setImage] = useState('');
+    const [refresh, setRefresh] = useState(false); // Thêm state refresh
     const login=JSON.parse(localStorage.getItem('login'));
     const handleTitleChange = e => {
         setTitle(e.target.value);
@@ -30,14 +32,15 @@ const BlogForm = ({ handleHiden,handelCancel,handelOk,visible }) => {
             formData.append('title', title);
             formData.append('body', body);
             formData.append('image', image);
-          const status=  await axios.post('http://127.0.0.1:8000/api/add_posts', formData, {
+          const status=  await axios.post('http://127.0.0.1:8000/api/add-posts', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Accept: 'application/json',
                 },
           });
-            console.log(status.data)
-            handleHiden(false)
+            if(status){
+                Swal.fire("Thanh cong","Ban da dang bai thanh cong","success")
+            }
         } catch (error) {
             console.error('Error adding blog post:', error);
             // Handle error, show an error message, etc.

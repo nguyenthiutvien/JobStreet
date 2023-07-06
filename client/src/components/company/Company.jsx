@@ -15,7 +15,7 @@ function Company() {
   const data = async () => {
     try {
       const data = await axios.get(
-        "http://127.0.0.1:8000/api/companies/selectdata"
+        "http://127.0.0.1:8000/api/get-company"
       );
       setshow(data.data);
       // console.log(data.data);
@@ -50,7 +50,7 @@ function Company() {
           </div>
           
 
-          <div className="card">
+          <div className="cards">
             {filter &&
               filter.map((item) => (
                 <Link to={`/detailCompany/${item.id}`} className="linka" key={item.id}>
@@ -63,19 +63,6 @@ function Company() {
                         </Link>
                       </div>
 
-                      <svg
-                        data-testid="icon-svg"
-                        className="IconStyle"
-                        width="1em"
-                        height="1em"
-                        fill="#777777"
-                        viewBox="0 0 100 100"
-                      >
-                        <path
-                          d="M88,0 L88,100 L50,71.6603516
-                        L12,100 L12,0 L88,0 Z M82,6.36363636 L18,6.36363636 L18,87 L50,64.5990754 L82,87 L82,6.36363636 Z"
-                        ></path>
-                      </svg>
                     </div>
                     <div className="item">
                       <div>

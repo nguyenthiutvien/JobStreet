@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../../_style/pages/confirmcode.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Input, Form } from "antd";
-import { recoverPassword, recoverPasswordEmployee } from "../../api/Api";
+import { recoverPassword, recoverPasswordEmployer } from "../../api/Api";
 export const UserEnterCode = () => {
   const navigate = useNavigate();
   const [code, setCode] = useState({
@@ -150,6 +150,6 @@ export const ResentCodeUser = async () => {
 
 export const ResentCodeEmployee = async () => {
   const localCode = JSON.parse(localStorage.getItem("user"));
-  const code = await recoverPasswordEmployee(localCode);
+  const code = await recoverPasswordEmployer(localCode);
   localStorage.setItem("code", JSON.stringify(code.data));
 };

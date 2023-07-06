@@ -39,7 +39,7 @@ const Application = () => {
       status: status,
     };
   
-    fetch(`http://127.0.0.1:8000/api/accept-applications/${user_id}/${job_id}`, {
+    fetch(`http://127.0.0.1:8000/api/change-status-applications/${user_id}/${job_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -124,15 +124,7 @@ const Application = () => {
       <div className="content-delete">
           <div className="cv--title">
             
-              <p>Danh sách ứng cử viên</p>
-
-              <div className="card">
-              <div className="card-user"><FontAwesomeIcon icon={faCoffee} /></div>
-              <div className="card-company"><FontAwesomeIcon icon={faUser} /> </div>
-              <div className="card-apply"> <FontAwesomeIcon icon={faEnvelopeOpenText} /></div>
-              <div className="card-candidate"><FontAwesomeIcon icon={faClipboardList} /></div>
-
-      </div> <br /><br />
+         
           </div>
           <div className="list--cv">
               <Table className="card-table" 

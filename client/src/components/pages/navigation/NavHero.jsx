@@ -39,7 +39,7 @@ const NavHero = ({ hero, job }) => {
                   <div className="right">
                   <div className="amount">
                     <h2>Tiền lương</h2>
-                    <h2>{job.salary}</h2>
+                    <h2>{job.salary}$</h2>
                   </div>
                 </div>
                 </div>

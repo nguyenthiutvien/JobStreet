@@ -6,7 +6,7 @@ export const Apply = () => {
     const [apply, setAppy] = useState([])
     useEffect(() => {
         const getApply = async () => {
-            const values = await getApplications(email.email);
+            const values = await getApplications(email.token);
             setAppy(values.data)
         }
         getApply();
@@ -36,7 +36,7 @@ export const Apply = () => {
         <>
             <div className="container--table--cv">
                 <div className="cv--title">
-                    <p>Danh sách công ty ứng tuyển</p>
+                    <b>Danh sách công ty ứng tuyển</b>
                 </div>
                 <div className="list--cv">
                     
