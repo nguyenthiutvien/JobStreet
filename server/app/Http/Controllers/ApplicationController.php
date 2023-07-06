@@ -53,7 +53,7 @@ class ApplicationController extends Controller
         $name=$request->name;
         $cover_letter=$request->cover_letter;
         $position=$request->position;
-        $status="Đã nhận";
+        $status="Pending";
         
         $user = User::where("token", $token)->first();
         $application=new Application();
@@ -74,7 +74,7 @@ class ApplicationController extends Controller
             Mail::to($job->email)->send(new NotificationToEmployee($name,$cover_letter,$fileName,$job->company_name));
             Mail::to($user->email)->send(new NotificationToCandidate($name,$job->company_name));
             return response()->json([
-                "Thành công"=> $application,
+                "status"=> 200,
                   "name"=>$name,
                   "cover_letter"=>$cover_letter,
                   "position"=>$position,
@@ -87,13 +87,13 @@ class ApplicationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($email)
+    public function show($token)
     {
         $apply=Job::join("companies","jobs.company_id","=","companies.id")
         ->join("applications","jobs.id","=","applications.job_id")
         ->join("users","applications.user_id","=","users.id")
         ->select("companies.company_name","jobs.position","applications.status","applications.created_at")
-        ->where("users.email",$email)
+        ->where("users.token",$token)
         ->get();
         return response()->json($apply);
     }

@@ -39,7 +39,7 @@ const JobItemSection = ({ jobs }) => {
   };
   const handleDesign = () => {
     const Design = jobs
-      .filter((item) => item.position == 'Design')
+      .filter((item) => item.position == 'UI/UX Design')
       .map((item) => ({
         id: item.id,
         position: item.position,
@@ -184,7 +184,7 @@ const JobItemSection = ({ jobs }) => {
                 <h5>Tìm theo vị trí công việc</h5>
                 <label>
                   <input className="checkbox" type="radio" value="Design" name='radio' onClick={handleDesign}/>
-                  <span className="textSearch">Thiết kế</span>
+                  <span className="textSearch">UI/UX Design</span>
                 </label>
                 <label>
                   <input className="checkbox" type="radio" value="Java Dev" name='radio' onClick={handleJavaDev}/>

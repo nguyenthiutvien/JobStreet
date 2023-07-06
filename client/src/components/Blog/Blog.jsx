@@ -42,8 +42,8 @@ const Blog = () => {
             {visible && <BlogForm handleHiden={setVisible} handelCancel={handelCancel} handelOk={handelOk} visible={visible} handleShow={handleShow} />}
             <div className="blog">
                 <h1 className="blog-title">Blog tìm việc làm</h1>
-                <div class="header_post">
-                    <Button class="button_post" onClick={handleShow}>Đăng bài</Button>
+                <div className="header_post">
+                    <Button className="button_post" onClick={handleShow}>Đăng bài</Button>
                 </div>
 
                 <div className="blog-posts">
@@ -55,10 +55,11 @@ const Blog = () => {
                                     setOpenModel(true)
                                     setSelectedProductId(post.id)
                             }}>Bình luận</p>
-                        </div>
-                        <div className="comment-section">
+                             <div className="comment-section">
                             {openModel==true && selectedProductId==post.id && <BlogComment handelHiden={setOpenModel}  post={post}/>}
                         </div>
+                        </div>
+                       
                     </>
                     ))}
                     
