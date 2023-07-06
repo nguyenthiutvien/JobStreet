@@ -214,7 +214,7 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function updateCompanyInfo(Request $request, $email)
+    public function updateCompanyInfo(Request $request)
     {
         $request->validate([
             'company_name' => "required|string",
@@ -226,41 +226,41 @@ class CompanyController extends Controller
             'number_phone' => "required|numeric",
         ]);
 
-        $company = Company::where("email", $email)->first();
+        // $company = Company::where("email", $email)->first();
 
-        if (!$company) {
-            return response()->json(
-                "Công ty không tồn tại"
-            );
-
-
+        // if (!$company) {
+        //     return response()->json(
+        //         "Công ty không tồn tại"
+        //     );
             $id = $request->id;
             $company_name = $request->company_name;
             $logo = $request->logo;
             $scale = $request->scale;
             $website = $request->website;
             $address = $request->address;
-            $phone_number = $request->number_phone;
+            $number_phone = $request->number_phone;
             $company = Company::findOrFail($id);
             if ($request->hasFile("logo")) {
                 $logo = $request->file("logo");
                 $logoName = Str::random(16) . "." . $request->logo->getClientOriginalExtension();
                 Storage::disk("public")->put($logoName, file_get_contents($logo));
-                $company->avatar = $logoName;
+                $company->logo = $logoName;
             }
             $company->company_name = $company_name;
             $company->scale = $scale;
             $company->website = $website;
-            $company->number_phone = $phone_number;
+            $company->number_phone = $number_phone;
             $company->address = $address;
 
             $company->save();
-            return response()->json(
-                "Cập nhật thành công"
+            return response()->json([
+                "status" => 200,
+                "success" => "Thành công"
+            
 
-            );
+            ]);
         }
-    }
+    
 
 
     /**

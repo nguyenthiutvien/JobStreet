@@ -78,6 +78,7 @@ function Inforusers(){
                     <div className="icon-container">
                         <span><FontAwesomeIcon icon={faEnvelopeOpenText} /></span>
                     </div>
+                    <span className="card-text">{endUser.application}</span>
                 </div>
                 <div className="card-candidate">
                     <div className="icon-container">

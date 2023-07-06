@@ -124,15 +124,7 @@ const Application = () => {
       <div className="content-delete">
           <div className="cv--title">
             
-              <p>Danh sách ứng cử viên</p>
-
-              <div className="card">
-              <div className="card-user"><FontAwesomeIcon icon={faCoffee} /></div>
-              <div className="card-company"><FontAwesomeIcon icon={faUser} /> </div>
-              <div className="card-apply"> <FontAwesomeIcon icon={faEnvelopeOpenText} /></div>
-              <div className="card-candidate"><FontAwesomeIcon icon={faClipboardList} /></div>
-
-      </div> <br /><br />
+         
           </div>
           <div className="list--cv">
               <Table className="card-table" 

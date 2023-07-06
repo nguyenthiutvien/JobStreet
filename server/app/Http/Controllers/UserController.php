@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use App\Mail\ForgotPassword;
 use App\Mail\RegisterEmail;
 use App\Models\Company;
+use App\Models\Application;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -107,10 +108,12 @@ class UserController extends Controller
     {
         $userCount = User::count();
         $companyCount = Company::count();
+        $application = Application::count();
 
         return response()->json([
             "user" => $userCount,
-            "company" => $companyCount
+            "company" => $companyCount,
+            "application" => $application
         ]);
     }
 

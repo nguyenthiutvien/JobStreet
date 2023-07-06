@@ -60,9 +60,9 @@ public function Updatestatus(Request $request)
     $job->status = $status;
     $job->save();
     Mail::to($company->email)->send(new Noticetothecompany("Chấp nhận",$company->company_name));
-    foreach ($user as $value) {
-        Mail::to($value->email)->send(new AdminBrowseInformation($value->username,$company->company_name,$job->position));
-    }
+    // foreach ($user as $value) {
+    //     Mail::to($value->email)->send(new AdminBrowseInformation($value->username,$company->company_name,$job->position));
+    // }
     return response()->json(
         "Cập nhật thành công"
     );

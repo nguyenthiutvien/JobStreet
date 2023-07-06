@@ -20,7 +20,6 @@ const Contact = () => {
         <>
           <NavBar hero="contact" cmp="contact" />
           <ContactForm />
-          <Footer />
         </>
       )}
     </>

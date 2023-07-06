@@ -67,8 +67,11 @@ function Userad(){
             <div className="card">
                 <div className="card-user">
                     <div className="icon-container">
+                   
                         <span><FontAwesomeIcon icon={faCoffee} /></span>
+                     
                     </div>
+                    
                     <span className="card-text">{endUser.company}</span>
                 </div>
                 <div className="card-company">
@@ -81,6 +84,7 @@ function Userad(){
                     <div className="icon-container">
                         <span><FontAwesomeIcon icon={faEnvelopeOpenText} /></span>
                     </div>
+                    <span className="card-text">{endUser.application}</span>
                 </div>
                 <div className="card-candidate">
                     <div className="icon-container">
