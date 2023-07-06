@@ -175,3 +175,8 @@ Route::delete('/reject-applications/{user_id}/{job_id}', [ApplicationController:
 
 
 Route::get('/countenduser', [UserController::class, 'countEndUser']);
+// xóa company bên admin
+Route::delete('/companies/{companyId}', [CompanyController::class,'deleteadminCompany']);
+
+// xóa user bên admin
+Route::delete('/useradmin/{userId}',[CompanyController::class,'deleteUsers']);

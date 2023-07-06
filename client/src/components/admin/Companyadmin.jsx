@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee, faUser, faEnvelopeOpenText, faClipboardList } from '@fortawesome/free-solid-svg-icons';
-import { Table, Pagination } from "antd";
-import { Link } from "react-router-dom";
+import { Table, Pagination,Button } from "antd";
+import Swal from "sweetalert2";
 
 function Companyad() {
   const [company, setCompany] = useState([]);
@@ -28,6 +28,23 @@ function Companyad() {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  // delete
+  const handleDelete = (id) => {
+    fetch(`http://127.0.0.1:8000/api/companies/${id}`, {
+      method: "DELETE",
+    })
+      .then((result) => {
+        result.json().then((data) => {
+          Swal.fire("Thành công", "Xóa sản phẩm thành công", "success");
+          console.warn(data);
+          getData();
+        });
+      })
+      .catch((error) => {
+        console.error("Error deleting companies:", error);
+      });
   };
 
   const getEndUser = async () => {
@@ -65,6 +82,22 @@ function Companyad() {
           alt=""
           style={{ width: "45px", height: "45px", borderRadius: "50px" }}
         />
+      ),
+    },
+    {
+      title: "Hành động",
+      key: "action",
+      render: (text, record) => (
+        <span>
+          <Button
+            onClick={() => handleDelete(record.id)}
+            type="warning"
+            danger
+            className="btn btn-danger"
+          >
+            Xóa
+          </Button>
+        </span>
       ),
     },
   ];

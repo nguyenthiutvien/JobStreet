@@ -95,6 +95,20 @@ class CompanyController extends Controller
 
         return response()->json($results);
     }
+    public function deleteadminCompany(Request $request ,$companyId)
+    {
+        $company = Company::find($companyId);
+
+        if (!$company) {
+            return response()->json(['error' => 'Company not found'], 404);
+        }
+
+        $company->delete();
+
+        return response()->json(['status' => 'ok', 'message' => 'Delete succeeded']);
+    }
+
+
 
 
 
@@ -314,9 +328,9 @@ class CompanyController extends Controller
     }
 
 
-    public function deleteUsers(Request $request)
+    public function deleteUsers(Request $request,$userId)
     {
-        $user = User::find($request->id);
+        $user = User::find($userId);
 
         if (!$user) {
             return response()->json(['error' => 'User not found'], 404);

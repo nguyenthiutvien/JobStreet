@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { Table, Pagination } from "antd";
+import { Table, Pagination,Button } from "antd";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee, faUser, faEnvelopeOpenText, faClipboardList } from '@fortawesome/free-solid-svg-icons';
-import { Link } from "react-router-dom";
+
 function Userad(){
     const [users, setUsers] = useState([]);
     const [endUser, setEndUser] = useState([])
@@ -25,6 +25,23 @@ function Userad(){
             console.log(error)
         }
     };
+    const handleDelete=(id)=>{
+        fetch(`http://127.0.0.1:8000/api/useradmin/${id}`,{
+            method:"DELETE",
+
+        })
+        .then((result)=>{
+            result.json().then((data)=>{
+                Swal.fire("Thành công","xóa sản phẩm thành công","success");
+                getData();
+            });
+        })
+        .catch((error)=>{
+            console.error("Error deleting cadidate");
+        })
+    };
+
+
     const getEndUser = async () => {
         const data = await axios.get("http://127.0.0.1:8000/api/countenduser");
         setEndUser(data.data)
@@ -56,7 +73,23 @@ function Userad(){
             dataIndex: "avatar",
             key: "avatar",
             render: (avatar) => <img src={getImageUrl(avatar)} alt="" style={{ width: '40px', height: '40px',borderRadius:"50px" }} />,
-        }
+        },
+        {
+            title: "Hành động",
+            key: "action",
+            render: (text, record) => (
+              <span>
+                <Button
+                  onClick={() => handleDelete(record.id)}
+                  type="warning"
+                  danger
+                  className="btn btn-danger"
+                >
+                  Xóa
+                </Button>
+              </span>
+            ),
+          },
     ]
      const paginatedData = users.slice(
     (currentPage - 1) * pageSize,
