@@ -1,8 +1,11 @@
 import React from 'react'
 import axios from 'axios'
-import "../config"
-
-// //  FETCH API JOB 
+import '../config'
+export const postUser =async (e) => {
+  return (
+      await axios.post("http://127.0.0.1:8000/api/users",e)
+  )
+} 
 export const fetchApiData = async (url) => {
   return await axios
     .get(url)
@@ -23,12 +26,6 @@ export const deleteApiData = async (url) => {
     .then((response) => response.data)
     .catch((response) => response.response.data);
 };
-
-export const postUser =async (e) => {
-  return (
-      await axios.post("http://127.0.0.1:8000/api/users",e)
-  )
-} 
 export const getUser = async ()=>{
   return (
     await axios.get("http://127.0.0.1:8000/api/users")
@@ -55,6 +52,8 @@ export const userLogin=async(e)=>{
   )
 }
  
+
+
 
 
 
