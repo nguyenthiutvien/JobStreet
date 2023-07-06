@@ -19,13 +19,19 @@ export const LoginUser = () => {
         setLogin(values)
     }
     const [error, setError] = useState({})
-
+    const adminAccount = {
+        email: "jobstreet@gmail.com",
+        password: "123456789"
+      };
+      
+      const adminAccountJSON = JSON.stringify(adminAccount);
+      localStorage.setItem("admin", adminAccountJSON);
     const handelSubmit = async (e) => {
         e.preventDefault();
         let error = {}
-        if(login.email=="vien@gmail.com" && login.password=="12345678"){
-            navigate("/admin")
-            exist;
+        const admin = JSON.parse(localStorage.getItem("admin"));
+        if (admin && login.email === admin.email && login.password === admin.password) {
+            navigate("/admin");
         }
         const token = await userLogin(login)
         switch (token.data.status) {

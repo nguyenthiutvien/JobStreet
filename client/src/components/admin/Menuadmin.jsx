@@ -1,7 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link,Navigate } from 'react-router-dom';
 
-function Menuadmin({handelCompany,handelUser,handelInformation,handelbrowse}) {
+function Menuadmin({handelCompany,handelUser,handelInformation,handelbrowse,handleLogout}) {
+  // const history = useHistory();
+
   return (
     
     <div className='content-admin'>
@@ -19,7 +21,7 @@ function Menuadmin({handelCompany,handelUser,handelInformation,handelbrowse}) {
           <li><Link onClick={handelInformation}><b>Đơn ứng tuyển</b></Link></li>
         </ul>
       
-        <button className='login-button'>Đăng Xuất</button>
+        <button className='login-button' onClick={handleLogout}>Đăng Xuất</button>
         </div>
     </div>
 

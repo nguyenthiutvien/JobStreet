@@ -219,19 +219,12 @@ class CompanyController extends Controller
         $request->validate([
             'company_name' => "required|string",
             'logo' => "nullable",
-            'scale' => "required|numeric",
+            'scale' => "required|string",
             'description' => "required|string",
             'website' => "required|string",
             'address' => "required|string",
             'number_phone' => "required|numeric",
         ]);
-
-        // $company = Company::where("email", $email)->first();
-
-        // if (!$company) {
-        //     return response()->json(
-        //         "Công ty không tồn tại"
-        //     );
             $id = $request->id;
             $company_name = $request->company_name;
             $logo = $request->logo;

@@ -95,6 +95,9 @@
 .company-information {
   min-height: 100vh !important;
   padding: 40px 36px;
+  h2{
+    color:#080000
+  }
   h3 {
     font-size: 22px;
     font-weight: bold;
@@ -108,12 +111,13 @@
   p.card-text {
     max-width: 750px;
     font-size: 1px;
+    color: black
   }
   .job {
-    max-width: 450px;
+    max-width: 300px;
    min-height: 100px;
     padding-top: 8px;
-    padding-left: 24px;
+    // padding-left: 20px;
     .row-vieclam {
       // padding: 10px 0px 20px 8px;
       .job_position {
@@ -127,6 +131,7 @@
       // .card-texts {
       //   margin: 10px 0;
       //   font-size: 18px;
+      //   color: bla
         
       // }
       &:hover {

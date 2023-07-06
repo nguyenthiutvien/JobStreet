@@ -137,22 +137,30 @@ div.card {
     // margin-right: 5px;
   
 }
-.icon-container span {
-   margin-top: 100px;
-      margin-left: 9px;
-  }
+.icon-container{
+    span {
+        margin-top: 100px;
+           margin-left: 9px;
+     
+       }
+    
+}
+ 
 .card-apply,
 .card-candidate {
-    font-size: 20px;
+    // display: flex;
+    // font-size: 18px;
     justify-content: center;
     align-items: center;
+   
 }
 
 .card-text {
-    margin-left: 125px;
-    margin-top: 50px;
+    margin-left: 95px;
+    // margin-top: 50px;
     font-size: 40px;
-    color: #1b1a1a;
+    // color: red;
+  
     
 }
 
@@ -160,11 +168,12 @@ div.card {
 .card-company,
 .card-apply,
 .card-candidate {
+    font-size: 18px;
     padding: 20px;
     width: 900px;
     height: 140px;
     border-radius: 20px;
     background-color: white;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    margin: 10px;
+    // margin: 10px;
 }

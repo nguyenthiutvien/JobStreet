@@ -64,34 +64,7 @@ function Userad(){
   );
     return (
         <div  className="table-container">
-            <div className="card">
-                <div className="card-user">
-                    <div className="icon-container">
-                   
-                        <span><FontAwesomeIcon icon={faCoffee} /></span>
-                     
-                    </div>
-                    
-                    <span className="card-text">{endUser.company}</span>
-                </div>
-                <div className="card-company">
-                    <div className="icon-container">
-                        <span> <FontAwesomeIcon icon={faUser} /></span>
-                    </div>
-                    <span className="card-text">{endUser.user}</span>
-                </div>
-                <div className="card-apply">
-                    <div className="icon-container">
-                        <span><FontAwesomeIcon icon={faEnvelopeOpenText} /></span>
-                    </div>
-                    <span className="card-text">{endUser.application}</span>
-                </div>
-                <div className="card-candidate">
-                    <div className="icon-container">
-                        <span>  <FontAwesomeIcon icon={faClipboardList} /></span>
-                    </div>
-                </div>
-            </div><br /><br />
+         
             <div>
                 <Table className="card-table" dataSource={paginatedData} columns={columns}></Table>
                 <Pagination

@@ -123,23 +123,29 @@ function Browse() {
           <div className="icon-container">
             <span><FontAwesomeIcon icon={faCoffee} /></span>
           </div>
+          <p> Ứng tuyển viên</p>
           <span className="card-text">{endUser.company}</span>
         </div>
         <div className="card-company">
           <div className="icon-container">
             <span> <FontAwesomeIcon icon={faUser} /></span>
           </div>
+          <p> Nhà tuyển dụng</p>
           <span className="card-text">{endUser.user}</span>
         </div>
         <div className="card-apply">
           <div className="icon-container">
             <span><FontAwesomeIcon icon={faEnvelopeOpenText} /></span>
           </div>
+          <p> Đơn ứng tuyển</p>
+          <span className="card-text">{endUser.application}</span>
         </div>
         <div className="card-candidate">
           <div className="icon-container">
             <span>  <FontAwesomeIcon icon={faClipboardList} /></span>
           </div>
+          <p> Công việc</p>
+          <span className="card-text">{endUser.job}</span>
         </div>
       </div> <br /><br />
       <div>

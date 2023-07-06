@@ -6,8 +6,7 @@ const Info = () => {
     <div className="footer__section__container__footer__info">
       <img src={Logo} alt="logo" />
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia id
-        facilis quam quibusdam dolor consequuntur.
+     JobStreet là một trong những hệ sinh thái nhân sự hàng đầu tại khu vực Đông Nam Á. Sứ mệnh của chúng tôi là hỗ trợ cho 120 triệu nhân tài trong khu vực phát triển sự nghiệp của họ.
       </p>
     </div>
   );

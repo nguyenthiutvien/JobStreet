@@ -12,14 +12,14 @@ export const BlogComment = ({ post, handelHiden }) => {
     const post_id = e.target.post_id.value;
     const comment = e.target.content.value;
     const token = tokens.token;
-    const dataCommet = {
+    const dataComment = {
       token: token,
       post_id: post_id,
       content: comment,
     };
 
     if (comment !== '') {
-      const res = await userComment(dataCommet);
+      const res = await userComment(dataComment);
       if (res.status === 200) {
         Swal.fire('Tuyệt vời', 'Bình luận thành công', 'success').then((result) => {
           if (result.isConfirmed) {
