@@ -308,7 +308,7 @@ export const RegisterEmployee = () => {
                                     ]}
                                     hasFeedback
                                 >
-                                    <Select className='form--name' placeholder='Địa chỉ của bạn' >
+                                    <Select className='form--name form-select-address' placeholder='Địa chỉ của bạn' >
                                         <Option value="Đã Nẵng">Đà Nẵng</Option>
                                         <Option value="Hồ Chí Minh">Hồ Chí Minh</Option>
                                         <Option value="Hà Nội">Hà Nội</Option>
