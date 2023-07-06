@@ -1,189 +1,297 @@
-.container--blog{
+.container--blog {
   padding-top: 100px;
 }
+
 .button_post {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    margin-left: auto;
-    border-radius: 5px;
-    position: fixed;
-    top: 100px;
-    left: 100px;
-    z-index: 9999;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  // padding: 50px 10px;
+  height: 40px;
+  margin-left: 80px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+
+  border-radius: 5px;
+  position: fixed;
+  top: 100px;
+  left: 100px;
+  z-index: 9999;
+
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    margin-left: 30px;
+    font-size: 13px;
+  height: 30px;
+    top: auto;
+    left: auto;
+  }
 
 
 }
 
+
 .blog {
-    // styles for the main container
-    background-color: #FFFFFF;
-    padding: 20px;
+  // styles for the main container
+  background-color: #FFFFFF;
+  padding: 20px;
 }
 
 .blog-title {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
 }
 
-
-
 .blog-post-container {
-    // styles for each individual blog post container
-    margin-bottom: 20px;
-    // border: 1px solid #ccc;
-    padding: 10px;
+  // styles for each individual blog post container
+  margin-bottom: 20px;
+  // border: 1px solid #ccc;
+  padding: 10px;
+
+  .blog-comment {
+    margin-left: 350px;
+    margin-top: -20px;
+    z-index: 9999;
+    background-color: #fff;
+    width: 780px;
+    height: auto;
+    padding-bottom: 90px;
+
+    form {
+      width: 500px;
+      height: 250px;
+
+      .comment {
+        width: 400px;
+        // margin-left: -55px;
+      }
+
+      .d-flex {
+        display: flex;
+        gap: 10px;
+        margin-left: -60px;
+      }
+
+      .btn-post {
+        margin-left: 40px;
+        min-width: 90px;
+        height: 35px;
+        background: #4CAF50;
+        color: #FFFFFF;
+        font-size: 16px;
+        border-radius: 8px;
+        outline: none;
+        border: none;
+      }
+
+      .btn-cancel {
+        // margin-left: 40px;
+        min-width: 90px;
+        height: 35px;
+        background: #fb1905;
+        color: #FFFFFF;
+        font-size: 16px;
+        border-radius: 8px;
+        outline: none;
+        border: none;
+      }
+    }
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .blog-comment {
+      width: 400px;
+      form {
+        width: 300px;
+        height: 250px;
+        margin-left: -140px;
+        margin-top: -20px;
+
+        .comment {
+          width: 300px;
+          // margin-left: -55px;
+        }
+
+        .d-flex {
+          margin-left: -80px;
+        }
+
+        .btn-post {
+          margin-left: 40px;
+          min-width: 70px;
+          height: 30px;
+          font-size: 13px;
+        }
+
+        .btn-cancel {
+          min-width: 70px;
+          height: 30px;
+          font-size: 13px;
+        }
+      }
+    }
+  }
 }
 
 .comment-section {
-    position:relative;
-    .blog-comment {
-        position: fixed;
-        left: 25%;
-        top: 10%;
-        z-index: 2;
-        background-color: #fff;
-        width: 780px;
-          
-        form {
-            width: 500px;
-            height: 250px;
-            
+  position: relative;
 
-            .comment {
-                width: 400px;
-                margin-left: 40px;
-            }
-            .d-flex{
-                display: flex;
-                gap: 10px;
-            }
-
-            .btn-post {
-              margin-left: 40px;
-              min-width: 100px;
-              height: 50px;
-              background: #4CAF50;
-              color: #FFFFFF;
-              font-size: 18px;
-              border-radius: 8px;
-              outline: none;
-              border: none;
-          }
-          .btn-cancel {
-            // margin-left: 40px;
-            min-width: 100px;
-            height: 50px;
-            background: #fb1905;
-            color: #FFFFFF;
-            font-size: 18px;
-            border-radius: 8px;
-            outline: none;
-            border: none;
-          }
-        }
-    }
-    .blog-comment-list{
-        width: 780px;
-        position: absolute;
-        z-index: 1;
-        top: 10%;
-        margin-left: 400px;
-        min-height:200px;
-        width:500px;
-        background: #4CAF50;
-        .comment--backlog{
-            margin-left: 10px;
-            img{
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                object-fit: cover;
-            }
-            h6{
-                display: flex;
-                margin-bottom: 5px;
-            }
-             p {
-                margin: 0;
-              }
-            
-        }
-    }
-}
-.click--comment{
-    margin-left: 280px;
-    padding-left: 100px;
-    font-weight: bold;
-     color: #4CAF50;
-     
-    
-}
-.blog-comment {
+  .blog-comment-list {
     width: 780px;
-    /* CSS cho phần tổng thể */
-    
-  }
-  
-  .comment-section {
-    margin-bottom: 20px;
-    
-  }
-  
-  .comment {
-    width: 100%;
-    height: 100px;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .submit {
-    background-color: #007bff;
-    color: #fff;
-    padding: 8px 16px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .comment--backlog {
-    margin-bottom: 10px;
-  }
-  .comment-list-section {
-    width: 780px;
-    // border: 1px solid #ccc;
-    padding: 10px;
-    background: #ffff;
-    height: 200px; /* Set a fixed height for the container */
-    overflow-y: auto; /* Add scrollbar when content exceeds the container height */
+    position: absolute;
+    z-index: 1;
+    top: 10%;
+    margin-left: 400px;
+    min-height: 200px;
+    // width: 500px;
+    background: #4CAF50;
+
+    .comment--backlog {
+      margin-left: 10px;
+
+      img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      h6 {
+        display: flex;
+        margin-bottom: 5px;
+        font-size: 18px;
+      }
+
+      p {
+        margin: 0;
+      }
+
+    }
   }
 
-  .comment--backlog {
-    // border: 1px solid #ccc;
-    padding: 10px;
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    position: relative;
+    .blog-comment-list {
+      position: absolute;
+      z-index: 1;
+      top: 10%;
+      min-height: 200px;
+      width: 500px;
+      background: #4CAF50;
+      // width: 550px;
+      // margin-left: 200px;
+      .comment--backlog {
+        h6 {
+          display: flex;
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+}
+
+.click--comment {
+  margin-left: 150px;
+  margin-bottom: 20px;
+  padding-left: 100px;
+  padding-top: 3px;
+  font-weight: bold;
+  color: #4CAF50;
+  font-size: large;
+
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    margin-left: 10px;
+    margin-bottom: 30px;
+    margin-top: 5px;
+    font-size: 16px;
+  }
+
+}
+
+
+
+.comment-section {
+  margin-bottom: 20px;
+  // @media only screen and (min-width: 768px) and (max-width: 1024px) {
+  //   margin-left: -110px;
+  // }
+
+}
+
+.comment {
+  width: 90%;
+  height: 100px;
+  // padding: 10px;
+  margin-left: -100px;
+  margin-bottom: 10px;
+
+  // @media only screen and (min-width: 768px) and (max-width: 1024px) {
+  //   margin-right: 200px;
+  // }
+}
+
+.submit {
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+}
+
+
+.comment-list-section {
+  width: 600px;
+  // border: 1px solid #ccc;
+  padding: 10px;
+  margin-left: -120px;
+  background: #ffff;
+  height: 200px;
+  /* Set a fixed height for the container */
+  overflow-y: auto; /* Add scrollbar when content exceeds the container height */
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    width: 450px;
+  }
+}
+
+.comment--backlog {
+  // border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+
+  h6 {
+    font-size: 18px;
+    // margin-top: 10px;
     margin-bottom: 10px;
-    
   }
-  
-  .comment--backlog img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
+
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    margin-right: 100px;
+    font-size: 13px;
+
+    h6 {
+      font-size: 15px;
+      margin-bottom: 5px;
+
+    }
   }
-  
- 
- 
-  
-  
+}
+
+.comment--backlog img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    width: 30px;
+    height: 30px;
+  }
+}

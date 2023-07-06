@@ -26,6 +26,7 @@
                 h2,
                 button {
                     margin-top: 1rem;
+                    margin-left: 2px;
                     color: #191c1e;
                 }
 
@@ -58,9 +59,10 @@
             }
 
             .right {
-                width: 350px;
-                margin-right: 53px;
-                height: 100%;
+                width: 500px;
+                margin-right: 35px;
+                height: 500px;
+
                 padding: 15px 20px;
                 box-shadow: 1px 2px 1px 2px #6d6c6c;
 
@@ -68,6 +70,10 @@
                     margin-top: 1rem;
                     color: #191c1e;
                 }
+                img{
+                    height: 400px;
+                }
+                
 
             }
         }

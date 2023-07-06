@@ -13,9 +13,8 @@ import {
 import NavBar from "../pages/navigation/NavBar";
 import NavHero from "../pages/navigation/NavHero";
 import Loader from "../services/Loader";
-// import Map from "./map";
-const userAddress = { lat: 10.123, lng: 20.456 };
-const companyAddress = { lat: 30.789, lng: 40.012 };
+
+
 const JobDetailsItem = ({ job ,hero}) => {
   const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
@@ -75,11 +74,9 @@ const JobDetailsItem = ({ job ,hero}) => {
             </div>
             <div className="right">
         <h1>Địa chỉ công ty</h1>
+        <img src="https://www.google.com/maps/d/thumbnail?mid=1JwrFnS69sR3pVhdmBC1AnS4pibw&hl=en_US"></img>
         <div className="location-map">
-          {/* <Map
-            userAddress={userAddress}
-            companyAddress={companyAddress}
-          /> */}
+        
         </div>
       </div>
           </div>

@@ -2,7 +2,7 @@ a {
   text-decoration: none;
 }
 .justify-content-center{
-    padding-top: 100px;
+    padding-top: 0px;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -13,11 +13,13 @@ a {
         width: 450px;
         border-radius: 8px;
         outline: none;
+        margin-top: 110px;
+       margin-right: 530px;
         padding-left: 10px;
       }
     }
 }
-div.card {
+div.cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 50px;
@@ -79,7 +81,7 @@ div.card {
   }
   &:hover {
     border: 1px solid black;
-    box-shadow: 0 0 6px 4px green;
+    box-shadow: 0 0 4px 2px gray;
   }
   &:hover .company_name a.none{
     color: green;
@@ -92,85 +94,7 @@ img.icon {
   height: 70%;
   margin-top: 10px;
 }
+h1{
+  margin-left: 30px;
+}
 
-// .content {
-//   padding-top: 5px ;
-// }
-
-// .adress {
-//   padding-left: -40px ;
-//   display: flex ;
-// }
-
-// .IconStyle {
-//   color: black ;
-// }
-
-// div.inform {
-//   padding-left: -40px ;
-//   color: black ;
-//   display: flex ;
-
-//   path {
-//     color: black ;
-//   }
-// }
-
-// .job {
-//   padding-left: -40px ;
-//   display: flex ;
-// }
-
-// .job:hover a {
-//   color: #26AE61 ;
-//   text-decoration: none;
-// }
-
-// .time {
-//   padding-left: -40px ;
-//   display: flex ;
-//   color: black ;
-// }
-
-// .company_name {
-//   font-size: 18px ;
-//   font-weight: bold ;
-
-//   margin-left: 10px ;
-
-//   .none {
-//     color: black ;
-//     padding-top: 10px ;
-//     // text-decoration: none;
-//   }
-
-//   img {
-//     border-radius: 100px ;
-//   }
-// }
-
-// .item {
-//   margin-top: 10px ;
-//   margin-left: 10px ;
-
-//   svg {
-//     color: black ;
-//   }
-// }
-
-// div.content:hover {
-//   box-shadow: 1px 2px 8px 4px ;
-//   border-color: black ;
-
-//   div.company_name a {
-//     // color: #26AE61 ;
-//     border-bottom: 1px solid black ;
-//   }
-// }
-
-// div.content:hover .if div .job:hover {
-//   div.company_name a {
-//     color: none ;
-//     border-bottom: none ;
-//   }
-// }

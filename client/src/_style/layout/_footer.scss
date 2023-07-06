@@ -1,10 +1,14 @@
-.footer__section {
-    background:#24324a;
-   
-    height: 100%;
-    // .footer__section__container__footer{
-       
-    // }
+
+    .footer__section {
+        background: #24324a;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.8)), url('https://images.careerbuilder.vn/content/images/ghi-diem-voi-nha-tuyen-dung-ngay-khi-phong-van-careerbuilder2.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    
+    
+      opacity: 1;
+      height: 100%;
     &__container {
         // @include container;
 

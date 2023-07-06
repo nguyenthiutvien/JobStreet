@@ -50,7 +50,7 @@ function Company() {
           </div>
           
 
-          <div className="card">
+          <div className="cards">
             {filter &&
               filter.map((item) => (
                 <Link to={`/detailCompany/${item.id}`} className="linka" key={item.id}>

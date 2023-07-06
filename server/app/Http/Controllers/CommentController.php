@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\User;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -13,7 +14,6 @@ class CommentController extends Controller
      */
     public function index(Request $request)
     {
-        
     }
 
     /**
@@ -29,42 +29,69 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             "token" => "required",
-            "content"=>"required",
-            "post_id"=>"required"
+            "content" => "required",
+            "post_id" => "required"
         ]);
-        $token=$request->token;
-        $post_id=$request->post_id;
-        $content=$request->content;
-        $user=User::where("token",$token)->first();
-        if($user){
-            $comment=new Comment();
-            $comment->user_id=$user->id;
-            $comment->post_id=$post_id;
-            $comment->content=$content;
+
+        $token = $validatedData['token'];
+        $post_id = $validatedData['post_id'];
+        $content = $validatedData['content'];
+
+
+        $company = Company::where("token", $token)->first();
+        if ($company) {
+            $comment = new Comment();
+            $comment->company_id = $company->id;
+            $comment->post_id = $post_id;
+            $comment->content = $content;
             $comment->save();
+
             return response()->json([
-                "status" => 200
+                "status" => 200,
+                "message" => "Comment created successfully."
             ]);
+        } else {
+            $user = User::where("token", $token)->first();
+
+            if ($user) {
+                $comment = new Comment();
+                $comment->company_id = $company->id;
+                $comment->post_id = $post_id;
+                $comment->content = $content;
+                $comment->save();
+
+                return response()->json([
+                    "status" => 200,
+                    "message" => "Comment created successfully."
+                ]);
+            }
         }
+
         return response()->json([
-            "status" => 500
+            "status" => 500,
+            "message" => "Failed to create comment."
         ]);
     }
+
 
     /**
      * Display the specified resource.
      */
     public function show($id)
     {
-        // $post_id=$request->post_id;
-        $user_comment=Comment::where("post_id",$id)
-        ->join("users","comments.user_id","=","users.id")
-        ->join("posts","comments.post_id","=","posts.id")
-        ->select("users.username","users.avatar","comments.content")
-        ->groupBy("users.id", "users.username", "users.avatar", "comments.content")
-        ->get();
+        $user_comment = Comment::leftJoin("users", "comments.user_id", "=", "users.id")
+            ->leftJoin("companies", "comments.company_id", "=", "companies.id")
+            ->leftJoin("posts", "comments.post_id", "=", "posts.id")
+            ->where("comments.post_id", $id)
+            ->where(function ($query) {
+                $query->whereNotNull("comments.user_id")
+                    ->orWhereNotNull("comments.company_id");
+            })
+            ->select("users.username", "companies.company_name", "users.avatar", "companies.logo", "comments.content")
+            ->groupBy("users.id", "users.username", "users.avatar", "companies.id", "companies.company_name", "companies.logo", "comments.content")
+            ->get();
         return response()->json($user_comment);
     }
 

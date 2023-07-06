@@ -2,6 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Table, Button,Select } from 'antd';
 import Swal from 'sweetalert2';
 import { getApplicationsCompany, deleteJob } from '../../api/Api';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {  faEnvelopeOpenText, faClipboardList,
+  faCoffee,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 
 
 const Application = () => {
@@ -43,29 +48,16 @@ const Application = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        Swal.fire("Thành công", "Thành công", "success");
-        getData();
+        Swal.fire("Thành công", "Thành công", "success").then(() => {
+          window.location.reload(); 
+        });
       })
       .catch((error) => {
         console.error("Error updating status:", error);
       });
   };
   
-  const handleReject = (user_id,job_id) => {
-    fetch(`http://127.0.0.1:8000/api/reject-applications/${user_id}/${job_id}`, {
-      method: "DELETE",
-    })
-      .then((result) => {
-        result.json().then((data) => {
-          Swal.fire("Thành công", "Từ chối thành công", "success");
-          console.warn(data);
-          getData();
-        });
-      })
-      .catch((error) => {
-        console.error("Error deleting user:", error);
-      });
-  };
+
 
 
   // console.log(apply)
@@ -129,12 +121,21 @@ const Application = () => {
   
 
   return (
-      <div className="container--table--cv">
+      <div className="content-delete">
           <div className="cv--title">
+            
               <p>Danh sách ứng cử viên</p>
+
+              <div className="card">
+              <div className="card-user"><FontAwesomeIcon icon={faCoffee} /></div>
+              <div className="card-company"><FontAwesomeIcon icon={faUser} /> </div>
+              <div className="card-apply"> <FontAwesomeIcon icon={faEnvelopeOpenText} /></div>
+              <div className="card-candidate"><FontAwesomeIcon icon={faClipboardList} /></div>
+
+      </div> <br /><br />
           </div>
           <div className="list--cv">
-              <Table 
+              <Table className="card-table" 
               dataSource={apply} 
               columns={columns} 
               loading={loading}
