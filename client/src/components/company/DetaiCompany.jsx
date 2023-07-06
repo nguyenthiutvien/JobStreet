@@ -14,7 +14,7 @@ function Detail() {
   const getData = async () => {
     try {
       const response = await axios.get(
-        `http://127.0.0.1:8000/api/companies/selectdata/${id}`
+        `http://127.0.0.1:8000/api/get-company/${id}`
       );
       if (response.data) {
         setDetail(response.data);
@@ -63,7 +63,7 @@ function Detail() {
                   <span>
                     <h5>Website: </h5>
                   </span>
-                  {detail?.website}
+                  <a href={detail?.website}><span>{detail?.website}</span></a>
                 </p>
                 <p className="card">
                   <span>

@@ -133,6 +133,8 @@ class ApplicationController extends Controller
         //
     }
 
+
+
     public function getCV($name)
     {
         $application = Application::where('cv', $name)->first();
@@ -164,13 +166,32 @@ class ApplicationController extends Controller
             ->where('companies.token', $token)
             ->get();
 
+  
+public function getApplicationByCompany($token)
+{
+   
+    $applications = DB::table('applications')
+        ->select('applications.created_at', 'applications.status', 'applications.user_id','applications.job_id','applications.cv', 'users.email', 'users.username' ,'jobs.position')
+        ->join('users', 'users.id', '=', 'applications.user_id')
+        ->join('jobs', 'jobs.id', '=', 'applications.job_id')
+        ->join('companies', 'companies.id', '=', 'jobs.company_id')
+        ->where('companies.token', $token)
+        ->get();
+
+
         return response()->json($applications);
     }
+
 
 
     public function AcceptApplication(Request $request, $user_id, $job_id)
     {
         $status = $request->input('status');
+
+public function ChangeStatusApplication(Request $request, $user_id, $job_id)
+{
+    $status = $request->input('status');
+
 
         $result = DB::table('applications')
             ->where('user_id', $user_id)
@@ -190,6 +211,7 @@ class ApplicationController extends Controller
             return response()->json("Lỗi khi cập nhật", 500);
         }
     }
+
     public function RejectApplication(Request $request, $user_id, $job_id)
     {
         $status = 'rejected';
@@ -213,3 +235,11 @@ class ApplicationController extends Controller
         }
     }
 }
+
+}
+
+
+
+}
+
+

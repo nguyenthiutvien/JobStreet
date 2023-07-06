@@ -21,7 +21,7 @@ function Timvieclam() {
 
   const getData = async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/api/companies/selectdata/${id}`);
+      const response = await axios.get(`http://127.0.0.1:8000/api/get-company/${id}`);
       // if (response.data && response.data.length > 0) {
         setDetail(response.data);
       //   console.log(response.data);

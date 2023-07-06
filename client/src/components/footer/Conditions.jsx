@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 const Conditions = () => {
   return (
     <div className="footer__section__container__footer__conditions">
-      <h1>Conditions</h1>
+      <h1>Chính sách</h1>
       <div className="footer__section__container__footer__conditions--links">
-        <Link to="/">Tearms & Conditions</Link>
-        <Link to="/">Privacy</Link>
+        <Link to="/">Điều kiện </Link>
+        <Link to="/">Quyền riêng tư</Link>
       </div>
     </div>
   );

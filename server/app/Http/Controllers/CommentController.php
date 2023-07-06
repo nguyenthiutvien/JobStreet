@@ -44,6 +44,7 @@ class CommentController extends Controller
         if ($company) {
             $comment = new Comment();
             $comment->company_id = $company->id;
+            $comment->user_id = $company->id;
             $comment->post_id = $post_id;
             $comment->content = $content;
             $comment->save();
@@ -57,7 +58,7 @@ class CommentController extends Controller
 
             if ($user) {
                 $comment = new Comment();
-                $comment->company_id = $company->id;
+                $comment->user_id = $user->id;
                 $comment->post_id = $post_id;
                 $comment->content = $content;
                 $comment->save();

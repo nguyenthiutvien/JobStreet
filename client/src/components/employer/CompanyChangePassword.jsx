@@ -96,10 +96,10 @@ const CompanyChangePassword = () => {
                     <form onSubmit={handelConfirm} className='container--form--password'>
                         <label htmlFor="">Mật khẩu mới</label> <br />
                         <input className='form--input' name='new_password' type='password' placeholder='Nhập mật khẩu mới' onChange={(e) => setNewPass({ password: e.target.value })} />
-                        <p className='password--error'>{error && error.password}</p><br />
+                        <p className='password--error'>{error && error.passwor}</p><br />
                         <label htmlFor="">Xác thực mật khẩu</label><br />
                         <input className='form--input' name='confirm_password' type='password' placeholder='Xác nhận mật khẩu mới' onChange={(e) => setCon_Pass({ password: e.target.value })} />
-                        <p className='password--error'>{error && error.password}</p>
+                        <p className='password--error'>{error && error.passwo}</p>
                         <button type='submit' className='button--form'>Cập nhật</button>
 
                     </form>)}

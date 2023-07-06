@@ -61,9 +61,7 @@ const JobItem = ({
             {/* {type} */} Chi tiết
           </Link>
         </div>
-        <div className="job__wrapper__card--right__part-2">
-          <i className="fa fa-heart-o"></i>
-        </div>
+       
       </div>
     </div>
   );

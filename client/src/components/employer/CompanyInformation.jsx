@@ -63,6 +63,7 @@ export const CompanyInformation = () => {
         // window.location.reload();
       });
     }
+    // console.log(...formData,id)
   };
   return (
     <>

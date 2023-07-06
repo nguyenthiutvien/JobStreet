@@ -3,15 +3,15 @@ import { Link } from "react-router-dom";
 const Subscribe = () => {
   return (
     <div className="footer__section__container__footer__subscribe">
-      <h1>Subscribe Now</h1>
-      <p>Lorem ipsum dolor sit amet consectetur.</p>
+      <h1>Đăng ký ngay</h1>
+
       <form>
         <div className="footer__section__container__footer__subscribe__form">
           <input
             type="text"
             className="footer__section__container__footer__subscribe__form--input"
           />
-          <button>Subscribe</button>
+          <button>Gửi</button>
         </div>
       </form>
       <div className="footer__section__container__footer__subscribe__social-links">
