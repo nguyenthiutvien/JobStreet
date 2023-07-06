@@ -15,7 +15,7 @@ function Company() {
   const data = async () => {
     try {
       const data = await axios.get(
-        "http://127.0.0.1:8000/api/companies/selectdata"
+        "http://127.0.0.1:8000/api/get-company"
       );
       setshow(data.data);
       // console.log(data.data);

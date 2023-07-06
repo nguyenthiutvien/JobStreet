@@ -46,7 +46,7 @@ function Browse() {
       });
   };
   const getEndUser = async () => {
-    const data = await axios.get("http://127.0.0.1:8000/api/countenduser");
+    const data = await axios.get("http://127.0.0.1:8000/api/count");
     setEndUser(data.data)
   }
 

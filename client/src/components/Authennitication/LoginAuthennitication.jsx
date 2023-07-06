@@ -2,7 +2,7 @@ import "../../_style/pages//login.scss";
 import { Link, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from "axios";
-import { userLogin,employeeLogin } from "../../api/Api";
+import { userLogin,employerLogin } from "../../api/Api";
 
 export const LoginUser = () => {
     const navigate = useNavigate()
@@ -112,7 +112,7 @@ export const LoginEmployee = () => {
         if(exist) {
         navigate("/")
     }
-        const token = await employeeLogin(login)
+        const token = await employerLogin(login)
         switch (token.data.status) {
             case "empty_email":
                 error.email = token.data.message

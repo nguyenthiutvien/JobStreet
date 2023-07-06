@@ -121,21 +121,7 @@ class ApplicationController extends Controller
         //
     }
 
-    // public function getApplication($name)
-    // {
-    //     // Xử lý logic để lấy application dựa trên cả user_id và job_id
-    //     $application = Application::where('cv', $name)
-                                  
-    //                               ->first();
-
-    //     if ($application) {
-    //         // Đã tìm thấy application, xử lý theo yêu cầu của bạn
-    //         return response()->json($application);
-    //     } else {
-    //         // Không tìm thấy application
-    //         return response()->json('Application not found', 404);
-    //     }
-    // }
+    
     public function getCV($name)
 {
     $application = Application::where('cv', $name)->first();
@@ -148,84 +134,7 @@ class ApplicationController extends Controller
     }
 }
 
-    public function getApplicationsByJob($job_id)
-    {
-        // Xử lý logic để lấy danh sách applications dựa trên job_id
-        $applications = Application::where('job_id', $job_id)->get();
-
-        return response()->json($applications);
-    }
-
-    // public function getCompanyApplications($companyId)
-    // {
-    //     $applications = Application::whereHas('job', function ($query) use ($companyId) {
-    //         $query->where('company_id', $companyId);
-    //     })->get();
-
-    //     return response()->json($applications);
-    // }
-
-//     public function getCompanyApplications(Request $request)
-    
-// {
-//     $token=$request->token;
-//     $company = Company::where('token', $token)->first();
-
-//     if ($company) {
-//         $applications = Application::whereHas('job', function ($query) use ($company) {
-//             $query->where('company_id', $company->id);
-//         })
-//         ->with('user.email', 'job.position') 
-//         ->get();
-
-//         return response()->json($applications);
-//     } else {
-//         // Xử lý khi không tìm thấy công ty với email cụ thể
-//     }
-// }
-
-
-// public function getApplicationsByCompany(Request $request)
-// {
-//     $token = $request->token;
-
-//     // Tìm công ty dựa trên token
-//     $company = Company::where('token', $token)->first();
-
-//     if ($company) {
-//         // Lấy danh sách các ứng dụng của công ty
-//         $applications = Application::whereHas('job', function ($query) use ($company) {
-//             $query->where('company_id', $company->id);
-//         })->with('user', 'job')->get(['created_at', 'status', 'cv']);
-
-//         return response()->json($applications);
-//     } else {
-//         return response()->json('Company not found', 404);
-//     }
-
-
-    
-// }
-
-// public function getApplicationsByCompany(Request $request)
-//     {
-//         $token = $request->token;
-
-//         // Tìm công ty dựa trên token
-//         $company = Company::where('token', $token)->first();
-
-//         if ($company) {
-//             // Lấy danh sách các ứng dụng của công ty
-//             $applications = Application::whereHas('job', function ($query) use ($company) {
-//                 $query->where('company_id', $company->id);
-//             })->with('user:email', 'job:position')->get(['created_at', 'status', 'cv']);
-
-//             return response()->json($applications);
-//         } else {
-//             return response()->json('Company not found', 404);
-//         }
-//     }
-
+  
 public function getApplicationByCompany($token)
 {
    
@@ -241,7 +150,7 @@ public function getApplicationByCompany($token)
 }
 
 
-public function AcceptApplication(Request $request, $user_id, $job_id)
+public function ChangeStatusApplication(Request $request, $user_id, $job_id)
 {
     $status = $request->input('status');
 
@@ -263,28 +172,7 @@ public function AcceptApplication(Request $request, $user_id, $job_id)
         return response()->json("Lỗi khi cập nhật", 500);
     }
 }
-public function RejectApplication(Request $request, $user_id, $job_id)
-{
-    $status = 'rejected';
 
-    $result = DB::table('applications')
-        ->where('user_id', $user_id)
-        ->where('job_id', $job_id)
-        ->update(['status' => $status]);
-
-        if ($result) {
-            $user = User::find($user_id);
-            $job = Job::find($job_id);
-            $company = Company::find($job->company_id);
-    
-            $email = new StatusApplicationNotification($user, $job, $status, $company);
-            Mail::to($user->email)->send($email);
-    
-            return response()->json("Cập nhật thành công và đã gửi email");
-        } else {
-            return response()->json("Lỗi khi cập nhật", 500);
-        }
-}
 
 
 }

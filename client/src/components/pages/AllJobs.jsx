@@ -12,7 +12,7 @@ const AllJobs = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetchApiData(`api/home/browse`);
+      const response = await fetchApiData(`api/get-openedJob`);
       if (response.status === true) {
         setjobs(response.data.jobs);
         
@@ -21,22 +21,13 @@ const AllJobs = () => {
       }
     };
     fetchData();
-    // setTimeout(() => {
-    //   setloader(false);
-    // }, 3000);
+   
   }, []);
 
   return (
-    <>
-      {/* {(loader && <Loader />) || (
-        
-        <>
-          <NavBar hero="jobs" /> */}
+    <> 
           <JobItemSection jobs={jobs}/>
-          {/* <Footer /> */}
         </>
-    //  )}
-    // </>
   );
 
 };

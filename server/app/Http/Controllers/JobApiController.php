@@ -15,14 +15,14 @@ class JobApiController extends Controller
 {
     use ApiResponseWithHttpStatus;
 
-    public function index()
-    {
-        $data['categories'] = Categories::all();
+    // public function index()
+    // {
+    //     $data['categories'] = Categories::all();
 
-        return $this->apiResponse('success', $data, Response::HTTP_OK, true);
-    }
+    //     return $this->apiResponse('success', $data, Response::HTTP_OK, true);
+    // }
 
-    public function getALlJobs()
+    public function getOpenedJob()
     {
         $data['jobs'] = Job::select('position', 'type', 'status', 'salary', 'id', 'description', 'close_day', 'company_id')
             ->with('company:id,company_name,address,logo')

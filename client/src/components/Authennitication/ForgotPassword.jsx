@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import "../../_style/pages/forgotpassword.scss";
 import { Link, useNavigate } from "react-router-dom"
-import { recoverPassword, confirmEmail, confirmEmailEmployee, recoverPasswordEmployee } from "../../api/Api"
+import { recoverPassword, confirmEmail, confirmEmailEmployer, recoverPasswordEmployer } from "../../api/Api"
 import { Form, Input, Button } from "antd"
 
 export const UserFogotPassword = () => {
@@ -76,7 +76,7 @@ export const EmployeeFogotPassword = () => {
     if (email.email == "") {
       error.email = "Vui lòng nhập email"
     } else {
-      const status = await confirmEmailEmployee(email.email)
+      const status = await confirmEmailEmployer(email.email)
       switch (status.data.status) {
         case 422:
           error.email = status.data.message
@@ -85,7 +85,7 @@ export const EmployeeFogotPassword = () => {
           error.email = status.data.message
           break;
         case 200:
-          const code = await recoverPasswordEmployee(email.email)
+          const code = await recoverPasswordEmployer(email.email)
           localStorage.setItem("code", JSON.stringify(code.data))
           localStorage.setItem("user", JSON.stringify(email.email))
           navigate("/entercodeEmployee")

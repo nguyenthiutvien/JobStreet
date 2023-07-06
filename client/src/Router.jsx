@@ -94,5 +94,5 @@ export const Router = () => [
   { path: "registerEmployee", element: <RegisterEmployee /> },
   { path: "navBar", element: <NavBar /> },
   { path: "admin", element: <Admin /> },
-  { path: "/employeePayment", element: <EmployeePayment /> },
+  { path: "/employerPayment", element: <EmployeePayment /> },
 ];

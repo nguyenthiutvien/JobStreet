@@ -39,7 +39,7 @@ const Application = () => {
       status: status,
     };
   
-    fetch(`http://127.0.0.1:8000/api/accept-applications/${user_id}/${job_id}`, {
+    fetch(`http://127.0.0.1:8000/api/change-status-applications/${user_id}/${job_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

@@ -300,25 +300,25 @@ class CompanyController extends Controller
     }
 
     // admin user ---------------------------------------------------------
-    public function getUser()
+    public function getCandidateByCompany()
     {
         $users = DB::table('users')->get();
         return response()->json($users);
     }
 
 
-    public function deleteUsers(Request $request)
-    {
-        $user = User::find($request->id);
+    // public function deleteUsers(Request $request)
+    // {
+    //     $user = User::find($request->id);
 
-        if (!$user) {
-            return response()->json(['error' => 'User not found'], 404);
-        }
+    //     if (!$user) {
+    //         return response()->json(['error' => 'User not found'], 404);
+    //     }
 
-        $user->delete();
+    //     $user->delete();
 
-        return response()->json(['status' => 'ok', 'message' => 'Delete succeeded']);
-    }
+    //     return response()->json(['status' => 'ok', 'message' => 'Delete succeeded']);
+    // }
 
     //  admin company------------------------------------
 
