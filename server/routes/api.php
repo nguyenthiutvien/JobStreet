@@ -136,6 +136,7 @@ Route::post('add-posts', [PostController::class, 'store']);
 Route::post("/add-comment",[CommentController::class,"store"]);
 Route::get("/get-comment/{id}",[CommentController::class,"show"]);
 
+
 Route::get('/getcompanies', [CompanyController::class, 'getCompanyname']);
 
 
@@ -164,24 +165,31 @@ Route::put('/update-jobs/{id}', [JobApiController::class, 'updateJob']);
 Route::delete('/delete-jobs/{id}', [JobApiController::class, 'deleteJob']);
 
 // Route::put('/applications/{user_id}/{job_id}/status', [ApplicationController::class, 'updateStatus']);
-Route::delete('/deleteCompany/{id}',[CompanyController::class,'deleteCompany']);
+// Route::delete('/deleteCompany/{id}',[CompanyController::class,'deleteCompany']);
 
 
 Route::get('/datajobs',[CompanyController::class,'getdatauser']);
 
 
 
+
 Route::get('/getjob', [JobController::class, 'getJob']);
 Route::delete('/deletejob/{id}',[JobController::class,'deletejob']);
 
-Route::get('/get-status-job', [JobController::class, 'get-status-job']);
+Route::get('/get-status-job', [JobController::class, 'getstatus']);
 
 
 Route::put('/update-status/{id}',[JobController::class,'Updatestatus']);
-Route::get('/search', [SearchController::class, 'search']);
+
 
 Route::put('/change-status-applications/{user_id}/{job_id}', [ApplicationController::class, 'ChangeStatusApplication']);
 
 
 
 Route::get('/count', [UserController::class, 'countEndUser']);
+
+// xóa company bên admin
+Route::delete('/companies/{companyId}', [CompanyController::class,'deleteadminCompany']);
+
+// xóa user bên admin
+Route::delete('/useradmin/{userId}',[UserController::class,'deleteUsers']);

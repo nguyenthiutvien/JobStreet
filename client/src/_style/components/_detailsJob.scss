@@ -14,7 +14,7 @@
             justify-content: space-between;
 
             .left {
-                width: 720px;
+                width: 670px;
                 height: 100%;
                 margin-left: 53px;
                 padding: 15px 20px;
@@ -34,6 +34,14 @@
 
                     white-space: pre-line;
                 }
+            }
+            .left-job{
+                width: 670px;
+                height: 100%;
+                margin-left: 53px;
+                padding: 15px 20px;
+                box-shadow: 1px 2px 1px 2px #6d6c6c;
+                line-height: 30px;
             }
 
             .btn {
@@ -79,3 +87,58 @@
         }
     }
 }
+@media only screen and (max-width: 46.1875em) {
+    .row{
+        width: 100px;
+        flex-direction: column;
+       div.job-description{
+            width: 80%;
+       }
+      
+    }
+   
+    div.hero-data{
+        
+        flex-direction: column;
+       
+    }
+    div.left{
+        flex-direction: column;
+        border-radius: 10px;
+        margin-left: -90px;
+        
+    }
+    div.right{
+        margin-left: 50px;
+        margin-top: 40px;
+    }
+   
+  }
+
+
+  @media only screen and (min-width: 46.25em)  and (max-width:63.9375em){
+    .row{
+        
+        flex-direction: column;
+      
+      
+    }
+   
+    div.hero-data{
+        
+        flex-direction: column;
+        margin-left: -40px;
+    }
+    div.left{
+        flex-direction: column;
+        border-radius: 10px;
+        
+        
+    }
+    div.right{
+        margin-left: 50px;
+        margin-top: 40px;
+    }
+  
+   
+  }
