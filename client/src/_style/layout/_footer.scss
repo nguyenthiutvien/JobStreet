@@ -1,10 +1,14 @@
 .footer__section {
-    background:#24324a;
-   
-    height: 100%;
-    // .footer__section__container__footer{
-       
-    // }
+    background: #24324a;
+  background-image:  linear-gradient(to right, rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.8)),
+  url('https://images.careerbuilder.vn/content/images/ghi-diem-voi-nha-tuyen-dung-ngay-khi-phong-van-careerbuilder2.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+
+  opacity: 1;
+  height: 100%;
     &__container {
         // @include container;
 
@@ -12,15 +16,17 @@
             margin-top: 3rem;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-column-gap: 1rem;
+            grid-column-gap: 0.5rem;
             padding: 3rem 0;
             width: 90%;
             &__info {
                 width: 285px;
                 height: auto;
+                margin-left: 9rem;
 
                 p {
                     margin-top: 1rem;
+                   
                     color: #6c757d;
                 }
             }
@@ -28,10 +34,12 @@
             &__links {
                 h1 {
                     color:#FFFFFF;
+                    margin-left: 5rem;
                 }
 
                 p {
                     color: #6c757d;
+                   
                 }
 
                 &--quick {
@@ -39,6 +47,7 @@
                         margin-top: 1rem;
                         display: block;
                         color: #6c757d;
+                        margin-left: 7rem;
                     }
                 }
             }
@@ -53,6 +62,7 @@
                         margin-top: 1rem;
                         display: block;
                         color: #6c757d;
+                        margin-left: 3rem;
                     }
                 }
             }

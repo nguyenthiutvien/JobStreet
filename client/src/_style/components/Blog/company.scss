@@ -21,8 +21,8 @@ a {
 }
 div.cards {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 50px;
+  grid-template-columns: 1fr 1fr 1fr 1fr ;
+  gap: 30px;
   padding: 30px;
   border: none;
 }
@@ -47,16 +47,17 @@ div.cards {
     align-items: center;
     .time {
       color: black;
+      padding-left: 5px;
     }
     img {
       width: 50px;
       height: 50px;
-      margin-left: 3px;
+      
     }
     display: grid;
     grid-template-columns: 12% 75% 13%;
     .company_name {
-      margin-left: 10px;
+      margin-left: 20px;
       a {
         font-size: 18px;
         font-weight: bold;

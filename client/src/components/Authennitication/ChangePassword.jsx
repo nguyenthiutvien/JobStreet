@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "../../_style/pages/changepassword.scss"
 import { useNavigate, Link } from 'react-router-dom'
-import { resetPassword, resetPasswordEmployee } from '../../api/Api'
+import { resetPassword, resetPasswordEmployer } from '../../api/Api'
 import { Form, Input, Button } from "antd"
 export const UserChangePassword = () => {
     const [password,setPassword] =useState({
@@ -90,7 +90,7 @@ export const EmployeeChangePassword = () => {
             status=0
         }
         if(status==1){
-            const Log = await resetPasswordEmployee(email,password)
+            const Log = await resetPasswordEmployer(email,password)
             localStorage.removeItem("user")
             navigate("/")
         }

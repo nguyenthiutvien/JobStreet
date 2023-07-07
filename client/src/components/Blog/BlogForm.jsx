@@ -32,7 +32,7 @@ const BlogForm = ({ handleHiden,handelCancel,handelOk,visible }) => {
             formData.append('title', title);
             formData.append('body', body);
             formData.append('image', image);
-          const status=  await axios.post('http://127.0.0.1:8000/api/add_posts', formData, {
+          const status=  await axios.post('http://127.0.0.1:8000/api/add-posts', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Accept: 'application/json',

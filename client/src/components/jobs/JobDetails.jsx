@@ -13,7 +13,7 @@ const JobDetails = (hero) => {
   
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetchApiData(`api/home/${id}`);
+      const response = await fetchApiData(`api/get-detailJob/${id}`);
       if (response.status === true) {
         setjob(response.job);
       } else {

@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 const Links = () => {
   return (
     <div className="footer__section__container__footer__links">
-      <h1>Quick Links</h1>
+      <h1> JobStreet</h1>
       <div className="footer__section__container__footer__links--quick">
-        <Link to="/">About</Link>
-        <Link to="/">Support</Link>
-        <Link to="/">COntact</Link>
+        <Link to="/">Việc làm</Link>
+        <Link to="/">Công ty</Link>
+        <Link to="/">Bài đăng</Link>
+        <Link to="/">Liên hệ</Link>
       </div>
     </div>
   );

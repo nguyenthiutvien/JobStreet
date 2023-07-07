@@ -49,7 +49,6 @@
   // border-bottom: 1px solid rgb(184, 176, 176);
   box-shadow: 0px 2px 0px 0px #e9e2e2;
   display: grid;
-  
   grid-template-columns: 2fr 2fr 2fr;
   .profile-img {
     .card-img-top-img {
@@ -59,8 +58,8 @@
       border-radius: 50%;
       object-fit: cover;
       margin-left: 230px;
-     position: relative;
-     top: 25px;
+      position: relative;
+      top: 25px;
     }
     .card-title {
       position: relative;
@@ -86,6 +85,7 @@
           font-size: 18px;
           color: #080808;
         }
+        
       }
     }
   }
@@ -95,6 +95,9 @@
 .company-information {
   min-height: 100vh !important;
   padding: 40px 36px;
+  h2{
+    color:#080000
+  }
   h3 {
     font-size: 22px;
     font-weight: bold;
@@ -108,12 +111,13 @@
   p.card-text {
     max-width: 750px;
     font-size: 1px;
+    color: black
   }
   .job {
-    max-width: 450px;
+    max-width: 300px;
    min-height: 100px;
     padding-top: 8px;
-    padding-left: 24px;
+    // padding-left: 20px;
     .row-vieclam {
       // padding: 10px 0px 20px 8px;
       .job_position {
@@ -127,6 +131,7 @@
       // .card-texts {
       //   margin: 10px 0;
       //   font-size: 18px;
+      //   color: bla
         
       // }
       &:hover {
@@ -163,3 +168,66 @@
     }
   }
 }
+
+  @media only screen and (min-width: 46.25em) and (max-width:63.9375em){
+    .company_detail{
+      display: grid;
+      grid-template-columns: 2fr 2fr 2fr;
+      .profile-img {
+        width: 250px;
+        .card-img-top-img {
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+          object-fit: cover;
+          margin-left: 50px;
+          position: absolute;
+          top: 25px;
+        }
+        .card-title {
+          position: absolute;
+          font-weight: bold;
+          font-size: 20px !important;
+          padding-left: 10px;
+          top: 13%;
+          left: 20px;
+          color: #080000;
+        }
+      }
+      .col-md-6{
+        margin-top: 20px;
+        padding-top: 20px;
+        width: 250px;
+        .card{
+          padding: 8px;
+          color: #080808;
+          margin-right: 80px;
+          span{
+            margin-bottom: 10px;
+            h5{
+              font-size: 18px;
+              color: #080808;
+            }
+          }
+        }
+      }
+    
+      
+     
+    }
+      .container{
+        .row{
+          display: block;
+          .left{
+            margin: 0 auto;
+            margin-bottom: 15px;
+          }
+          .right{
+            margin: 0 auto;
+           
+          }
+        }
+        
+        
+      }
+  }

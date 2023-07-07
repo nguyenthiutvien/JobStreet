@@ -23,51 +23,72 @@ export const deleteApiData = async (url) => {
     .then((response) => response.data)
     .catch((response) => response.response.data);
 };
-
-export const postUser =async (e) => {
-  return (
-      await axios.post("http://127.0.0.1:8000/api/users",e)
-  )
-} 
 export const getUser = async ()=>{
   return (
-    await axios.get("http://127.0.0.1:8000/api/users")
+    await axios.get("http://127.0.0.1:8000/api/get-candidates")
   )
 }
+export const postUser =async (e) => {
+  return (
+      await axios.post("http://127.0.0.1:8000/api/add-candidates",e)
+  )
+} 
+
 export const confirmEmail = async (email)=>{
   return (
-    await axios.get(`http://127.0.0.1:8000/api/users/${email}/edit`)
+    await axios.get(`http://127.0.0.1:8000/api/candidate/${email}/edit`)
   )
 }
-export const recoverPassword=async (email)=>{
-  return(
-    await axios.put(`http://127.0.0.1:8000/api/users/${email}/confirm-email`)
-  )
-}
+
 export const resetPassword=async(email,password)=>{
   return(
-    await axios.put(`http://127.0.0.1:8000/api/users/${email}/change-pass`,password)
+    await axios.put(`http://127.0.0.1:8000/api/candidate/${email}/change-pass`,password)
   )
 }
 export const userLogin=async(e)=>{
   return(
-    await axios.post("http://127.0.0.1:8000/api/users/login",e)
+    await axios.post("http://127.0.0.1:8000/api/candidate/login",e)
   )
 }
- 
+export const recoverPassword=async (email)=>{
+  return(
+    await axios.put(`http://127.0.0.1:8000/api/candidate/${email}/confirm-email`)
+  )
+}
 
 
+export const UserChangePassword=async(id,password)=>{
+  return (
+    await axios.put(`http://127.0.0.1:8000/api/candidate/change-password/${id}`,password)
+  )
+}
+export const getTokenUser = async (token)=>{
+  return (
+    await axios.post(`http://127.0.0.1:8000/api/candidate/get-token/${token}`)
+  )
+}
+export const updateUser=async (id,formData)=>{
+  return (
+    await axios.post(`http://127.0.0.1:8000/api/candidate/update/${id}`,formData)
+  )
+}
 
 
+export const getApplications=async (email)=>{
+  return (
+      await axios.get(`http://127.0.0.1:8000/api/candidate/${email}/apply`)
+    )
+}
+// /////
 
-export const employeeLogin=async(e)=>{
+export const employerLogin=async(e)=>{
   return(
     axios.post("http://127.0.0.1:8000/api/company/login",e)
   )
 }
-export const postCompany=async (employee)=>{
+export const postCompany=async (employer)=>{
   return (
-    await axios.post("http://127.0.0.1:8000/api/company",employee)
+    await axios.post("http://127.0.0.1:8000/api/company",employer)
   )
 }
 
@@ -77,30 +98,26 @@ export const getCompany=async ()=>{
   )
 }
 
-export const confirmEmailEmployee = async (email)=>{
+export const confirmEmailEmployer = async (email)=>{
   return (
     await axios.get(`http://127.0.0.1:8000/api/company/${email}/edit`)
   )
 }
-export const recoverPasswordEmployee=async (email)=>{
+export const recoverPasswordEmployer=async (email)=>{
   return(
     await axios.put(`http://127.0.0.1:8000/api/company/${email}/confirm-email`)
   )
 }
 
 
-export const resetPasswordEmployee=async(email,password)=>{
+export const resetPasswordEmployer=async(email,password)=>{
   return(
     await axios.put(`http://127.0.0.1:8000/api/company/${email}/change-pass`,password)
   )
 }
 
 
-export const UserChangePassword=async(id,password)=>{
-  return (
-    await axios.put(`http://127.0.0.1:8000/api/user/change-password/${id}`,password)
-  )
-}
+
 
 export const companyChangePassword=async(id,password)=>{
   return (
@@ -109,23 +126,7 @@ export const companyChangePassword=async(id,password)=>{
 }
 //Application
 
-export const getTokenUser = async (token)=>{
-  return (
-    await axios.post(`http://127.0.0.1:8000/api/user/get-token/${token}`)
-  )
-}
-export const updateUser=async (id,formData)=>{
-  return (
-    await axios.post(`http://127.0.0.1:8000/api/user/update/${id}`,formData)
-  )
-}
 
-
-export const getApplications=async (email)=>{
-  return (
-      await axios.get(`http://127.0.0.1:8000/api/user/${email}/apply`)
-    )
-}
 export const postApplication=async (formData)=>{
   return (
     await axios.post("http://127.0.0.1:8000/api/applications",formData)
@@ -191,13 +192,13 @@ export const deleteJob = async (token, jobId) => {
     throw error.response.data;
   }
 };
-export const userComment=async(dataCommet)=>{
+export const userComment=async(dataComment)=>{
   return (
-    await axios.post("http://127.0.0.1:8000/api/comment",dataCommet)
+    await axios.post("http://127.0.0.1:8000/api/add-comment",dataComment)
   )
 }
 export const getUserComment=async(post_id)=>{
   return (
-    await axios.get(`http://127.0.0.1:8000/api/comment/${post_id}`)
+    await axios.get(`http://127.0.0.1:8000/api/get-comment/${post_id}`)
   )
 }

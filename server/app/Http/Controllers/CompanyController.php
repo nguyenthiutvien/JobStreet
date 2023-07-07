@@ -95,6 +95,20 @@ class CompanyController extends Controller
 
         return response()->json($results);
     }
+    public function deleteadminCompany(Request $request ,$companyId)
+    {
+        $company = Company::find($companyId);
+
+        if (!$company) {
+            return response()->json(['error' => 'Company not found'], 404);
+        }
+
+        $company->delete();
+
+        return response()->json(['status' => 'ok', 'message' => 'Delete succeeded']);
+    }
+
+
 
 
 
@@ -214,53 +228,46 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function updateCompanyInfo(Request $request, $email)
+    public function updateCompanyInfo(Request $request)
     {
         $request->validate([
             'company_name' => "required|string",
             'logo' => "nullable",
-            'scale' => "required|numeric",
+            'scale' => "required|string",
             'description' => "required|string",
             'website' => "required|string",
             'address' => "required|string",
             'number_phone' => "required|numeric",
         ]);
-
-        $company = Company::where("email", $email)->first();
-
-        if (!$company) {
-            return response()->json(
-                "Công ty không tồn tại"
-            );
-
-
             $id = $request->id;
             $company_name = $request->company_name;
             $logo = $request->logo;
             $scale = $request->scale;
             $website = $request->website;
             $address = $request->address;
-            $phone_number = $request->number_phone;
+            $number_phone = $request->number_phone;
             $company = Company::findOrFail($id);
             if ($request->hasFile("logo")) {
                 $logo = $request->file("logo");
                 $logoName = Str::random(16) . "." . $request->logo->getClientOriginalExtension();
                 Storage::disk("public")->put($logoName, file_get_contents($logo));
-                $company->avatar = $logoName;
+                $company->logo = $logoName;
             }
             $company->company_name = $company_name;
             $company->scale = $scale;
             $company->website = $website;
-            $company->number_phone = $phone_number;
+            $company->number_phone = $number_phone;
             $company->address = $address;
 
             $company->save();
-            return response()->json(
-                "Cập nhật thành công"
+            return response()->json([
+                "status" => 200,
+                "success" => "Thành công"
+            
 
-            );
+            ]);
         }
-    }
+    
 
 
     /**
@@ -307,25 +314,15 @@ class CompanyController extends Controller
     }
 
     // admin user ---------------------------------------------------------
-    public function getUser()
+    public function getCandidateByCompany()
     {
         $users = DB::table('users')->get();
         return response()->json($users);
     }
 
 
-    public function deleteUsers(Request $request)
-    {
-        $user = User::find($request->id);
 
-        if (!$user) {
-            return response()->json(['error' => 'User not found'], 404);
-        }
-
-        $user->delete();
-
-        return response()->json(['status' => 'ok', 'message' => 'Delete succeeded']);
-    }
+    
 
     //  admin company------------------------------------
 

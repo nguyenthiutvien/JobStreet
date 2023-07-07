@@ -27,7 +27,7 @@ export const ChangePassword = () => {
         if(pass1.password==""){
             error.password="Vui lòng nhập mật khẩu"
         }else{
-            const status= await axios.post(`http://127.0.0.1:8000/api/user/compare-password/${id}`,pass1) 
+            const status= await axios.post(`http://127.0.0.1:8000/api/candidate/compare-password/${id}`,pass1) 
             if(status.data.status==400){
                 error.password=status.data.message
             }else if(status.data.status==200){
@@ -36,12 +36,16 @@ export const ChangePassword = () => {
         }
        setErorr(error)
     }
+
     const [password,setNewPass]=useState({
         password:""
     })
     const [confirm_password,setCon_Pass]=useState({
         password:""
     })
+
+
+    
     const handelConfirm=async(e)=>{
         e.preventDefault();
         let error={}
@@ -89,10 +93,10 @@ export const ChangePassword = () => {
                     <form onSubmit={handelConfirm} className='container--form--passwords'>
                     <label htmlFor="">Mật khẩu mới</label> <br />
                     <input className='form--input' name='new_password' type='password' onChange={(e)=>setNewPass({password:e.target.value})}/>
-                    <p className='password--error'>{error && error.password}</p>
+                    <p className='password--error'>{error && error.passwor}</p>
                     <label htmlFor="">Xác thực mật khẩu</label><br />
                     <input className='form--input' name='confirm_password' type='password' onChange={(e)=>setCon_Pass({password:e.target.value})}/>
-                    <p className='password--error'>{error && error.password}</p> 
+                    <p className='password--error'>{error && error.passwo}</p> 
                         <button type='submit' className='button--form'>Cập nhật</button>
                    
                 </form>)}

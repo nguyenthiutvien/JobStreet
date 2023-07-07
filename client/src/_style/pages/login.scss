@@ -12,14 +12,11 @@
   background-color: #060000e5;;
   width: 500px;
   height: 490px;
-  
   border-radius: 8px;
   margin: 0 auto;
   margin-top: 120px;
-  
   align-items: center;
   justify-content: center;
-
   h2{
     color: #FFFFFF;
   }
@@ -129,24 +126,10 @@
   }
 }
 
-.login--password-toggles {
-  position: absolute;
-  top: 42.5%;
-  left: 60%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  pointer-events: auto;
-  /* Đảm bảo biểu tượng "mắt" có thể nhấp được */
-}
-
-.login--password-toggle svg {
-  width: 18px;
-  height: 18px;
-  color: #999;
-  /* Màu sắc của biểu tượng "mắt" */
-}
-
-.login--password-toggle.active svg {
-  color: white;
-  /* Màu sắc của biểu tượng "mắt" khi nút được nhấp */
+.background-image{
+  @media screen and (min-width:800px) and (max-width: 1180px) {
+    .container--login{
+     margin-top: 250px;
+    }
+  }
 }

@@ -214,7 +214,7 @@ export const RegisterEmployee = () => {
 
     const handelSubmit = async (e) => {
         localStorage.setItem("company", JSON.stringify(e))
-        navigate("/employeePayment")
+        navigate("/employerPayment")
         console.log(e)
 
     }
@@ -308,7 +308,7 @@ export const RegisterEmployee = () => {
                                     ]}
                                     hasFeedback
                                 >
-                                    <Select className='form--name' placeholder='Địa chỉ của bạn' >
+                                    <Select className='form--name form-select-address' placeholder='Địa chỉ của bạn' >
                                         <Option value="Đã Nẵng">Đà Nẵng</Option>
                                         <Option value="Hồ Chí Minh">Hồ Chí Minh</Option>
                                         <Option value="Hà Nội">Hà Nội</Option>
@@ -415,26 +415,26 @@ export const RegisterEmployee = () => {
 
 export const EmployeePayment = () => {
     const naviage=useNavigate()
-    const employees = JSON.parse(localStorage.getItem("company"))
+    const employers = JSON.parse(localStorage.getItem("company"))
     const [numberCart, setNumberCart] = useState({
         number: ""
     }
     )
     const [error, setError] = useState({})
 
-    const [employee, setEmployee] = useState({
-        company_name: employees.company_name,
-        logo: employees.logo,
-        scale: employees.scale,
-        description: employees.description,
-        website: employees.website,
-        email: employees.email,
-        password: employees.password,
-        address: employees.address,
-        number_phone: employees.number_phone
+    const [employer, setEmployer] = useState({
+        company_name: employers.company_name,
+        logo: employers.logo,
+        scale: employers.scale,
+        description: employers.description,
+        website: employers.website,
+        email: employers.email,
+        password: employers.password,
+        address: employers.address,
+        number_phone: employers.number_phone
     })
     const addNewCompany = async () => {
-        postCompany(employee)
+        postCompany(employer)
     }
     const handelPayment = (e) => {
         e.preventDefault()
@@ -461,21 +461,21 @@ export const EmployeePayment = () => {
                             <div className="company--left">
                                 <div>
                                     <label htmlFor=""><b>Tên công ty</b></label> <br />
-                                    <input type="text" value={employee.company_name} readOnly /><br />
+                                    <input type="text" value={employer.company_name} readOnly /><br />
                                 </div>
                                 <div>
                                     <label htmlFor=""><b>Số điện thoại</b></label> <br />
-                                    <input type="number" value={employee.number_phone} readOnly /><br />
+                                    <input type="number" value={employer.number_phone} readOnly /><br />
                                 </div>
                             </div>
                             <div className="company--right">
                                 <div>
                                     <label htmlFor=""><b>Email </b></label> <br />
-                                    <input type="text" value={employee.email} readOnly /><br />
+                                    <input type="text" value={employer.email} readOnly /><br />
                                 </div>
                                 <div>
                                     <label htmlFor=""><b>Địa chỉ</b></label> <br />
-                                    <input type="text" value={employee.address} readOnly /> <br />
+                                    <input type="text" value={employer.address} readOnly /> <br />
                                 </div>
                             </div>
                         </div>

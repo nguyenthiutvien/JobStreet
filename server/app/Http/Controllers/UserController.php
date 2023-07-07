@@ -6,7 +6,9 @@ use Illuminate\Support\Str;
 use App\Mail\ForgotPassword;
 use App\Mail\RegisterEmail;
 use App\Models\Company;
+use App\Models\Application;
 use App\Models\User;
+use App\Models\Job;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -107,10 +109,14 @@ class UserController extends Controller
     {
         $userCount = User::count();
         $companyCount = Company::count();
+        $application = Application::count();
+        $jobCount = Job::count();
 
         return response()->json([
             "user" => $userCount,
-            "company" => $companyCount
+            "company" => $companyCount,
+            "application" => $application,
+            "job" => $jobCount
         ]);
     }
 
@@ -266,6 +272,7 @@ class UserController extends Controller
            
         );
     }
+
 
 }
 

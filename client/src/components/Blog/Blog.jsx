@@ -15,7 +15,7 @@ const Blog = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/posts');
+                const response = await axios.get('http://127.0.0.1:8000/api/get-posts');
                 setBlogPostsData(response.data);
 
             } catch (error) {

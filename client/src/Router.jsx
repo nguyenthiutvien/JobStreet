@@ -29,7 +29,7 @@ import Userad from "./components/admin/Useradmin";
 import Admin from "./components/admin/Admin";
 import Inforusers from "./components/admin/Informationuser";
 import Menuadmin from "./components/admin/Menuadmin";
-import Browse from "./components/admin/Browse";
+import Browse from "./components/admin/Job";
 import Contact from "./components/pages/Contact";
 import NavHero from "./components/pages/navigation/NavHero";
 import NavBar from "./components/pages/navigation/NavBar";
@@ -94,5 +94,5 @@ export const Router = () => [
   { path: "registerEmployee", element: <RegisterEmployee /> },
   { path: "navBar", element: <NavBar /> },
   { path: "admin", element: <Admin /> },
-  { path: "/employeePayment", element: <EmployeePayment /> },
+  { path: "/employerPayment", element: <EmployeePayment /> },
 ];
