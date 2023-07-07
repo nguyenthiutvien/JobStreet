@@ -256,6 +256,19 @@ class UserController extends Controller
             );
     }
 
+    public function deleteUsers(Request $request, $userId)
+    {
+        $user = User::find($userId);
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        $user->delete();
+
+        return response()->json(['status' => 'ok', 'message' => 'Delete succeeded']);
+    }
+
     public function getUserToken($token){
         $user = User::where("token", $token)->first();
         if(!$user){
