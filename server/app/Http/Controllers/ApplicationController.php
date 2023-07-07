@@ -54,7 +54,7 @@ class ApplicationController extends Controller
         $name = $request->name;
         $cover_letter = $request->cover_letter;
         $position = $request->position;
-        $status = "Pending";
+        $status = "Chờ xử lý";
 
         $user = User::where("token", $token)->first();
         $exitUser=Application::where("user_id", $user->id)
