@@ -1,5 +1,8 @@
 .container {
     padding-top: 100px;
+    @media (max-width: 1024px) and (min-width: 768px) {
+        padding: 50px
+    }
 }
 
 .details_info {
@@ -20,7 +23,6 @@
                 padding: 15px 20px;
                 box-shadow: 1px 2px 1px 2px #6d6c6c;
                 line-height: 30px;
-
                 h1,
                 p,
                 h2,
@@ -33,6 +35,11 @@
 
                     white-space: pre-line;
                 }
+                @media (max-width: 1024px) and (min-width: 768px) {
+                    max-width: 300px;
+                    margin-left: 23px;
+                    padding: 7px 5px;
+                }
             }
 
             .btn {
@@ -43,8 +50,13 @@
                 text-align: center;
                 border-radius: 40px;
                 margin-left: 250px;
-                // margin:auto 0 auto;
+                margin:auto 0 auto;
                 background-color: #26AE61;
+                @media (max-width: 1024px) and (min-width: 768px) {
+                        max-width: 75px;
+                        margin-left: 125px;
+                        padding: 7px 5px;
+                    }
                 .link{
                     position: relative;
                     top: 10px;
@@ -68,8 +80,93 @@
                     margin-top: 1rem;
                     color: #191c1e;
                 }
+                @media (max-width: 1024px) and (min-width: 768px) {
+                    max-width: 100px;
+                   
+                }
 
             }
         }
     }
 }
+
+@media (max-width: 1024px) and (min-width: 768px) {
+    .container {
+            padding-top: 100px;
+        }
+    
+        .details_info {
+            padding: 3rem;
+            background: #FFFFFF;
+    
+            .container {
+                .row {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+    
+                    .left {
+                        width: 50%;
+                        max-width: 100%;
+                        margin-left: 0;
+                        margin-bottom: 20px;
+                        padding: 7px 5px 15px;
+                        box-shadow: 1px 2px 1px 2px #6d6c6c;
+                        line-height: 30px;
+    
+                        h1,
+                        p,
+                        h2,
+                        button {
+                            margin-top: 1rem;
+                            color: #191c1e;
+                        }
+    
+                        .job-description {
+                            white-space: pre-line;
+                        }
+                    }
+    
+                    .btn {
+                        display: block;
+                        text-decoration: none;
+                        width: 150px;
+                        height: 50px;
+                        text-align: center;
+                        border-radius: 40px;
+                        margin-left: 0;
+                        margin: auto 0;
+                        background-color: #26AE61;
+    
+                        .link {
+                            position: relative;
+                            top: 10px;
+                            font-size: 17px;
+                            color: #FFFFFF;
+                            align-items: center;
+                        }
+    
+                        &:hover {
+                            background-color: #237f4b;
+                        }
+                    }
+    
+                    .right {
+                        width: 50%;
+                        max-width: 100%;
+                        margin-right: 0;
+                        height: 100%;
+                        padding: 15px 20px;
+                        box-shadow: 1px 2px 1px 2px #6d6c6c;
+    
+                        h1 {
+                            margin-top: 1rem;
+                            color: #191c1e;
+                        }
+                    }
+                }
+            }
+        }
+}
+
+// ==
