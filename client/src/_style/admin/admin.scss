@@ -119,18 +119,61 @@ ul.left-conten a {
 div.card {
     display: flex;
     flex-direction: row;
-    gap: 10px; ;
+    gap: 10px; 
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f5f5f5;
+}
+
+.icon-container {
+    background-color: pink;
+    width: 45px;
+    height: 35px;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 20px;
+    // margin-top: -px;
+    // margin-right: 5px;
+  
+}
+.icon-container{
+    span {
+        margin-top: 100px;
+           margin-left: 9px;
+     
+       }
+    
+}
+ 
+.card-apply,
+.card-candidate {
+    // display: flex;
+    // font-size: 18px;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.card-text {
+    margin-left: 95px;
+    // margin-top: 50px;
+    font-size: 40px;
+    // color: red;
+  
+    
 }
 
 .card-user,
 .card-company,
 .card-apply,
 .card-candidate {
+    font-size: 18px;
     padding: 20px;
     width: 900px;
     height: 140px;
     border-radius: 20px;
     background-color: white;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    margin: 10px;
+    // margin: 10px;
 }

@@ -1,17 +1,21 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import "../../_style/pages/application.scss";
 import { Form, Input, Button,Modal } from "antd"
 import { postApplication } from '../../api/Api'
 import Swal from "sweetalert2"
 export const Modals = ({ closeModal,visible,handleOk,handleCancel,job }) => {
-    const [values, setValues] = useState({
+    const formRef = useRef(null);
+    const initialFormValues = {
         position: job.position,
         job_id: job.id,
         name: "",
         email: "",
         cover_letter: "",
         file_cv: ""
-    })
+      };
+      
+    const [values, setValues] = useState(initialFormValues)
+    const token=JSON.parse(localStorage.getItem("login"))
     const handelInput = (e) => {
         const value = { ...values, [e.target.name]: e.target.value }
         setValues(value)
@@ -25,7 +29,7 @@ export const Modals = ({ closeModal,visible,handleOk,handleCancel,job }) => {
         formData.append("position", values.position)
         formData.append("job_id", values.job_id)
         formData.append("name", values.name)
-        formData.append("email", values.email)
+        formData.append("token", token.token)
         formData.append("cover_letter", values.cover_letter)
         formData.append("cv", values.file_cv)
         formData.append("status", "Đã nhận")
@@ -34,9 +38,17 @@ export const Modals = ({ closeModal,visible,handleOk,handleCancel,job }) => {
                 "Content-Type": "multipart/form-data"
             }
         })
-        // console.log(status.data)
-        setValues("")
+        if (status.data.status ===200) {
+            Swal.fire("Thành Công","Nộp đơn ứng tuyển thành công","success")
+            formRef.current.resetFields();
+        }else if (status.data.status ===400) {
+            Swal.fire("Thật tiếc","Đơn đã được nộp","warning")
+            formRef.current.resetFields();
+        }
+        console.log(...formData)
+        
     }
+        
     return (
 
         <>
@@ -49,9 +61,9 @@ export const Modals = ({ closeModal,visible,handleOk,handleCancel,job }) => {
         // bodyStyle={{ backgroundColor: '#26AE61' }}
         wrapClassName="custom-modal"
         >
-                    <Form onFinish={handelSubmit} >
+                    <Form ref={formRef} onFinish={handelSubmit} >
                     <h3>Ứng tuyển ngay <span>{job.position}</span> tại công ty <span>{job.company_name}</span></h3><br/>
-                        <Form.Item
+                    <Form.Item
                             name="name"
                             rules={[{
                                 required: true,
@@ -71,7 +83,7 @@ export const Modals = ({ closeModal,visible,handleOk,handleCancel,job }) => {
                             ]}
                             hasFeedback
                         >
-                            <Input name="email" placeholder='Nhâp đúng email của bạn' className="form--values" onChange={handelInput} />
+                        <Input name="email" placeholder='Nhâp đúng email của bạn' className="form--values" onChange={handelInput} />
                         </Form.Item>
                         <Form.Item
                             name="cover_letter"

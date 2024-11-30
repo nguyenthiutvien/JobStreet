@@ -1,7 +1,17 @@
+.background-image {
+background-image: url('https://images.pexels.com/photos/2330137/pexels-photo-2330137.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-size: cover;
+     background-position: center;
+
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
 .container--payment--body{
     margin-left: 50px;
     margin-top: 150px;
     margin-right: 50px;
+   
 }
 .conatiner--payment{
     display: grid;
@@ -11,15 +21,17 @@
     width: 800px;
     height: 400px;
     border-radius: 8px;
-    background: #f5eaea;
+    background: #99999999;
     box-shadow: 1px 2px 2px 1px #333232;
 
     .infor--title{
         height: 60px;
         text-align: center;
+        
     }
 }
 .infor--company{
+    margin-top: 10px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     .company--left{
@@ -34,7 +46,7 @@
                 width: 350px;
                 height: 40px;
                 outline: none;
-                border-radius: 20px;
+                border-radius: 5px;
                 padding-left: 10px;
                 &:hover{
                     cursor: not-allowed;
@@ -53,7 +65,7 @@
                 width: 350px;
                 height: 40px;
                 outline: none;
-                border-radius: 20px;
+                border-radius: 5px;
                 padding-left: 10px;
                 &:hover{
                     cursor: not-allowed;
@@ -65,18 +77,22 @@
 }
 .payment--confirm{
     border-radius: 8px;
-    background: #f5eaea;
+    background: #99999999;
     box-shadow: 1px 2px 2px 1px #333232;
     .payment--title{
         text-align: center;
     }
 }
 .payment--price{
-    margin-left: 150px;
-    color: rgb(247, 57, 57);
+    margin-left: 150px; 
+    b{
+        color: rgb(247, 57, 57);
+        font-size: 20px;
+        margin-top: -4px;
+    }
 }
 .payment--number--cart{
-    margin-top: -30px;
+    margin-top: -22px;
     label{
         margin-left: 30px;
     }
@@ -92,9 +108,11 @@
 .payment--select--bank{
     label{
         margin-left: 30px;
+        margin-top: 10px;
     }
     select{
         margin-left: 30px;
+        margin-top: -6px;
         width: 250px;
         height: 40px;
         font-size: 16px;
@@ -108,8 +126,9 @@
     justify-content: center;
     align-items: center;
     display: flex;
+    
     button{
-        margin-left: 10px;
+        margin-left: 40px;
         width: 100px;
         height: 40px;
         border: none;
@@ -121,7 +140,7 @@
         }
     }
     .success{
-        background: rgb(74, 240, 74);
+        background:green;
     }
     .cancel{
         background: rgb(206, 86, 7);

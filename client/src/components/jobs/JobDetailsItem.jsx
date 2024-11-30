@@ -56,7 +56,7 @@ const JobDetailsItem = ({ job ,hero}) => {
       <section className="details_info">
         <div className="container">
           <div className="row">
-            <div className="left">
+            <div className="left-job">
               <h1>Mô tả công việc</h1>
               <div className="job-description">{job.description}</div>
               {useLogined === null ? (
@@ -75,8 +75,9 @@ const JobDetailsItem = ({ job ,hero}) => {
             </div>
             <div className="right">
         <h1>Địa chỉ công ty</h1>
+        <img src="https://www.google.com/maps/d/thumbnail?mid=1JwrFnS69sR3pVhdmBC1AnS4pibw&hl=en_US"></img>
         <div className="location-map">
-          <Map/>
+          {/* <Map/> */}
         </div>
       </div>
           </div>

@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use App\Mail\ForgotPassword;
 use App\Mail\RegisterEmail;
+use App\Models\Company;
+use App\Models\Application;
 use App\Models\User;
+use App\Models\Job;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -102,8 +105,19 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function countEndUser()
     {
+        $userCount = User::count();
+        $companyCount = Company::count();
+        $application = Application::count();
+        $jobCount = Job::count();
+
+        return response()->json([
+            "user" => $userCount,
+            "company" => $companyCount,
+            "application" => $application,
+            "job" => $jobCount
+        ]);
     }
 
     /**
@@ -155,7 +169,10 @@ class UserController extends Controller
         $user->address = $address;
         $user->save();
         return response()->json(
-            "Cập nhật thành công"
+            [
+                "status" => 200,
+                "success" => "Thành công"
+            ]
         );
     }
 
@@ -239,6 +256,19 @@ class UserController extends Controller
             );
     }
 
+    public function deleteUsers(Request $request, $userId)
+    {
+        $user = User::find($userId);
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        $user->delete();
+
+        return response()->json(['status' => 'ok', 'message' => 'Delete succeeded']);
+    }
+
     public function getUserToken($token){
         $user = User::where("token", $token)->first();
         if(!$user){
@@ -255,6 +285,7 @@ class UserController extends Controller
            
         );
     }
+
 
 }
 

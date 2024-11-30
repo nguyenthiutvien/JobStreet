@@ -12,12 +12,12 @@ const ContactForm = () => {
                   type="text"
                   className="form-control"
                   name="name"
-                  placeholder="name"
+                  placeholder="Tên của bạn"
                 />
                 <input
                   type="email"
                   className="form-control"
-                  name="email"
+                  name="Email"
                   placeholder="email"
                 />
               </div>
@@ -26,37 +26,17 @@ const ContactForm = () => {
                   type="text"
                   className="form-control"
                   name="subject"
-                  placeholder="subject"
+                  placeholder="Chủ đề"
                 />
               </div>
               <div className="row3">
-                <textarea name="message" rows="10"></textarea>
+                <textarea name="message"  rows="10"></textarea>
               </div>
-              <button className="button">Send Message</button>
+              <button className="button-send">Gửi</button>
             </div>
           </form>
           <div className="contact_address">
-            <div className="row">
-              <i className="fa fa-map-marker"></i>
-              <div className="info">
-                <p>no 23, baridhara, Dhaka</p>
-                <p>Customer center: 23435234street name- city, country</p>
-              </div>
-            </div>
-            <div className="row">
-              <i className="fa fa-envelope"></i>
-              <div className="info">
-                <p>no 23, baridhara, Dhaka</p>
-                <p>Customer center: 23435234street name- city, country</p>
-              </div>
-            </div>
-            <div className="row">
-              <i className="fa fa-volume-control-phone"></i>
-              <div className="info">
-                <p>no 23, baridhara, Dhaka</p>
-                <p>Customer center: 23435234street name- city, country</p>
-              </div>
-            </div>
+          <img src="https://thutucxuatnhapkhau.com/wp-content/uploads/2023/05/chinh-sach-khach-hang-chung-tai-oz-viet-nam.png"></img>
           </div>
         </div>
       </div>

@@ -16,21 +16,24 @@ export const TabarUser = ({handelLogout}) => {
         <div>
             <div className="container--tabbar">
                 <div className="tabbar--image">
-                    <div className="image--profile">
+                    <div className="image--profile">                       
+                        <img src={`http://127.0.0.1:8000/storage/${user.avatar}`} alt="" /> <br />
                         
-                        <img src={`http://127.0.0.1:8000/storage/${user.avatar}`} alt="" />
-                    </div>
+                    </div> <br />
+                   
                     <div className="user--name">
                         <p>{user.username}</p>
                     </div>
                 </div>
                 <div className="tabbar--drop--down">
                     <ul>
-                        <li><Link className='color' to={"/"}>Trang chủ</Link></li>
-                        <li><Link className='color' to="" >Nộp đơn</Link></li>
-                        <li><Link className='color' to="Information">Thông tin</Link></li>
-                        <li><Link className='color' to="ChangePassword">Đổi mật khẩu</Link></li>
-                        <li><Link className='color' onClick={handelLogout}>Đăng xuất</Link></li>
+                        <li><Link className='color' to={"/"}> <b>Trang chủ</b></Link></li>
+                        <li><Link className='color' to="" > <b>Nộp đơn</b></Link></li>
+                        <li><Link className='color' to="Information"> <b>Thông tin</b></Link></li>
+                        <li><Link className='color' to="ChangePassword"> <b>Đổi mật khẩu</b></Link></li>
+                        <button className="button" onClick={handelLogout}><b>Đăng xuất</b></button>
+                        
+
                     </ul>
                 </div>
             </div>

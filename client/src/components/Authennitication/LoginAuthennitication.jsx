@@ -2,7 +2,7 @@ import "../../_style/pages//login.scss";
 import { Link, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from "axios";
-import { userLogin,employeeLogin } from "../../api/Api";
+import { userLogin,employerLogin } from "../../api/Api";
 
 export const LoginUser = () => {
     const navigate = useNavigate()
@@ -19,13 +19,19 @@ export const LoginUser = () => {
         setLogin(values)
     }
     const [error, setError] = useState({})
-
+    const adminAccount = {
+        email: "jobstreet@gmail.com",
+        password: "123456789"
+      };
+      
+      const adminAccountJSON = JSON.stringify(adminAccount);
+      localStorage.setItem("admin", adminAccountJSON);
     const handelSubmit = async (e) => {
         e.preventDefault();
         let error = {}
-        if(login.email=="vien@gmail.com" && login.password=="12345678"){
-            navigate("/admin")
-            exist;
+        const admin = JSON.parse(localStorage.getItem("admin"));
+        if (admin && login.email === admin.email && login.password === admin.password) {
+            navigate("/admin");
         }
         const token = await userLogin(login)
         switch (token.data.status) {
@@ -106,7 +112,7 @@ export const LoginEmployee = () => {
         if(exist) {
         navigate("/")
     }
-        const token = await employeeLogin(login)
+        const token = await employerLogin(login)
         switch (token.data.status) {
             case "empty_email":
                 error.email = token.data.message

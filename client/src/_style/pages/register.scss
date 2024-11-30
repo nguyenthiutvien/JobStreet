@@ -20,7 +20,7 @@
     width: 940px;
     height: 670px;
     text-align: center;
-    background: #33333399;
+    background: #030303dd;
     border-radius: 8px;
     margin-top: 40px;
     box-shadow: 2px 1px 1px 2px rgb(77, 77, 77);
@@ -52,13 +52,11 @@
     grid-template-columns: 50% 50%;
 
     .form--name {
-        
         width: 400px;
         height: 40px;
         border-radius: 8px;
         outline: none;
         padding-left: 10px;
-        
         &::placeholder{
             font-size:14px;
             padding-left: 10px;
@@ -105,13 +103,4 @@
         
     }
 }
-.password--eyes{
-    position: absolute;
-    top: 55.5%;
-    left: 78%;
-}
-.confirm--password--eye{
-    position: absolute;
-    top: 66.5%;
-    left: 78%;
-}
+
